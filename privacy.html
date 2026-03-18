@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinia - プライバシーポリシー / Privacy Policy</title>
+    <style>
+        :root {
+            --bg: #12121F;
+            --surface: #1E1E30;
+            --text: #E8E4F0;
+            --text-sub: #B0AAC2;
+            --primary: #7C8EF2;
+            --border: #3D3855;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            padding: 0 16px;
+        }
+
+        .container { max-width: 720px; margin: 0 auto; padding: 40px 0 60px; }
+        h1 { font-size: 1.6rem; color: var(--primary); margin-bottom: 8px; }
+        .app-name { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 32px; }
+        .updated { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 24px; }
+        h2 { font-size: 1.15rem; color: var(--primary); margin-top: 32px; margin-bottom: 12px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+        h3 { font-size: 1rem; margin-top: 20px; margin-bottom: 8px; }
+        p, li { color: var(--text); font-size: 0.95rem; margin-bottom: 8px; }
+        ul { padding-left: 24px; }
+        li { margin-bottom: 4px; }
+        a { color: var(--primary); }
+
+        .lang-toggle {
+            display: inline-block;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 16px;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+        .lang-toggle:hover { background: var(--border); }
+        .en { display: none; }
+
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        th { color: var(--primary); font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="lang-toggle" onclick="toggleLang()">English Version</button>
+
+        <div id="ja">
+            <h1>プライバシーポリシー</h1>
+            <p class="app-name">Kinia（キニア）— 家族の安心を見守るアプリ</p>
+            <p class="updated">最終更新日: 2026年3月19日</p>
+
+            <h2>1. はじめに</h2>
+            <p>Kinia（以下「本アプリ」）は、家族やグループ間で位置情報を共有し、安心・安全をサポートするAndroidアプリケーションです。本プライバシーポリシーでは、本アプリが収集する情報、その利用方法、保護方法についてご説明します。</p>
+            <p>本アプリをご利用いただくことで、本ポリシーに同意いただいたものとみなします。</p>
+
+            <h2>2. 収集する情報</h2>
+
+            <h3>2-1. 位置情報</h3>
+            <ul>
+                <li>GPS・ネットワーク測位による現在地（緯度・経度・精度・速度・高度）</li>
+                <li>活動状態（徒歩・走行・自転車・車両・静止）</li>
+                <li>位置情報はアプリがバックグラウンドで動作中も取得されます</li>
+            </ul>
+
+            <h3>2-2. アカウント情報</h3>
+            <ul>
+                <li>Googleアカウントのメールアドレス（ログイン認証に使用）</li>
+                <li>Firebase Authentication UID（内部識別子）</li>
+            </ul>
+
+            <h3>2-3. デバイス情報</h3>
+            <ul>
+                <li>デバイスモデル名、OSバージョン</li>
+                <li>バッテリー残量</li>
+                <li>歩数データ（端末の歩数センサーによる）</li>
+            </ul>
+
+            <h3>2-4. 収集しない情報</h3>
+            <ul>
+                <li>連絡先・写真・通話履歴</li>
+                <li>閲覧履歴・検索履歴</li>
+                <li>クレジットカード・決済情報</li>
+            </ul>
+
+            <h2>3. 情報の利用目的</h2>
+            <table>
+                <tr><th>収集データ</th><th>利用目的</th></tr>
+                <tr><td>位置情報</td><td>グループメンバー間での現在地共有・移動履歴の表示</td></tr>
+                <tr><td>活動状態</td><td>GPS取得頻度の最適化（省電力制御）・移動手段の表示</td></tr>
+                <tr><td>アカウント情報</td><td>ユーザー認証・グループアクセスの管理</td></tr>
+                <tr><td>デバイス情報</td><td>バッテリー残量の共有・トラブルシューティング</td></tr>
+                <tr><td>歩数データ</td><td>健康指標としてグループ内で共有</td></tr>
+            </table>
+            <p>広告の表示やマーケティング目的でのデータ利用は一切行いません。</p>
+
+            <h2>4. データの保存と管理</h2>
+            <ul>
+                <li><strong>保存先</strong>: Google Firebase / Cloud Firestore（Google Cloudのデータセンター）</li>
+                <li><strong>位置履歴の保存期間</strong>: 最大7日間（自動削除）</li>
+                <li><strong>通信の暗号化</strong>: すべての通信はTLS/SSLで暗号化されます</li>
+                <li><strong>匿名化</strong>: ユーザーの個人名はサーバーに保存されません。表示名はデバイス内のみに保持されます</li>
+                <li><strong>グループID</strong>: SHA-256ハッシュ化により、サーバー上からグループ合言葉を逆算することはできません</li>
+            </ul>
+
+            <h2>5. データの共有</h2>
+            <p>本アプリで収集したデータは、以下の場合にのみ共有されます：</p>
+            <ul>
+                <li><strong>同じグループのメンバー</strong>: ユーザーが自ら参加したグループ内でのみ、位置情報が共有されます</li>
+                <li><strong>Firebaseサービス</strong>: データの保存・同期のためにGoogle Firebaseを利用しています</li>
+                <li><strong>Google Maps SDK</strong>: 地図の表示のためにGoogle Maps Platformを利用しています</li>
+            </ul>
+            <p>第三者への販売・提供は一切行いません。法令に基づく開示請求があった場合を除きます。</p>
+
+            <h2>6. バックグラウンドでの位置情報取得</h2>
+            <p>本アプリは、以下の目的でバックグラウンドでの位置情報取得を行います：</p>
+            <ul>
+                <li>グループメンバーに最新の位置情報を共有するため</li>
+                <li>通知エリア（ジオフェンス）の到着・離脱を検知するため</li>
+            </ul>
+            <p>バックグラウンド取得は、省電力設計により活動状態に応じて自動的に頻度が調整されます（静止時は最小限の取得に留まります）。</p>
+
+            <h2>7. ユーザーの権利</h2>
+            <ul>
+                <li><strong>位置情報の送信停止</strong>: アプリの設定から位置情報の送信を停止できます</li>
+                <li><strong>共有範囲の制御</strong>: 共有レベル設定により、位置情報の公開範囲を3段階で調整できます</li>
+                <li><strong>アカウントの削除</strong>: アプリ内の「グループ管理」画面から「アカウントを削除」を選択することで、サーバー上のすべてのデータ（位置履歴・グループ内の情報・認証情報）とデバイス上のデータが完全に削除されます</li>
+                <li><strong>データ削除のリクエスト</strong>: 下記の連絡先にご連絡いただくことで、サーバー上のデータの完全削除を依頼できます</li>
+            </ul>
+
+            <h2>8. 子どものプライバシー</h2>
+            <p>本アプリは、保護者の管理のもとで家族の安全を目的として利用されることを想定しています。13歳未満のお子様が利用する場合は、保護者の同意と監督のもとでご利用ください。</p>
+
+            <h2>9. ポリシーの変更</h2>
+            <p>本ポリシーは、アプリの機能変更や法令の改正に応じて更新されることがあります。重要な変更がある場合は、アプリ内で通知いたします。</p>
+
+            <h2>10. お問い合わせ</h2>
+            <p>本ポリシーに関するご質問やデータ削除のご依頼は、以下までご連絡ください。</p>
+            <p><strong>メール</strong>: <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a></p>
+            <p><strong>開発者</strong>: Norihiko Yamada</p>
+        </div>
+
+        <div id="en" class="en">
+            <h1>Privacy Policy</h1>
+            <p class="app-name">Kinia — Family Safety App</p>
+            <p class="updated">Last Updated: March 19, 2026</p>
+
+            <h2>1. Introduction</h2>
+            <p>Kinia ("the App") is an Android application that enables families and groups to share location information for safety and peace of mind. This Privacy Policy explains what information we collect, how we use it, and how we protect it.</p>
+            <p>By using the App, you agree to this Privacy Policy.</p>
+
+            <h2>2. Information We Collect</h2>
+
+            <h3>2-1. Location Data</h3>
+            <ul>
+                <li>Current location via GPS and network positioning (latitude, longitude, accuracy, speed, altitude)</li>
+                <li>Activity state (walking, running, cycling, driving, stationary)</li>
+                <li>Location data is collected while the app runs in the background</li>
+            </ul>
+
+            <h3>2-2. Account Information</h3>
+            <ul>
+                <li>Google account email address (used for login authentication)</li>
+                <li>Firebase Authentication UID (internal identifier)</li>
+            </ul>
+
+            <h3>2-3. Device Information</h3>
+            <ul>
+                <li>Device model, OS version</li>
+                <li>Battery level</li>
+                <li>Step count data (from device pedometer)</li>
+            </ul>
+
+            <h3>2-4. Information We Do NOT Collect</h3>
+            <ul>
+                <li>Contacts, photos, call history</li>
+                <li>Browsing or search history</li>
+                <li>Credit card or payment information</li>
+            </ul>
+
+            <h2>3. How We Use Your Information</h2>
+            <table>
+                <tr><th>Data</th><th>Purpose</th></tr>
+                <tr><td>Location</td><td>Share current location and movement history within your group</td></tr>
+                <tr><td>Activity state</td><td>Optimize GPS frequency for battery savings; display transport mode</td></tr>
+                <tr><td>Account info</td><td>User authentication and group access management</td></tr>
+                <tr><td>Device info</td><td>Share battery level; troubleshooting</td></tr>
+                <tr><td>Step count</td><td>Share as a health indicator within the group</td></tr>
+            </table>
+            <p>We do not use your data for advertising or marketing purposes.</p>
+
+            <h2>4. Data Storage and Security</h2>
+            <ul>
+                <li><strong>Storage</strong>: Google Firebase / Cloud Firestore (Google Cloud data centers)</li>
+                <li><strong>Location history retention</strong>: Up to 7 days (automatically deleted)</li>
+                <li><strong>Encryption</strong>: All communications are encrypted via TLS/SSL</li>
+                <li><strong>Anonymization</strong>: Personal names are not stored on our servers. Display names are kept only on your device</li>
+                <li><strong>Group ID</strong>: Hashed with SHA-256, making it impossible to reverse-engineer group passphrases from server data</li>
+            </ul>
+
+            <h2>5. Data Sharing</h2>
+            <p>Your data is shared only in the following cases:</p>
+            <ul>
+                <li><strong>Group members</strong>: Location data is shared only within groups you voluntarily joined</li>
+                <li><strong>Firebase services</strong>: Google Firebase is used for data storage and synchronization</li>
+                <li><strong>Google Maps SDK</strong>: Google Maps Platform is used for map display</li>
+            </ul>
+            <p>We never sell or provide your data to third parties, except when required by law.</p>
+
+            <h2>6. Background Location Access</h2>
+            <p>The App collects location data in the background for the following purposes:</p>
+            <ul>
+                <li>To share up-to-date location information with group members</li>
+                <li>To detect arrival at or departure from notification areas (geofences)</li>
+            </ul>
+            <p>Background collection uses a power-efficient design that automatically adjusts frequency based on your activity state (minimal collection when stationary).</p>
+
+            <h2>7. Your Rights</h2>
+            <ul>
+                <li><strong>Stop location sharing</strong>: You can stop sharing from the app settings</li>
+                <li><strong>Control sharing scope</strong>: Sharing level settings allow you to adjust the scope of location sharing in three levels</li>
+                <li><strong>Delete your account</strong>: Select "Delete Account" from the "Group Management" screen in the app. This permanently deletes all your data from our servers (location history, group information, authentication data) and your device</li>
+                <li><strong>Deletion request</strong>: Contact us to request complete deletion of your server data</li>
+            </ul>
+
+            <h2>8. Children's Privacy</h2>
+            <p>The App is intended for family safety under parental supervision. If used by children under 13, parental consent and oversight are required.</p>
+
+            <h2>9. Changes to This Policy</h2>
+            <p>This policy may be updated as the App's features change or as required by law. Significant changes will be communicated through the App.</p>
+
+            <h2>10. Contact Us</h2>
+            <p>For questions about this policy or data deletion requests:</p>
+            <p><strong>Email</strong>: <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a></p>
+            <p><strong>Developer</strong>: Norihiko Yamada</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleLang() {
+            const ja = document.getElementById('ja');
+            const en = document.getElementById('en');
+            const btn = document.querySelector('.lang-toggle');
+            if (ja.style.display === 'none') {
+                ja.style.display = 'block';
+                en.style.display = 'none';
+                btn.textContent = 'English Version';
+            } else {
+                ja.style.display = 'none';
+                en.style.display = 'block';
+                btn.textContent = '日本語版';
+            }
+        }
+    </script>
+</body>
+</html>
