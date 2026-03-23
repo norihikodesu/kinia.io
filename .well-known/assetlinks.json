@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "io.kinia",
+    "sha256_cert_fingerprints": ["64:8A:44:79:3E:EB:45:EA:52:B6:5D:28:69:42:DE:72:67:47:18:51:24:C9:1B:C5:5E:1B:9C:92:3A:E1:1F:45"]
+  }
+}]
