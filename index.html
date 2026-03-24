@@ -156,6 +156,20 @@
         .problem-card .icon { font-size: 2.2rem; margin-bottom: 14px; text-align: center; }
         .problem-card h3 { font-size: 1.15rem; margin-bottom: 10px; color: var(--accent-warm); }
         .problem-card p { font-size: 1rem; color: var(--text-sub); line-height: 1.8; }
+        .problem-card.has-img {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        .problem-card.has-img .card-img {
+            flex-shrink: 0;
+        }
+        .problem-card.has-img .card-body {
+            flex: 1;
+        }
+        @media (max-width: 640px) {
+            .problem-card.has-img { flex-direction: column; align-items: center; text-align: center; }
+        }
 
         /* ── Kiniaの答え ── */
         .answer-visual {
@@ -567,25 +581,33 @@
     </div>
 
     <div class="problem-cards" style="margin-top:32px;">
-        <div class="problem-card">
-            <img src="/images/sec_google.png" alt="" style="width:140px; height:140px; margin-bottom:14px; border-radius:20px;">
-            <h3>Googleのセキュリティ基盤</h3>
-            <p>データベースへのアクセスは、Googleアカウントによる認証で保護されています。ログインしていない第三者がデータに触れることはできません。通信もすべて暗号化されており、途中で盗み見られる心配もありません。</p>
+        <div class="problem-card has-img">
+            <div class="card-img"><img src="/images/sec_google.png" alt="" style="width:100px; height:100px; border-radius:16px;"></div>
+            <div class="card-body">
+                <h3>Googleのセキュリティ基盤</h3>
+                <p>データベースへのアクセスは、Googleアカウントによる認証で保護されています。ログインしていない第三者がデータに触れることはできません。通信もすべて暗号化されており、途中で盗み見られる心配もありません。</p>
+            </div>
         </div>
-        <div class="problem-card">
-            <img src="/images/sec_encrypt.png" alt="" style="width:140px; height:140px; margin-bottom:14px; border-radius:20px;">
-            <h3>位置情報の暗号化</h3>
-            <p>サーバーに保存される位置情報は、合言葉（グループID）から作り出される鍵で暗号化されています。合言葉はサーバーに送信されないため、管理者であっても実際の位置を知ることはできません。</p>
+        <div class="problem-card has-img">
+            <div class="card-img"><img src="/images/sec_encrypt.png" alt="" style="width:100px; height:100px; border-radius:16px;"></div>
+            <div class="card-body">
+                <h3>位置情報の暗号化</h3>
+                <p>サーバーに保存される位置情報は、合言葉（グループID）から作り出される鍵で暗号化されています。合言葉はサーバーに送信されないため、管理者であっても実際の位置を知ることはできません。</p>
+            </div>
         </div>
-        <div class="problem-card">
-            <img src="/images/sec_anonymous.png" alt="" style="width:140px; height:140px; margin-bottom:14px; border-radius:20px;">
-            <h3>「誰が誰か」分からない設計</h3>
-            <p>サーバー上にはランダムなIDだけが保存されています。家族の名前はあなたの端末にだけ保存され、サーバーには一切送信されません。データベースを直接見ても、どのIDが誰かなどの情報は一切わかりません。</p>
+        <div class="problem-card has-img">
+            <div class="card-img"><img src="/images/sec_anonymous.png" alt="" style="width:100px; height:100px; border-radius:16px;"></div>
+            <div class="card-body">
+                <h3>「誰が誰か」分からない設計</h3>
+                <p>サーバー上にはランダムなIDだけが保存されています。家族の名前はあなたの端末にだけ保存され、サーバーには一切送信されません。データベースを直接見ても、どのIDが誰かなどの情報は一切わかりません。</p>
+            </div>
         </div>
-        <div class="problem-card">
-            <img src="/images/sec_nodata.png" alt="" style="width:140px; height:140px; margin-bottom:14px; border-radius:20px;">
-            <h3>「持たない」という安全</h3>
-            <p>位置情報が意味を持つのは、合言葉を知っている家族の端末上だけです。サーバーは暗号化されたデータを中継するだけの存在。個人を特定できる情報をそもそも預からないことが、利用者にとっても運営にとっても、最も安全な形だと考えています。</p>
+        <div class="problem-card has-img">
+            <div class="card-img"><img src="/images/sec_nodata.png" alt="" style="width:100px; height:100px; border-radius:16px;"></div>
+            <div class="card-body">
+                <h3>「持たない」という安全</h3>
+                <p>位置情報が意味を持つのは、合言葉を知っている家族の端末上だけです。サーバーは暗号化されたデータを中継するだけの存在。個人を特定できる情報をそもそも預からないことが、利用者にとっても運営にとっても、最も安全な形だと考えています。</p>
+            </div>
         </div>
     </div>
 </div>
