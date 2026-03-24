@@ -156,20 +156,6 @@
         .problem-card .icon { font-size: 2.2rem; margin-bottom: 14px; text-align: center; }
         .problem-card h3 { font-size: 1.15rem; margin-bottom: 10px; color: var(--accent-warm); }
         .problem-card p { font-size: 1rem; color: var(--text-sub); line-height: 1.8; }
-        .problem-card.has-img {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-        .problem-card.has-img .card-img {
-            flex-shrink: 0;
-        }
-        .problem-card.has-img .card-body {
-            flex: 1;
-        }
-        @media (max-width: 640px) {
-            .problem-card.has-img { flex-direction: column; align-items: center; text-align: center; }
-        }
 
         /* ── Kiniaの答え ── */
         .answer-visual {
@@ -230,7 +216,8 @@
         }
         .vision-banner .icon { font-size: 3.6rem; margin-bottom: 16px; }
         .vision-banner h3 { font-size: 1.2rem; margin-bottom: 12px; color: var(--accent-warm); }
-        .vision-banner p { color: var(--text-sub); line-height: 1.8; max-width: 560px; margin: 0 auto; }
+        .vision-banner p { color: var(--text-sub); line-height: 1.8; max-width: 640px; margin: 0 auto; }
+        .vision-banner img { border-radius: 20px; }
 
         /* ── フッター ── */
         .footer-links {
@@ -458,8 +445,7 @@
     <div class="answer-visual">
         <div class="text">
             <p class="lead">
-                お互いが負担に感じない距離感でつながれる。<br>
-                見守る側と見守られる側に、上下関係を作らない。
+                お互いが負担に感じない距離感でつながれる。見守る側と見守られる側に、上下関係を作らない。
             </p>
             <ul class="answer-list">
                 <li><span class="check">✓</span> 初期設定は<strong>通知エリアのみ</strong> — 設定するまで何も共有されない</li>
@@ -609,24 +595,24 @@
     <p class="section-label">More Features</p>
     <h2 style="text-align:center;">位置共有だけじゃない、<span class="highlight">家族のための機能</span></h2>
 
-    <div class="scenarios" style="margin-top:32px;">
-        <div class="scenario-card">
-            <div class="emoji">👟</div>
+    <div class="problem-cards" style="margin-top:32px;">
+        <div class="problem-card">
+            <div class="icon">👟</div>
             <h3>歩数と元気度</h3>
             <p>家族の今日の歩数と、そこから算出した「元気度」が分かります。位置を共有しなくても「今日も元気に動いてるな」と安心できます。</p>
         </div>
-        <div class="scenario-card">
-            <div class="emoji">💬</div>
+        <div class="problem-card">
+            <div class="icon">💬</div>
             <h3>ステータスコメント</h3>
             <p>「会議中」「外出中」「帰宅中」など、一言メッセージを設定できます。有効時間を選べるので、自動で消えます。</p>
         </div>
-        <div class="scenario-card">
-            <div class="emoji">🆘</div>
+        <div class="problem-card">
+            <div class="icon">🆘</div>
             <h3>困っているアラート</h3>
             <p>緊急時にワンタップでSOSを家族全員に送信。プッシュ通知で即座に届きます。</p>
         </div>
-        <div class="scenario-card">
-            <div class="emoji">💰</div>
+        <div class="problem-card">
+            <div class="icon">💰</div>
             <h3>完全無料・広告なし</h3>
             <p>基本機能はすべて無料で利用できます。広告表示もありません。家族の安心にお金はかかりません。</p>
         </div>
@@ -639,7 +625,7 @@
     <h2>Kiniaが<span class="highlight">目指す未来</span></h2>
 
     <div class="vision-banner" style="margin-bottom:24px;">
-        <img src="/images/vision_lifestage.png" alt="" style="width:200px; height:200px; margin-bottom:16px; border-radius:50%;">
+        <img src="/images/vision_lifestage.png" alt="" style="width:200px; height:200px; margin-bottom:16px;">
         <h3>ライフステージを超えて、ずっと</h3>
         <p>
             小学校、中学校、高校——学生時代だけで終わるアプリではありません。大学に進学しても、社会人になっても、家族が離れて暮らすようになっても。対等な関係だからこそ、子供が大人になっても使い続けられます。「監視される側」のままなら、自立した時点でアンインストールされてしまう。フェアであることが、長く続く理由になります。
@@ -647,7 +633,7 @@
     </div>
 
     <div class="vision-banner">
-        <img src="/images/vision_safety.png" alt="" style="width:200px; height:200px; margin-bottom:16px; border-radius:50%;">
+        <img src="/images/vision_safety.png" alt="" style="width:200px; height:200px; margin-bottom:16px;">
         <h3>災害時の安否確認</h3>
         <p>
             将来的には、災害が起こった時にお互いの安否確認や最終位置の情報だけは即時に共有できる仕組みを構築します。普段は「ゆるいつながり」、いざという時は「確実につながる」。それがKiniaの目指す未来です。
