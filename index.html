@@ -520,6 +520,69 @@
     </table>
 </div>
 
+<!-- セキュリティ -->
+<div class="section">
+    <p class="section-label">Security</p>
+    <h2>運営すら<span class="highlight">位置情報を見られない</span>設計</h2>
+
+    <p class="lead">
+        Kiniaでは、サーバーに保存される位置情報は独自の暗号化技術でオフセット処理されています。
+        万が一データベースが流出しても、実際の座標を復元することは不可能です。
+    </p>
+
+    <div class="problem-cards" style="margin-top:32px;">
+        <div class="problem-card">
+            <div class="icon">🔐</div>
+            <h3>座標オフセット暗号化</h3>
+            <p>全ての位置情報は、端末にのみ保存される「合言葉」から導出したオフセットでシフトされてからサーバーに保存されます。合言葉はサーバーに送信されないため、運営を含め誰も実際の位置を逆算できません。</p>
+        </div>
+        <div class="problem-card">
+            <div class="icon">👤</div>
+            <h3>個人名をサーバーに保存しない</h3>
+            <p>サーバー上にはランダムなIDのみが保存されます。家族の表示名はあなたの端末にだけ保存され、サーバーには送信されません。データベースを見ても「誰が誰か」は分かりません。</p>
+        </div>
+        <div class="problem-card">
+            <div class="icon">🔑</div>
+            <h3>グループIDのハッシュ化</h3>
+            <p>グループへの参加に使う合言葉も、暗号学的ハッシュ関数で一方向変換されてからサーバーに保存されます。サーバーから合言葉を逆算することは不可能です。</p>
+        </div>
+        <div class="problem-card">
+            <div class="icon">🛡️</div>
+            <h3>エンドツーエンドの安全性</h3>
+            <p>位置情報が意味を持つのは、合言葉を知っている家族の端末上だけです。サーバーは暗号化されたデータを中継するだけの存在です。</p>
+        </div>
+    </div>
+</div>
+
+<!-- もっと機能 -->
+<div class="section-wide">
+    <p class="section-label">More Features</p>
+    <h2 style="text-align:center;">位置共有だけじゃない、<span class="highlight">家族のための機能</span></h2>
+
+    <div class="scenarios" style="margin-top:32px;">
+        <div class="scenario-card">
+            <div class="emoji">👟</div>
+            <h3>歩数と元気度</h3>
+            <p>家族の今日の歩数と、そこから算出した「元気度」が分かります。位置を共有しなくても「今日も元気に動いてるな」と安心できます。</p>
+        </div>
+        <div class="scenario-card">
+            <div class="emoji">💬</div>
+            <h3>ステータスコメント</h3>
+            <p>「会議中」「外出中」「帰宅中」など、一言メッセージを設定できます。有効時間を選べるので、自動で消えます。</p>
+        </div>
+        <div class="scenario-card">
+            <div class="emoji">🆘</div>
+            <h3>困っているアラート</h3>
+            <p>緊急時にワンタップでSOSを家族全員に送信。プッシュ通知で即座に届きます。</p>
+        </div>
+        <div class="scenario-card">
+            <div class="emoji">💰</div>
+            <h3>完全無料・広告なし</h3>
+            <p>基本機能はすべて無料で利用できます。広告表示もありません。家族の安心にお金はかかりません。</p>
+        </div>
+    </div>
+</div>
+
 <!-- 将来構想 -->
 <div class="section">
     <p class="section-label">Vision</p>
