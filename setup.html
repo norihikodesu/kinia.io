@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>はじめかたガイド — Kinia</title>
+    <style>
+        :root {
+            --bg: #12121F;
+            --surface: #1E1E30;
+            --surface-high: #282540;
+            --text: #E8E4F0;
+            --text-sub: #B0AAC2;
+            --primary: #7C8EF2;
+            --primary-dim: #4A5AB0;
+            --tertiary: #4DB6AC;
+            --secondary: #FF8A65;
+            --border: #3D3855;
+            --outline: #524D6B;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        /* ===== ヘッダー ===== */
+        .site-header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .site-header a { color: var(--primary); text-decoration: none; font-size: 0.9rem; }
+        .site-header .logo { font-weight: bold; font-size: 1.1rem; }
+
+        /* ===== プログレスバー ===== */
+        .progress-bar {
+            height: 3px;
+            background: var(--border);
+            position: sticky;
+            top: 53px;
+            z-index: 99;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        /* ===== ステップナビ（横スクロール） ===== */
+        .step-nav {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 16px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            position: sticky;
+            top: 56px;
+            z-index: 98;
+        }
+        .step-nav::-webkit-scrollbar { display: none; }
+        .step-nav button {
+            background: transparent;
+            color: var(--text-sub);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .step-nav button.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .step-nav button:hover:not(.active) {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* ===== メインコンテンツ ===== */
+        .content { max-width: 720px; margin: 0 auto; padding: 0 20px 80px; }
+
+        /* ===== ステップセクション ===== */
+        .step {
+            padding-top: 40px;
+            scroll-margin-top: 120px;
+        }
+        .step-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 3px 12px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+        .step h2 {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .step .lead {
+            font-size: 1rem;
+            color: var(--text-sub);
+            margin-bottom: 24px;
+        }
+
+        /* ===== モックアップ画像エリア ===== */
+        .mockup-container {
+            display: flex;
+            justify-content: center;
+            margin: 24px 0;
+        }
+        .mockup-frame {
+            width: 280px;
+            height: 600px;
+            border: 3px solid #444;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        .mockup-frame iframe {
+            width: 360px;
+            height: 780px;
+            border: none;
+            transform: scale(0.778);
+            transform-origin: top left;
+            pointer-events: none;
+        }
+
+        /* ===== 手順リスト ===== */
+        .steps-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+        .steps-list li {
+            counter-increment: step-counter;
+            padding: 12px 0 12px 48px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+        .steps-list li:last-child { border-bottom: none; }
+        .steps-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .steps-list li .sub {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        /* ===== ヒントボックス ===== */
+        .hint {
+            background: var(--surface);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 20px 0;
+            font-size: 0.92rem;
+            color: var(--text-sub);
+            line-height: 1.7;
+        }
+        .hint strong { color: var(--text); }
+        .hint.warn {
+            border-left-color: var(--secondary);
+        }
+
+        /* ===== 権限テーブル ===== */
+        .perm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+        .perm-table th {
+            background: var(--surface-high);
+            color: var(--primary);
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .perm-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-sub);
+            vertical-align: top;
+        }
+        .perm-table td:first-child {
+            color: var(--text);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* ===== タブ切替 ===== */
+        .tab-group {
+            display: flex;
+            gap: 8px;
+            margin: 16px 0;
+        }
+        .tab-btn {
+            background: var(--surface);
+            color: var(--text-sub);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: var(--primary-dim);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ===== 機能カード ===== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        @media (max-width: 500px) {
+            .feature-grid { grid-template-columns: 1fr; }
+        }
+        .feature-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid var(--border);
+        }
+        .feature-card .icon { font-size: 1.5rem; margin-bottom: 8px; }
+        .feature-card h4 { font-size: 0.95rem; color: var(--text); margin-bottom: 4px; }
+        .feature-card p { font-size: 0.85rem; color: var(--text-sub); line-height: 1.5; }
+
+        /* ===== ナビボタン ===== */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 32px;
+            gap: 12px;
+        }
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .nav-btn.next {
+            background: var(--primary);
+            color: #fff;
+            margin-left: auto;
+        }
+        .nav-btn.prev {
+            background: var(--surface);
+            color: var(--text-sub);
+            border: 1px solid var(--border);
+        }
+        .nav-btn:hover { opacity: 0.85; }
+
+        /* ===== フッター ===== */
+        .site-footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 24px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+        .site-footer a { color: var(--primary); text-decoration: none; }
+        .site-footer nav { display: flex; gap: 16px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+    </style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header class="site-header">
+    <a href="/" class="logo">🛡️ Kinia</a>
+    <a href="/faq.html">よくある質問</a>
+</header>
+
+<!-- プログレスバー -->
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<!-- ステップナビ -->
+<nav class="step-nav" id="stepNav">
+    <button data-step="1" class="active">インストール</button>
+    <button data-step="2">ログイン</button>
+    <button data-step="3">グループ作成</button>
+    <button data-step="4">家族を招待</button>
+    <button data-step="5">権限設定</button>
+    <button data-step="6">通知エリア</button>
+    <button data-step="7">完了</button>
+    <button data-step="8">機種変更</button>
+</nav>
+
+<main class="content">
+
+    <!-- ===== Step 1: インストール ===== -->
+    <section class="step" id="step1">
+        <span class="step-badge">STEP 1</span>
+        <h2>インストール</h2>
+        <p class="lead">Kiniaは Google Play からダウンロードできます。</p>
+
+        <p><strong>対応端末:</strong> Android 8.0（Oreo）以上</p>
+
+        <div style="margin: 24px 0; text-align: center;">
+            <a href="https://play.google.com/store/apps/details?id=io.kinia"
+               style="display:inline-block; background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px 32px; color:var(--primary); text-decoration:none; font-size:1rem;">
+                ▶ Google Play で入手する
+            </a>
+        </div>
+
+        <div class="hint">
+            ※ 現在は Android のみ対応しています。iOS版は今後の対応を検討中です。
+        </div>
+
+        <div class="nav-buttons">
+            <span></span>
+            <button class="nav-btn next" onclick="goStep(2)">次へ: ログイン →</button>
+        </div>
+    </section>
+
+    <!-- ===== Step 2: ログイン ===== -->
+    <section class="step" id="step2">
+        <span class="step-badge">STEP 2</span>
+        <h2>Googleアカウントでログイン</h2>
+        <p class="lead">アプリを起動すると、ログイン画面が表示されます。</p>
+
+        <div class="mockup-container">
+            <div class="mockup-frame">
+                <iframe src="mockups/01_login.html"></iframe>
+            </div>
+        </div>
+
+        <ol class="steps-list">
+            <li><strong>「Googleでログイン」</strong> をタップ</li>
+            <li>使いたいGoogleアカウントを選択</li>
+            <li>自動的に次の画面に進みます</li>
+        </ol>
+
+        <div class="hint">
+            <strong>どのアカウントを選べばいい？</strong><br>
+            ふだんスマホで使っているGoogleアカウントでOKです。
+            家族に見えるのは、あとで設定する「ニックネーム」だけなので、アカウント名が表示されることはありません。
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goStep(1)">← 前へ</button>
+            <button class="nav-btn next" onclick="goStep(3)">次へ: グループ作成 →</button>
+        </div>
+    </section>
+
+    <!-- ===== Step 3: グループ作成 ===== -->
+    <section class="step" id="step3">
+        <span class="step-badge">STEP 3</span>
+        <h2>グループをつくる</h2>
+        <p class="lead">家族みんなで位置を共有するための「グループ」をつくります。<br>（最初の1人目だけが行う操作です）</p>
+
+        <div class="mockup-container">
+            <div class="mockup-frame">
+                <iframe src="mockups/02b_main_create_group.html"></iframe>
+            </div>
+        </div>
+
+        <ol class="steps-list">
+            <li>
+                <strong>「▶ 新規グループを作成する」</strong> をタップして展開
+            </li>
+            <li>
+                <strong>グループ名を入力</strong>（3文字以上）
+                <div class="sub">
+                    家族だけのグループを識別する名前です（例: 「yamada2026」「やまだ家」）。<br>
+                    「自動生成」ボタンでランダムな名前を作ることもできます。
+                </div>
+            </li>
+            <li>
+                <strong>「グループを作成して開始」</strong> をタップ
+            </li>
+        </ol>
+
+        <div class="hint">
+            <strong>グループ名は覚えておく必要がある？</strong><br>
+            グループ名は最初に1回入力するだけです。ログインはGoogleアカウントで行うので、毎回入力する必要はありません。
+            家族の招待も招待コードで行うため、グループ名を共有する必要もありません。
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goStep(2)">← 前へ</button>
+            <button class="nav-btn next" onclick="goStep(4)">次へ: 家族を招待 →</button>
+        </div>
+    </section>
+
+    <!-- ===== Step 4: 家族を招待 ===== -->
+    <section class="step" id="step4">
+        <span class="step-badge">STEP 4</span>
+        <h2>家族を招待する</h2>
+        <p class="lead">グループができたら、家族を招待しましょう。</p>
+
+        <h3 style="color:var(--primary); font-size:1.1rem; margin: 24px 0 12px;">招待する側の操作</h3>
+
+        <div class="mockup-container">
+            <div class="mockup-frame">
+                <iframe src="mockups/07_group_invite.html"></iframe>
+            </div>
+        </div>
+
+        <ol class="steps-list">
+            <li>画面右上の <strong>メニュー（⋮）</strong> をタップ</li>
+            <li><strong>「グループ管理」</strong> を選択</li>
+            <li><strong>「招待コードを発行」</strong> をタップ</li>
+            <li><strong>「リンクを共有」</strong> をタップして、LINEやメールで家族に送る</li>
+        </ol>
+
+        <div class="hint">
+            <strong>同じ招待コードで家族全員を招待できます。</strong>
+            1人ずつ発行する必要はありません。<br>
+            有効期限は <strong>72時間</strong> です。期限が切れたら、もう一度発行できます。
+        </div>
+
+        <h3 style="color:var(--primary); font-size:1.1rem; margin: 24px 0 12px;">招待された側の操作</h3>
+
+        <!-- タブ切替 -->
+        <div class="tab-group">
+            <button class="tab-btn active" onclick="switchTab('linkTab', this)">リンクから参加（おすすめ）</button>
+            <button class="tab-btn" onclick="switchTab('codeTab', this)">コードを入力</button>
+        </div>
+
+        <div id="linkTab" class="tab-content active">
+            <div class="mockup-container">
+                <div class="mockup-frame">
+                    <iframe src="mockups/03_invite_join.html"></iframe>
+                </div>
+            </div>
+            <ol class="steps-list">
+                <li>送られてきたリンクをタップ</li>
+                <li>Kiniaがインストールされていなければ、Google Playに案内されます</li>
+                <li>アプリを開くと、自動的に参加画面が表示されます</li>
+                <li><strong>ニックネームを入力して「参加する」</strong> をタップ</li>
+            </ol>
+        </div>
+
+        <div id="codeTab" class="tab-content">
+            <div class="mockup-container">
+                <div class="mockup-frame">
+                    <iframe src="mockups/02_main_initial.html"></iframe>
+                </div>
+            </div>
+            <ol class="steps-list">
+                <li>アプリを起動してGoogleアカウントでログイン</li>
+                <li><strong>ニックネーム</strong> と送られてきた <strong>5桁のコード</strong> を入力</li>
+                <li><strong>「招待コードで参加」</strong> をタップ</li>
+            </ol>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goStep(3)">← 前へ</button>
+            <button class="nav-btn next" onclick="goStep(5)">次へ: 権限設定 →</button>
+        </div>
+    </section>
+
+    <!-- ===== Step 5: 権限設定 ===== -->
+    <section class="step" id="step5">
+        <span class="step-badge">STEP 5</span>
+        <h2>権限を設定する</h2>
+        <p class="lead">Kiniaが正しく動くために、いくつかの権限を許可する必要があります。<br>アプリ内のガイドに従って、1つずつ設定していきましょう。</p>
+
+        <div class="mockup-container">
+            <div class="mockup-frame">
+                <iframe src="mockups/04_setup_wizard.html"></iframe>
+            </div>
+        </div>
+
+        <h3 style="color:var(--primary); font-size:1rem; margin: 20px 0 8px;">必ず設定してほしい権限</h3>
+        <table class="perm-table">
+            <tr><th>権限</th><th>なぜ必要？</th><th>操作</th></tr>
+            <tr><td>位置情報</td><td>家族に自分の位置を共有するため</td><td>「許可」をタップ</td></tr>
+            <tr><td>バックグラウンド位置情報</td><td>アプリを閉じていても位置が更新されるように</td><td>設定画面で「常に許可」を選択</td></tr>
+            <tr><td>活動認識</td><td>歩行・車の移動などの判定に使用</td><td>「許可」をタップ</td></tr>
+        </table>
+
+        <h3 style="color:var(--text-sub); font-size:1rem; margin: 20px 0 8px;">あると便利な権限</h3>
+        <table class="perm-table">
+            <tr><th>権限</th><th>なぜ必要？</th><th>操作</th></tr>
+            <tr><td>通知</td><td>エリア出入り通知の受信（Android 13+）</td><td>「許可」をタップ</td></tr>
+            <tr><td>省電力の除外</td><td>スリープ中もGPSが止まらないように</td><td>「許可」をタップ</td></tr>
+            <tr><td>全画面通知</td><td>「元気？」リクエストの全画面表示（Android 14+）</td><td>設定画面で有効にする</td></tr>
+        </table>
+
+        <div class="hint">
+            <strong>「常に許可」って怖くない？</strong><br>
+            Kiniaは動いているときだけGPSを使い、止まっているときはほとんどバッテリーを消費しません。
+            「常に許可」にしないとアプリを閉じた瞬間に位置の更新が止まり、見守りとして機能しなくなります。
+        </div>
+
+        <div class="hint">
+            <strong>位置データの安全性について</strong><br>
+            Kiniaでは、位置情報をそのままサーバーに保存しません。
+            グループ作成時の情報をもとに座標をずらして暗号化した状態で保存しています。
+            万が一サーバーのデータが漏洩しても、家族の正確な居場所は復元できない仕組みです。<br>
+            収集したデータは家族のグループ内だけで共有され、広告やデータ販売など外部への提供は一切行いません。
+        </div>
+
+        <div class="hint">
+            <strong>あとから設定を変えたい場合</strong><br>
+            アプリ内のメニューから「権限チェック」を開くと、いつでも設定を見直せます。
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goStep(4)">← 前へ</button>
+            <button class="nav-btn next" onclick="goStep(6)">次へ: 通知エリア →</button>
+        </div>
+    </section>
+
+    <!-- ===== Step 6: 通知エリア ===== -->
+    <section class="step" id="step6">
+        <span class="step-badge">STEP 6（オプション）</span>
+        <h2>通知エリアを設定する</h2>
+        <p class="lead">「自宅に着いたら通知」「学校を出たら通知」のように、特定のエリアの出入りを通知で受け取れます。</p>
+
+        <div class="mockup-container">
+            <div class="mockup-frame">
+                <iframe src="mockups/06_geofence.html"></iframe>
+            </div>
+        </div>
+
+        <ol class="steps-list">
+            <li>画面下の <strong>「通知エリア」タブ</strong> をタップ</li>
+            <li>地図が表示されたら、エリアを設定したい場所をタップ</li>
+            <li>エリア名と半径を設定</li>
+            <li>通知を受け取りたいメンバーを選択</li>
+        </ol>
+
+        <div class="hint">
+            通知エリアは後からいつでも追加・編集・削除できます。<br>
+            まずは <strong>「自宅」だけ設定しておく</strong> のがおすすめです。
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goStep(5)">← 前へ</button>
+            <button class="nav-btn next" onclick="goStep(7)">次へ: 準備完了！ →</button>
+        </div>
+    </section>
+
+    <!-- ===== Step 7: 準備完了 ===== -->
+    <section class="step" id="step7">
+        <span class="step-badge">COMPLETE</span>
+        <h2>準備完了！</h2>
+        <p class="lead">これで設定は完了です。メンバー一覧に家族が表示されているはずです。</p>
+
+        <div class="mockup-container">
+            <div class="mockup-frame">
+                <iframe src="mockups/05_map.html"></iframe>
+            </div>
+        </div>
+
+        <h3 style="color:var(--primary); font-size:1.1rem; margin: 24px 0 16px;">こんなことができます</h3>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon">🗺️</div>
+                <h4>現在地を確認</h4>
+                <p>家族のアイコンをタップすると、最終更新時刻や活動状態が見られます</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📊</div>
+                <h4>移動履歴</h4>
+                <p>1日の移動ルートを時系列で振り返り。移動手段も自動判別します</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">👟</div>
+                <h4>歩数を確認</h4>
+                <p>万歩計画面で今日の歩数をチェック。元気度もわかります</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔒</div>
+                <h4>共有レベル</h4>
+                <p>「すべて共有」「通知エリアのみ」から共有範囲を自分で選べます</p>
+            </div>
+        </div>
+
+        <div class="hint">
+            <strong>困ったときは</strong><br>
+            <a href="/faq.html" style="color:var(--primary);">よくある質問（FAQ）</a> を確認するか、
+            アプリ内の「問題を報告する」からお問い合わせください。
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goStep(6)">← 前へ</button>
+            <button class="nav-btn next" onclick="goStep(8)">機種変更するとき →</button>
+        </div>
+    </section>
+
+    <!-- ===== Step 8: 機種変更 ===== -->
+    <section class="step" id="step8">
+        <span class="step-badge">補足</span>
+        <h2>機種変更するとき</h2>
+        <p class="lead">端末を変えるときは、招待コードを使って新しい端末からグループに参加し直します。</p>
+
+        <h3 style="color:var(--primary); font-size:1rem; margin: 20px 0 12px;">旧端末での操作（できる場合）</h3>
+        <ol class="steps-list">
+            <li>右上の <strong>メニュー（⋮）</strong> → <strong>「グループ管理」</strong></li>
+            <li><strong>「招待コードを発行」</strong> をタップ</li>
+            <li>表示された <strong>5桁のコード</strong> をメモする</li>
+        </ol>
+
+        <h3 style="color:var(--primary); font-size:1rem; margin: 20px 0 12px;">新端末での操作</h3>
+        <ol class="steps-list">
+            <li>Kiniaをインストール → 同じGoogleアカウントでログイン</li>
+            <li>メモした <strong>招待コード</strong> を入力して参加</li>
+        </ol>
+
+        <div class="hint">
+            招待コードの有効期限は <strong>72時間</strong> です。機種変更の直前に発行するのがおすすめです。<br>
+            旧端末が使えない場合は、グループ内の他のメンバーに招待コードを発行してもらいましょう。
+        </div>
+
+        <div style="margin-top: 40px; padding: 24px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border);">
+            <h3 style="font-size: 1rem; margin-bottom: 8px;">お問い合わせ</h3>
+            <p style="color: var(--text-sub); font-size: 0.92rem;">
+                解決しない場合は <a href="mailto:kinia.app@gmail.com" style="color:var(--primary);">kinia.app@gmail.com</a> までご連絡ください。<br>
+                端末名・Androidバージョン・Kiniaバージョン・症状の詳細を添えていただくとスムーズです。
+            </p>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goStep(7)">← 準備完了に戻る</button>
+        </div>
+    </section>
+
+</main>
+
+<!-- フッター -->
+<footer class="site-footer">
+    <nav>
+        <a href="/">トップ</a>
+        <a href="/setup.html">はじめかたガイド</a>
+        <a href="/faq.html">よくある質問</a>
+        <a href="/privacy.html">プライバシーポリシー</a>
+        <a href="/delete-account.html">アカウント削除</a>
+    </nav>
+    <p>&copy; 2026 Kinia &mdash; <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a></p>
+</footer>
+
+<script>
+const TOTAL_STEPS = 8;
+
+function goStep(n) {
+    const el = document.getElementById('step' + n);
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        updateActiveNav(n);
+    }
+}
+
+function switchTab(tabId, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    btn.classList.add('active');
+}
+
+function updateActiveNav(stepNum) {
+    document.querySelectorAll('.step-nav button').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.step) === stepNum);
+    });
+    // ナビのスクロール
+    const activeBtn = document.querySelector('.step-nav button.active');
+    if (activeBtn) activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    // プログレスバー
+    document.getElementById('progressFill').style.width = ((stepNum / TOTAL_STEPS) * 100) + '%';
+}
+
+// ステップナビのクリック
+document.querySelectorAll('.step-nav button').forEach(btn => {
+    btn.addEventListener('click', () => goStep(parseInt(btn.dataset.step)));
+});
+
+// スクロール監視でアクティブステップ更新
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const stepNum = parseInt(entry.target.id.replace('step', ''));
+            updateActiveNav(stepNum);
+        }
+    });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+document.querySelectorAll('.step').forEach(s => observer.observe(s));
+
+// 初期状態
+updateActiveNav(1);
+</script>
+
+</body>
+</html>

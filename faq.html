@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>よくある質問 — Kinia</title>
+    <style>
+        :root {
+            --bg: #12121F;
+            --surface: #1E1E30;
+            --surface-high: #282540;
+            --text: #E8E4F0;
+            --text-sub: #B0AAC2;
+            --primary: #7C8EF2;
+            --border: #3D3855;
+            --outline: #524D6B;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        /* ===== ヘッダー ===== */
+        .site-header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .site-header a { color: var(--primary); text-decoration: none; font-size: 0.9rem; }
+        .site-header .logo { font-weight: bold; font-size: 1.1rem; }
+
+        /* ===== メイン ===== */
+        .content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+        h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: var(--text-sub);
+            margin-bottom: 32px;
+            font-size: 0.95rem;
+        }
+
+        /* ===== カテゴリ ===== */
+        .category {
+            margin-bottom: 32px;
+        }
+        .category-title {
+            font-size: 1.1rem;
+            color: var(--primary);
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 12px;
+        }
+
+        /* ===== アコーディオン ===== */
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            overflow: hidden;
+            background: var(--surface);
+        }
+        .faq-q {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text);
+            user-select: none;
+            transition: background 0.2s;
+        }
+        .faq-q:hover { background: var(--surface-high); }
+        .faq-q .arrow {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            transition: transform 0.2s;
+            flex-shrink: 0;
+            margin-left: 12px;
+        }
+        .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 16px;
+            color: var(--text-sub);
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+        .faq-item.open .faq-a {
+            max-height: 600px;
+            padding: 0 16px 16px;
+        }
+        .faq-a a { color: var(--primary); }
+        .faq-a p { margin-bottom: 8px; }
+        .faq-a p:last-child { margin-bottom: 0; }
+
+        /* ===== 検索 ===== */
+        .search-box {
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--text);
+            font-size: 1rem;
+            margin-bottom: 32px;
+            outline: none;
+            font-family: inherit;
+        }
+        .search-box::placeholder { color: var(--outline); }
+        .search-box:focus { border-color: var(--primary); }
+
+        .no-results {
+            text-align: center;
+            color: var(--text-sub);
+            padding: 32px;
+            display: none;
+        }
+
+        /* ===== お問い合わせ ===== */
+        .contact-box {
+            margin-top: 40px;
+            padding: 24px;
+            background: var(--surface);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .contact-box h3 { font-size: 1rem; margin-bottom: 8px; }
+        .contact-box p { color: var(--text-sub); font-size: 0.92rem; }
+        .contact-box a { color: var(--primary); text-decoration: none; }
+
+        /* ===== フッター ===== */
+        .site-footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 24px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+        .site-footer a { color: var(--primary); text-decoration: none; }
+        .site-footer nav { display: flex; gap: 16px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <a href="/" class="logo">🛡️ Kinia</a>
+    <a href="/setup.html">はじめかたガイド</a>
+</header>
+
+<main class="content">
+    <h1>よくある質問</h1>
+    <p class="subtitle">お探しの回答が見つからない場合は、ページ下部のお問い合わせからご連絡ください。</p>
+
+    <input type="text" class="search-box" id="searchBox" placeholder="キーワードで検索...">
+
+    <div id="faqContainer">
+
+    <!-- ===== 基本 ===== -->
+    <div class="category" data-category="basic">
+        <h2 class="category-title">基本</h2>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                無料で使えますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>はい、Kiniaは無料でお使いいただけます。広告も表示されません。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                iPhoneには対応していますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>現在はAndroidのみ対応しています。iOS版は今後の対応を検討中です。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                何人まで参加できますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>1つのグループに最大50人まで参加できます。家族での利用を想定した設計です。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                家族以外（友人など）とも使えますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>グループに招待できれば、どなたとでもお使いいただけます。ただし、家族間の見守りに最適化された設計となっています。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 位置情報 ===== -->
+    <div class="category" data-category="location">
+        <h2 class="category-title">位置情報</h2>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                位置情報が更新されません
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>以下を確認してください:</p>
+                <p>1. 位置情報の権限が「常に許可」になっているか<br>
+                   2. バッテリー最適化から除外されているか<br>
+                   3. 端末のWi-FiとBluetoothがONになっているか（測位精度に影響します）</p>
+                <p>アプリ内のメニューから「権限チェック」で設定状態を確認できます。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                位置がずれて表示されます
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>屋内やビルの谷間では、GPSの精度が下がり位置がずれることがあります。
+                   Wi-FiをONにすると、Wi-Fiアクセスポイントを使った補助測位で精度が向上します。</p>
+                <p>屋外に出ると通常1分以内に正確な位置に戻ります。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                バッテリーの消耗が気になります
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>Kiniaは省電力設計を採用しています:</p>
+                <p>・静止中はGPSをほぼ使用しません（他アプリの測位に便乗する受動モード）<br>
+                   ・移動中のみ高精度GPSを使用<br>
+                   ・移動手段に応じて測位間隔を自動調整</p>
+                <p>1日の使用でバッテリーへの影響は通常1〜3%程度です。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                「常に許可」にしないと使えませんか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>「常に許可」にしない場合、アプリを開いている間だけ位置が更新されます。
+                   アプリを閉じると位置の更新が止まるため、見守りとして機能しなくなります。</p>
+                <p>Kiniaは位置データを家族のグループ内だけで共有し、広告やデータ販売には一切使用しません。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                屋内では位置がずれやすいのはなぜ？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>GPSは衛星からの電波を受信して測位するため、屋内では電波が遮られ精度が下がります。
+                   代わりにWi-Fiや携帯基地局の情報で測位しますが、数十〜数百メートルのずれが生じることがあります。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 通知エリア ===== -->
+    <div class="category" data-category="geofence">
+        <h2 class="category-title">通知エリア</h2>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                通知が届きません
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>以下を確認してください:</p>
+                <p>1. 通知の権限が許可されているか<br>
+                   2. 通知エリアの設定で、対象メンバーの通知がONになっているか<br>
+                   3. バッテリー最適化から除外されているか</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                通知が何度も届きます
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>エリアの境界付近にいると、GPS精度の変動により出入りが繰り返し検知されることがあります。
+                   Kiniaでは重複通知の抑制機能を搭載していますが、完全には防げない場合があります。</p>
+                <p>通知エリアの半径を少し大きめに設定すると改善されることがあります。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                通知エリアは何個まで設定できますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>グループの人数に応じて自動的に上限が決まります。通常の家族利用では十分な数を設定できます。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== プライバシー・セキュリティ ===== -->
+    <div class="category" data-category="privacy">
+        <h2 class="category-title">プライバシー・セキュリティ</h2>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                自分の位置を一時的に隠せますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>はい。共有設定から「通知エリアのみ」を選ぶと、詳しい位置の共有を停止できます。
+                   通知エリアの出入り通知のみが共有されます。これがKiniaの初期設定です。</p>
+                <p>また、位置情報の送信自体を一時停止することもできます。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                位置データはどこに保存されますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>位置データはGoogle Cloud（Firebase）のサーバーに暗号化された状態で保存されます。
+                   データは7日後に自動削除されます。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                位置データは暗号化されていますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>はい。Kiniaではすべての位置データを暗号化してから保存しています。</p>
+                <p>グループ作成時の情報をもとに座標をずらして保存する仕組みで、
+                   万が一サーバーのデータが漏洩しても、家族の正確な居場所は復元できません。
+                   開発者ですらデータから個人の居場所を特定することはできない設計です。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                退会したらデータは消えますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>はい。アカウント削除を実行すると、サーバー上のすべてのデータ（位置履歴、グループ情報、ユーザー情報）が即座に削除されます。
+                   端末上のローカルデータもすべて消去されます。</p>
+                <p>詳しくは<a href="/delete-account.html">アカウント削除ページ</a>をご確認ください。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== アカウント・グループ ===== -->
+    <div class="category" data-category="account">
+        <h2 class="category-title">アカウント・グループ</h2>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                機種変更したらどうなりますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>新しい端末でKiniaをインストールし、同じGoogleアカウントでログインしてください。
+                   招待コードを使ってグループに再参加すれば、引き続き利用できます。</p>
+                <p>詳しい手順は<a href="/setup.html#step8">はじめかたガイドの「機種変更するとき」</a>をご確認ください。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                グループから抜けたいのですが
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>メニュー（⋮）→「グループ管理」から退出できます。
+                   退出すると位置の共有が停止され、他のメンバーのマップからも消えます。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                招待コードが期限切れになりました
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>招待コードの有効期限は72時間です。期限が切れた場合は、グループ内のメンバーに新しい招待コードを発行してもらってください。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== トラブルシューティング ===== -->
+    <div class="category" data-category="trouble">
+        <h2 class="category-title">トラブルシューティング</h2>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                アプリが落ちます
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>以下をお試しください:</p>
+                <p>1. Google Playからアプリを最新版に更新<br>
+                   2. 端末を再起動<br>
+                   3. 改善しない場合は、症状とともにお問い合わせください</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                特定のメンバーだけ表示されません
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>以下の原因が考えられます:</p>
+                <p>1. そのメンバーの端末でKiniaが停止している<br>
+                   2. 位置情報の権限が取り消されている<br>
+                   3. バッテリー最適化によりバックグラウンド動作が制限されている<br>
+                   4. そのメンバーが共有レベルを「通知エリアのみ」に設定している</p>
+                <p>メンバー一覧で最終更新時刻を確認し、長時間更新がない場合は端末の設定を確認してもらってください。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                バッテリー最適化で止まる場合（メーカー別）
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>一部のメーカーでは独自の省電力機能がバックグラウンドアプリを強制停止することがあります:</p>
+                <p><strong>Samsung:</strong> 設定 → バッテリー → バックグラウンド使用制限 → Kiniaを除外<br>
+                   <strong>Xiaomi:</strong> 設定 → バッテリー → アプリバッテリーセーバー → Kiniaを「制限なし」に<br>
+                   <strong>OPPO/Realme:</strong> 設定 → バッテリー → アプリの起動管理 → Kiniaを手動管理に変更<br>
+                   <strong>Huawei:</strong> 設定 → バッテリー → アプリ起動 → Kiniaを手動管理に変更</p>
+                <p>詳しい設定方法は端末ごとに異なります。「（端末名） バックグラウンド 許可」で検索してみてください。</p>
+            </div>
+        </div>
+    </div>
+
+    </div><!-- /faqContainer -->
+
+    <div class="no-results" id="noResults">
+        該当する質問が見つかりませんでした。<br>
+        お問い合わせからご質問ください。
+    </div>
+
+    <!-- お問い合わせ -->
+    <div class="contact-box">
+        <h3>解決しませんでしたか？</h3>
+        <p>
+            <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a> までお問い合わせください。<br>
+            端末名・Androidバージョン・Kiniaバージョン・症状の詳細を添えていただくとスムーズです。
+        </p>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <nav>
+        <a href="/">トップ</a>
+        <a href="/setup.html">はじめかたガイド</a>
+        <a href="/faq.html">よくある質問</a>
+        <a href="/privacy.html">プライバシーポリシー</a>
+        <a href="/delete-account.html">アカウント削除</a>
+    </nav>
+    <p>&copy; 2026 Kinia &mdash; <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a></p>
+</footer>
+
+<script>
+function toggleFaq(el) {
+    el.parentElement.classList.toggle('open');
+}
+
+// 検索機能
+document.getElementById('searchBox').addEventListener('input', function() {
+    const query = this.value.toLowerCase().trim();
+    const items = document.querySelectorAll('.faq-item');
+    const categories = document.querySelectorAll('.category');
+    let anyVisible = false;
+
+    if (!query) {
+        items.forEach(i => i.style.display = '');
+        categories.forEach(c => c.style.display = '');
+        document.getElementById('noResults').style.display = 'none';
+        return;
+    }
+
+    items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        const match = text.includes(query);
+        item.style.display = match ? '' : 'none';
+        if (match) anyVisible = true;
+    });
+
+    // カテゴリ内に表示アイテムがなければカテゴリごと非表示
+    categories.forEach(cat => {
+        const visibleItems = cat.querySelectorAll('.faq-item:not([style*="display: none"])');
+        cat.style.display = visibleItems.length > 0 ? '' : 'none';
+    });
+
+    document.getElementById('noResults').style.display = anyVisible ? 'none' : 'block';
+});
+</script>
+
+</body>
+</html>

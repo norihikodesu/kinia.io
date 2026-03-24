@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinia Mockup — 一覧</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    background: #1a1a2a;
+    color: #ddd;
+    padding: 24px;
+}
+h1 {
+    text-align: center;
+    color: #7C8EF2;
+    margin-bottom: 8px;
+    font-size: 24px;
+}
+.subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 32px;
+    font-size: 14px;
+}
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+}
+.preview-item {
+    width: 198px;
+}
+.preview-item a {
+    text-decoration: none;
+    display: block;
+}
+.iframe-wrapper {
+    width: 198px;
+    height: 387px;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 2px solid #444;
+    position: relative;
+}
+.preview-frame {
+    width: 440px;
+    height: 860px;
+    border: none;
+    transform: scale(0.45);
+    transform-origin: top left;
+    pointer-events: none;
+}
+.preview-label {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #aaa;
+}
+.preview-item:hover .preview-label {
+    color: #7C8EF2;
+}
+.preview-item:hover .iframe-wrapper {
+    border-color: #7C8EF2;
+}
+.note {
+    text-align: center;
+    color: #666;
+    margin-top: 32px;
+    font-size: 13px;
+}
+</style>
+</head>
+<body>
+<h1>Kinia App Mockups</h1>
+<p class="subtitle">はじめかたガイド用モックアップ画面一覧 — クリックで実寸表示</p>
+<div class="grid">
+
+        <div class="preview-item">
+            <a href="01_login.html" target="_blank">
+                <div class="iframe-wrapper">
+                    <iframe src="01_login.html" class="preview-frame"></iframe>
+                </div>
+                <div class="preview-label">ログイン画面</div>
+            </a>
+        </div>
+        <div class="preview-item">
+            <a href="02_main_initial.html" target="_blank">
+                <div class="iframe-wrapper">
+                    <iframe src="02_main_initial.html" class="preview-frame"></iframe>
+                </div>
+                <div class="preview-label">メイン画面（初回起動）</div>
+            </a>
+        </div>
+        <div class="preview-item">
+            <a href="02b_main_create_group.html" target="_blank">
+                <div class="iframe-wrapper">
+                    <iframe src="02b_main_create_group.html" class="preview-frame"></iframe>
+                </div>
+                <div class="preview-label">メイン画面（グループ作成）</div>
+            </a>
+        </div>
+        <div class="preview-item">
+            <a href="03_invite_join.html" target="_blank">
+                <div class="iframe-wrapper">
+                    <iframe src="03_invite_join.html" class="preview-frame"></iframe>
+                </div>
+                <div class="preview-label">招待リンク参加画面</div>
+            </a>
+        </div>
+        <div class="preview-item">
+            <a href="04_setup_wizard.html" target="_blank">
+                <div class="iframe-wrapper">
+                    <iframe src="04_setup_wizard.html" class="preview-frame"></iframe>
+                </div>
+                <div class="preview-label">権限設定ウィザード</div>
+            </a>
+        </div>
+        <div class="preview-item">
+            <a href="04b_setup_steps.html" target="_blank">
+                <div class="iframe-wrapper">
+                    <iframe src="04b_setup_steps.html" class="preview-frame"></iframe>
+                </div>
+                <div class="preview-label">権限設定（全ステップ）</div>
+            </a>
+        </div>
+        <div class="preview-item">
+            <a href="04c_setup_complete.html" target="_blank">
+                <div class="iframe-wrapper">
+                    <iframe src="04c_setup_complete.html" class="preview-frame"></iframe>
+                </div>
+                <div class="preview-label">セットアップ完了</div>
+            </a>
+        </div>
+        <div class="preview-item">
+            <a href="05_map.html" target="_blank">
+                <div class="iframe-wrapper">
+                    <iframe src="05_map.html" class="preview-frame"></iframe>
+                </div>
+                <div class="preview-label">マップ画面</div>
+            </a>
+        </div>
+        <div class="preview-item">
+            <a href="06_geofence.html" target="_blank">
+                <div class="iframe-wrapper">
+                    <iframe src="06_geofence.html" class="preview-frame"></iframe>
+                </div>
+                <div class="preview-label">通知エリア管理</div>
+            </a>
+        </div>
+        <div class="preview-item">
+            <a href="07_group_invite.html" target="_blank">
+                <div class="iframe-wrapper">
+                    <iframe src="07_group_invite.html" class="preview-frame"></iframe>
+                </div>
+                <div class="preview-label">グループ管理（招待）</div>
+            </a>
+        </div>
+</div>
+<p class="note">
+    生成元: generate_mockups.py（アプリの strings.xml / colors.xml から自動生成）
+</p>
+</body>
+</html>
