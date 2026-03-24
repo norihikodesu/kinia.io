@@ -8,12 +8,13 @@
         :root {
             --bg: #12121F;
             --surface: #1E1E30;
-            --surface-high: #282540;
+            --surface2: #282840;
             --text: #E8E4F0;
             --text-sub: #B0AAC2;
             --primary: #7C8EF2;
+            --primary-dim: #5A6AD4;
+            --accent: #4CC9F0;
             --border: #3D3855;
-            --outline: #524D6B;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -22,23 +23,25 @@
             color: var(--text);
             line-height: 1.8;
         }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
-        /* ===== ヘッダー ===== */
-        .site-header {
-            background: var(--surface);
+        /* ナビゲーション */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(18, 18, 31, 0.95);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
-            padding: 16px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 12px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 100%;
         }
-        .site-header a { color: var(--primary); text-decoration: none; font-size: 0.9rem; }
-        .site-header .logo { font-weight: bold; font-size: 1.1rem; }
+        nav .brand { font-size: 1.2rem; font-weight: bold; color: var(--primary); }
+        nav .nav-links { display: flex; gap: 20px; font-size: 0.9rem; flex-wrap: wrap; }
+        nav .nav-links a { color: var(--text-sub); }
+        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
 
-        /* ===== メイン ===== */
+        /* メイン */
         .content {
             max-width: 720px;
             margin: 0 auto;
@@ -55,19 +58,19 @@
             font-size: 0.95rem;
         }
 
-        /* ===== カテゴリ ===== */
+        /* カテゴリ */
         .category {
             margin-bottom: 32px;
         }
         .category-title {
             font-size: 1.1rem;
-            color: var(--primary);
+            color: var(--accent);
             padding-bottom: 8px;
             border-bottom: 1px solid var(--border);
             margin-bottom: 12px;
         }
 
-        /* ===== アコーディオン ===== */
+        /* アコーディオン */
         .faq-item {
             border: 1px solid var(--border);
             border-radius: 8px;
@@ -87,7 +90,7 @@
             user-select: none;
             transition: background 0.2s;
         }
-        .faq-q:hover { background: var(--surface-high); }
+        .faq-q:hover { background: var(--surface2); }
         .faq-q .arrow {
             font-size: 0.8rem;
             color: var(--text-sub);
@@ -113,7 +116,7 @@
         .faq-a p { margin-bottom: 8px; }
         .faq-a p:last-child { margin-bottom: 0; }
 
-        /* ===== 検索 ===== */
+        /* 検索 */
         .search-box {
             width: 100%;
             background: var(--surface);
@@ -126,7 +129,7 @@
             outline: none;
             font-family: inherit;
         }
-        .search-box::placeholder { color: var(--outline); }
+        .search-box::placeholder { color: var(--text-sub); opacity: 0.5; }
         .search-box:focus { border-color: var(--primary); }
 
         .no-results {
@@ -136,7 +139,7 @@
             display: none;
         }
 
-        /* ===== お問い合わせ ===== */
+        /* お問い合わせ */
         .contact-box {
             margin-top: 40px;
             padding: 24px;
@@ -149,25 +152,34 @@
         .contact-box p { color: var(--text-sub); font-size: 0.92rem; }
         .contact-box a { color: var(--primary); text-decoration: none; }
 
-        /* ===== フッター ===== */
-        .site-footer {
-            background: var(--surface);
+        /* フッター */
+        .footer-links {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 16px; padding: 40px 24px;
             border-top: 1px solid var(--border);
-            padding: 24px;
+            font-size: 0.9rem;
+        }
+        .footer-links a { color: var(--text-sub); }
+        .contact {
             text-align: center;
+            padding: 20px 24px 40px;
             font-size: 0.85rem;
             color: var(--text-sub);
         }
-        .site-footer a { color: var(--primary); text-decoration: none; }
-        .site-footer nav { display: flex; gap: 16px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
     </style>
 </head>
 <body>
 
-<header class="site-header">
-    <a href="/" class="logo">🛡️ Kinia</a>
-    <a href="/setup.html">はじめかたガイド</a>
-</header>
+<nav>
+    <div class="brand">Kinia</div>
+    <div class="nav-links">
+        <a href="/#features">機能</a>
+        <a href="/#sharing">共有設定</a>
+        <a href="/setup.html">はじめかた</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/beta-test.html">テスター募集</a>
+    </div>
+</nav>
 
 <main class="content">
     <h1>よくある質問</h1>
@@ -486,16 +498,17 @@
     </div>
 </main>
 
-<footer class="site-footer">
-    <nav>
-        <a href="/">トップ</a>
-        <a href="/setup.html">はじめかたガイド</a>
-        <a href="/faq.html">よくある質問</a>
-        <a href="/privacy.html">プライバシーポリシー</a>
-        <a href="/delete-account.html">アカウント削除</a>
-    </nav>
-    <p>&copy; 2026 Kinia &mdash; <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a></p>
-</footer>
+<div class="footer-links">
+    <a href="/setup.html">はじめかたガイド</a>
+    <a href="/faq.html">よくある質問</a>
+    <a href="/beta-test.html">テスター募集</a>
+    <a href="/privacy.html">プライバシーポリシー</a>
+    <a href="/delete-account.html">アカウント削除</a>
+</div>
+<div class="contact">
+    <p>お問い合わせ: <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a></p>
+    <p style="margin-top:8px;">&copy; 2026 Kinia</p>
+</div>
 
 <script>
 function toggleFaq(el) {

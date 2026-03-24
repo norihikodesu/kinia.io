@@ -3,91 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinia ベータテスト参加のご案内</title>
+    <title>テスター募集 — Kinia</title>
     <style>
+        :root {
+            --bg: #12121F;
+            --surface: #1E1E30;
+            --surface2: #282840;
+            --text: #E8E4F0;
+            --text-sub: #B0AAC2;
+            --primary: #7C8EF2;
+            --primary-dim: #5A6AD4;
+            --accent: #4CC9F0;
+            --border: #3D3855;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
-            background: #0f1724;
-            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.8;
         }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ===== ナビゲーション（index.htmlと統一） ===== */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(18, 18, 31, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 100%;
+        }
+        nav .brand { font-size: 1.2rem; font-weight: bold; color: var(--primary); }
+        nav .nav-links { display: flex; gap: 20px; font-size: 0.9rem; flex-wrap: wrap; }
+        nav .nav-links a { color: var(--text-sub); }
+        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
+
+        /* ===== コンテンツ ===== */
         .container {
-            max-width: 680px;
+            max-width: 720px;
             margin: 0 auto;
-            padding: 32px 20px 60px;
+            padding: 0 20px 60px;
         }
-        h1 {
-            font-size: 28px;
-            color: #ffffff;
+
+        /* ===== ヒーロー ===== */
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            color: var(--text);
             margin-bottom: 8px;
-            text-align: center;
         }
-        .subtitle {
-            text-align: center;
-            color: #90caf9;
-            font-size: 15px;
-            margin-bottom: 32px;
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 12px;
         }
-        h2 {
-            font-size: 20px;
-            color: #90caf9;
-            margin: 32px 0 12px;
-            padding-bottom: 6px;
-            border-bottom: 1px solid #1e3a5f;
+
+        /* ===== アプリ情報 ===== */
+        .app-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px 0;
         }
-        p, li {
-            font-size: 15px;
-            color: #c0c8d4;
+        .app-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary-dim), var(--primary));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #fff;
+            flex-shrink: 0;
         }
-        ul, ol {
-            padding-left: 24px;
-            margin: 12px 0;
+        .app-meta { flex: 1; }
+        .app-meta .name { font-size: 1.2rem; font-weight: bold; color: var(--text); }
+        .app-meta .desc { font-size: 0.85rem; color: var(--text-sub); margin-top: 2px; }
+
+        /* ===== セクション見出し ===== */
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin: 40px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
         }
-        li { margin-bottom: 8px; }
+
+        /* ===== ハイライトボックス ===== */
         .highlight-box {
-            background: #1a2744;
-            border: 1px solid #2a4a7f;
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 20px 24px;
             margin: 20px 0;
         }
         .highlight-box h3 {
-            color: #64b5f6;
-            font-size: 17px;
+            color: var(--accent);
+            font-size: 1.05rem;
             margin-bottom: 10px;
+        }
+        .highlight-box ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+        .highlight-box li {
+            color: var(--text-sub);
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        .highlight-box li strong { color: var(--text); }
+
+        /* ===== タイムバッジ ===== */
+        .time-badge {
+            display: inline-block;
+            background: rgba(76, 201, 240, 0.15);
+            color: var(--accent);
+            font-size: 0.85rem;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin: 8px 0;
+        }
+
+        /* ===== 警告ボックス ===== */
+        .warning {
+            background: rgba(255, 138, 101, 0.1);
+            border: 1px solid rgba(255, 138, 101, 0.3);
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+            color: #FFAB91;
+        }
+        .warning strong { color: #FFCC80; }
+
+        /* ===== ステップ ===== */
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
         }
         .step-number {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 28px;
-            height: 28px;
-            background: #1976d2;
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
             color: #fff;
             border-radius: 50%;
             font-weight: bold;
-            font-size: 14px;
-            margin-right: 8px;
+            font-size: 0.85rem;
+            margin-right: 12px;
             flex-shrink: 0;
+            margin-top: 2px;
         }
-        .step {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 16px;
-        }
-        .step-content {
-            flex: 1;
-        }
-        .step-content strong {
-            color: #e0e0e0;
-        }
+        .step-content { flex: 1; }
+        .step-content strong { color: var(--text); }
+        .step-content p { color: var(--text-sub); font-size: 0.92rem; margin-top: 2px; }
+        .step-content .note { color: #FFCC80; font-size: 0.85rem; margin-top: 4px; }
+
+        /* ===== CTAボタン ===== */
         .cta-button {
             display: block;
             text-align: center;
-            background: #1976d2;
+            background: var(--primary);
             color: #fff;
-            font-size: 18px;
+            font-size: 1.1rem;
             font-weight: bold;
             padding: 16px 32px;
             border-radius: 12px;
@@ -97,203 +190,198 @@
             transition: background 0.2s;
         }
         .cta-button:hover {
-            background: #1565c0;
+            background: var(--primary-dim);
+            text-decoration: none;
         }
-        .info-tag {
-            display: inline-block;
-            background: #263238;
-            color: #80cbc4;
-            font-size: 12px;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-right: 4px;
-        }
-        .warning {
-            background: #2c1810;
-            border: 1px solid #5d4037;
-            border-radius: 8px;
-            padding: 12px 16px;
-            margin: 16px 0;
-            font-size: 14px;
-            color: #ffcc80;
-        }
-        .faq-item {
-            margin-bottom: 16px;
-        }
+
+        /* ===== 段落テキスト ===== */
+        p { font-size: 0.95rem; color: var(--text-sub); }
+        ul { padding-left: 20px; margin: 12px 0; }
+        li { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 6px; }
+
+        /* ===== FAQ ===== */
+        .faq-item { margin-bottom: 16px; }
         .faq-item dt {
             font-weight: bold;
-            color: #90caf9;
-            font-size: 15px;
+            color: var(--accent);
+            font-size: 0.95rem;
             margin-bottom: 4px;
         }
         .faq-item dd {
-            color: #b0bec5;
-            font-size: 14px;
+            color: var(--text-sub);
+            font-size: 0.9rem;
             margin-left: 0;
         }
-        .app-info {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin: 20px 0;
+
+        /* ===== フッター（index.htmlと統一） ===== */
+        .footer-links {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 16px; padding: 40px 24px;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
         }
-        .app-icon {
-            width: 72px;
-            height: 72px;
-            background: linear-gradient(135deg, #1a237e, #0d47a1);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            color: #fff;
-            flex-shrink: 0;
-        }
-        .app-meta {
-            flex: 1;
-        }
-        .app-meta .name {
-            font-size: 20px;
-            font-weight: bold;
-            color: #fff;
-        }
-        .app-meta .desc {
-            font-size: 13px;
-            color: #90a4ae;
-        }
-        footer {
+        .footer-links a { color: var(--text-sub); }
+        .contact {
             text-align: center;
-            margin-top: 48px;
-            padding-top: 20px;
-            border-top: 1px solid #1e3a5f;
-            color: #546e7a;
-            font-size: 13px;
-        }
-        footer a { color: #64b5f6; text-decoration: none; }
-        .time-badge {
-            display: inline-block;
-            background: #1b5e20;
-            color: #a5d6a7;
-            font-size: 13px;
-            padding: 4px 12px;
-            border-radius: 20px;
-            margin: 8px 0;
+            padding: 20px 24px 40px;
+            font-size: 0.85rem;
+            color: var(--text-sub);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Kinia ベータテスト参加のご案内</h1>
-        <p class="subtitle">家族の「気にかける」をそっと近くに</p>
 
-        <div class="app-info">
-            <div class="app-icon">K</div>
-            <div class="app-meta">
-                <div class="name">Kinia（キニア）</div>
-                <div class="desc">家族見守り位置共有アプリ / Android対応</div>
-            </div>
-        </div>
-
-        <h2>テスト参加の概要</h2>
-        <div class="highlight-box">
-            <h3>お願いしたいこと</h3>
-            <p><strong>Gmailアドレスの提出 → 「テストに参加」ボタンを押す</strong>の2ステップです。</p>
-            <ul>
-                <li>アプリのインストールは<strong>不要</strong>です</li>
-                <li>操作やレビューの報告も<strong>不要</strong>です</li>
-            </ul>
-            <p class="time-badge">所要時間: 約1〜2分（テスター登録後）</p>
-        </div>
-
-        <div class="warning">
-            <strong>事前準備:</strong> テスト参加には、事前にGmailアドレスをテスターリストに登録する必要があります。クラウドワークス経由の方は、メッセージでGmailアドレスをお知らせください。登録完了後にご連絡いたします。
-        </div>
-
-        <h2>参加手順（テスター登録完了後）</h2>
-
-        <div class="step">
-            <span class="step-number">1</span>
-            <div class="step-content">
-                <strong>下のボタンからテスト参加ページを開く</strong><br>
-                Google Play のクローズドテスト参加ページが開きます。
-            </div>
-        </div>
-
-        <div class="step">
-            <span class="step-number">2</span>
-            <div class="step-content">
-                <strong>テスター登録したGoogleアカウントでログイン</strong><br>
-                お知らせいただいたGmailアドレスのアカウントでログインしてください。<br>
-                <span style="color: #ffcc80;">※ 別のアカウントでログインすると「App not available」と表示されます。</span>
-            </div>
-        </div>
-
-        <div class="step">
-            <span class="step-number">3</span>
-            <div class="step-content">
-                <strong>「テストに参加」ボタンをタップ</strong><br>
-                参加完了です。これだけでOKです。<br>
-                <span style="color: #ffcc80;">※ 参加後、14日間そのままにしていただく必要があります（何も操作は不要です）。</span>
-            </div>
-        </div>
-
-        <a href="https://play.google.com/apps/testing/io.kinia" class="cta-button">テストに参加する（Google Play）</a>
-        <p style="text-align: center; font-size: 13px; color: #78909c; margin-top: -16px;">
-            ※ Androidスマートフォン または PCのブラウザから開いてください
-        </p>
-
-        <div class="warning">
-            <strong>重要:</strong> 参加後14日間は「テストをやめる」ボタンを押さないでください。14日間のオプトイン維持がGoogle Playの公開要件となっています。14日経過後は自由に退出していただけます。
-        </div>
-
-        <h2>Kiniaについて</h2>
-        <p>Kiniaは、家族の位置情報をゆるやかに共有する見守りアプリです。「気にかける（Kini）」と「近く（Near）」を組み合わせた名前の通り、気になった時だけそっと確認できる、温かい距離感を大切にしています。</p>
-        <ul>
-            <li>家族の現在地をリアルタイムで確認</li>
-            <li>通知エリア設定（自宅・学校などへの到着/出発通知）</li>
-            <li>歩数共有で日々の元気を確認</li>
-            <li>プライバシーに配慮した共有レベル設定</li>
-        </ul>
-
-        <h2>よくある質問</h2>
-
-        <dl>
-            <div class="faq-item">
-                <dt>Q. アプリをインストールする必要がありますか？</dt>
-                <dd>A. いいえ。「テストに参加」ボタンを押すだけでOKです。アプリのインストールは不要です。</dd>
-            </div>
-            <div class="faq-item">
-                <dt>Q. なぜGmailアドレスの提出が必要ですか？</dt>
-                <dd>A. Google Playのクローズドテストでは、テスターリストに登録されたアカウントのみ参加できる仕組みのため、事前登録が必要です。お知らせいただいたアドレスはテスターリスト登録のみに使用し、14日間の要件達成後に削除いたします。</dd>
-            </div>
-            <div class="faq-item">
-                <dt>Q. 「App not available」と表示されます</dt>
-                <dd>A. テスター登録が完了していないか、登録したものと別のGoogleアカウントでログインしている可能性があります。テスター登録完了のご連絡をお待ちいただくか、登録したGmailアドレスでログインし直してください。</dd>
-            </div>
-            <div class="faq-item">
-                <dt>Q. 参加後に何かする必要はありますか？</dt>
-                <dd>A. 何もする必要はありません。14日間そのまま放置していただければ大丈夫です。</dd>
-            </div>
-            <div class="faq-item">
-                <dt>Q. 14日後に退出できますか？</dt>
-                <dd>A. はい。14日経過後はいつでも自由に退出できます。</dd>
-            </div>
-            <div class="faq-item">
-                <dt>Q. PCからでも参加できますか？</dt>
-                <dd>A. はい。PCのブラウザからGoogleアカウントにログインして参加できます。Androidスマートフォンは不要です。</dd>
-            </div>
-        </dl>
-
-        <h2>お問い合わせ</h2>
-        <p>ご不明な点がございましたら、以下のメールアドレスまでお気軽にお問い合わせください。</p>
-        <p style="text-align: center; margin: 12px 0;">
-            <a href="mailto:kinia.app@gmail.com" style="color: #64b5f6; font-size: 16px;">kinia.app@gmail.com</a>
-        </p>
-
-        <footer>
-            <p>&copy; 2026 Kinia. All rights reserved.</p>
-            <p><a href="privacy.html">プライバシーポリシー</a> | <a href="index.html">Kinia トップ</a></p>
-        </footer>
+<!-- ナビゲーション -->
+<nav>
+    <div class="brand">Kinia</div>
+    <div class="nav-links">
+        <a href="/#features">機能</a>
+        <a href="/#sharing">共有設定</a>
+        <a href="/setup.html">はじめかた</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/beta-test.html">テスター募集</a>
     </div>
+</nav>
+
+<div class="container">
+
+    <!-- ヒーロー -->
+    <div class="hero">
+        <h1>Kinia ベータテスト参加のご案内</h1>
+        <p class="subtitle">気になった時に、そっと見守る</p>
+    </div>
+
+    <!-- アプリ情報 -->
+    <div class="app-info">
+        <div class="app-icon">K</div>
+        <div class="app-meta">
+            <div class="name">Kinia（キニア）</div>
+            <div class="desc">通知エリアでゆるく見守る家族アプリ / Android対応</div>
+        </div>
+    </div>
+
+    <!-- テスト参加の概要 -->
+    <h2 class="section-title">テスト参加の概要</h2>
+    <div class="highlight-box">
+        <h3>お願いしたいこと</h3>
+        <p style="color:var(--text);"><strong>Gmailアドレスの提出 → 「テストに参加」ボタンを押す</strong>の2ステップです。</p>
+        <ul>
+            <li>アプリのインストールは<strong>不要</strong>です</li>
+            <li>操作やレビューの報告も<strong>不要</strong>です</li>
+        </ul>
+        <p class="time-badge">所要時間: 約1〜2分（テスター登録後）</p>
+    </div>
+
+    <div class="warning">
+        <strong>事前準備:</strong> テスト参加には、事前にGmailアドレスをテスターリストに登録する必要があります。クラウドワークス経由の方は、メッセージでGmailアドレスをお知らせください。登録完了後にご連絡いたします。
+    </div>
+
+    <!-- 参加手順 -->
+    <h2 class="section-title">参加手順（テスター登録完了後）</h2>
+
+    <div class="step-item">
+        <span class="step-number">1</span>
+        <div class="step-content">
+            <strong>下のボタンからテスト参加ページを開く</strong>
+            <p>Google Play のクローズドテスト参加ページが開きます。</p>
+        </div>
+    </div>
+
+    <div class="step-item">
+        <span class="step-number">2</span>
+        <div class="step-content">
+            <strong>テスター登録したGoogleアカウントでログイン</strong>
+            <p>お知らせいただいたGmailアドレスのアカウントでログインしてください。</p>
+            <p class="note">※ 別のアカウントでログインすると「App not available」と表示されます。</p>
+        </div>
+    </div>
+
+    <div class="step-item">
+        <span class="step-number">3</span>
+        <div class="step-content">
+            <strong>「テストに参加」ボタンをタップ</strong>
+            <p>参加完了です。これだけでOKです。</p>
+            <p class="note">※ 参加後、14日間そのままにしていただく必要があります（何も操作は不要です）。</p>
+        </div>
+    </div>
+
+    <a href="https://play.google.com/apps/testing/io.kinia" class="cta-button">テストに参加する（Google Play）</a>
+    <p style="text-align: center; font-size: 0.85rem; color: var(--text-sub); margin-top: -16px;">
+        ※ Androidスマートフォン または PCのブラウザから開いてください
+    </p>
+
+    <div class="warning">
+        <strong>重要:</strong> 参加後14日間は「テストをやめる」ボタンを押さないでください。14日間のオプトイン維持がGoogle Playの公開要件となっています。14日経過後は自由に退出していただけます。
+    </div>
+
+    <!-- Kiniaについて -->
+    <h2 class="section-title">Kiniaについて</h2>
+    <p style="color:var(--text); margin-bottom: 16px;">
+        Kiniaは、「気にかける（Kini）」と「近く（Near）」を組み合わせた名前の通り、
+        気になった時だけそっと家族の様子を確認できる見守りアプリです。
+    </p>
+    <p style="margin-bottom: 16px;">
+        常時監視するのではなく、<strong style="color:var(--accent);">通知エリアへの出入りだけをそっとお知らせ</strong>する「ゆるいつながり」がコンセプト。
+        自宅や学校などよく行く場所を通知エリアとして登録すると、家族がそのエリアに入った時・出た時だけ通知が届きます。
+    </p>
+    <ul>
+        <li>通知エリアの出入りをそっとお知らせ（自宅・学校・塾など）</li>
+        <li>初期設定は「通知エリアのみ」 -- プライバシーを大切にした設計</li>
+        <li>歩数共有で日々の元気を確認</li>
+        <li>必要な時だけ一時的に詳細な位置を共有できる</li>
+    </ul>
+
+    <!-- よくある質問 -->
+    <h2 class="section-title">よくある質問</h2>
+
+    <dl>
+        <div class="faq-item">
+            <dt>Q. アプリをインストールする必要がありますか？</dt>
+            <dd>A. いいえ。「テストに参加」ボタンを押すだけでOKです。アプリのインストールは不要です。</dd>
+        </div>
+        <div class="faq-item">
+            <dt>Q. なぜGmailアドレスの提出が必要ですか？</dt>
+            <dd>A. Google Playのクローズドテストでは、テスターリストに登録されたアカウントのみ参加できる仕組みのため、事前登録が必要です。お知らせいただいたアドレスはテスターリスト登録のみに使用し、14日間の要件達成後に削除いたします。</dd>
+        </div>
+        <div class="faq-item">
+            <dt>Q. 「App not available」と表示されます</dt>
+            <dd>A. テスター登録が完了していないか、登録したものと別のGoogleアカウントでログインしている可能性があります。テスター登録完了のご連絡をお待ちいただくか、登録したGmailアドレスでログインし直してください。</dd>
+        </div>
+        <div class="faq-item">
+            <dt>Q. 参加後に何かする必要はありますか？</dt>
+            <dd>A. 何もする必要はありません。14日間そのまま放置していただければ大丈夫です。</dd>
+        </div>
+        <div class="faq-item">
+            <dt>Q. 14日後に退出できますか？</dt>
+            <dd>A. はい。14日経過後はいつでも自由に退出できます。</dd>
+        </div>
+        <div class="faq-item">
+            <dt>Q. PCからでも参加できますか？</dt>
+            <dd>A. はい。PCのブラウザからGoogleアカウントにログインして参加できます。Androidスマートフォンは不要です。</dd>
+        </div>
+    </dl>
+
+    <!-- お問い合わせ -->
+    <h2 class="section-title">お問い合わせ</h2>
+    <p>ご不明な点がございましたら、以下のメールアドレスまでお気軽にお問い合わせください。</p>
+    <p style="text-align: center; margin: 16px 0;">
+        <a href="mailto:kinia.app@gmail.com" style="font-size: 1rem;">kinia.app@gmail.com</a>
+    </p>
+
+</div>
+
+<!-- フッター -->
+<div class="footer-links">
+    <a href="/setup.html">はじめかたガイド</a>
+    <a href="/faq.html">よくある質問</a>
+    <a href="/beta-test.html">テスター募集</a>
+    <a href="/privacy.html">プライバシーポリシー</a>
+    <a href="/delete-account.html">アカウント削除</a>
+</div>
+<div class="contact">
+    <p>お問い合わせ: <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a></p>
+    <p style="margin-top:8px;">&copy; 2026 Kinia</p>
+</div>
+
 </body>
 </html>
