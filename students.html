@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinia（キニア）— 監視じゃない見守りアプリ、あるよ</title>
+    <meta name="description" content="親に位置情報を見られるのがイヤ？ Kiniaなら、お互いフェアな条件で、プライバシーを守りながら家族とつながれます。">
+    <style>
+        :root {
+            --bg: #0F0F1A;
+            --bg-alt: #141422;
+            --surface: #1C1C30;
+            --surface2: #252540;
+            --text: #EEEAF5;
+            --text-sub: #B5B0C8;
+            --text-dim: #7A7590;
+            --primary: #8B5CF6;
+            --primary-dim: #7048D6;
+            --accent: #06D6A0;
+            --accent-warm: #FFB347;
+            --border: #3A3555;
+            --danger: #FF6B6B;
+            --section-gap: clamp(48px, 7vw, 88px);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            overflow-x: hidden;
+            font-size: 17px;
+        }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ── ナビ ── */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(15, 15, 26, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        nav .brand { font-size: 1.2rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 8px; text-decoration: none; }
+        nav .brand img { width: 28px; height: 28px; border-radius: 6px; }
+        nav .nav-links { display: flex; gap: 20px; font-size: 0.95rem; }
+        nav .nav-links a { color: var(--text-sub); transition: color 0.2s; }
+        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
+        .hamburger { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+        @media (max-width: 720px) {
+            nav .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(15,15,26,0.98); padding: 16px 24px; gap: 16px; border-bottom: 1px solid var(--border); }
+            nav .nav-links.open { display: flex; }
+            .hamburger { display: block; }
+        }
+
+        /* ── 共通 ── */
+        .section { max-width: 760px; margin: 0 auto; padding: var(--section-gap) 24px; }
+        .section-label { font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+        .section h2 { font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.45; margin-bottom: 18px; }
+        .section h2 .hl { color: var(--accent); }
+        .section h2 .hl-warn { color: var(--danger); }
+        .lead { font-size: 1.02rem; color: var(--text-sub); line-height: 1.9; }
+        .bg-alt { background: var(--bg-alt); }
+
+        /* ── ヒーロー ── */
+        .hero {
+            max-width: 760px; margin: 0 auto;
+            padding: clamp(48px, 8vw, 88px) 24px clamp(32px, 5vw, 56px);
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+        .hero h1 .hl { color: var(--primary); }
+        .hero .tagline { font-size: 1.1rem; color: var(--text-sub); margin-bottom: 28px; line-height: 1.85; }
+        .hero .cta-group { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+        /* ── CTA ── */
+        .cta-btn {
+            display: inline-block; background: var(--primary); color: #fff;
+            font-size: 1.05rem; font-weight: 700; padding: 15px 36px;
+            border-radius: 12px; transition: background 0.2s, transform 0.1s;
+        }
+        .cta-btn:hover { background: var(--primary-dim); text-decoration: none; transform: translateY(-1px); }
+        .cta-outline {
+            display: inline-block; background: transparent; color: var(--primary);
+            font-size: 1.05rem; font-weight: 700; padding: 15px 36px;
+            border-radius: 12px; border: 2px solid var(--primary);
+            transition: background 0.2s;
+        }
+        .cta-outline:hover { background: rgba(139,92,246,0.1); text-decoration: none; }
+
+        /* ── 問題提起カード ── */
+        .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+        @media (max-width: 560px) { .problem-grid { grid-template-columns: 1fr; } }
+        .problem-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 20px;
+        }
+        .problem-card .emoji { font-size: 2rem; margin-bottom: 10px; }
+        .problem-card h3 { font-size: 1.05rem; margin-bottom: 6px; color: var(--danger); }
+        .problem-card p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.85; }
+
+        /* ── 解決カード ── */
+        .solution-list { list-style: none; margin: 24px 0; }
+        .solution-list li {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px 24px;
+            margin-bottom: 14px;
+            display: flex; align-items: flex-start; gap: 16px;
+        }
+        .solution-list li .icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
+        .solution-list li h3 { font-size: 1.05rem; margin-bottom: 4px; color: var(--accent); }
+        .solution-list li p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.85; }
+
+        /* ── 比較テーブル ── */
+        .compare-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.95rem; }
+        .compare-table th, .compare-table td { padding: 14px 16px; border: 1px solid var(--border); text-align: center; }
+        .compare-table th { background: var(--surface2); }
+        .compare-table th:first-child, .compare-table td:first-child { text-align: left; }
+        .compare-table td { background: var(--surface); }
+        .compare-table .good { color: var(--accent); font-weight: 700; }
+        .compare-table .bad { color: var(--danger); }
+        @media (max-width: 560px) {
+            .compare-table { font-size: 0.85rem; }
+            .compare-table th, .compare-table td { padding: 10px 8px; }
+        }
+
+        /* ── 親に見せるセクション ── */
+        .handoff-box {
+            background: linear-gradient(135deg, var(--surface2), var(--surface));
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 32px 28px;
+            text-align: center;
+            margin: 28px 0;
+        }
+        .handoff-box h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary); }
+        .handoff-box p { font-size: 1rem; color: var(--text-sub); margin-bottom: 20px; line-height: 1.85; }
+
+        /* ── 引用 ── */
+        .quote-block {
+            font-size: 1.05rem; color: var(--accent); line-height: 1.95;
+            padding: 20px 24px; background: var(--surface);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0; margin: 20px 0;
+        }
+
+        /* ── フッター ── */
+        .footer-links {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 16px; padding: 48px 24px 16px;
+            border-top: 1px solid var(--border); font-size: 0.95rem;
+        }
+        .footer-links a { color: var(--text-sub); }
+        .footer-copy { text-align: center; padding: 16px 24px 48px; font-size: 0.88rem; color: var(--text-dim); }
+    </style>
+</head>
+<body>
+
+<!-- ナビ -->
+<nav>
+    <a href="/" class="brand">
+        <img src="/images/app_icon.png" alt="">
+        Kinia
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">☰</button>
+    <div class="nav-links">
+        <a href="#problem">今のアプリの問題</a>
+        <a href="#kinia">Kiniaの違い</a>
+        <a href="#parents-link">親に見せる</a>
+        <a href="/">トップページ</a>
+    </div>
+</nav>
+
+<!-- ════════════════════════════════════════
+     ヒーロー
+     ════════════════════════════════════════ -->
+<div class="hero">
+    <h1>今使ってるアプリ、<br><span class="hl">監視アプリ</span>になってない？</h1>
+    <p class="tagline">
+        位置情報を親にずっと見られてる。行動を把握されてる気がする。<br>
+        それ、「見守り」じゃなくて「監視」かも。<br>
+        <strong style="color:var(--text);">プライバシーを守りながら家族とつながる方法、あります。</strong>
+    </p>
+    <div class="cta-group">
+        <a href="#kinia" class="cta-btn">Kiniaの仕組みを見る</a>
+        <a href="/parents.html" class="cta-outline">親に見せるページ</a>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     問題提起
+     ════════════════════════════════════════ -->
+<div class="bg-alt">
+<div class="section" id="problem">
+    <p class="section-label">Problem</p>
+    <h2>こんな経験、<span class="hl-warn">ない？</span></h2>
+
+    <div class="problem-grid">
+        <div class="problem-card">
+            <div class="emoji">📍</div>
+            <h3>ずっと現在地を見られてる</h3>
+            <p>友達と遊んでるとき、バイト先にいるとき、どこにいるか常に親のスマホに映ってる。</p>
+        </div>
+        <div class="problem-card">
+            <div class="emoji">📱</div>
+            <h3>「今どこ？」って聞かれる</h3>
+            <p>アプリを見れば分かるはずなのに、さらにLINEで聞いてくる。位置情報が信頼の代わりになってない。</p>
+        </div>
+        <div class="problem-card">
+            <div class="emoji">🚶</div>
+            <h3>寄り道しただけで心配される</h3>
+            <p>ちょっとコンビニに寄っただけで「どこ行ってるの？」。行動が常にチェックされてる感覚。</p>
+        </div>
+        <div class="problem-card">
+            <div class="emoji">😤</div>
+            <h3>一方通行で不公平</h3>
+            <p>自分の位置はバレバレなのに、親の居場所は知らない。共有してるのに「共有」じゃない。</p>
+        </div>
+    </div>
+
+    <p class="lead" style="margin-top:20px;">
+        親は心配してくれてるだけ。それは分かる。<br>
+        でも、<strong style="color:var(--text);">信頼と監視は違う</strong>。<br>
+        プライバシーを大事にしながら、親に「安心」を届ける方法がある。
+    </p>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     Kiniaの違い
+     ════════════════════════════════════════ -->
+<div class="section" id="kinia">
+    <p class="section-label">Solution</p>
+    <h2>Kiniaは<span class="hl">何が違う</span>のか</h2>
+
+    <ul class="solution-list">
+        <li>
+            <div class="icon">🏠</div>
+            <div>
+                <h3>現在地じゃなく「エリア通知」だけ</h3>
+                <p>初期設定では、リアルタイムの現在地は誰にも見えない。「学校に着いた」「家に帰った」——それだけが通知される。どの道を通ったか、どこに寄り道したかは分からない。</p>
+            </div>
+        </li>
+        <li>
+            <div class="icon">⚖️</div>
+            <div>
+                <h3>親も自分も同じ条件</h3>
+                <p>Kiniaは「見る側」「見られる側」を作らない。親の居場所も同じように通知される。知りたいなら、自分も開示する。それがフェア。</p>
+            </div>
+        </li>
+        <li>
+            <div class="icon">🔒</div>
+            <div>
+                <h3>運営にもデータが見えない設計</h3>
+                <p>位置情報はスマホの中で暗号化されてからサーバーに送られる。暗号を解く鍵はサーバーに送られないから、運営者にも、ハッカーにも、中身は読めない。</p>
+            </div>
+        </li>
+        <li>
+            <div class="icon">👣</div>
+            <div>
+                <h3>歩数で「元気」を伝えられる</h3>
+                <p>場所を教えなくても、歩数と「元気度」で「今日も元気に過ごしてるよ」が伝わる。親が本当に知りたいのは「どこにいるか」じゃなく「元気かどうか」だったりする。</p>
+            </div>
+        </li>
+        <li>
+            <div class="icon">🆓</div>
+            <div>
+                <h3>無料・広告なし・データ売却なし</h3>
+                <p>完全無料。広告もない。位置データを広告会社に売ったりもしない。「タダで使えるアプリは、あなたが商品」——Kiniaはそうじゃない。</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!-- ════════════════════════════════════════
+     比較
+     ════════════════════════════════════════ -->
+<div class="bg-alt">
+<div class="section">
+    <p class="section-label">Compare</p>
+    <h2>今のアプリと<span class="hl">比べてみる</span></h2>
+
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>よくある位置共有アプリ</th>
+                <th>Kinia</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>現在地のリアルタイム表示</td>
+                <td class="bad">常時ON</td>
+                <td class="good">初期設定OFF</td>
+            </tr>
+            <tr>
+                <td>移動履歴・軌跡</td>
+                <td class="bad">親が見放題</td>
+                <td class="good">初期設定OFF</td>
+            </tr>
+            <tr>
+                <td>親と子の情報量</td>
+                <td class="bad">子だけ丸見え</td>
+                <td class="good">全員同じ</td>
+            </tr>
+            <tr>
+                <td>エリア出入り通知</td>
+                <td>あり</td>
+                <td class="good">あり（メイン機能）</td>
+            </tr>
+            <tr>
+                <td>位置データの暗号化</td>
+                <td class="bad">なし（多くの場合）</td>
+                <td class="good">あり（運営も読めない）</td>
+            </tr>
+            <tr>
+                <td>広告 / データ販売</td>
+                <td class="bad">あり（多くの場合）</td>
+                <td class="good">なし</td>
+            </tr>
+            <tr>
+                <td>料金</td>
+                <td>無料〜有料プラン</td>
+                <td class="good">完全無料</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     親への説明
+     ════════════════════════════════════════ -->
+<div class="section" id="parents-link">
+    <p class="section-label">Next step</p>
+    <h2>親にどう<span class="hl">伝える？</span></h2>
+
+    <p class="lead">
+        「監視アプリやめたい」って言うだけだと、親は「何か隠してるの？」と思うかもしれない。<br>
+        大事なのは、<strong style="color:var(--text);">代わりの安心を提案する</strong>こと。
+    </p>
+
+    <div class="quote-block">
+        「今のアプリ、常に位置が見えちゃってて、ちょっと窮屈に感じてる。<br>
+        Kiniaっていうアプリなら、家に着いたとか学校に着いたとかの通知は届くから、<br>
+        安心はそのままで、お互いのプライバシーも守れるんだけど、どうかな？」
+    </div>
+
+    <p class="lead" style="margin-top:20px;">
+        ポイントは3つ:
+    </p>
+    <ul class="solution-list">
+        <li>
+            <div class="icon">1️⃣</div>
+            <div>
+                <h3>「やめたい」ではなく「切り替えたい」</h3>
+                <p>見守り自体を拒否するんじゃなく、お互いにとって良い形にしたい、というスタンス。</p>
+            </div>
+        </li>
+        <li>
+            <div class="icon">2️⃣</div>
+            <div>
+                <h3>親の「安心」は守られると伝える</h3>
+                <p>通知エリア機能があるから「学校に着いた」「家に帰った」は今までどおり分かる。</p>
+            </div>
+        </li>
+        <li>
+            <div class="icon">3️⃣</div>
+            <div>
+                <h3>親向けのページを見せる</h3>
+                <p>下のリンクから、親向けに書かれた説明ページを見せてあげてください。</p>
+            </div>
+        </li>
+    </ul>
+
+    <div class="handoff-box">
+        <h3>親に見せるページがあります</h3>
+        <p>
+            Kiniaの安全性やプライバシー設計について、<br>
+            保護者の方向けに詳しく説明したページを用意しました。
+        </p>
+        <a href="/parents.html" class="cta-btn">保護者向けページを開く</a>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     CTA
+     ════════════════════════════════════════ -->
+<div class="bg-alt">
+<div class="section" style="text-align:center; padding-bottom:48px;">
+    <h2>監視じゃない見守りを、<span class="hl">始めよう</span></h2>
+    <p class="lead" style="margin-bottom:28px;">
+        Kiniaは現在ベータテスト中。<br>
+        まずは家族で試してみてください。完全無料です。
+    </p>
+    <a href="/beta-test.html" class="cta-btn">ベータテストに参加する</a>
+    <p style="margin-top:12px; color:var(--text-dim); font-size:0.9rem;">Google Play — Android対応</p>
+</div>
+</div>
+
+<!-- フッター -->
+<div class="footer-links">
+    <a href="/">トップページ</a>
+    <a href="/parents.html">保護者の方へ</a>
+    <a href="/senior.html">高齢のご家族がいる方へ</a>
+    <a href="/faq.html">よくある質問</a>
+    <a href="/privacy.html">プライバシーポリシー</a>
+</div>
+<div class="footer-copy">
+    <p>&copy; 2026 Kinia</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinia（キニア）— お子さんの安全とプライバシーを両立する見守りアプリ</title>
+    <meta name="description" content="Kiniaは、お子さんのプライバシーを尊重しながら安心を届ける家族見守りアプリ。通知エリアだけの「ゆるい見守り」で、信頼関係を壊しません。">
+    <style>
+        :root {
+            --bg: #12121F;
+            --bg-alt: #161628;
+            --surface: #1E1E30;
+            --surface2: #282840;
+            --text: #E8E4F0;
+            --text-sub: #B0AAC2;
+            --text-dim: #7A7490;
+            --primary: #5B8DEF;
+            --primary-dim: #4A73CC;
+            --accent: #4CC9F0;
+            --accent-warm: #F4A261;
+            --border: #3D3855;
+            --section-gap: clamp(48px, 7vw, 88px);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            overflow-x: hidden;
+            font-size: 17px;
+        }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ── ナビ ── */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(18, 18, 31, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        nav .brand { font-size: 1.2rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 8px; text-decoration: none; }
+        nav .brand img { width: 28px; height: 28px; border-radius: 6px; }
+        nav .nav-links { display: flex; gap: 20px; font-size: 0.95rem; }
+        nav .nav-links a { color: var(--text-sub); transition: color 0.2s; }
+        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
+        .hamburger { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+        @media (max-width: 720px) {
+            nav .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(18,18,31,0.98); padding: 16px 24px; gap: 16px; border-bottom: 1px solid var(--border); }
+            nav .nav-links.open { display: flex; }
+            .hamburger { display: block; }
+        }
+
+        /* ── 共通 ── */
+        .section { max-width: 780px; margin: 0 auto; padding: var(--section-gap) 24px; }
+        .section-wide { max-width: 960px; margin: 0 auto; padding: var(--section-gap) 24px; }
+        .section-label { font-size: 0.82rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+        .section h2, .section-wide h2 { font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.45; margin-bottom: 18px; }
+        .section h2 .hl, .section-wide h2 .hl { color: var(--accent); }
+        .lead { font-size: 1.02rem; color: var(--text-sub); line-height: 1.95; }
+        .bg-alt { background: var(--bg-alt); }
+
+        /* ── ヒーロー ── */
+        .hero {
+            max-width: 780px; margin: 0 auto;
+            padding: clamp(48px, 8vw, 88px) 24px clamp(32px, 5vw, 56px);
+            text-align: center;
+        }
+        .hero h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); line-height: 1.45; margin-bottom: 16px; }
+        .hero h1 .hl { color: var(--primary); }
+        .hero .tagline { font-size: 1.1rem; color: var(--text-sub); margin-bottom: 28px; line-height: 1.85; }
+
+        /* ── CTA ── */
+        .cta-btn {
+            display: inline-block; background: var(--primary); color: #fff;
+            font-size: 1.05rem; font-weight: 700; padding: 15px 40px;
+            border-radius: 12px; transition: background 0.2s, transform 0.1s;
+        }
+        .cta-btn:hover { background: var(--primary-dim); text-decoration: none; transform: translateY(-1px); }
+
+        /* ── 問い直しカード ── */
+        .rethink-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+        @media (max-width: 560px) { .rethink-grid { grid-template-columns: 1fr; } }
+        .rethink-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 12px; padding: 24px 20px;
+        }
+        .rethink-card .icon { font-size: 2rem; margin-bottom: 10px; }
+        .rethink-card h3 { font-size: 1.05rem; margin-bottom: 6px; color: var(--accent-warm); }
+        .rethink-card p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.85; }
+
+        /* ── ソリューションリスト ── */
+        .sol-list { list-style: none; margin: 24px 0; }
+        .sol-list li {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 12px; padding: 22px 24px; margin-bottom: 14px;
+            display: flex; align-items: flex-start; gap: 16px;
+        }
+        .sol-list li .icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
+        .sol-list li h3 { font-size: 1.05rem; margin-bottom: 4px; color: var(--accent); }
+        .sol-list li p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.85; }
+
+        /* ── 引用 ── */
+        .quote-block {
+            font-size: 1.05rem; color: var(--accent); line-height: 1.95;
+            padding: 20px 24px; background: var(--surface);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0; margin: 24px 0;
+        }
+
+        /* ── セキュリティサマリ ── */
+        .sec-summary { display: flex; flex-direction: column; gap: 12px; margin: 24px 0; }
+        .sec-summary-item {
+            display: flex; align-items: center; gap: 12px;
+            background: var(--surface); border-radius: 10px; padding: 16px 20px;
+            border: 1px solid var(--border);
+        }
+        .sec-summary-item .check { color: var(--accent); font-size: 1.3rem; flex-shrink: 0; }
+        .sec-summary-item span { font-size: 1rem; }
+
+        /* ── 声カード ── */
+        .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+        @media (max-width: 560px) { .voice-grid { grid-template-columns: 1fr; } }
+        .voice-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 12px; padding: 24px 20px;
+        }
+        .voice-card .persona { font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; }
+        .voice-card p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.85; font-style: italic; }
+
+        /* ── フッター ── */
+        .footer-links {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 16px; padding: 48px 24px 16px;
+            border-top: 1px solid var(--border); font-size: 0.95rem;
+        }
+        .footer-links a { color: var(--text-sub); }
+        .footer-copy { text-align: center; padding: 16px 24px 48px; font-size: 0.88rem; color: var(--text-dim); }
+    </style>
+</head>
+<body>
+
+<!-- ナビ -->
+<nav>
+    <a href="/" class="brand">
+        <img src="/images/app_icon.png" alt="">
+        Kinia（キニア）
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">☰</button>
+    <div class="nav-links">
+        <a href="#rethink">見守りを考え直す</a>
+        <a href="#features">Kiniaの特徴</a>
+        <a href="#security">安全性</a>
+        <a href="/">トップページ</a>
+    </div>
+</nav>
+
+<!-- ════════════════════════════════════════
+     ヒーロー
+     ════════════════════════════════════════ -->
+<div class="hero">
+    <img src="/images/app_icon.png" alt="Kinia" style="width:72px; height:72px; border-radius:16px; margin-bottom:14px;">
+    <h1>安心を手放さずに、<br><span class="hl">信頼関係を守る</span>見守り</h1>
+    <p class="tagline">
+        お子さんの安全は確保したい。でも、過度な監視は信頼を壊す。<br>
+        Kinia（キニア）は、通知エリアだけの「ちょうどいい見守り」で<br>
+        <strong style="color:var(--text);">親子の信頼関係と安心を両立</strong>します。
+    </p>
+</div>
+
+<!-- ════════════════════════════════════════
+     見守りを考え直す
+     ════════════════════════════════════════ -->
+<div class="bg-alt">
+<div class="section" id="rethink">
+    <p class="section-label">Rethink</p>
+    <h2>今の見守りアプリ、<span class="hl">こんな不安</span>ありませんか</h2>
+
+    <div class="rethink-grid">
+        <div class="rethink-card">
+            <div class="icon">😰</div>
+            <h3>子どもが嫌がっている</h3>
+            <p>「常に位置を見られるのが嫌」と言われた。安全のためなのに、関係がギクシャクしている。</p>
+        </div>
+        <div class="rethink-card">
+            <div class="icon">📱</div>
+            <h3>位置情報を切られてしまう</h3>
+            <p>子どもがGPSをオフにしたり、スマホを家に置いていったり。結局、意味がなくなっている。</p>
+        </div>
+        <div class="rethink-card">
+            <div class="icon">🔓</div>
+            <h3>位置データの安全性が不安</h3>
+            <p>子どもの居場所データが外部に漏れたら？ 広告に使われていないか？ 気になるけど確認しようがない。</p>
+        </div>
+        <div class="rethink-card">
+            <div class="icon">💸</div>
+            <h3>有料プランを勧められる</h3>
+            <p>基本機能は無料でも、通知やグループ機能に課金が必要。家族全員分となると負担になる。</p>
+        </div>
+    </div>
+
+    <div class="quote-block">
+        子どもの安全を守りたい気持ちは当然です。<br>
+        でも「安全のため」が「監視」に変わった瞬間、子どもはアプリを避け始めます。<br>
+        <strong>嫌がられずに使い続けてもらえる見守り</strong>が、本当の安心につながります。
+    </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     Kiniaの特徴
+     ════════════════════════════════════════ -->
+<div class="section" id="features">
+    <p class="section-label">Features</p>
+    <h2>Kiniaが選ばれる<span class="hl">理由</span></h2>
+
+    <ul class="sol-list">
+        <li>
+            <div class="icon">📍</div>
+            <div>
+                <h3>「通知エリア」だけの見守り</h3>
+                <p>学校・自宅・塾などを登録しておくと、出入りだけを通知。「塾に着いた」「家に帰った」——それだけで十分な安心が届きます。リアルタイムの現在地は初期設定ではOFFです。</p>
+            </div>
+        </li>
+        <li>
+            <div class="icon">⚖️</div>
+            <div>
+                <h3>親も子も同じ条件（フェア設計）</h3>
+                <p>お子さんだけが見られる一方通行ではありません。親も同じように情報を共有します。「自分も開示するから、あなたも」——その対等さが信頼の基盤になります。</p>
+            </div>
+        </li>
+        <li>
+            <div class="icon">👣</div>
+            <div>
+                <h3>歩数と元気度で「無事」が分かる</h3>
+                <p>場所を共有しなくても、歩数データと「元気度」インジケーターで「今日も元気に過ごしてる」が一目で分かります。お子さんのプライバシーを守りながら安心を得る方法です。</p>
+            </div>
+        </li>
+        <li>
+            <div class="icon">🔒</div>
+            <div>
+                <h3>運営にもデータが見えない暗号化</h3>
+                <p>位置情報は端末で暗号化されてからサーバーに保存。暗号を解く鍵（合言葉）はサーバーに送られないため、万が一の情報漏洩でも位置データは復元不可能です。</p>
+            </div>
+        </li>
+        <li>
+            <div class="icon">🆓</div>
+            <div>
+                <h3>完全無料・広告なし・データ売却なし</h3>
+                <p>家族全員で使っても完全無料。広告は表示されず、位置データを第三者に提供・販売することもありません。お子さんの行動データが広告のターゲティングに使われることはありません。</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!-- ════════════════════════════════════════
+     セキュリティ
+     ════════════════════════════════════════ -->
+<div class="bg-alt">
+<div class="section" id="security">
+    <p class="section-label">Security</p>
+    <h2>お子さんのデータを<span class="hl">どう守っているか</span></h2>
+    <p class="lead">
+        お子さんの位置情報は、特に慎重に扱うべき個人データです。<br>
+        Kiniaは「そもそもデータを持たない」という設計思想で、リスクを最小化しています。
+    </p>
+
+    <div class="sec-summary">
+        <div class="sec-summary-item"><span class="check">✓</span><span>位置情報はサーバー保存前に端末で暗号化</span></div>
+        <div class="sec-summary-item"><span class="check">✓</span><span>暗号鍵（合言葉）はサーバーに送信されない</span></div>
+        <div class="sec-summary-item"><span class="check">✓</span><span>サーバー上に個人名を保存しない（ランダムIDのみ）</span></div>
+        <div class="sec-summary-item"><span class="check">✓</span><span>Google認証基盤によるアクセス制御</span></div>
+        <div class="sec-summary-item"><span class="check">✓</span><span>広告SDK不使用・第三者へのデータ提供なし</span></div>
+    </div>
+
+    <p class="lead" style="margin-top:20px;">
+        万が一サーバーが攻撃されても、保存されているのは暗号化された数値とランダムIDだけ。<br>
+        誰がどこにいたかを復元することは、<strong style="color:var(--text);">運営者にもできません</strong>。
+    </p>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     お子さんの声
+     ════════════════════════════════════════ -->
+<div class="section">
+    <p class="section-label">Voice</p>
+    <h2>お子さんが<span class="hl">このページを見せてくれた</span>なら</h2>
+
+    <p class="lead" style="margin-bottom:24px;">
+        このページにたどり着いたということは、お子さんが自分のプライバシーについて真剣に考え、<br>
+        それでも家族との「つながり」を大切にしたいと思っている証拠です。
+    </p>
+
+    <div class="quote-block">
+        「監視をやめてほしい」ではなく「お互いにとって良い形にしたい」。<br>
+        そう提案できるお子さんの成長を、ぜひ受け止めてあげてください。
+    </div>
+
+    <ul class="sol-list" style="margin-top:24px;">
+        <li>
+            <div class="icon">💬</div>
+            <div>
+                <h3>「切り替え」であって「拒否」ではない</h3>
+                <p>お子さんは見守り自体を拒否しているわけではありません。通知エリアの出入りは引き続き共有されます。「学校に着いた」「家に帰った」は今までどおり分かります。</p>
+            </div>
+        </li>
+        <li>
+            <div class="icon">🤝</div>
+            <div>
+                <h3>フェアな関係は長続きする</h3>
+                <p>一方的に監視される関係は、お子さんが自立するタイミングでアンインストールされます。対等な関係なら、大人になっても使い続けてくれる可能性があります。</p>
+            </div>
+        </li>
+        <li>
+            <div class="icon">📊</div>
+            <div>
+                <h3>必要なときは「すべて共有」に切り替えられる</h3>
+                <p>Kiniaには2つの共有レベルがあり、いつでも切り替え可能です。普段は通知エリアだけ、旅行や災害時にはリアルタイム共有——状況に合わせて柔軟に運用できます。</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!-- ════════════════════════════════════════
+     CTA
+     ════════════════════════════════════════ -->
+<div class="bg-alt">
+<div class="section" style="text-align:center; padding-bottom:48px;">
+    <h2>安心と信頼を、<span class="hl">両方手に入れる</span></h2>
+    <p class="lead" style="margin-bottom:28px;">
+        Kiniaは現在ベータテスト中です。<br>
+        お子さんと一緒に、新しい見守りの形を試してみませんか。<br>
+        完全無料・広告なしです。
+    </p>
+    <a href="/beta-test.html" class="cta-btn">ベータテストに参加する（無料）</a>
+    <p style="margin-top:14px; color:var(--text-dim); font-size:0.9rem;">
+        ご質問は <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a> まで
+    </p>
+</div>
+</div>
+
+<!-- フッター -->
+<div class="footer-links">
+    <a href="/">トップページ</a>
+    <a href="/students.html">学生の方へ</a>
+    <a href="/senior.html">高齢のご家族がいる方へ</a>
+    <a href="/setup.html">はじめかたガイド</a>
+    <a href="/faq.html">よくある質問</a>
+    <a href="/privacy.html">プライバシーポリシー</a>
+</div>
+<div class="footer-copy">
+    <p>&copy; 2026 Kinia</p>
+</div>
+
+</body>
+</html>
