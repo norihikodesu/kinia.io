@@ -311,6 +311,95 @@
                 <p>24時間の詳細な位置共有が必要な場合は「すべて共有」も選べますが、その場合も親子で同じレベルの情報が共有されます。</p>
             </div>
         </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                Googleアカウントが必須ですか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>はい、現在はGoogleアカウント（Gmail）でのログインが必須です。データの保護と不正アクセス防止のために、Googleの認証基盤を利用しています。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                対応しているAndroidバージョンは？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>Android 8.0（Oreo）以上に対応しています。2018年以降に発売されたほとんどのAndroidスマートフォンでご利用いただけます。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                複数のグループに同時に参加できますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>現在は1アカウントにつき1グループのみ参加可能です。別のグループに参加するには、現在のグループから脱退する必要があります。</p>
+                <p>複数グループの同時参加は、今後のアップデートで対応を検討しています。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                将来的に有料になりますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>基本機能は今後もずっと無料でご利用いただけます。</p>
+                <p>将来的には、追加のオプション機能や細かなカスタマイズについて、一部有償で提供する可能性があります。ただし、見守りに必要な基本機能が有料になることはありません。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                Life360や「探す」アプリとの違いは？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>多くの位置共有アプリは「常に全員の居場所が見える」ことを前提にしています。Kiniaの違いは以下の点です：</p>
+                <p>・<strong>初期設定は通知エリアのみ</strong> — アプリを入れただけでは位置は共有されません<br>
+                ・<strong>全員フェア</strong> — 見る側と見られる側で情報量に差がありません<br>
+                ・<strong>運営も見られない暗号化</strong> — 技術的に運営がデータを閲覧できない設計です<br>
+                ・<strong>完全無料・広告なし</strong> — データ収集や広告収益を目的としていません</p>
+                <p>「もっと緩くつながりたい」「監視感のない見守りをしたい」という方に向いています。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                データ通信量はどのくらいですか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>1日あたりのデータ通信量は通常1〜5MB程度です。格安SIMの低容量プランでも問題なくお使いいただけます。</p>
+                <p>位置データは数値（緯度・経度）のみをやり取りするため、画像や動画を送るアプリと比べてごくわずかな通信量です。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                海外でも使えますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>はい、GPS衛星の電波とインターネット接続があればどの国でも利用できます。旅行先や海外在住のご家族との見守りにもお使いいただけます。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                アプリを閉じてもバックグラウンドで動きますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>はい、アプリを閉じてもバックグラウンドで位置情報の送信を継続します。通知バーに「Kinia 稼働中」と表示されている間は正常に動作しています。</p>
+                <p>ただし、一部の端末メーカー（Samsung、Xiaomi等）では省電力機能により強制停止されることがあります。その場合はバッテリー最適化の設定を確認してください。</p>
+            </div>
+        </div>
     </div>
 
     <!-- ===== 位置情報 ===== -->
@@ -417,6 +506,43 @@
             </div>
             <div class="faq-a">
                 <p>グループの人数に応じて自動的に上限が決まります。通常の家族利用では十分な数を設定できます。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                通知エリアの半径はどのくらいに設定すればいいですか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>目安として以下をおすすめします：</p>
+                <p>・<strong>自宅・学校・会社</strong>: 100〜200m（建物周辺をカバー）<br>
+                ・<strong>駅・商業施設</strong>: 200〜400m（周辺の道路も含める）<br>
+                ・<strong>広いエリア（地区全体）</strong>: 500m以上</p>
+                <p>小さすぎるとGPS精度の影響で通知が不安定になることがあります。迷ったら少し大きめに設定するのがおすすめです。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                通知はリアルタイムで届きますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>通常は数秒〜数分以内に届きます。ただし以下の場合に遅延が生じることがあります：</p>
+                <p>・端末の省電力モードが有効な場合<br>
+                ・電波の弱い場所にいる場合<br>
+                ・GPSの精度が一時的に低下している場合</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                通知エリアは家族全員で共有されますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>はい。1人が通知エリアを設定すると、グループ全員がその通知エリアを利用できます。通知を受け取るかどうかは、メンバーごと・エリアごとに個別に設定できます。</p>
             </div>
         </div>
     </div>
@@ -543,6 +669,111 @@
             </div>
             <div class="faq-a">
                 <p>招待コードの有効期限は72時間です。期限が切れた場合は、グループ内のメンバーに新しい招待コードを発行してもらってください。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                2台のスマホで同時にログインできますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>1つのアカウントで同時に利用できる端末は1台のみです。新しい端末でログインすると、以前の端末は自動的にログアウトされます。</p>
+                <p>これは第三者による不正利用を防ぐためのセキュリティ対策です。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                グループの管理者には何ができますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>管理者（admin）は以下の操作ができます：</p>
+                <p>・メンバーの削除<br>
+                ・他のメンバーを管理者に昇格/降格<br>
+                ・グループ作成者は自動的に管理者になります</p>
+                <p>管理者以外のメンバーも、招待コードの発行や通知エリアの設定は自由にできます。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                合言葉（グループ名）を忘れてしまいました
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>合言葉はセキュリティ上の理由からサーバーに保存されていないため、運営側で確認・復元することはできません。</p>
+                <p>ただし、グループに残っているメンバーから<strong>招待コード</strong>を発行してもらえれば、合言葉を知らなくてもグループに再参加できます。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 使い方 ===== -->
+    <div class="category" data-category="usage">
+        <h2 class="category-title">使い方</h2>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                「元気度」はどうやって計算されていますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>その日の歩数と最終更新時刻をもとに、3段階（😊元気 / 🙂ふつう / 😟心配）で表示します。</p>
+                <p>歩数が多く最近も更新がある → 元気、歩数が少なく長時間更新がない → 心配、という判定です。位置情報を共有していなくても安否の目安が分かります。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                ステータスコメントは相手に通知されますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>ステータスコメントの設定・変更時にプッシュ通知は送られません。メンバー一覧やマップの吹き出しに表示されるだけなので、気軽に設定できます。</p>
+                <p>有効時間（1時間〜1週間）を選べば、時間経過で自動的に消えます。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                「困っているアラート」を間違えて押してしまいました
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>送信後の取り消し機能はありません。間違えて送ってしまった場合は、メッセージタブで「間違いでした」と家族に伝えてください。</p>
+                <p>緊急時に素早く送信できることを優先した設計のため、確認ダイアログは最小限にしています。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                メンバーの表示順は変えられますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>はい。メンバー一覧画面で、各メンバーカードの右下にある「▲」「▼」ボタンで並び順を変更できます。変更した順序は端末に保存されます。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                マーカーの色やサイズは変えられますか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>はい。メンバー一覧画面で各メンバーのパレットアイコン（🎨）をタップすると、マーカーの色と大きさを変更できます。家族が多い場合に見分けやすくなります。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                「簡単モード」とは何ですか？
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-a">
+                <p>画面の情報量を減らし、文字を大きくした高齢者向けのモードです。画面上部の「簡単モード」ボタンで切り替えられます。</p>
+                <p>メンバー一覧と万歩計の2つの機能に絞った、シンプルな画面構成になります。</p>
             </div>
         </div>
     </div>
