@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>災害時の安否確認について — Kinia</title>
+    <meta name="description" content="Kiniaの安否確認機能の仕組みと、プライバシーとの両立について説明します。">
+    <style>ruby rt { font-size: 0.55em; }
+        :root {
+            --bg: #12121F;
+            --surface: #1E1E30;
+            --surface2: #282840;
+            --text: #E8E4F0;
+            --text-sub: #B0AAC2;
+            --text-dim: #7A7490;
+            --primary: #7C8EF2;
+            --accent: #4CC9F0;
+            --accent-warm: #F4A261;
+            --border: #3D3855;
+            --error: #F2726A;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.9;
+            font-size: 18px;
+        }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(18, 18, 31, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        nav .brand { font-size: 1.2rem; font-weight: 700; color: var(--primary); text-decoration: none; }
+        nav .nav-links { display: flex; gap: 20px; font-size: 0.95rem; }
+        nav .nav-links a { color: var(--text-sub); }
+        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
+
+        .content { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; }
+        h1 { font-size: clamp(1.6rem, 4vw, 2rem); color: var(--primary); margin-bottom: 8px; }
+        .subtitle { color: var(--text-sub); margin-bottom: 36px; font-size: 1rem; }
+        h2 { font-size: 1.3rem; color: var(--accent); margin-top: 40px; margin-bottom: 12px; }
+        h3 { font-size: 1.1rem; color: var(--accent-warm); margin-top: 28px; margin-bottom: 8px; }
+        p { margin-bottom: 16px; color: var(--text-sub); font-size: 1rem; line-height: 1.95; }
+        p strong { color: var(--text); }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        .card h3 { margin-top: 0; }
+        .card p:last-child { margin-bottom: 0; }
+        .quote {
+            border-left: 3px solid var(--accent);
+            padding: 16px 20px;
+            background: var(--surface);
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-style: italic;
+            color: var(--accent);
+            line-height: 1.9;
+        }
+        .alert-box {
+            background: rgba(242, 114, 106, 0.1);
+            border: 1px solid var(--error);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+        .alert-box p { color: var(--text); }
+        .steps { counter-reset: step; margin: 20px 0; }
+        .step {
+            display: flex; gap: 16px; margin-bottom: 16px;
+            background: var(--surface);
+            border-radius: 10px;
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+        }
+        .step-num {
+            counter-increment: step;
+            flex-shrink: 0;
+            width: 32px; height: 32px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .step-text { flex: 1; }
+        .step-text p { margin-bottom: 0; }
+
+        .footer-links {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 16px; padding: 48px 24px 16px;
+            border-top: 1px solid var(--border); font-size: 0.95rem;
+        }
+        .footer-links a { color: var(--text-sub); }
+        .footer-copy { text-align: center; padding: 16px 24px 48px; font-size: 0.88rem; color: var(--text-dim); }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" class="brand"><ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby></a>
+    <div class="nav-links">
+        <a href="/#difference">特徴</a>
+        <a href="/#security">安全性</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/#contact">お問い合わせ</a>
+    </div>
+</nav>
+
+<main class="content">
+    <h1>災害時の安否確認について</h1>
+    <p class="subtitle"><ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>は「普段はゆるく、いざという時は確実に」つながるアプリです。<br>このページでは、安否確認機能の仕組みとプライバシーとの両立について説明します。</p>
+
+    <!-- ===== 安否確認とは ===== -->
+    <h2>安否確認機能とは</h2>
+
+    <p>
+        地震・台風・大雪など、災害や非常事態が起きたとき、家族の安否をすぐに確認したい。でも電話はつながらず、LINEの返事もない——そんな状況を想定した機能です。
+    </p>
+
+    <p>
+        グループ内の誰かが<strong>「安否確認」ボタン</strong>を押すと、全メンバーの端末に全画面で安否確認の依頼が表示されます。
+    </p>
+
+    <div class="alert-box">
+        <p>⚠️ <strong>この操作は非常事態を前提としています。</strong><br>
+        安否確認を実行すると、グループ内の全メンバーに通知され、全画面で安否確認の依頼が表示されます。日常的な連絡手段として使うものではありません。</p>
+    </div>
+
+    <!-- ===== 動作の流れ ===== -->
+    <h2>安否確認の流れ</h2>
+
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text"><p><strong>誰かが安否確認を実行</strong><br>グループ内の誰でも、非常時に安否確認を発動できます。</p></div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text"><p><strong>全員に全画面通知が届く</strong><br>プッシュ通知＋全画面表示で、すぐに気づけるようにします。</p></div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text"><p><strong>各メンバーが状況を回答</strong><br>「無事です」「助けが必要」「けがをしています」などの選択肢＋自由テキストで回答します。</p></div>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-text"><p><strong>全員の最終位置を照会</strong><br>安否確認と同時に、各メンバーの最終現在地点が全員に共有されます。この照会が行われたことは、各メンバーに通知されます。</p></div>
+        </div>
+    </div>
+
+    <!-- ===== プライバシーとの両立 ===== -->
+    <h2>「通知エリアのみ」なのに位置が見えるのはなぜ？</h2>
+
+    <p>
+        Kiniaは普段「通知エリアのみ」に設定しているメンバーの詳細な位置を表示しません。これはKiniaの最も大切な設計思想です。
+    </p>
+
+    <p>
+        しかし、災害時は話が違います。家族が無事かどうか分からない。電話もつながらない。——そんな状況で「プライバシーを守ったまま何もできない」のでは、見守りアプリとしての意味がありません。
+    </p>
+
+    <div class="quote">
+        普段は距離を保つ。でも、本当に必要な瞬間には確実につながれる。——その両立こそが、Kiniaが目指す「ゆるいつながり」の本質です。
+    </div>
+
+    <h3>技術的な仕組み</h3>
+
+    <p>
+        ここで重要なのは、<strong>安否確認時にサーバー側で新しい処理が行われるわけではない</strong>という点です。
+    </p>
+
+    <div class="card">
+        <h3>サーバーに保存されているもの</h3>
+        <p>サーバーには、暗号化された位置データが保存されています。この暗号を解く鍵（合言葉から生成）は、家族の端末にしかありません。運営を含め、サーバー側から実際の座標を復元することは不可能です。</p>
+    </div>
+
+    <div class="card">
+        <h3>通常時の動作</h3>
+        <p>各端末は、共有設定に従って必要な情報だけを復号・表示します。「通知エリアのみ」のメンバーの詳細位置は、端末が持っている鍵で復号できる状態にあっても、<strong>アプリの設計として表示しません</strong>。</p>
+    </div>
+
+    <div class="card">
+        <h3>安否確認時の動作</h3>
+        <p>安否確認が発動されると、各端末が持っている鍵で、サーバーにある暗号化データを読み取る範囲が<strong>一時的に広がります</strong>。つまり、各端末が自分の鍵を使って全メンバーの最終位置を復号・表示します。</p>
+        <p>サーバー側では何も変わっていません。暗号化されたデータがそのまま存在しているだけです。変わるのは「どこまで表示するか」という端末側の判断だけです。</p>
+    </div>
+
+    <!-- ===== 悪用への考え方 ===== -->
+    <h2>悪用されませんか？</h2>
+
+    <p>
+        「安否確認を口実に、日常的に位置を覗き見されるのでは？」——そう心配される方もいるかもしれません。
+    </p>
+
+    <p>
+        Kiniaの安否確認は、以下の設計により乱用を抑止しています：
+    </p>
+
+    <div class="card">
+        <p>・安否確認を実行すると、<strong>全メンバーに「誰が安否確認を実行したか」が通知</strong>されます<br>
+        ・位置が照会されたことも全員に通知されるため、<strong>こっそり見ることは不可能</strong>です<br>
+        ・全画面で表示されるため、メンバー全員が「今、安否確認が発動された」と認識します<br>
+        ・実行履歴はメッセージタブに記録され、後から確認できます</p>
+    </div>
+
+    <p>
+        それでも悪用する人がいるとしたら、それは安否確認機能の問題ではなく、その家族関係の問題です。
+    </p>
+
+    <div class="quote">
+        Kiniaは「信頼し合える家族」のためのアプリです。安否確認を乱用して家族の信頼を裏切るような使い方をする方は、このアプリの対象としていません。
+    </div>
+
+    <!-- ===== 思想 ===== -->
+    <h2>Kiniaが目指す「ゆるいつながり」</h2>
+
+    <p>
+        「普段は位置を共有しない。でも、いざという時には全員の安全が確認できる。」
+    </p>
+
+    <p>
+        これは矛盾ではなく、Kiniaが最初から目指している姿です。
+    </p>
+
+    <p>
+        常時監視と安否確認は、まったく別のものです。24時間の位置追跡は信頼を削ります。しかし、災害という非日常の中で「家族がどこにいたか」を知ることは、安心をもたらします。
+    </p>
+
+    <p>
+        この思想に同意していただける方に使っていただきたい。それがKiniaの考え方です。
+    </p>
+
+    <div class="card" style="text-align:center; margin-top:40px;">
+        <p style="font-size:1.1rem; color:var(--text); margin-bottom:12px;">安否確認機能についてのご質問は</p>
+        <a href="https://forms.gle/qTc8UjzWVMFpx76o8" style="display:inline-block; background:var(--primary); color:#fff; padding:12px 28px; border-radius:8px; font-weight:600; text-decoration:none;">お問い合わせフォーム</a>
+        <p style="margin-top:8px; font-size:0.9rem;">または <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a></p>
+    </div>
+</main>
+
+<div class="footer-links">
+    <a href="/">トップページ</a>
+    <a href="/setup.html">はじめかたガイド</a>
+    <a href="/faq.html">よくある質問</a>
+    <a href="/beta-test.html">テスター募集</a>
+    <a href="/privacy.html">プライバシーポリシー</a>
+    <a href="/delete-account.html">アカウント削除</a>
+</div>
+<div class="footer-copy">
+    <p>&copy; 2026 Kinia</p>
+</div>
+
+</body>
+</html>
