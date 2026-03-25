@@ -122,7 +122,7 @@
         .solution-list li h3 { font-size: 1.05rem; margin-bottom: 4px; color: var(--accent); }
         .solution-list li p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.85; }
 
-        /* ── 比較テーブル ── */
+        /* ── 比較テーブル（PC） ── */
         .compare-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.95rem; }
         .compare-table th, .compare-table td { padding: 14px 16px; border: 1px solid var(--border); text-align: center; }
         .compare-table th { background: var(--surface2); }
@@ -130,10 +130,32 @@
         .compare-table td { background: var(--surface); }
         .compare-table .good { color: var(--accent); font-weight: 700; }
         .compare-table .bad { color: var(--danger); }
+        .compare-desktop { display: block; }
+        .compare-mobile { display: none; }
         @media (max-width: 560px) {
-            .compare-table { font-size: 0.85rem; }
-            .compare-table th, .compare-table td { padding: 10px 8px; }
+            .compare-desktop { display: none; }
+            .compare-mobile { display: block; }
         }
+        /* ── 比較カード（モバイル） ── */
+        .compare-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 12px; padding: 18px 20px; margin-bottom: 12px;
+        }
+        .compare-card .compare-label { font-size: 0.92rem; color: var(--text-sub); margin-bottom: 8px; }
+        .compare-card .compare-row { display: flex; justify-content: space-between; gap: 12px; font-size: 0.92rem; }
+        .compare-card .compare-row .col-label { color: var(--text-dim); font-size: 0.8rem; margin-bottom: 2px; }
+        .compare-card .compare-row .col { flex: 1; }
+        .compare-card .good { color: var(--accent); font-weight: 700; }
+        .compare-card .bad { color: var(--danger); }
+
+        /* ── テンプレカード ── */
+        .template-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 20px 0; }
+        .template-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 12px; padding: 18px 20px;
+        }
+        .template-card .template-type { font-size: 0.82rem; color: var(--accent); letter-spacing: 1px; margin-bottom: 6px; text-transform: uppercase; }
+        .template-card p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.85; font-style: italic; }
 
         /* ── 親に見せるセクション ── */
         .handoff-box {
@@ -291,6 +313,8 @@
     <p class="section-label">Compare</p>
     <h2>今のアプリと<span class="hl">比べてみる</span></h2>
 
+    <!-- PC: テーブル表示 -->
+    <div class="compare-desktop">
     <table class="compare-table">
         <thead>
             <tr>
@@ -337,6 +361,39 @@
             </tr>
         </tbody>
     </table>
+    </div>
+
+    <!-- モバイル: カード表示 -->
+    <div class="compare-mobile">
+        <div class="compare-card">
+            <div class="compare-label">現在地のリアルタイム表示</div>
+            <div class="compare-row"><div class="col"><div class="col-label">他アプリ</div><span class="bad">常時ON</span></div><div class="col"><div class="col-label">Kinia</div><span class="good">初期設定OFF</span></div></div>
+        </div>
+        <div class="compare-card">
+            <div class="compare-label">移動履歴・軌跡</div>
+            <div class="compare-row"><div class="col"><div class="col-label">他アプリ</div><span class="bad">親が見放題</span></div><div class="col"><div class="col-label">Kinia</div><span class="good">初期設定OFF</span></div></div>
+        </div>
+        <div class="compare-card">
+            <div class="compare-label">親と子の情報量</div>
+            <div class="compare-row"><div class="col"><div class="col-label">他アプリ</div><span class="bad">子だけ丸見え</span></div><div class="col"><div class="col-label">Kinia</div><span class="good">全員同じ</span></div></div>
+        </div>
+        <div class="compare-card">
+            <div class="compare-label">エリア出入り通知</div>
+            <div class="compare-row"><div class="col"><div class="col-label">他アプリ</div><span>あり</span></div><div class="col"><div class="col-label">Kinia</div><span class="good">あり（メイン）</span></div></div>
+        </div>
+        <div class="compare-card">
+            <div class="compare-label">位置データの暗号化</div>
+            <div class="compare-row"><div class="col"><div class="col-label">他アプリ</div><span class="bad">なし（多い）</span></div><div class="col"><div class="col-label">Kinia</div><span class="good">運営も読めない</span></div></div>
+        </div>
+        <div class="compare-card">
+            <div class="compare-label">広告 / データ販売</div>
+            <div class="compare-row"><div class="col"><div class="col-label">他アプリ</div><span class="bad">あり（多い）</span></div><div class="col"><div class="col-label">Kinia</div><span class="good">なし</span></div></div>
+        </div>
+        <div class="compare-card">
+            <div class="compare-label">料金</div>
+            <div class="compare-row"><div class="col"><div class="col-label">他アプリ</div><span>無料〜有料</span></div><div class="col"><div class="col-label">Kinia</div><span class="good">完全無料</span></div></div>
+        </div>
+    </div>
 </div>
 </div>
 
@@ -352,10 +409,23 @@
         大事なのは、<strong style="color:var(--text);">代わりの安心を提案する</strong>こと。
     </p>
 
-    <div class="quote-block">
-        「今のアプリ、常に位置が見えちゃってて、ちょっと窮屈に感じてる。<br>
-        Kiniaっていうアプリなら、家に着いたとか学校に着いたとかの通知は届くから、<br>
-        安心はそのままで、お互いのプライバシーも守れるんだけど、どうかな？」
+    <p class="lead" style="margin-bottom:8px;">
+        <strong style="color:var(--text);">そのまま送れる一言テンプレート</strong>（LINEにコピペしてもOK）:
+    </p>
+
+    <div class="template-grid">
+        <div class="template-card">
+            <div class="template-type">やわらかめ</div>
+            <p>「今のアプリ、ちょっと窮屈に感じてて。Kiniaっていうアプリなら、家に着いたとかの通知は届くから安心はそのままで、お互いのプライバシーも守れるんだけど、どうかな？」</p>
+        </div>
+        <div class="template-card">
+            <div class="template-type">シンプル</div>
+            <p>「位置共有アプリ、もうちょっとプライバシー守れるやつに変えたいんだけど、このページ見てもらえる？ → kinia.io/parents」</p>
+        </div>
+        <div class="template-card">
+            <div class="template-type">論理型</div>
+            <p>「今使ってるアプリ、位置データが暗号化されてないし広告にも使われてるっぽい。Kiniaは暗号化されてて運営にも見えない設計。通知エリアの機能はあるから安心は変わらないよ → kinia.io/parents」</p>
+        </div>
     </div>
 
     <p class="lead" style="margin-top:20px;">
@@ -407,6 +477,9 @@
     </p>
     <a href="/beta-test.html" class="cta-btn">ベータテストに参加する</a>
     <p style="margin-top:12px; color:var(--text-dim); font-size:0.9rem;">Google Play — Android対応</p>
+    <p style="margin-top:14px; color:var(--text-sub); font-size:0.9rem;">
+        <a href="/faq.html">よくある質問</a> ・ <a href="/privacy.html">プライバシーポリシー</a> ・ <a href="/">アプリ詳細</a>
+    </p>
 </div>
 </div>
 

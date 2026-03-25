@@ -181,7 +181,37 @@
             h1, h2 { color: #000 !important; }
             .hl { color: #333 !important; }
             .quote-block { background: #f0f0f0 !important; border-left-color: #666 !important; color: #333 !important; }
+            .print-btn, .no-print { display: none !important; }
         }
+
+        /* ── 印刷ボタン ── */
+        .print-btn {
+            display: inline-block;
+            background: var(--surface2);
+            color: var(--text-sub);
+            border: 1px solid var(--border);
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            margin-top: 12px;
+            font-family: sans-serif;
+        }
+        .print-btn:hover { background: var(--border); color: var(--text); }
+
+        /* ── アクションバナー ── */
+        .action-banner {
+            background: var(--primary-light);
+            border: 1px solid rgba(61,122,95,0.3);
+            border-radius: 12px;
+            padding: 20px 28px;
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-sub);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .action-banner strong { color: var(--text); }
     </style>
 </head>
 <body>
@@ -213,6 +243,10 @@
         お互いの生活を見守れる無料アプリです。<br>
         <strong style="color:var(--text);">監視ではなく、安心のための「ゆるいつながり」</strong>を届けます。
     </p>
+    <div class="action-banner" style="margin-top:24px;">
+        <strong>スマートフォンの設定はご家族に任せられます。</strong><br>
+        最初の設定さえお願いすれば、あとは通知を見るだけです。
+    </div>
 </div>
 
 <!-- ════════════════════════════════════════
@@ -253,7 +287,7 @@
             <div class="icon">🆓</div>
             <div>
                 <h3>完全無料・広告なし</h3>
-                <p>月額料金はかかりません。広告も一切表示されません。ご家族の位置情報を広告会社に渡すこともありません。</p>
+                <p>月額料金はかかりません。広告も一切表示されません。ご家族の位置情報を広告会社に渡すこともありません。Kiniaは開発者が自分の家族のために作ったアプリで、広告やデータ販売で利益を得る仕組みではありません。</p>
             </div>
         </li>
     </ul>
@@ -408,6 +442,12 @@
         ご家族と一緒に、お試しいただけます。
     </p>
     <a href="/beta-test.html" class="cta-btn">ベータテストに参加する（無料）</a>
+    <p style="margin-top:16px;" class="no-print">
+        <button class="print-btn" onclick="window.print()">このページを印刷する</button>
+    </p>
+    <p style="margin-top:10px; color:var(--text-dim); font-size:0.9rem;">
+        このページは印刷してご家族にお渡しいただけます
+    </p>
     <p style="margin-top:14px; color:var(--text-dim); font-size:0.95rem;">
         ご不明な点は <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a> までお気軽にどうぞ
     </p>

@@ -132,6 +132,30 @@
         .voice-card .persona { font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; }
         .voice-card p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.85; font-style: italic; }
 
+        /* ── 通知例 ── */
+        .notif-box {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 16px; padding: 24px 28px;
+            max-width: 440px; margin: 24px auto 0;
+        }
+        .notif-box .notif-header { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 14px; letter-spacing: 1px; }
+        .notif-row { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 1rem; }
+        .notif-row:last-child { border-bottom: none; }
+
+        /* ── 文脈バナー ── */
+        .context-banner {
+            background: rgba(91,141,239,0.1);
+            border: 1px solid rgba(91,141,239,0.3);
+            border-radius: 12px;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            max-width: 780px;
+            margin: 0 auto;
+        }
+        .context-banner strong { color: var(--text); }
+
         /* ── フッター ── */
         .footer-links {
             display: flex; flex-wrap: wrap; justify-content: center;
@@ -159,6 +183,14 @@
     </div>
 </nav>
 
+<!-- 文脈バナー -->
+<div style="padding:20px 24px 0;">
+    <div class="context-banner">
+        <strong>お子さんからこのページを見せられた方へ</strong><br>
+        お子さんは見守り自体を拒否しているのではなく、「お互いにとって良い形」を提案しています。
+    </div>
+</div>
+
 <!-- ════════════════════════════════════════
      ヒーロー
      ════════════════════════════════════════ -->
@@ -170,6 +202,33 @@
         Kinia（キニア）は、通知エリアだけの「ちょうどいい見守り」で<br>
         <strong style="color:var(--text);">親子の信頼関係と安心を両立</strong>します。
     </p>
+</div>
+
+<!-- ════════════════════════════════════════
+     今までの安心がどう残るか（具体例）
+     ════════════════════════════════════════ -->
+<div class="bg-alt">
+<div class="section">
+    <p class="section-label">What you still get</p>
+    <h2>Kiniaに切り替えても、<span class="hl">届く安心</span></h2>
+    <p class="lead">
+        リアルタイムの現在地追跡をやめても、必要な情報はちゃんと届きます。<br>
+        Kiniaでお手元に届く通知は、こんなイメージです。
+    </p>
+
+    <div class="notif-box">
+        <div class="notif-header">Kinia 通知</div>
+        <div class="notif-row">📍 太郎 →「学校」に到着</div>
+        <div class="notif-row">📍 太郎 →「学校」から出発</div>
+        <div class="notif-row">📍 太郎 →「塾」に到着</div>
+        <div class="notif-row">📍 太郎 →「自宅」に帰宅</div>
+    </div>
+
+    <p class="lead" style="margin-top:24px;">
+        「学校に着いた」「塾から出た」「家に帰った」——<strong style="color:var(--text);">知りたいことは、これで十分ではないですか？</strong><br>
+        加えて歩数と「元気度」で、場所を追わなくても「今日も元気に過ごしてる」が分かります。
+    </p>
+</div>
 </div>
 
 <!-- ════════════════════════════════════════
@@ -333,12 +392,15 @@
 <div class="section" style="text-align:center; padding-bottom:48px;">
     <h2>安心と信頼を、<span class="hl">両方手に入れる</span></h2>
     <p class="lead" style="margin-bottom:28px;">
-        Kiniaは現在ベータテスト中です。<br>
+        Kiniaは現在ベータテスト中です（Android対応・iOS検討中）。<br>
         お子さんと一緒に、新しい見守りの形を試してみませんか。<br>
         完全無料・広告なしです。
     </p>
     <a href="/beta-test.html" class="cta-btn">ベータテストに参加する（無料）</a>
-    <p style="margin-top:14px; color:var(--text-dim); font-size:0.9rem;">
+    <p style="margin-top:14px; color:var(--text-sub); font-size:0.92rem;">
+        <a href="/faq.html">よくある質問</a> ・ <a href="/privacy.html">プライバシーポリシー</a> ・ <a href="/">アプリ詳細</a>
+    </p>
+    <p style="margin-top:8px; color:var(--text-dim); font-size:0.9rem;">
         ご質問は <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a> まで
     </p>
 </div>
