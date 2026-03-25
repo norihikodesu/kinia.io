@@ -55,6 +55,19 @@
             nav .nav-links.open { display: flex; }
             .hamburger { display: block; }
         }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-toggle { background: none; border: none; color: var(--text-sub); font-size: 0.95rem; cursor: pointer; padding: 0; font-family: inherit; transition: color 0.2s; }
+        .nav-dropdown-toggle:hover { color: var(--primary); }
+        .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 10px); right: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 0; min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 200; }
+        .nav-dropdown.open .nav-dropdown-menu { display: block; }
+        .nav-dropdown-menu a { display: block; padding: 10px 20px; color: var(--text-sub); font-size: 0.92rem; transition: background 0.15s, color 0.15s; white-space: nowrap; }
+        .nav-dropdown-menu a:hover { background: var(--surface2); color: var(--text); text-decoration: none; }
+        @media (max-width: 720px) {
+            .nav-dropdown-menu { position: static; box-shadow: none; border: none; border-radius: 0; background: transparent; padding: 0 0 0 16px; min-width: auto; }
+            .nav-dropdown.open .nav-dropdown-menu { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+            .nav-dropdown-menu a { padding: 4px 0; font-size: 0.9rem; }
+            .nav-dropdown-menu a:hover { background: transparent; }
+        }
 
         /* ── 共通 ── */
         .section { max-width: 760px; margin: 0 auto; padding: var(--section-gap) 24px; }
@@ -201,6 +214,14 @@
         <a href="#kinia">Kiniaの違い</a>
         <a href="#parents-link">親に見せる</a>
         <a href="/">トップページ</a>
+        <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">あなたに合った使い方 ▾</button>
+            <div class="nav-dropdown-menu">
+                <a href="/senior.html">高齢のご家族がいる方へ</a>
+                <a href="/students.html">学生の方へ</a>
+                <a href="/parents.html">お子さんを持つご家庭の方へ</a>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -495,5 +516,6 @@
     <p>&copy; 2026 Kinia</p>
 </div>
 
+<script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
 </body>
 </html>
