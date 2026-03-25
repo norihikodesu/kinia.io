@@ -206,49 +206,70 @@ body {
         <span class="back">←</span>
         <span class="title">グループ管理</span>
     </div>
-    <div style="padding:20px;">
-        <!-- グループ情報 -->
-        <div style="
-            background:var(--surface-container);
-            border-radius:12px;
-            padding:16px;
-            margin-bottom:20px;
-        ">
-            <div style="font-size:12px; color:var(--on-surface-variant); margin-bottom:4px;">グループ名</div>
-            <div style="font-size:18px; font-weight:bold; color:var(--on-surface); margin-bottom:12px;">やまだ家</div>
-            <div style="font-size:12px; color:var(--on-surface-variant); margin-bottom:4px;">メンバー</div>
-            <div style="font-size:15px; color:var(--on-surface);">3人（パパ, ママ, 子供）</div>
+    <div style="padding:16px;">
+
+        <!-- セクション: 参加中のグループ -->
+        <div style="font-size:12px; color:var(--primary); letter-spacing:2px; margin-bottom:4px;">参加中のグループ</div>
+        <div style="background:var(--surface); border:1px solid var(--outline-variant); border-radius:12px; padding:16px; margin-bottom:16px;">
+
+            <!-- グループ名 -->
+            <div style="font-size:12px; color:var(--on-surface-variant); margin-bottom:2px;">グループ名</div>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+                <span style="font-size:17px; font-weight:bold; color:var(--on-surface);">やま***だ家</span>
+                <button style="background:var(--surface-container-high); color:var(--on-surface); border:none; border-radius:16px; padding:4px 12px; font-size:13px;">表示</button>
+            </div>
+
+            <div style="height:1px; background:var(--outline-variant); margin:12px 0;"></div>
+
+            <!-- 表示名 -->
+            <div style="font-size:12px; color:var(--on-surface-variant); margin-bottom:2px;">あなたの表示名</div>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+                <span style="font-size:17px; font-weight:bold; color:var(--on-surface);">パパ</span>
+                <button style="background:var(--primary); color:white; border:none; border-radius:16px; padding:4px 12px; font-size:13px;">変更</button>
+            </div>
+
+            <div style="height:1px; background:var(--outline-variant); margin:12px 0;"></div>
+
+            <!-- 招待コード -->
+            <div style="font-size:13px; color:var(--on-surface-variant); margin-bottom:8px;">同じ招待コードで家族全員を招待できます。72時間有効です。</div>
+            <button style="background:var(--primary); color:white; border:none; border-radius:8px; padding:12px; font-size:15px; width:100%; cursor:pointer;">招待コードを発行</button>
         </div>
 
-        <!-- 招待コード発行 -->
-        <div style="
-            background:var(--primary-container);
-            border-radius:12px;
-            padding:16px;
-            margin-bottom:20px;
-            text-align:center;
-        ">
-            <div style="font-size:14px; color:var(--on-surface-variant); margin-bottom:8px;">招待コード</div>
-            <div style="font-size:32px; font-weight:bold; color:var(--primary); letter-spacing:6px; margin-bottom:8px;">
-                38274
+        <!-- セクション: メンバー -->
+        <div style="font-size:12px; color:var(--primary); letter-spacing:2px; margin-bottom:4px;">メンバー</div>
+        <div style="background:var(--surface); border:1px solid var(--outline-variant); border-radius:12px; padding:12px; margin-bottom:16px;">
+            <div style="display:flex; align-items:center; padding:8px 0; border-bottom:1px solid var(--outline-variant);">
+                <span style="flex:1; font-size:15px; color:var(--on-surface);">パパ [管理者] (自分)</span>
+                <span style="color:var(--on-surface-variant); font-size:13px;">12:30</span>
+                <span style="margin-left:8px; color:var(--on-surface-variant);">⋮</span>
             </div>
-            <div style="font-size:12px; color:var(--on-surface-variant); margin-bottom:12px;">
-                同じコードで家族全員を招待できます（72時間有効）
+            <div style="display:flex; align-items:center; padding:8px 0; border-bottom:1px solid var(--outline-variant);">
+                <span style="flex:1; font-size:15px; color:var(--on-surface);">ママ</span>
+                <span style="color:var(--on-surface-variant); font-size:13px;">12:25</span>
+                <span style="margin-left:8px; color:var(--on-surface-variant);">⋮</span>
             </div>
-            <button style="
-                background:var(--primary);
-                color:var(--on-primary);
-                border:none;
-                border-radius:8px;
-                padding:10px 24px;
-                font-size:15px;
-                cursor:pointer;
-            ">LINEで送る</button>
+            <div style="display:flex; align-items:center; padding:8px 0;">
+                <span style="flex:1; font-size:15px; color:var(--on-surface);">太郎</span>
+                <span style="color:var(--on-surface-variant); font-size:13px;">11:50</span>
+                <span style="margin-left:8px; color:var(--on-surface-variant);">⋮</span>
+            </div>
         </div>
 
-        <!-- その他メニュー -->
-        <button class="btn-secondary" style="margin-bottom:8px;">表示名を変更</button>
-        <button class="btn-secondary" style="margin-bottom:8px;">共有設定</button>
+        <!-- セクション: アカウント -->
+        <div style="font-size:12px; color:var(--primary); letter-spacing:2px; margin-bottom:4px;">アカウント</div>
+        <div style="background:var(--surface); border:1px solid var(--outline-variant); border-radius:12px; padding:16px; margin-bottom:16px;">
+            <div style="font-size:14px; color:var(--on-surface-variant); margin-bottom:8px;">ログイン中: example@gmail.com</div>
+            <button style="background:var(--surface-container-high); color:var(--on-surface); border:none; border-radius:8px; padding:12px; font-size:15px; width:100%; margin-bottom:12px;">ログアウト</button>
+            <div style="height:1px; background:var(--outline-variant); margin:12px 0;"></div>
+            <div style="font-size:13px; color:var(--on-surface-variant); margin-bottom:8px;">アカウントとすべてのデータを完全に削除します。この操作は元に戻せません。</div>
+            <button style="background:var(--error); color:var(--on-error); border:none; border-radius:8px; padding:12px; font-size:15px; width:100%;">アカウントを削除</button>
+        </div>
+
+        <!-- セクション: アプリ情報 -->
+        <div style="font-size:12px; color:var(--primary); letter-spacing:2px; margin-bottom:4px;">アプリ情報</div>
+        <div style="background:var(--surface); border:1px solid var(--outline-variant); border-radius:12px; padding:16px;">
+            <span style="font-size:15px; color:var(--on-surface-variant);">バージョン: 3.3.0 (91)</span>
+        </div>
     </div>
 </div>
 
