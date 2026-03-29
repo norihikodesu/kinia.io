@@ -134,7 +134,7 @@
     <div id="ja">
         <h1>プライバシーポリシー</h1>
         <p class="app-name">Kinia（キニア）— 家族の安心を見守るアプリ</p>
-        <p class="updated">最終更新日: 2026年3月28日</p>
+        <p class="updated">最終更新日: 2026年3月29日</p>
 
         <h2>1. はじめに</h2>
         <p>Kinia（以下「本アプリ」）は、家族やグループ間で位置情報を共有し、安心・安全をサポートするAndroidアプリケーションです。本プライバシーポリシーでは、本アプリが収集する情報、その利用方法、保護方法についてご説明します。</p>
@@ -162,7 +162,20 @@
             <li>歩数データ（端末の歩数センサーによる）</li>
         </ul>
 
-        <h3>2-4. 収集しない情報</h3>
+        <h3>2-4. 利用状況データ</h3>
+        <ul>
+            <li>画面表示回数、機能使用頻度などの利用状況データ（Google Analyticsを使用）</li>
+            <li>広告IDは収集しません</li>
+        </ul>
+
+        <h3>2-5. 診断データ（ユーザーの操作により送信）</h3>
+        <ul>
+            <li>端末情報、GPS取得ログ、権限状態などの診断レポート</li>
+            <li>ユーザーが「診断ログを送信」を選択した場合にのみ収集されます（自動収集ではありません）</li>
+            <li>Firebase Cloud Storageに暗号化通信で送信されます</li>
+        </ul>
+
+        <h3>2-6. 収集しない情報</h3>
         <ul>
             <li>連絡先・写真・通話履歴</li>
             <li>閲覧履歴・検索履歴</li>
@@ -177,12 +190,14 @@
             <tr><td>アカウント情報</td><td>ユーザー認証・グループアクセスの管理</td></tr>
             <tr><td>デバイス情報</td><td>バッテリー残量の共有・トラブルシューティング</td></tr>
             <tr><td>歩数データ</td><td>健康指標としてグループ内で共有</td></tr>
+            <tr><td>利用状況データ</td><td>アプリの品質改善・機能利用傾向の把握（広告目的には使用しません）</td></tr>
+            <tr><td>診断データ</td><td>トラブル発生時の原因調査（ユーザーが送信操作した場合のみ）</td></tr>
         </table>
         <p>広告の表示やマーケティング目的でのデータ利用は一切行いません。</p>
 
         <h2>4. データの保存と管理</h2>
         <ul>
-            <li><strong>保存先</strong>: Google Firebase / Cloud Firestore（Google Cloudのデータセンター）</li>
+            <li><strong>保存先</strong>: Google Firebase（Cloud Firestore / Cloud Storage）（Google Cloudのデータセンター）</li>
             <li><strong>位置履歴の保存期間</strong>: 最大7日間（自動削除）</li>
             <li><strong>通信の暗号化</strong>: すべての通信はTLS/SSLで暗号化されます</li>
             <li><strong>匿名化</strong>: ユーザーの個人名はサーバーに保存されません。表示名はデバイス内のみに保持されます</li>
@@ -193,7 +208,7 @@
         <p>本アプリで収集したデータは、以下の場合にのみ共有されます：</p>
         <ul>
             <li><strong>同じグループのメンバー</strong>: ユーザーが自ら参加したグループ内でのみ、位置情報が共有されます</li>
-            <li><strong>Firebaseサービス</strong>: データの保存・同期のためにGoogle Firebaseを利用しています</li>
+            <li><strong>Firebaseサービス</strong>: データの保存・同期・利用状況分析のためにGoogle Firebase（Firestore, Storage, Analytics, Crashlytics）を利用しています</li>
             <li><strong>Google Maps SDK</strong>: 地図の表示のためにGoogle Maps Platformを利用しています</li>
         </ul>
         <p>第三者への販売・提供は一切行いません。法令に基づく開示請求があった場合を除きます。</p>
@@ -229,7 +244,7 @@
     <div id="en" class="en">
         <h1>Privacy Policy</h1>
         <p class="app-name">Kinia — Family Safety App</p>
-        <p class="updated">Last Updated: March 28, 2026</p>
+        <p class="updated">Last Updated: March 29, 2026</p>
 
         <h2>1. Introduction</h2>
         <p>Kinia ("the App") is an Android application that enables families and groups to share location information for safety and peace of mind. This Privacy Policy explains what information we collect, how we use it, and how we protect it.</p>
@@ -257,7 +272,20 @@
             <li>Step count data (from device pedometer)</li>
         </ul>
 
-        <h3>2-4. Information We Do NOT Collect</h3>
+        <h3>2-4. Usage Data</h3>
+        <ul>
+            <li>Screen views, feature usage frequency (via Google Analytics)</li>
+            <li>Advertising ID is not collected</li>
+        </ul>
+
+        <h3>2-5. Diagnostic Data (User-initiated only)</h3>
+        <ul>
+            <li>Device information, GPS acquisition logs, permission status</li>
+            <li>Collected only when the user selects "Send Diagnostic Log" (not automatic)</li>
+            <li>Transmitted to Firebase Cloud Storage via encrypted connection</li>
+        </ul>
+
+        <h3>2-6. Information We Do NOT Collect</h3>
         <ul>
             <li>Contacts, photos, call history</li>
             <li>Browsing or search history</li>
@@ -272,12 +300,14 @@
             <tr><td>Account info</td><td>User authentication and group access management</td></tr>
             <tr><td>Device info</td><td>Share battery level; troubleshooting</td></tr>
             <tr><td>Step count</td><td>Share as a health indicator within the group</td></tr>
+            <tr><td>Usage data</td><td>App quality improvement and feature usage analysis (not used for advertising)</td></tr>
+            <tr><td>Diagnostic data</td><td>Troubleshooting when issues occur (only when user initiates send)</td></tr>
         </table>
         <p>We do not use your data for advertising or marketing purposes.</p>
 
         <h2>4. Data Storage and Security</h2>
         <ul>
-            <li><strong>Storage</strong>: Google Firebase / Cloud Firestore (Google Cloud data centers)</li>
+            <li><strong>Storage</strong>: Google Firebase (Cloud Firestore / Cloud Storage) (Google Cloud data centers)</li>
             <li><strong>Location history retention</strong>: Up to 7 days (automatically deleted)</li>
             <li><strong>Encryption</strong>: All communications are encrypted via TLS/SSL</li>
             <li><strong>Anonymization</strong>: Personal names are not stored on our servers. Display names are kept only on your device</li>
@@ -288,7 +318,7 @@
         <p>Your data is shared only in the following cases:</p>
         <ul>
             <li><strong>Group members</strong>: Location data is shared only within groups you voluntarily joined</li>
-            <li><strong>Firebase services</strong>: Google Firebase is used for data storage and synchronization</li>
+            <li><strong>Firebase services</strong>: Google Firebase (Firestore, Storage, Analytics, Crashlytics) is used for data storage, synchronization, and usage analysis</li>
             <li><strong>Google Maps SDK</strong>: Google Maps Platform is used for map display</li>
         </ul>
         <p>We never sell or provide your data to third parties, except when required by law.</p>
