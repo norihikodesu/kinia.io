@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>参加リンクで案内された方へ — Kinia</title>
+    <meta name="description" content="家族から招待リンクを受け取った方向け。Kiniaアプリのインストールからグループ参加、権限設定までの手順をわかりやすく解説します。">
+    <style>
+        :root {
+            --bg: #12121F;
+            --surface: #1E1E30;
+            --surface2: #282840;
+            --text: #E8E4F0;
+            --text-sub: #B0AAC2;
+            --primary: #7C8EF2;
+            --primary-dim: #5A6AD4;
+            --accent: #4CC9F0;
+            --accent-warm: #F4A261;
+            --border: #3D3855;
+            --success: #66BB6A;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ── ナビゲーション ── */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(18, 18, 31, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        nav .brand { font-size: 1.2rem; font-weight: bold; color: var(--primary); }
+        nav .nav-links { display: flex; gap: 20px; font-size: 0.9rem; flex-wrap: wrap; }
+        nav .nav-links a { color: var(--text-sub); }
+        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
+
+        /* ── プログレスバー ── */
+        .progress-bar { height: 3px; background: var(--border); position: sticky; top: 49px; z-index: 99; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width 0.3s ease; width: 0%; }
+
+        /* ── コンテンツ ── */
+        .content { max-width: 680px; margin: 0 auto; padding: 0 20px 80px; }
+
+        /* ── ヒーロー ── */
+        .hero {
+            text-align: center;
+            padding: 48px 20px 24px;
+        }
+        .hero-label {
+            display: inline-block;
+            background: var(--surface2);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 4px 16px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+        .hero p {
+            color: var(--text-sub);
+            font-size: 1rem;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* ── セクション ── */
+        .section {
+            padding-top: 40px;
+            scroll-margin-top: 80px;
+        }
+        .section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        .section .lead {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        .step-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 3px 14px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        /* ── 手順リスト ── */
+        .steps-list {
+            list-style: none;
+            counter-reset: step-counter;
+            margin: 12px 0;
+        }
+        .steps-list li {
+            counter-increment: step-counter;
+            padding: 12px 0 12px 48px;
+            position: relative;
+            border-bottom: 1px solid rgba(61,56,85,0.5);
+            font-size: 0.95rem;
+        }
+        .steps-list li:last-child { border-bottom: none; }
+        .steps-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0; top: 12px;
+            width: 32px; height: 32px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; font-weight: bold;
+        }
+        .steps-list li .sub {
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+
+        /* ── ヒント ── */
+        .hint {
+            background: var(--surface);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.88rem;
+            color: var(--text-sub);
+            line-height: 1.7;
+        }
+        .hint strong { color: var(--text); }
+        .hint.warn { border-left-color: var(--accent-warm); }
+        .hint.success { border-left-color: var(--success); }
+
+        /* ── スクリーンショット ── */
+        .screenshot-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 16px;
+            margin: 20px 0;
+            flex-wrap: nowrap;
+        }
+        .screenshot-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 0 1 auto;
+        }
+        .phone-frame {
+            max-width: 200px;
+            width: 100%;
+        }
+        .phone-frame img {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+        .screenshot-caption {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-top: 8px;
+        }
+        .screenshot-single {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .screenshot-single .phone-frame {
+            max-width: 220px;
+        }
+        .screenshot-arrow {
+            color: var(--accent);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            align-self: center;
+            padding: 0 4px;
+            flex-shrink: 0;
+        }
+        @media (max-width: 540px) {
+            .screenshot-container { flex-direction: column; align-items: center; flex-wrap: wrap; }
+            .screenshot-arrow { transform: rotate(90deg); padding: 8px 0; }
+        }
+
+        /* ── 権限テーブル ── */
+        .perm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+        .perm-table th {
+            padding: 10px 12px;
+            text-align: left;
+            background: var(--surface2);
+            border-bottom: 2px solid var(--border);
+        }
+        .perm-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-sub);
+        }
+        .perm-table td:first-child {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ── 全体像（縦） ── */
+        .overview-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            padding: 16px 0;
+            margin: 16px 0;
+        }
+        .overview-step {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 24px;
+            text-align: center;
+            font-size: 0.85rem;
+            width: 100%;
+            max-width: 320px;
+        }
+        .overview-step .num {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        .overview-arrow {
+            color: var(--text-sub);
+            font-size: 1rem;
+            padding: 4px 0;
+        }
+
+        /* ── フッター ── */
+        .footer-links {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 16px; padding: 40px 24px;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        .footer-links a { color: var(--text-sub); }
+        .contact {
+            text-align: center;
+            padding: 20px 24px 40px;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        /* ── 所要時間 ── */
+        .time-badge {
+            display: inline-block;
+            background: var(--surface2);
+            color: var(--accent);
+            font-size: 0.78rem;
+            padding: 2px 10px;
+            border-radius: 10px;
+            margin-left: 8px;
+        }
+
+        @media (max-width: 500px) {
+            .phone-frame { max-width: 180px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ナビゲーション -->
+<nav>
+    <a href="/" class="brand" style="text-decoration:none;">Kinia</a>
+    <div class="nav-links">
+        <a href="/#features">機能</a>
+        <a href="/setup.html">はじめかた</a>
+        <a href="/faq.html">FAQ</a>
+    </div>
+</nav>
+
+<!-- プログレスバー -->
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<main class="content">
+
+    <!-- ===== ヒーロー ===== -->
+    <div class="hero">
+        <span class="hero-label">招待された方向けガイド</span>
+        <h1>参加リンクで案内された方へ</h1>
+        <p>ご家族からKiniaの招待リンクを受け取りましたか？<br>
+        このページでは、あなたがやるべき設定だけをまとめています。<br>
+        <strong style="color:var(--accent);">所要時間: 約5分</strong></p>
+    </div>
+
+    <!-- ===== 全体像 ===== -->
+    <section class="section" id="overview">
+        <h2>やることは3つだけ</h2>
+        <div class="overview-flow">
+            <div class="overview-step"><span class="num">STEP 1</span>アプリをインストール</div>
+            <span class="overview-arrow">↓</span>
+            <div class="overview-step"><span class="num">STEP 2</span>招待リンクから参加</div>
+            <span class="overview-arrow">↓</span>
+            <div class="overview-step"><span class="num">STEP 3</span>権限を許可</div>
+            <span class="overview-arrow">↓</span>
+            <div class="overview-step" style="border-color:var(--success);"><span class="num" style="color:var(--success);">DONE</span>完了!</div>
+        </div>
+    </section>
+
+    <!-- ===== STEP 1: インストール ===== -->
+    <section class="section" id="step1">
+        <span class="step-badge">STEP 1</span>
+        <h2>Kiniaをインストール <span class="time-badge">約1分</span></h2>
+
+        <ol class="steps-list">
+            <li>
+                <strong>Google Play で「Kinia」を検索</strong>
+                <div class="sub">または <a href="https://play.google.com/store/apps/details?id=io.kinia">こちらのリンク</a> から直接アクセス</div>
+            </li>
+            <li><strong>「インストール」をタップ</strong></li>
+        </ol>
+
+        <div class="screenshot-single">
+            <div class="screenshot-label">
+                <div class="phone-frame">
+                    <img src="screenshots/mock_01_login.png" alt="Kiniaログイン画面" loading="lazy">
+                </div>
+                <div class="screenshot-caption">インストール後に起動するとこの画面が表示されます</div>
+            </div>
+        </div>
+
+        <div class="hint">
+            <strong>Googleアカウントが必要です。</strong><br>
+            ふだんスマホで使っているGoogleアカウントでOKです。<br>
+            新たにアカウントを作成する必要はありません。
+        </div>
+    </section>
+
+    <!-- ===== STEP 2: 招待リンクから参加 ===== -->
+    <section class="section" id="step2">
+        <span class="step-badge">STEP 2</span>
+        <h2>招待リンクから参加 <span class="time-badge">約2分</span></h2>
+
+        <ol class="steps-list">
+            <li>
+                <strong>受け取った招待リンクをタップ</strong>
+                <div class="sub">LINEやメールで届いた <code style="background:var(--surface2);padding:2px 6px;border-radius:4px;font-size:0.85em;">https://kinia.io/invite/xxxxx</code> のリンクです</div>
+            </li>
+            <li>
+                <strong>Kiniaアプリが自動で開きます</strong>
+                <div class="sub">まだログインしていない場合は「Googleでログイン」が表示されます</div>
+            </li>
+            <li>
+                <strong>ニックネームを入力</strong>
+                <div class="sub">家族の地図上に表示される名前です。<br>
+                例: 「パパ」「名前」「ニックネーム」など</div>
+            </li>
+            <li>
+                <strong>「参加する」をタップ</strong>
+            </li>
+        </ol>
+
+        <div class="screenshot-container">
+            <div class="screenshot-label">
+                <div class="phone-frame">
+                    <img src="screenshots/mock_06_join.png" alt="参加画面" loading="lazy">
+                </div>
+                <div class="screenshot-caption">ニックネームを入力して「参加する」</div>
+            </div>
+            <div class="screenshot-arrow">→</div>
+            <div class="screenshot-label">
+                <div class="phone-frame">
+                    <img src="screenshots/mock_07_members.png" alt="メンバー一覧" loading="lazy">
+                </div>
+                <div class="screenshot-caption">参加完了!<br>メンバー一覧に名前が表示されます</div>
+            </div>
+        </div>
+
+        <div class="hint success">
+            <strong>参加完了!</strong><br>
+            これでご家族のグループに参加できました。<br>
+            続いて、アプリが正しく動作するための権限を設定します。
+        </div>
+
+        <div class="hint warn">
+            <strong>リンクが開けない場合</strong><br>
+            Kiniaアプリがインストールされていることを確認してください。<br>
+            それでも開けない場合は、アプリを起動して「招待コードで参加する」を選び、<br>
+            リンク末尾の5桁のコード（例: A3K7P）を手入力してください。
+        </div>
+    </section>
+
+    <!-- ===== STEP 3: 権限設定 ===== -->
+    <section class="section" id="step3">
+        <span class="step-badge">STEP 3</span>
+        <h2>権限を許可する <span class="time-badge">約2分</span></h2>
+        <p class="lead">
+            参加後、アプリが順番に権限の許可を案内します。<br>
+            表示されるボタンをタップして進めるだけでOKです。
+        </p>
+
+        <div class="hint warn">
+            <strong>この設定が一番大事です。</strong><br>
+            特に「バックグラウンド位置情報」と「省電力の除外」を許可しないと、<br>
+            アプリを閉じた瞬間に位置の更新が止まります。
+        </div>
+
+        <table class="perm-table">
+            <tr>
+                <th>権限</th>
+                <th>操作</th>
+                <th>なぜ必要？</th>
+            </tr>
+            <tr>
+                <td>位置情報</td>
+                <td>「許可する」をタップ</td>
+                <td>位置を共有するため</td>
+            </tr>
+            <tr>
+                <td>バックグラウンド<br>位置情報</td>
+                <td>設定画面で「<strong>常に許可</strong>」</td>
+                <td>アプリを閉じても動作</td>
+            </tr>
+            <tr>
+                <td>活動認識</td>
+                <td>「許可」をタップ</td>
+                <td>歩行/車の判別</td>
+            </tr>
+            <tr>
+                <td>通知</td>
+                <td>「許可」をタップ</td>
+                <td>通知エリアの通知受信</td>
+            </tr>
+            <tr>
+                <td>省電力の除外</td>
+                <td>「許可」をタップ</td>
+                <td>スリープ中も動作</td>
+            </tr>
+        </table>
+
+        <div class="screenshot-container">
+            <div class="screenshot-label">
+                <div class="phone-frame">
+                    <img src="screenshots/mock_08_perm_location.png" alt="位置情報の許可" loading="lazy">
+                </div>
+                <div class="screenshot-caption">① 位置情報の許可</div>
+            </div>
+            <div class="screenshot-arrow">→</div>
+            <div class="screenshot-label">
+                <div class="phone-frame">
+                    <img src="screenshots/mock_09_perm_bg.png" alt="バックグラウンド位置情報" loading="lazy">
+                </div>
+                <div class="screenshot-caption">② バックグラウンド位置情報<br>「常に許可」を選択</div>
+            </div>
+        </div>
+
+        <div class="hint">
+            <strong>「常に許可」って不安...</strong><br>
+            Kiniaは移動中だけGPSを使い、止まっているときはほとんどバッテリーを消費しません。<br>
+            位置データはグループ内でのみ共有され、外部には公開されません。<br>
+            詳しくは <a href="/safety.html">安全性について</a> をご覧ください。
+        </div>
+    </section>
+
+    <!-- ===== 共有レベルについて ===== -->
+    <section class="section" id="sharing">
+        <span class="step-badge" style="background: var(--accent); color: var(--bg);">参考</span>
+        <h2>共有レベルについて</h2>
+        <p class="lead">
+            権限設定の最後に「共有レベル」を選ぶ画面が表示されます。<br>
+            あなたの情報をどこまで家族に見せるかを決める設定です。
+        </p>
+
+        <div class="screenshot-container">
+            <div class="screenshot-label">
+                <div class="phone-frame">
+                    <img src="screenshots/mock_10_sharing_gentle.png" alt="通知エリアのみ" loading="lazy">
+                </div>
+                <div class="screenshot-caption">通知エリアのみ（推奨・初期設定）<br>位置は非表示、通知だけ届く</div>
+            </div>
+            <div class="screenshot-arrow">or</div>
+            <div class="screenshot-label">
+                <div class="phone-frame">
+                    <img src="screenshots/mock_11_sharing_detailed.png" alt="すべて共有" loading="lazy">
+                </div>
+                <div class="screenshot-caption">すべて共有<br>地図に位置・軌跡を表示</div>
+            </div>
+        </div>
+
+        <div class="hint">
+            <strong>迷ったら「通知エリアのみ」でOK。</strong><br>
+            あとからいつでも変更できます。<br>
+            メニュー → 共有設定 から切り替えられます。
+        </div>
+    </section>
+
+    <!-- ===== 完了 ===== -->
+    <section class="section" id="complete">
+        <span class="step-badge" style="background: var(--success);">COMPLETE</span>
+        <h2>セットアップ完了!</h2>
+        <p class="lead">お疲れさまでした。これであなたのセットアップは完了です。</p>
+
+        <div class="screenshot-single">
+            <div class="screenshot-label">
+                <div class="phone-frame" style="max-width: 240px;">
+                    <img src="screenshots/mock_14_map_complete.png" alt="完成後のマップ" loading="lazy">
+                </div>
+                <div class="screenshot-caption">家族の位置がマップに表示されます<br>（共有レベルが「すべて共有」の場合）</div>
+            </div>
+        </div>
+
+        <div class="hint success">
+            <strong>位置の反映には少し時間がかかります。</strong><br>
+            セットアップ直後はまだ位置情報が送信されていない場合があります。<br>
+            アプリを開いた状態で少し歩いてみると、1〜2分で位置が反映されます。
+        </div>
+
+        <h3 style="font-size: 1rem; margin: 28px 0 12px;">うまくいかないとき</h3>
+
+        <div style="padding: 20px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border); margin-bottom: 16px;">
+            <p style="font-weight:600; margin-bottom:8px;">位置が更新されない</p>
+            <p style="color: var(--text-sub); font-size: 0.9rem;">
+                Androidの設定 → アプリ → Kinia → 位置情報 で<br>
+                「常に許可」になっているか確認してください。
+            </p>
+        </div>
+
+        <div style="padding: 20px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border); margin-bottom: 16px;">
+            <p style="font-weight:600; margin-bottom:8px;">通知が届かない</p>
+            <p style="color: var(--text-sub); font-size: 0.9rem;">
+                Androidの設定 → アプリ → Kinia → 通知 で<br>
+                通知が許可されているか確認してください。
+            </p>
+        </div>
+
+        <div style="margin-top: 24px; padding: 20px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border);">
+            <h3 style="font-size: 1rem; margin-bottom: 8px;">解決しない場合</h3>
+            <p style="color: var(--text-sub); font-size: 0.9rem;">
+                <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a> までご連絡ください。<br>
+                端末名・Androidバージョン・症状を添えていただくとスムーズです。
+            </p>
+        </div>
+    </section>
+
+</main>
+
+<!-- フッター -->
+<div class="footer-links">
+    <a href="/setup.html">はじめかたガイド</a>
+    <a href="/faq.html">よくある質問</a>
+    <a href="/guide-family-basic.html">3人家族セットアップガイド</a>
+    <a href="/privacy.html">プライバシーポリシー</a>
+    <a href="/safety.html">安全性について</a>
+    <a href="/delete-account.html">アカウント削除</a>
+</div>
+<div class="contact">
+    <p>お問い合わせ: <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a></p>
+    <p style="margin-top:8px;">&copy; 2026 Kinia</p>
+</div>
+
+<script>
+function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    document.getElementById('progressFill').style.width = progress + '%';
+}
+window.addEventListener('scroll', updateProgress);
+updateProgress();
+</script>
+
+</body>
+</html>
