@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinia UIモックアップ — スクリーンショット用</title>
+    <style>
+        /* ========================================
+           Kinia Indigo Night カラーパレット
+           colors.xml から完全一致
+           ======================================== */
+        :root {
+            --md-primary: #7C8EF2;
+            --md-on-primary: #FFFFFF;
+            --md-primary-container: #2A3070;
+            --md-on-primary-container: #D0D4FF;
+            --md-secondary: #FF8A65;
+            --md-on-secondary: #000000;
+            --md-tertiary: #4DB6AC;
+            --md-error: #F2726A;
+            --md-on-error: #FFFFFF;
+            --md-background: #12121F;
+            --md-on-background: #E8E4F0;
+            --md-surface: #1E1E30;
+            --md-on-surface: #E8E4F0;
+            --md-on-surface-variant: #B0AAC2;
+            --md-surface-container: #282540;
+            --md-surface-container-high: #32304E;
+            --md-outline: #524D6B;
+            --md-outline-variant: #3D3855;
+            --md-nav-bg: #0E0E1A;
+            --md-status-online: #4CAF50;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans JP', 'Hiragino Sans', -apple-system, sans-serif;
+            background: #1a1a2e;
+            color: #E8E4F0;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--md-primary);
+        }
+        .page-desc {
+            text-align: center;
+            color: var(--md-on-surface-variant);
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+        }
+
+        /* ── 各画面セクション ── */
+        .screen-section {
+            margin-bottom: 60px;
+        }
+        .screen-section h2 {
+            font-size: 1.1rem;
+            color: var(--md-on-surface);
+            margin-bottom: 4px;
+        }
+        .screen-section .desc {
+            font-size: 0.85rem;
+            color: var(--md-on-surface-variant);
+            margin-bottom: 16px;
+        }
+
+        /* ── スマホフレーム ── */
+        .phone-row {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .phone-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .phone-wrap .caption {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: var(--md-on-surface-variant);
+            text-align: center;
+        }
+
+        .phone {
+            width: 360px;
+            height: 740px;
+            background: var(--md-background);
+            border-radius: 32px;
+            border: 3px solid #444;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.6);
+        }
+
+        /* ステータスバー */
+        .status-bar {
+            height: 28px;
+            background: var(--md-nav-bg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            font-size: 11px;
+            color: var(--md-on-surface-variant);
+        }
+        .status-bar .time { font-weight: 600; }
+        .status-bar .icons { display: flex; gap: 4px; font-size: 10px; }
+
+        /* ツールバー */
+        .toolbar {
+            height: 56px;
+            background: var(--md-nav-bg);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 16px;
+        }
+        .toolbar .back {
+            font-size: 20px;
+            color: var(--md-on-surface);
+            cursor: pointer;
+        }
+        .toolbar .title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--md-on-surface);
+        }
+        .toolbar .menu {
+            margin-left: auto;
+            font-size: 20px;
+            color: var(--md-on-surface);
+        }
+
+        /* ── 共通UIパーツ ── */
+        .material-card {
+            background: var(--md-surface);
+            border: 1px solid var(--md-outline-variant);
+            border-radius: 12px;
+            margin: 0 16px 16px;
+            overflow: hidden;
+        }
+        .material-card .card-inner {
+            padding: 16px;
+        }
+        .section-label {
+            font-size: 13px;
+            color: var(--md-primary);
+            text-transform: uppercase;
+            padding: 0 16px;
+            margin: 16px 0 6px;
+        }
+        .material-btn {
+            display: block;
+            width: calc(100% - 32px);
+            margin: 0 16px 12px;
+            padding: 14px 0;
+            background: var(--md-primary);
+            color: var(--md-on-primary);
+            border: none;
+            border-radius: 24px;
+            font-size: 17px;
+            font-weight: 600;
+            text-align: center;
+            font-family: inherit;
+        }
+        .material-btn.tonal {
+            background: var(--md-surface-container-high);
+            color: var(--md-on-surface);
+        }
+        .material-btn.error {
+            background: var(--md-error);
+            color: var(--md-on-error);
+        }
+        .material-btn.small {
+            width: auto;
+            padding: 8px 16px;
+            font-size: 13px;
+            border-radius: 18px;
+            display: inline-block;
+        }
+
+        .input-field {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--md-primary);
+            padding: 8px 0;
+            font-size: 17px;
+            color: var(--md-on-surface);
+            font-family: inherit;
+            outline: none;
+            margin-bottom: 4px;
+        }
+        .input-label {
+            font-size: 12px;
+            color: var(--md-on-surface-variant);
+            margin-top: 12px;
+        }
+        .input-hint {
+            font-size: 12px;
+            color: var(--md-outline);
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--md-outline-variant);
+            margin: 12px 0;
+        }
+
+        /* ラジオボタン */
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--md-surface);
+            border: 1px solid var(--md-outline-variant);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 0 16px 12px;
+        }
+        .radio-option.selected {
+            border-color: var(--md-primary);
+            background: rgba(124, 142, 242, 0.06);
+        }
+        .radio-circle {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid var(--md-outline);
+            flex-shrink: 0;
+            margin-top: 2px;
+            position: relative;
+        }
+        .radio-option.selected .radio-circle {
+            border-color: var(--md-primary);
+        }
+        .radio-option.selected .radio-circle::after {
+            content: "";
+            position: absolute;
+            top: 3px; left: 3px;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--md-primary);
+        }
+        .radio-label {
+            font-size: 17px;
+            font-weight: bold;
+            color: var(--md-on-surface);
+        }
+        .radio-badge {
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--md-primary);
+            margin-left: 8px;
+        }
+        .radio-desc {
+            font-size: 14px;
+            color: var(--md-on-surface-variant);
+            line-height: 1.4;
+            margin-top: 4px;
+        }
+
+        /* ステップインジケータ */
+        .step-indicator {
+            text-align: center;
+            padding: 16px 0 8px;
+            font-size: 17px;
+            letter-spacing: 6px;
+            color: var(--md-primary);
+        }
+
+        /* BottomNav */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: var(--md-nav-bg);
+            border-top: 1px solid var(--md-outline-variant);
+            display: flex;
+        }
+        .bottom-nav .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            color: var(--md-on-surface-variant);
+            font-size: 11px;
+        }
+        .bottom-nav .nav-item.active {
+            color: var(--md-primary);
+        }
+        .bottom-nav .nav-item .icon {
+            font-size: 22px;
+        }
+
+        /* メンバーリスト */
+        .member-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+        }
+        .member-row + .member-row {
+            border-top: 1px solid var(--md-outline-variant);
+        }
+        .member-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+        .member-info { flex: 1; }
+        .member-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--md-on-surface);
+        }
+        .member-role {
+            font-size: 13px;
+            color: var(--md-on-surface-variant);
+        }
+        .member-badge {
+            font-size: 11px;
+            background: var(--md-primary-container);
+            color: var(--md-on-primary-container);
+            padding: 2px 8px;
+            border-radius: 8px;
+        }
+
+        /* ジオフェンス地図エリア */
+        .map-area {
+            width: 100%;
+            height: 280px;
+            background:
+                linear-gradient(135deg, #1a2a1a 0%, #1a2a3a 50%, #1a2a2a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .map-area::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        /* 道路っぽいライン */
+        .map-area .road {
+            position: absolute;
+            background: rgba(255,255,255,0.06);
+        }
+        .map-area .road-h {
+            height: 3px;
+            width: 100%;
+        }
+        .map-area .road-v {
+            width: 3px;
+            height: 100%;
+        }
+        .map-area .geofence-circle {
+            position: absolute;
+            border: 2px solid rgba(76, 201, 172, 0.5);
+            background: rgba(76, 201, 172, 0.08);
+            border-radius: 50%;
+        }
+        .map-area .map-pin {
+            position: absolute;
+            font-size: 28px;
+            transform: translate(-50%, -100%);
+        }
+        .map-area .map-label {
+            position: absolute;
+            background: var(--md-surface);
+            border: 1px solid var(--md-outline-variant);
+            border-radius: 8px;
+            padding: 4px 10px;
+            font-size: 12px;
+            color: var(--md-on-surface);
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .map-area .map-marker-bubble {
+            position: absolute;
+            background: var(--md-surface);
+            border: 1px solid var(--md-outline-variant);
+            border-radius: 10px;
+            padding: 6px 10px;
+            font-size: 11px;
+            color: var(--md-on-surface);
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transform: translateX(-50%);
+        }
+        .map-area .map-marker-bubble .bubble-name {
+            font-weight: 600;
+            font-size: 13px;
+        }
+        .map-area .map-marker-bubble .bubble-time {
+            color: var(--md-on-surface-variant);
+            font-size: 11px;
+        }
+        .map-area .map-marker-bubble .bubble-activity {
+            font-size: 12px;
+        }
+        .map-area .member-marker {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        /* 編集パネル (BottomSheet風) */
+        .edit-panel {
+            position: absolute;
+            bottom: 64px;
+            left: 0;
+            right: 0;
+            background: var(--md-surface);
+            border-top: 1px solid var(--md-outline-variant);
+            border-radius: 16px 16px 0 0;
+            padding: 16px;
+        }
+        .edit-panel .panel-handle {
+            width: 40px;
+            height: 4px;
+            background: var(--md-outline);
+            border-radius: 2px;
+            margin: 0 auto 12px;
+        }
+        .edit-panel .panel-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .edit-panel .panel-label {
+            font-size: 12px;
+            color: var(--md-on-surface-variant);
+            width: 60px;
+            flex-shrink: 0;
+        }
+        .edit-panel .panel-value {
+            flex: 1;
+            background: var(--md-surface-container);
+            border: 1px solid var(--md-outline-variant);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 15px;
+            color: var(--md-on-surface);
+        }
+        .edit-panel .panel-chips {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .edit-panel .panel-chip {
+            background: var(--md-surface-container-high);
+            border: 1px solid var(--md-outline-variant);
+            border-radius: 16px;
+            padding: 6px 12px;
+            font-size: 13px;
+            color: var(--md-on-surface-variant);
+        }
+        .edit-panel .panel-chip.checked {
+            background: rgba(124, 142, 242, 0.15);
+            border-color: var(--md-primary);
+            color: var(--md-primary);
+        }
+        .edit-panel .panel-chip .check {
+            color: var(--md-primary);
+            margin-right: 2px;
+        }
+
+        /* 招待コード表示 */
+        .invite-code-display {
+            font-family: 'Courier New', monospace;
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 8px;
+            color: var(--md-primary);
+            text-align: center;
+            padding: 20px;
+            background: var(--md-surface-container);
+            border: 2px dashed var(--md-primary);
+            border-radius: 16px;
+            margin: 16px;
+        }
+
+        /* Google Sign-In ボタン再現 */
+        .google-signin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 24px 10px 12px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #444;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            font-family: 'Roboto', sans-serif;
+        }
+        .google-signin-btn .g-logo {
+            width: 24px; height: 24px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%234285F4' d='M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z'/%3E%3Cpath fill='%2334A853' d='M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z'/%3E%3Cpath fill='%23FBBC05' d='M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z'/%3E%3Cpath fill='%23EA4335' d='M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z'/%3E%3C/svg%3E") no-repeat center/contain;
+        }
+
+        /* 画面内コンテンツの中央寄せ */
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            padding: 32px;
+            text-align: center;
+        }
+        .center-content .emoji {
+            font-size: 64px;
+            margin-bottom: 24px;
+        }
+        .center-content .screen-title {
+            font-size: 23px;
+            font-weight: bold;
+            color: var(--md-on-surface);
+            margin-bottom: 8px;
+        }
+        .center-content .screen-desc {
+            font-size: 16px;
+            color: var(--md-on-surface-variant);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        .center-content .screen-warning {
+            font-size: 14px;
+            color: var(--md-secondary);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .center-content .skip-link {
+            font-size: 15px;
+            color: var(--md-on-surface-variant);
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Kinia UIモックアップ</h1>
+<p class="page-desc">各画面をスクリーンショットして guide-family-basic.html に使用します。<br>ブラウザの幅を調整し、スマホ画面ごとにスクショしてください。</p>
+
+<!-- ======================================== -->
+<!-- SCREEN 1: ログイン画面 -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面1: ログイン画面</h2>
+    <p class="desc">STEP 2 で使用。Googleでログインボタンが中央にある初期画面。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">10:46</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="center-content" style="height: calc(100% - 28px);">
+                    <div style="font-size: 28px; font-weight: bold; color: var(--md-primary); margin-bottom: 12px;">Kinia</div>
+                    <div style="font-size: 15px; color: var(--md-on-surface-variant); margin-bottom: 48px;">家族の位置情報を安全に共有</div>
+                    <button class="google-signin-btn">
+                        <span class="g-logo"></span>
+                        Sign in
+                    </button>
+                </div>
+            </div>
+            <div class="caption">ログイン画面</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SCREEN 2: グループ作成 or 招待コード参加の選択 -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面2: グループ選択画面</h2>
+    <p class="desc">STEP 2 で使用。ログイン後、新規グループ作成か招待コードで参加かを選ぶ。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">10:47</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="center-content" style="height: calc(100% - 28px);">
+                    <div class="emoji">👥</div>
+                    <div class="screen-title">グループの設定</div>
+                    <div class="screen-desc" style="margin-bottom: 32px;">新しいグループを作成するか、<br>招待コードでグループに参加します</div>
+                    <button class="material-btn" style="width: 260px; margin: 0 0 12px;">新規グループを作成する</button>
+                    <button class="material-btn tonal" style="width: 260px; margin: 0;">招待コードで参加する</button>
+                </div>
+            </div>
+            <div class="caption">グループ選択</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SCREEN 3: グループ作成（グループ名+ニックネーム入力） -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面3: グループ作成画面</h2>
+    <p class="desc">STEP 2 で使用。グループ名と自分のニックネームを入力する画面。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">10:47</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="center-content" style="height: calc(100% - 28px);">
+                    <div class="emoji">🏠</div>
+                    <div class="screen-title">グループを作成</div>
+                    <div class="screen-desc" style="margin-bottom: 24px;">家族でひとつのグループを作ります</div>
+                    <div style="width: 100%; text-align: left;">
+                        <div class="input-label">グループ名（合言葉）</div>
+                        <input class="input-field" type="text" value="yamada2026" readonly>
+                        <div class="input-hint">8文字以上。半角英数で覚えやすい名前を入力してください</div>
+                    </div>
+                    <div style="width: 100%; text-align: left; margin-top: 16px;">
+                        <div class="input-label">あなたの表示名</div>
+                        <input class="input-field" type="text" value="ママ" readonly>
+                        <div class="input-hint">地図上に表示される名前です</div>
+                    </div>
+                    <button class="material-btn" style="width: 260px; margin: 28px 0 0;">グループを作成して開始</button>
+                </div>
+            </div>
+            <div class="caption">グループ作成（入力済み）</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SCREEN 4: グループ管理画面（招待コード発行前） -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面4: グループ管理画面</h2>
+    <p class="desc">STEP 3 で使用。招待コード発行ボタンがある画面。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">10:48</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="toolbar">
+                    <span class="back">←</span>
+                    <span class="title">グループ管理</span>
+                </div>
+                <div style="overflow-y: auto; height: calc(100% - 84px);">
+                    <div class="section-label">参加中のグループ</div>
+                    <div class="material-card">
+                        <div class="card-inner">
+                            <div class="input-label">グループ名</div>
+                            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
+                                <span style="font-size:17px;font-weight:bold;letter-spacing:1px;">●●●●●●●●●●●●</span>
+                                <button class="material-btn small tonal" style="margin:0;">表示</button>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="input-label">あなたの表示名</div>
+                            <div style="display:flex; align-items:center; justify-content:space-between;">
+                                <span style="font-size:17px;font-weight:bold;">ママ</span>
+                                <button class="material-btn small" style="margin:0;">変更</button>
+                            </div>
+                            <div class="divider"></div>
+                            <div style="font-size:13px; color:var(--md-on-surface-variant); margin-bottom:8px;">
+                                同じ招待コードで家族全員を招待できます。72時間有効です。
+                            </div>
+                            <button class="material-btn" style="width:100%; margin:0;">招待コードを発行</button>
+                        </div>
+                    </div>
+
+                    <div class="section-label">メンバー</div>
+                    <div class="material-card">
+                        <div class="member-row">
+                            <div class="member-avatar" style="background:#E91E63;">マ</div>
+                            <div class="member-info">
+                                <div class="member-name">ママ</div>
+                                <div class="member-role">あなた</div>
+                            </div>
+                            <span class="member-badge">管理者</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">グループ管理（招待コード発行前）</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SCREEN 5: 招待コード表示 -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面5: 招待コード表示</h2>
+    <p class="desc">STEP 3 で使用。招待コードが発行された状態。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">10:48</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="toolbar">
+                    <span class="back">←</span>
+                    <span class="title">グループ管理</span>
+                </div>
+                <div style="overflow-y: auto; height: calc(100% - 84px);">
+                    <div class="section-label">参加中のグループ</div>
+                    <div class="material-card">
+                        <div class="card-inner">
+                            <div class="input-label">グループ名</div>
+                            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
+                                <span style="font-size:17px;font-weight:bold;letter-spacing:1px;">●●●●●●●●●●●●</span>
+                                <button class="material-btn small tonal" style="margin:0;">表示</button>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="input-label">あなたの表示名</div>
+                            <div style="display:flex; align-items:center; justify-content:space-between;">
+                                <span style="font-size:17px;font-weight:bold;">ママ</span>
+                                <button class="material-btn small" style="margin:0;">変更</button>
+                            </div>
+                            <div class="divider"></div>
+                            <div style="font-size:13px; color:var(--md-on-surface-variant); margin-bottom:8px;">
+                                同じ招待コードで家族全員を招待できます。72時間有効です。
+                            </div>
+                            <div class="invite-code-display">A3K7P</div>
+                            <div style="text-align:center; font-size:13px; color:var(--md-on-surface-variant); margin-bottom: 12px;">
+                                有効期限: 72時間
+                            </div>
+                            <button class="material-btn" style="width:100%; margin:0;">コードをコピー</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">招待コード発行済み</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SCREEN 6: 招待コードで参加（お父さん側） -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面6: 招待コードで参加</h2>
+    <p class="desc">STEP 4 で使用。お父さん・お子さんが招待コードで参加する画面。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">10:50</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="center-content" style="height: calc(100% - 28px);">
+                    <div style="width:80px;height:80px;background:var(--md-surface);border-radius:20px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;">
+                        <span style="font-size:40px;">🛡️</span>
+                    </div>
+                    <div class="screen-title">グループに招待されています</div>
+                    <div class="screen-desc" style="margin-bottom: 24px;">表示名を入力して参加しましょう</div>
+                    <div style="width: 100%; text-align: left;">
+                        <div class="input-label">あなたの表示名</div>
+                        <input class="input-field" type="text" value="パパ" readonly>
+                        <div class="input-hint">例: パパ</div>
+                    </div>
+                    <button class="material-btn" style="width: 260px; margin: 28px 0 0;">参加する</button>
+                </div>
+            </div>
+            <div class="caption">招待コードで参加（パパ）</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SCREEN 7: メンバー3人の状態（グループ管理画面） -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面7: 3人参加完了後のグループ管理</h2>
+    <p class="desc">STEP 4 完了時のイメージ。メンバー一覧に3人表示。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">10:52</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="toolbar">
+                    <span class="back">←</span>
+                    <span class="title">グループ管理</span>
+                </div>
+                <div style="overflow-y: auto; height: calc(100% - 84px);">
+                    <div class="section-label">参加中のグループ</div>
+                    <div class="material-card">
+                        <div class="card-inner">
+                            <div class="input-label">グループ名</div>
+                            <div style="font-size:17px;font-weight:bold;letter-spacing:1px;margin-bottom:4px;">●●●●●●●●●●●●</div>
+                            <div class="divider"></div>
+                            <div class="input-label">あなたの表示名</div>
+                            <div style="font-size:17px;font-weight:bold;">ママ</div>
+                        </div>
+                    </div>
+
+                    <div class="section-label">メンバー</div>
+                    <div class="material-card">
+                        <div class="member-row">
+                            <div class="member-avatar" style="background:#E91E63;">マ</div>
+                            <div class="member-info">
+                                <div class="member-name">ママ</div>
+                                <div class="member-role">あなた</div>
+                            </div>
+                            <span class="member-badge">管理者</span>
+                        </div>
+                        <div class="member-row">
+                            <div class="member-avatar" style="background:#2196F3;">パ</div>
+                            <div class="member-info">
+                                <div class="member-name">パパ</div>
+                                <div class="member-role">メンバー</div>
+                            </div>
+                        </div>
+                        <div class="member-row">
+                            <div class="member-avatar" style="background:#FF9800;">ゆ</div>
+                            <div class="member-info">
+                                <div class="member-name">ゆい</div>
+                                <div class="member-role">メンバー</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">3人全員が参加した状態</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SCREEN 8: 権限設定ウィザード（位置情報） -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面8: 権限設定 — 位置情報の許可</h2>
+    <p class="desc">STEP 5 で使用。セットアップウィザードの位置情報許可画面。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">10:53</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="step-indicator">● ○ ○ ○ ○ ○</div>
+                <div class="center-content" style="height: calc(100% - 56px);">
+                    <div class="emoji">📍</div>
+                    <div class="screen-title">位置情報の許可</div>
+                    <div class="screen-desc">家族の現在地をマップに表示するために必要です</div>
+                    <div class="screen-warning">許可しない場合、位置情報の送信・表示ができません</div>
+                    <button class="material-btn" style="width: 240px; margin: 0;">許可する</button>
+                    <div class="skip-link">スキップ &gt;</div>
+                </div>
+            </div>
+            <div class="caption">位置情報の許可</div>
+        </div>
+
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">10:53</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="step-indicator">● ○ ○ ○ ○</div>
+                <div class="center-content" style="height: calc(100% - 56px);">
+                    <div class="emoji">🔄</div>
+                    <div class="screen-title">バックグラウンド位置情報</div>
+                    <div class="screen-desc">アプリを閉じていても位置を更新し続けるために必要です</div>
+                    <div style="font-size:15px; color:var(--md-on-surface-variant); text-align:center; margin-bottom:8px;">
+                        設定画面が開いたら：<br>
+                        「権限」→「位置情報」→「常に許可」<br>
+                        の順に選択してください
+                    </div>
+                    <div class="screen-warning">「常に許可」以外を選択すると、アプリを閉じた時に位置情報が止まります</div>
+                    <button class="material-btn" style="width: 240px; margin: 0;">設定を開く</button>
+                    <div class="skip-link">スキップ &gt;</div>
+                </div>
+            </div>
+            <div class="caption">バックグラウンド位置情報</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SCREEN 9: 共有レベル選択（セットアップウィザード内） -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面9: 共有レベルの選択</h2>
+    <p class="desc">STEP 6 タイプBで使用。セットアップウィザード内の共有レベル選択画面。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">10:55</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="step-indicator">● ● ● ● ● ● ● ○</div>
+                <div style="padding: 48px 0 32px; text-align:center;">
+                    <div style="font-size:64px; margin-bottom:24px;">🔒</div>
+                    <div style="font-size:23px; font-weight:bold; color:var(--md-on-surface); margin-bottom:8px;">共有レベルの選択</div>
+                    <div style="font-size:15px; color:var(--md-on-surface-variant); line-height:1.5; padding:0 32px; margin-bottom:28px;">
+                        家族にどこまで情報を共有するか選択してください。<br>あとから設定画面で変更できます。
+                    </div>
+                </div>
+
+                <div class="radio-option selected">
+                    <div class="radio-circle"></div>
+                    <div>
+                        <div><span class="radio-label">通知エリアのみ</span><span class="radio-badge">推奨</span></div>
+                        <div class="radio-desc">通知エリアへの出入りだけを共有します。通知エリアを設定するまで何も共有されません。</div>
+                    </div>
+                </div>
+
+                <div class="radio-option">
+                    <div class="radio-circle"></div>
+                    <div>
+                        <div class="radio-label">すべて共有</div>
+                        <div class="radio-desc">現在地・移動履歴・活動状態・速度・歩数・バッテリーをすべて共有します。</div>
+                    </div>
+                </div>
+
+                <div style="text-align:center; margin-top:20px;">
+                    <button class="material-btn" style="width:240px; margin:0 auto;">次へ</button>
+                </div>
+            </div>
+            <div class="caption">通知エリアのみ（推奨・初期選択）</div>
+        </div>
+
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">10:55</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="step-indicator">● ● ● ● ● ● ● ○</div>
+                <div style="padding: 48px 0 32px; text-align:center;">
+                    <div style="font-size:64px; margin-bottom:24px;">🔒</div>
+                    <div style="font-size:23px; font-weight:bold; color:var(--md-on-surface); margin-bottom:8px;">共有レベルの選択</div>
+                    <div style="font-size:15px; color:var(--md-on-surface-variant); line-height:1.5; padding:0 32px; margin-bottom:28px;">
+                        家族にどこまで情報を共有するか選択してください。<br>あとから設定画面で変更できます。
+                    </div>
+                </div>
+
+                <div class="radio-option">
+                    <div class="radio-circle"></div>
+                    <div>
+                        <div><span class="radio-label">通知エリアのみ</span><span class="radio-badge">推奨</span></div>
+                        <div class="radio-desc">通知エリアへの出入りだけを共有します。通知エリアを設定するまで何も共有されません。</div>
+                    </div>
+                </div>
+
+                <div class="radio-option selected">
+                    <div class="radio-circle"></div>
+                    <div>
+                        <div class="radio-label">すべて共有</div>
+                        <div class="radio-desc">現在地・移動履歴・活動状態・速度・歩数・バッテリーをすべて共有します。</div>
+                    </div>
+                </div>
+
+                <div style="text-align:center; margin-top:20px;">
+                    <button class="material-btn" style="width:240px; margin:0 auto;">次へ</button>
+                </div>
+            </div>
+            <div class="caption">すべて共有（タイプB選択時）</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SCREEN 10: 共有設定画面（設定から変更する場合） -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面10: 共有設定画面</h2>
+    <p class="desc">STEP 6 タイプBで使用。あとから共有レベルを変更する場合の設定画面。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">10:56</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="toolbar">
+                    <span class="back">←</span>
+                    <span class="title">共有設定</span>
+                </div>
+                <div style="padding-top: 8px;">
+                    <div style="padding:0 16px 16px; font-size:14px; color:var(--md-on-surface-variant); line-height:1.4;">
+                        自分のデータを他のメンバーにどこまで見せるか設定します。<br>GPSデータの送信には影響しません。
+                    </div>
+                    <div class="section-label">デフォルトの共有レベル</div>
+                    <div class="material-card">
+                        <div class="card-inner" style="padding:12px;">
+                            <div style="display:flex; align-items:center; gap:10px; padding:8px 0;">
+                                <div class="radio-circle" style="border-color:var(--md-primary); position:relative;">
+                                    <div style="position:absolute;top:3px;left:3px;width:12px;height:12px;border-radius:50%;background:var(--md-primary);"></div>
+                                </div>
+                                <div>
+                                    <div style="font-size:15px; font-weight:bold; color:var(--md-on-surface);">すべて共有</div>
+                                </div>
+                            </div>
+                            <div style="padding-left:32px; font-size:13px; color:var(--md-on-surface-variant); padding-bottom:8px;">
+                                詳しい現在地やルートを常に共有します。家族がいつでもあなたの居場所を確認できます。
+                            </div>
+                            <div class="divider"></div>
+                            <div style="display:flex; align-items:center; gap:10px; padding:8px 0;">
+                                <div class="radio-circle"></div>
+                                <div>
+                                    <div style="font-size:15px; font-weight:bold; color:var(--md-on-surface);">通知エリアのみ</div>
+                                </div>
+                            </div>
+                            <div style="padding-left:32px; font-size:13px; color:var(--md-on-surface-variant); padding-bottom:4px;">
+                                通知エリアへの出入りのみ通知します。通知エリアを設定するまで何も共有されません。
+                            </div>
+                        </div>
+                    </div>
+                    <button class="material-btn" style="margin-top:20px;">保存</button>
+                </div>
+            </div>
+            <div class="caption">共有設定（すべて共有を選択）</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SCREEN 11: 通知エリア設定（地図+編集パネル） -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面11: 通知エリア設定</h2>
+    <p class="desc">STEP 6 で使用。通知エリアタブから地図上でエリアを設定する画面。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">10:58</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="toolbar">
+                    <span class="title">通知エリア</span>
+                    <span class="menu">⋮</span>
+                </div>
+                <div class="map-area" style="height: calc(100% - 84px - 64px - 220px);">
+                    <div class="road road-h" style="top: 40%;"></div>
+                    <div class="road road-h" style="top: 70%;"></div>
+                    <div class="road road-v" style="left: 30%;"></div>
+                    <div class="road road-v" style="left: 65%;"></div>
+                    <div class="geofence-circle" style="width: 120px; height: 120px; top: calc(50% - 60px); left: calc(50% - 60px);"></div>
+                    <div class="map-pin" style="top: calc(50%); left: calc(50%);">📍</div>
+                    <div class="map-label" style="top: calc(50% - 75px); left: calc(50%); transform: translateX(-50%);">
+                        🏠 自宅 <span style="color:var(--md-tertiary);">200m</span>
+                    </div>
+                </div>
+
+                <div class="edit-panel" style="position: relative; bottom: auto;">
+                    <div class="panel-handle"></div>
+                    <div class="panel-row">
+                        <span class="panel-label">エリア名</span>
+                        <div class="panel-value">🏠 自宅</div>
+                    </div>
+                    <div class="panel-row">
+                        <span class="panel-label">半径</span>
+                        <div class="panel-value">200m</div>
+                    </div>
+                    <div class="panel-row">
+                        <span class="panel-label">通知対象</span>
+                        <div class="panel-chips">
+                            <span class="panel-chip checked"><span class="check">✓</span> ママ</span>
+                            <span class="panel-chip checked"><span class="check">✓</span> パパ</span>
+                            <span class="panel-chip checked"><span class="check">✓</span> ゆい</span>
+                        </div>
+                    </div>
+                    <button class="material-btn" style="width:100%; margin:8px 0 0;">保存</button>
+                </div>
+
+                <div class="bottom-nav">
+                    <div class="nav-item">
+                        <span class="icon">🗺</span>
+                        <span>マップ</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="icon">👥</span>
+                        <span>メンバー</span>
+                    </div>
+                    <div class="nav-item active">
+                        <span class="icon">🔔</span>
+                        <span>通知エリア</span>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">通知エリア編集画面</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SCREEN 12: 完成後のマップ画面（タイプB） -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面12: 完成後のマップ画面</h2>
+    <p class="desc">COMPLETE セクション用。家族の位置がマップに表示されている完成イメージ。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">11:00</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="toolbar">
+                    <span class="title">現在地</span>
+                    <span class="menu">⋮</span>
+                </div>
+                <div class="map-area" style="height: calc(100% - 84px - 64px);">
+                    <div class="road road-h" style="top: 30%;"></div>
+                    <div class="road road-h" style="top: 60%;"></div>
+                    <div class="road road-h" style="top: 85%;"></div>
+                    <div class="road road-v" style="left: 25%;"></div>
+                    <div class="road road-v" style="left: 55%;"></div>
+                    <div class="road road-v" style="left: 80%;"></div>
+
+                    <!-- 自宅ジオフェンス -->
+                    <div class="geofence-circle" style="width: 80px; height: 80px; top: 18%; left: 15%;"></div>
+                    <div class="map-label" style="top: 14%; left: 22%; font-size:11px;">🏠 自宅</div>
+
+                    <!-- パパのマーカー -->
+                    <div class="member-marker" style="background:#2196F3; top: 42%; left: 62%;">パ</div>
+                    <div class="map-marker-bubble" style="top: 28%; left: 62%;">
+                        <div class="bubble-name">パパ <span class="bubble-activity">🚶</span></div>
+                        <div class="bubble-time">3分前 • 4.2 km/h</div>
+                    </div>
+
+                    <!-- ゆいのマーカー -->
+                    <div class="member-marker" style="background:#FF9800; top: 70%; left: 35%;">ゆ</div>
+                    <div class="map-marker-bubble" style="top: 56%; left: 35%;">
+                        <div class="bubble-name">ゆい <span class="bubble-activity">🧍</span></div>
+                        <div class="bubble-time">1分前</div>
+                    </div>
+
+                    <!-- ママ（自分）のマーカー -->
+                    <div class="member-marker" style="background:#E91E63; top: 30%; left: 30%;">マ</div>
+                    <div style="position:absolute; top: 33%; left: 30%; transform: translateX(-50%); font-size:10px; color:var(--md-on-surface-variant);">自分</div>
+                </div>
+
+                <div class="bottom-nav">
+                    <div class="nav-item active">
+                        <span class="icon">🗺</span>
+                        <span>マップ</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="icon">👥</span>
+                        <span>メンバー</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="icon">🔔</span>
+                        <span>通知エリア</span>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">完成イメージ（タイプB: すべて共有）</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SCREEN 13: メニュー展開 -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面13: メニュー（⋮）展開</h2>
+    <p class="desc">STEP 3 で使用。右上メニューからグループ管理を選ぶ場面。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">10:48</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="toolbar">
+                    <span class="title">現在地</span>
+                    <span class="menu">⋮</span>
+                </div>
+                <!-- 地図背景 -->
+                <div class="map-area" style="height: calc(100% - 84px - 64px); opacity: 0.4;">
+                    <div class="road road-h" style="top: 40%;"></div>
+                    <div class="road road-v" style="left: 50%;"></div>
+                </div>
+                <!-- メニューオーバーレイ -->
+                <div style="position:absolute; top: 80px; right: 16px; background: var(--md-surface-container-high); border-radius: 12px; padding: 8px 0; min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); border: 1px solid var(--md-outline-variant);">
+                    <div style="padding: 14px 20px; font-size: 15px; color: var(--md-on-surface); display:flex; align-items:center; gap:12px;">
+                        <span style="font-size:18px;">⚙️</span> 共有設定
+                    </div>
+                    <div style="padding: 14px 20px; font-size: 15px; color: var(--md-primary); background: rgba(124,142,242,0.08); display:flex; align-items:center; gap:12px; font-weight:600;">
+                        <span style="font-size:18px;">👥</span> グループ管理
+                    </div>
+                    <div style="padding: 14px 20px; font-size: 15px; color: var(--md-on-surface); display:flex; align-items:center; gap:12px;">
+                        <span style="font-size:18px;">❓</span> ヘルプ
+                    </div>
+                </div>
+                <div class="bottom-nav">
+                    <div class="nav-item active">
+                        <span class="icon">🗺</span>
+                        <span>マップ</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="icon">👥</span>
+                        <span>メンバー</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="icon">🔔</span>
+                        <span>通知エリア</span>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">メニュー展開（「グループ管理」をタップ）</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SCREEN 14: 通知設定画面 -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面14: 通知設定画面</h2>
+    <p class="desc">通知エリアの通知全体のON/OFFを切り替える設定画面。メニュー → 通知設定からアクセス。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">11:02</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="toolbar">
+                    <span class="back">←</span>
+                    <span class="title">通知設定</span>
+                </div>
+                <div style="overflow-y: auto; height: calc(100% - 84px);">
+
+                    <!-- エリア通知セクション -->
+                    <div class="section-label">エリア通知</div>
+                    <div class="material-card">
+                        <div class="card-inner" style="padding:4px 12px;">
+                            <!-- エリア通知 -->
+                            <div style="display:flex; align-items:center; padding:14px 0;">
+                                <div style="flex:1;">
+                                    <div style="font-size:16px; color:var(--md-on-surface);">エリア通知</div>
+                                    <div style="font-size:13px; color:var(--md-on-surface-variant);">家族がエリアに入った/出たときに通知</div>
+                                </div>
+                                <div style="width:44px;height:24px;background:var(--md-primary);border-radius:12px;position:relative;">
+                                    <div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;right:2px;top:2px;box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>
+                                </div>
+                            </div>
+                            <div class="divider" style="margin:0;"></div>
+                            <!-- 危険エリア通知 -->
+                            <div style="display:flex; align-items:center; padding:14px 0;">
+                                <div style="flex:1;">
+                                    <div style="font-size:16px; color:var(--md-error);">⚠️ 危険エリア通知</div>
+                                    <div style="font-size:13px; color:var(--md-on-surface-variant);">メンバーが危険エリアに入ったとき通知（常時監視）</div>
+                                </div>
+                                <div style="width:44px;height:24px;background:var(--md-primary);border-radius:12px;position:relative;">
+                                    <div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;right:2px;top:2px;box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- サービス通知セクション -->
+                    <div class="section-label" style="margin-top:20px;">サービス通知</div>
+                    <div class="material-card">
+                        <div class="card-inner" style="padding:4px 12px;">
+                            <div style="display:flex; align-items:center; padding:14px 0;">
+                                <div style="flex:1;">
+                                    <div style="font-size:16px; color:var(--md-on-surface);">動作状態を表示</div>
+                                    <div style="font-size:13px; color:var(--md-on-surface-variant);">活動状態・位置取得間隔をステータスバーに表示</div>
+                                </div>
+                                <div style="width:44px;height:24px;background:var(--md-outline);border-radius:12px;position:relative;">
+                                    <div style="width:20px;height:20px;background:#aaa;border-radius:50%;position:absolute;left:2px;top:2px;box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="caption">通知設定（デフォルト: エリア通知ON）</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- SCREEN 15: 通知エリア一覧（個別通知ベルアイコン） -->
+<!-- ======================================== -->
+<div class="screen-section">
+    <h2>画面15: 通知エリア一覧（個別ON/OFF）</h2>
+    <p class="desc">各エリアごとの通知ON/OFFを切り替える。ベルアイコンで表示。</p>
+    <div class="phone-row">
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="status-bar">
+                    <span class="time">11:03</span>
+                    <span class="icons">📶 🔋</span>
+                </div>
+                <div class="toolbar">
+                    <span class="title">通知エリア</span>
+                    <span class="menu">⋮</span>
+                </div>
+                <div class="map-area" style="height: 200px;">
+                    <div class="road road-h" style="top: 35%;"></div>
+                    <div class="road road-h" style="top: 70%;"></div>
+                    <div class="road road-v" style="left: 30%;"></div>
+                    <div class="road road-v" style="left: 70%;"></div>
+                    <!-- 自宅エリア -->
+                    <div class="geofence-circle" style="width: 80px; height: 80px; top: 20%; left: 15%;"></div>
+                    <div class="map-pin" style="top: 42%; left: 27%;">📍</div>
+                    <div class="map-label" style="top: 14%; left: 25%; font-size:11px;">🏠 自宅</div>
+                    <!-- 学校エリア -->
+                    <div class="geofence-circle" style="width: 90px; height: 90px; top: 30%; left: 55%; border-color: rgba(124,142,242,0.5); background: rgba(124,142,242,0.08);"></div>
+                    <div class="map-pin" style="top: 55%; left: 70%;">📍</div>
+                    <div class="map-label" style="top: 26%; left: 65%; font-size:11px;">🏫 学校</div>
+                </div>
+
+                <!-- BottomSheet風の一覧 -->
+                <div style="background: var(--md-surface); border-top: 1px solid var(--md-outline-variant); border-radius: 16px 16px 0 0; padding: 12px 16px; flex:1;">
+                    <div style="width:40px;height:4px;background:var(--md-outline);border-radius:2px;margin:0 auto 12px;"></div>
+                    <div style="font-size:13px; color:var(--md-primary); text-transform:uppercase; margin-bottom:8px;">登録エリア</div>
+
+                    <!-- 自宅 -->
+                    <div style="display:flex; align-items:center; padding:12px 0; border-bottom:1px solid var(--md-outline-variant);">
+                        <div style="flex:1;">
+                            <div style="font-size:15px; font-weight:600; color:var(--md-on-surface);">🏠 自宅</div>
+                            <div style="font-size:12px; color:var(--md-on-surface-variant);">半径 200m ・ 3人</div>
+                        </div>
+                        <div style="font-size:22px; color:var(--md-primary); cursor:pointer;" title="通知ON">🔔</div>
+                    </div>
+
+                    <!-- 学校 -->
+                    <div style="display:flex; align-items:center; padding:12px 0; border-bottom:1px solid var(--md-outline-variant);">
+                        <div style="flex:1;">
+                            <div style="font-size:15px; font-weight:600; color:var(--md-on-surface);">🏫 学校</div>
+                            <div style="font-size:12px; color:var(--md-on-surface-variant);">半径 300m ・ 1人</div>
+                        </div>
+                        <div style="font-size:22px; color:var(--md-primary); cursor:pointer;" title="通知ON">🔔</div>
+                    </div>
+
+                    <!-- 職場（通知OFF例） -->
+                    <div style="display:flex; align-items:center; padding:12px 0;">
+                        <div style="flex:1;">
+                            <div style="font-size:15px; font-weight:600; color:var(--md-on-surface);">🏢 職場</div>
+                            <div style="font-size:12px; color:var(--md-on-surface-variant);">半径 200m ・ 0人</div>
+                        </div>
+                        <div style="font-size:22px; color:var(--md-outline); cursor:pointer;" title="通知OFF">🔕</div>
+                    </div>
+                </div>
+
+                <div class="bottom-nav">
+                    <div class="nav-item">
+                        <span class="icon">🗺</span>
+                        <span>マップ</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="icon">👥</span>
+                        <span>メンバー</span>
+                    </div>
+                    <div class="nav-item active">
+                        <span class="icon">🔔</span>
+                        <span>通知エリア</span>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">エリア個別の通知ON/OFF（ベルアイコン）</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

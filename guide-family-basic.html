@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3人家族セットアップガイド — Kinia</title>
+    <meta name="description" content="大人2人＋お子さん1人の3人家族向け。Kiniaの導入から通知エリア設定まで、ご家族の代表がまとめてセットアップする手順をわかりやすく解説します。">
+    <style>
+        :root {
+            --bg: #12121F;
+            --surface: #1E1E30;
+            --surface2: #282840;
+            --text: #E8E4F0;
+            --text-sub: #B0AAC2;
+            --primary: #7C8EF2;
+            --primary-dim: #5A6AD4;
+            --accent: #4CC9F0;
+            --accent-warm: #F4A261;
+            --border: #3D3855;
+            --success: #66BB6A;
+            --papa: #42A5F5;
+            --mama: #EF5350;
+            --child: #FFA726;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ── ナビゲーション ── */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(18, 18, 31, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        nav .brand { font-size: 1.2rem; font-weight: bold; color: var(--primary); }
+        nav .nav-links { display: flex; gap: 20px; font-size: 0.9rem; flex-wrap: wrap; }
+        nav .nav-links a { color: var(--text-sub); }
+        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-toggle { background: none; border: none; color: var(--text-sub); font-size: 0.9rem; cursor: pointer; padding: 0; font-family: inherit; }
+        .nav-dropdown-toggle:hover { color: var(--primary); }
+        .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 10px); right: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 0; min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 200; }
+        .nav-dropdown.open .nav-dropdown-menu { display: block; }
+        .nav-dropdown-menu a { display: block; padding: 10px 20px; color: var(--text-sub); font-size: 0.9rem; white-space: nowrap; }
+        .nav-dropdown-menu a:hover { background: var(--surface2); color: var(--text); text-decoration: none; }
+
+        /* ── プログレスバー ── */
+        .progress-bar { height: 3px; background: var(--border); position: sticky; top: 49px; z-index: 99; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width 0.3s ease; width: 0%; }
+
+        /* ── コンテンツ ── */
+        .content { max-width: 780px; margin: 0 auto; padding: 0 20px 80px; }
+
+        /* ── ヒーロー ── */
+        .hero {
+            text-align: center;
+            padding: 48px 20px 32px;
+        }
+        .hero-label {
+            display: inline-block;
+            background: var(--surface2);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 4px 16px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+        .hero p {
+            color: var(--text-sub);
+            font-size: 1rem;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* ── 家族構成カード ── */
+        .family-card {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin: 32px 0;
+            flex-wrap: wrap;
+        }
+        .family-member {
+            text-align: center;
+            padding: 16px 20px;
+            background: var(--surface);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            min-width: 120px;
+        }
+        .family-member .avatar {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 8px;
+        }
+        .family-member.papa .avatar { background: rgba(66,165,245,0.15); }
+        .family-member.mama .avatar { background: rgba(239,83,80,0.15); }
+        .family-member.child .avatar { background: rgba(255,167,38,0.15); }
+        .family-member .role {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .family-member .detail {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+        }
+        .family-member.mama {
+            border-color: var(--mama);
+            box-shadow: 0 0 12px rgba(239,83,80,0.15);
+        }
+        .family-member.mama .role::after {
+            content: " (セットアップ担当)";
+            font-size: 0.75rem;
+            color: var(--mama);
+            font-weight: normal;
+        }
+
+        /* ── セクション ── */
+        .section {
+            padding-top: 48px;
+            scroll-margin-top: 80px;
+        }
+        .section-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 3px 14px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+        .section-badge.flowchart { background: var(--accent); color: var(--bg); }
+        .section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        .section .lead {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        /* ── フローチャート ── */
+        .flowchart {
+            margin: 24px 0;
+        }
+        .flow-node {
+            position: relative;
+            padding: 20px 24px;
+            border-radius: 14px;
+            margin-bottom: 0;
+            text-align: center;
+        }
+        .flow-question {
+            background: var(--surface);
+            border: 2px solid var(--accent);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        .flow-question p {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .flow-question .sub {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            margin-top: 6px;
+        }
+
+        .flow-arrow {
+            text-align: center;
+            padding: 8px 0;
+            color: var(--text-sub);
+            font-size: 1.2rem;
+            position: relative;
+        }
+        .flow-branches {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        @media (max-width: 540px) {
+            .flow-branches { grid-template-columns: 1fr; }
+        }
+        .flow-branch {
+            position: relative;
+        }
+        .flow-branch-label {
+            text-align: center;
+            padding: 6px 0;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .flow-branch-label.yes { color: var(--success); }
+        .flow-branch-label.no { color: var(--accent-warm); }
+
+        .flow-result {
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+        }
+        .flow-result.type-a {
+            background: rgba(102,187,106,0.1);
+            border: 2px solid var(--success);
+        }
+        .flow-result.type-b {
+            background: rgba(244,162,97,0.1);
+            border: 2px solid var(--accent-warm);
+        }
+        .flow-result h3 {
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+        .flow-result.type-a h3 { color: var(--success); }
+        .flow-result.type-b h3 { color: var(--accent-warm); }
+        .flow-result p {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+        }
+        .flow-result ul {
+            text-align: left;
+            list-style: none;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+        .flow-result ul li::before {
+            content: "- ";
+        }
+
+        .flow-connector {
+            text-align: center;
+            padding: 12px 0;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+        .flow-connector .arrow { font-size: 1.2rem; display: block; }
+
+        /* ── 比較テーブル ── */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 0.9rem;
+        }
+        .compare-table th {
+            padding: 12px;
+            text-align: left;
+            background: var(--surface2);
+            border-bottom: 2px solid var(--border);
+        }
+        .compare-table th:nth-child(2) { color: var(--success); }
+        .compare-table th:nth-child(3) { color: var(--accent-warm); }
+        .compare-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-sub);
+            vertical-align: middle;
+            text-align: center;
+        }
+        .compare-table td:first-child {
+            color: var(--text);
+            font-weight: 600;
+            white-space: nowrap;
+            text-align: left;
+        }
+
+        /* ── タイムライン ── */
+        .timeline {
+            position: relative;
+            margin: 24px 0;
+            padding-left: 32px;
+        }
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+        .tl-item {
+            position: relative;
+            padding-bottom: 32px;
+        }
+        .tl-item:last-child { padding-bottom: 0; }
+        .tl-dot {
+            position: absolute;
+            left: -25px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 2px solid var(--bg);
+        }
+        .tl-item.done .tl-dot { background: var(--success); }
+        .tl-header {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+        .tl-step {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--primary);
+            background: rgba(124,142,242,0.12);
+            padding: 2px 10px;
+            border-radius: 10px;
+        }
+        .tl-device {
+            font-size: 0.75rem;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        .tl-device.papa { background: rgba(66,165,245,0.15); color: var(--papa); }
+        .tl-device.mama { background: rgba(239,83,80,0.15); color: var(--mama); }
+        .tl-device.child { background: rgba(255,167,38,0.15); color: var(--child); }
+        .tl-device.all { background: rgba(124,142,242,0.12); color: var(--accent); }
+        .tl-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+        .tl-body {
+            margin-top: 8px;
+        }
+        .tl-body p {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-bottom: 6px;
+        }
+
+        /* ── 手順リスト ── */
+        .steps-list {
+            list-style: none;
+            counter-reset: step-counter;
+            margin: 12px 0;
+        }
+        .steps-list li {
+            counter-increment: step-counter;
+            padding: 10px 0 10px 44px;
+            position: relative;
+            border-bottom: 1px solid rgba(61,56,85,0.5);
+            font-size: 0.9rem;
+        }
+        .steps-list li:last-child { border-bottom: none; }
+        .steps-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0; top: 10px;
+            width: 28px; height: 28px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem; font-weight: bold;
+        }
+        .steps-list li .sub {
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+
+        /* ── ヒント ── */
+        .hint {
+            background: var(--surface);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.88rem;
+            color: var(--text-sub);
+            line-height: 1.7;
+        }
+        .hint strong { color: var(--text); }
+        .hint.warn { border-left-color: var(--accent-warm); }
+        .hint.success { border-left-color: var(--success); }
+
+        /* ── 端末ごとのセクション ── */
+        .device-section {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 14px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+        .device-section h3 {
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .device-section.papa-section { border-left: 3px solid var(--papa); }
+        .device-section.mama-section { border-left: 3px solid var(--mama); }
+        .device-section.child-section { border-left: 3px solid var(--child); }
+        .device-section.papa-section h3 { color: var(--papa); }
+        .device-section.mama-section h3 { color: var(--mama); }
+        .device-section.child-section h3 { color: var(--child); }
+
+        /* ── 設定早見表 ── */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .settings-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid var(--border);
+        }
+        .settings-card h4 {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .settings-card .member-dot {
+            display: inline-block;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+        }
+        .settings-card .member-dot.papa { background: var(--papa); }
+        .settings-card .member-dot.mama { background: var(--mama); }
+        .settings-card .member-dot.child { background: var(--child); }
+        .settings-card p {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+        .settings-card .value {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* ── チェックリスト ── */
+        .checklist {
+            list-style: none;
+            margin: 16px 0;
+        }
+        .checklist li {
+            padding: 8px 0 8px 32px;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+        .checklist li::before {
+            content: "[ ]";
+            position: absolute;
+            left: 0;
+            font-family: monospace;
+            color: var(--text-sub);
+        }
+
+        /* ── ナビボタン ── */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 32px;
+            gap: 12px;
+        }
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .nav-btn.next {
+            background: var(--primary);
+            color: #fff;
+            margin-left: auto;
+        }
+        .nav-btn.next:hover { background: var(--primary-dim); }
+        .nav-btn.prev {
+            background: var(--surface);
+            color: var(--text-sub);
+            border: 1px solid var(--border);
+        }
+        .nav-btn:hover { opacity: 0.85; }
+
+        /* ── タブ ── */
+        .tab-group {
+            display: flex;
+            gap: 4px;
+            margin: 20px 0 16px;
+            background: var(--surface);
+            border-radius: 10px;
+            padding: 4px;
+        }
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            color: var(--text-sub);
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-family: inherit;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .tab-btn.active {
+            background: var(--primary-dim);
+            color: #fff;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ── フッター ── */
+        .footer-links {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 16px; padding: 40px 24px;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        .footer-links a { color: var(--text-sub); }
+        .contact {
+            text-align: center;
+            padding: 20px 24px 40px;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        /* ── セットアップ全体像 ── */
+        .overview-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            padding: 16px 0;
+            margin: 16px 0;
+        }
+        .overview-step {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 24px;
+            text-align: center;
+            font-size: 0.85rem;
+            width: 100%;
+            max-width: 320px;
+        }
+        .overview-step .num {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        .overview-arrow {
+            color: var(--text-sub);
+            font-size: 1rem;
+            padding: 4px 0;
+        }
+
+        /* ── 所要時間バッジ ── */
+        .time-badge {
+            display: inline-block;
+            background: var(--surface2);
+            color: var(--accent);
+            font-size: 0.78rem;
+            padding: 2px 10px;
+            border-radius: 10px;
+            margin-left: 8px;
+        }
+
+        /* ── スクリーンショット表示 ── */
+        .screenshot-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 16px;
+            margin: 20px 0;
+            flex-wrap: nowrap;
+        }
+        .screenshot-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 0 1 auto;
+        }
+        .phone-frame {
+            max-width: 200px;
+            width: 100%;
+        }
+        .phone-frame img {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+        .screenshot-caption {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-top: 8px;
+        }
+        .screenshot-single {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .screenshot-single .phone-frame {
+            max-width: 220px;
+        }
+
+        /* ── 矢印 ── */
+        .screenshot-arrow {
+            color: var(--accent);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            align-self: center;
+            padding: 0 4px;
+            flex-shrink: 0;
+        }
+        @media (max-width: 540px) {
+            .screenshot-container { flex-direction: column; align-items: center; flex-wrap: wrap; }
+            .screenshot-arrow { transform: rotate(90deg); padding: 8px 0; }
+        }
+
+        /* ── サイドナビ（進捗メニュー） ── */
+        .side-nav {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 90;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding: 12px 0 12px 8px;
+        }
+        .side-nav a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px 6px 8px;
+            border-radius: 0 20px 20px 0;
+            text-decoration: none;
+            font-size: 0.72rem;
+            color: var(--text-sub);
+            background: rgba(18, 18, 31, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid transparent;
+            transition: all 0.25s;
+            white-space: nowrap;
+        }
+        .side-nav a:hover {
+            color: var(--text);
+            background: var(--surface);
+            border-color: var(--border);
+            text-decoration: none;
+        }
+        .side-nav a.active {
+            color: var(--primary);
+            background: var(--surface);
+            border-color: var(--primary);
+        }
+        .side-nav a.done {
+            color: var(--success);
+        }
+        .side-nav .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            flex-shrink: 0;
+            transition: all 0.25s;
+        }
+        .side-nav a.active .nav-dot {
+            border-color: var(--primary);
+            background: var(--primary);
+            box-shadow: 0 0 8px rgba(124,142,242,0.4);
+        }
+        .side-nav a.done .nav-dot {
+            border-color: var(--success);
+            background: var(--success);
+        }
+        .side-nav .nav-label {
+            opacity: 0;
+            max-width: 0;
+            overflow: hidden;
+            transition: all 0.25s;
+        }
+        .side-nav:hover .nav-label {
+            opacity: 1;
+            max-width: 120px;
+        }
+
+        @media (max-width: 900px) {
+            .side-nav { display: none; }
+        }
+
+        @media (max-width: 500px) {
+            .family-card { gap: 12px; }
+            .family-member { min-width: 90px; padding: 12px 14px; }
+            .settings-grid { grid-template-columns: 1fr; }
+            .phone-frame { max-width: 180px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ナビゲーション -->
+<nav>
+    <a href="/" class="brand" style="text-decoration:none;">Kinia</a>
+    <div class="nav-links">
+        <a href="/#features">機能</a>
+        <a href="/setup.html">はじめかた</a>
+        <a href="/faq.html">FAQ</a>
+        <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">家族別ガイド ▾</button>
+            <div class="nav-dropdown-menu">
+                <a href="/senior.html">高齢のご家族がいる方へ</a>
+                <a href="/students.html">学生の方へ</a>
+                <a href="/parents.html">お子さんを持つご家庭の方へ</a>
+                <a href="/guide-family-basic.html" style="color:var(--accent);">3人家族セットアップ</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- プログレスバー -->
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<!-- サイドナビ（進捗メニュー） -->
+<div class="side-nav" id="sideNav">
+    <a href="#flowchart" data-section="flowchart"><span class="nav-dot"></span><span class="nav-label">タイプ診断</span></a>
+    <a href="#setup-overview" data-section="setup-overview"><span class="nav-dot"></span><span class="nav-label">全体像</span></a>
+    <a href="#step1" data-section="step1"><span class="nav-dot"></span><span class="nav-label">1. インストール</span></a>
+    <a href="#step2" data-section="step2"><span class="nav-dot"></span><span class="nav-label">2. グループ作成</span></a>
+    <a href="#step3" data-section="step3"><span class="nav-dot"></span><span class="nav-label">3. 招待コード</span></a>
+    <a href="#step4" data-section="step4"><span class="nav-dot"></span><span class="nav-label">4. 参加</span></a>
+    <a href="#step5" data-section="step5"><span class="nav-dot"></span><span class="nav-label">5. 権限設定</span></a>
+    <a href="#step6" data-section="step6"><span class="nav-dot"></span><span class="nav-label">6. 通知・共有</span></a>
+    <a href="#complete" data-section="complete"><span class="nav-dot"></span><span class="nav-label">完了!</span></a>
+</div>
+
+<main class="content">
+
+    <!-- ===== ヒーロー ===== -->
+    <div class="hero">
+        <span class="hero-label">3人家族向けガイド</span>
+        <h1>大人2人 + お子さん1人の<br>はじめてセットアップ</h1>
+        <p>3人家族でKiniaを始める手順を、1つずつ解説します。<br>
+        ご家族の代表がまとめて3台を設定するケースを想定しています。</p>
+    </div>
+
+    <div class="hint" style="margin-top: 20px; border-left-color: var(--accent);">
+        <strong>このガイドでの呼び方について</strong><br>
+        手順をわかりやすくするため「お母さん」「お父さん」「お子さん」と表記していますが、ご家族の構成にあわせて読み替えてください。<br>
+        セットアップ担当はどなたでもOKです。
+    </div>
+
+    <!-- 家族構成 -->
+    <div class="family-card">
+        <div class="family-member papa">
+            <div class="avatar">👨</div>
+            <div class="role">おとな①</div>
+            <div class="detail">通勤あり</div>
+        </div>
+        <div class="family-member mama">
+            <div class="avatar">👩</div>
+            <div class="role">おとな②</div>
+            <div class="detail">3台まとめて設定</div>
+        </div>
+        <div class="family-member child">
+            <div class="avatar">👧</div>
+            <div class="detail">通学あり</div>
+            <div class="role">お子さん</div>
+        </div>
+    </div>
+
+    <!-- ===== PART 0: 設定判断フローチャート ===== -->
+    <section class="section" id="flowchart">
+        <span class="section-badge flowchart">PART 0</span>
+        <h2>まず確認 — あなたの家族に合う使い方は？</h2>
+        <p class="lead">Kiniaには2つの使い方があります。下の質問に答えて、最適な設定タイプを確認しましょう。</p>
+
+        <div class="flowchart">
+            <!-- Q1 -->
+            <div class="flow-node flow-question">
+                <p>お子さんの「今どこにいるか」を<br>地図でリアルタイムに確認したいですか？</p>
+                <div class="sub">例: 塾の帰りが遅いとき、今どのあたりか見たい</div>
+            </div>
+
+            <div class="flow-branches" style="margin-top: 16px;">
+                <div class="flow-branch">
+                    <div class="flow-branch-label no">いいえ・通知だけでいい</div>
+                    <div class="flow-connector"><span class="arrow">▼</span></div>
+                    <div class="flow-result type-a">
+                        <h3>タイプA: 通知エリアだけ</h3>
+                        <p>「学校を出た」「家に着いた」などの通知だけ受け取る、もっともシンプルな使い方です。</p>
+                        <ul>
+                            <li>地図に位置は表示されない</li>
+                            <li>歩数・元気度は共有される</li>
+                            <li>お子さんのプライバシーを尊重しやすい</li>
+                            <li>初期設定のまま使える</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flow-branch">
+                    <div class="flow-branch-label yes">はい・地図で見たい</div>
+                    <div class="flow-connector"><span class="arrow">▼</span></div>
+                    <div class="flow-result type-b">
+                        <h3>タイプB: すべて共有</h3>
+                        <p>家族の現在地を地図上で確認でき、移動履歴も見られる使い方です。</p>
+                        <ul>
+                            <li>地図にマーカーが表示される</li>
+                            <li>移動ルート・軌跡が見られる</li>
+                            <li>通知エリアの通知も届く</li>
+                            <li>各メンバーが共有レベルを変更する操作が必要</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hint success">
+            <strong>あとから切り替えられます。</strong>
+            まずはタイプA（通知エリアだけ）で始めて、必要になったらタイプBに切り替えるのがおすすめです。<br>
+            各メンバーが自分のスマホから「共有レベル」を変更するだけで、いつでも切り替えできます。
+        </div>
+
+        <!-- 比較テーブル -->
+        <h3 style="font-size:1rem; margin: 28px 0 12px;">タイプ比較表</h3>
+        <table class="compare-table">
+            <tr>
+                <th></th>
+                <th>タイプA<br>通知エリアだけ</th>
+                <th>タイプB<br>すべて共有</th>
+            </tr>
+            <tr>
+                <td>地図上の位置表示</td>
+                <td><span style="font-size:1.3em;">✕</span><br><span style="font-size:0.8em;">なし</span></td>
+                <td><span style="font-size:1.3em;color:var(--success);">◎</span><br><span style="font-size:0.8em;">リアルタイム表示</span></td>
+            </tr>
+            <tr>
+                <td>通知エリアの通知</td>
+                <td><span style="font-size:1.3em;color:var(--success);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
+                <td><span style="font-size:1.3em;color:var(--success);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
+            </tr>
+            <tr>
+                <td>移動履歴・軌跡</td>
+                <td><span style="font-size:1.3em;">✕</span><br><span style="font-size:0.8em;">なし</span></td>
+                <td><span style="font-size:1.3em;color:var(--success);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
+            </tr>
+            <tr>
+                <td>歩数・元気度</td>
+                <td><span style="font-size:1.3em;color:var(--success);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
+                <td><span style="font-size:1.3em;color:var(--success);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
+            </tr>
+            <tr>
+                <td>プライバシー</td>
+                <td><span style="font-size:1.3em;color:var(--success);">◎</span><br><span style="font-size:0.8em;">高い（居場所は非表示）</span></td>
+                <td><span style="font-size:1.3em;color:var(--accent-warm);">△</span><br><span style="font-size:0.8em;">全員に位置が見える</span></td>
+            </tr>
+            <tr>
+                <td>追加設定</td>
+                <td><span style="font-size:1.3em;color:var(--success);">◎</span><br><span style="font-size:0.8em;">不要（初期設定のまま）</span></td>
+                <td><span style="font-size:1.3em;color:var(--accent-warm);">△</span><br><span style="font-size:0.8em;">各端末で共有レベル変更</span></td>
+            </tr>
+            <tr>
+                <td>おすすめ</td>
+                <td><span style="font-size:0.85em;">中高生以上のお子さん</span></td>
+                <td><span style="font-size:0.85em;">小学生のお子さん</span></td>
+            </tr>
+        </table>
+
+        <div class="nav-buttons">
+            <span></span>
+            <button class="nav-btn next" onclick="goSection('setup-overview')">セットアップに進む →</button>
+        </div>
+    </section>
+
+    <!-- ===== PART 1: セットアップ全体像 ===== -->
+    <section class="section" id="setup-overview">
+        <span class="section-badge">PART 1</span>
+        <h2>セットアップの全体像 <span class="time-badge">約15〜20分</span></h2>
+        <p class="lead">お母さんが3台のスマホを手元に集めて、順番にセットアップしていきます。</p>
+
+        <div class="overview-flow">
+            <div class="overview-step"><span class="num">STEP 1</span>3台に<br>インストール</div>
+            <span class="overview-arrow">↓</span>
+            <div class="overview-step"><span class="num">STEP 2</span>お母さんの<br>端末で設定</div>
+            <span class="overview-arrow">↓</span>
+            <div class="overview-step"><span class="num">STEP 3</span>招待コード<br>を発行</div>
+            <span class="overview-arrow">↓</span>
+            <div class="overview-step"><span class="num">STEP 4</span>お父さん<br>お子さん参加</div>
+            <span class="overview-arrow">↓</span>
+            <div class="overview-step"><span class="num">STEP 5</span>各端末の<br>権限設定</div>
+            <span class="overview-arrow">↓</span>
+            <div class="overview-step"><span class="num">STEP 6</span>通知エリア<br>設定</div>
+            <span class="overview-arrow">↓</span>
+            <div class="overview-step" style="border-color:var(--success);"><span class="num" style="color:var(--success);">DONE</span>完了!</div>
+        </div>
+
+        <div class="hint">
+            <strong>用意するもの:</strong><br>
+            ・ 家族3人分のスマホ（Android 8.0以上）<br>
+            ・ 各端末のGoogleアカウント（ふだん使っているものでOK）<br>
+            ・ Wi-Fi環境（アプリのダウンロードに使用）
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goSection('flowchart')">← フローチャート</button>
+            <button class="nav-btn next" onclick="goSection('step1')">STEP 1 へ →</button>
+        </div>
+    </section>
+
+    <!-- ===== STEP 1: インストール ===== -->
+    <section class="section" id="step1">
+        <span class="section-badge">STEP 1</span>
+        <h2>3台にKiniaをインストール <span class="time-badge">約3分</span></h2>
+        <p class="lead">まず3台すべてにアプリをインストールします。</p>
+
+        <ol class="steps-list">
+            <li>
+                <strong>Google Play で「Kinia」を検索</strong>
+                <div class="sub">または <a href="https://play.google.com/store/apps/details?id=io.kinia">こちらのリンク</a> から直接アクセス</div>
+            </li>
+            <li><strong>「インストール」をタップ</strong></li>
+            <li><strong>3台すべてで同じ操作を繰り返す</strong></li>
+        </ol>
+
+        <!-- Play Store → ログイン画面のイメージ -->
+        <div class="screenshot-single">
+            <div class="screenshot-label">
+                <div class="phone-frame">
+                    <img src="screenshots/mock_01_login.png" alt="Kiniaログイン画面" loading="lazy">
+                </div>
+                <div class="screenshot-caption">インストール後、起動するとこの画面が表示されます</div>
+            </div>
+        </div>
+
+        <div class="hint">
+            <strong>お子さんのスマホにGoogleアカウントがない場合</strong><br>
+            事前にGoogleアカウントを作成しておいてください。Kiniaのログインに必要です。<br>
+            13歳未満のお子さんの場合は、Googleファミリーリンクで管理アカウントを作成できます。
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goSection('setup-overview')">← 全体像</button>
+            <button class="nav-btn next" onclick="goSection('step2')">STEP 2 へ →</button>
+        </div>
+    </section>
+
+    <!-- ===== STEP 2: お母さんの端末でグループ作成 ===== -->
+    <section class="section" id="step2">
+        <span class="section-badge">STEP 2</span>
+        <h2>お母さんの端末でグループを作成 <span class="time-badge">約2分</span></h2>
+        <p class="lead">最初の1台目（お母さんのスマホ）でグループを作ります。<br>グループを作った人が自動的に「管理者」になります。</p>
+
+        <div class="device-section mama-section">
+            <h3>👩 お母さんのスマホで操作</h3>
+            <ol class="steps-list">
+                <li>
+                    <strong>Kiniaを起動して「Googleでログイン」</strong>
+                    <div class="sub">お母さんのGoogleアカウントを選択します</div>
+                </li>
+                <li>
+                    <strong>「新規グループを作成する」をタップ</strong>
+                </li>
+                <li>
+                    <strong>グループ名（合言葉）を入力</strong>
+                    <div class="sub">例: 「yamada2026」「family123」など、半角英数で覚えやすい名前を入力します（8文字以上）。<br>
+                    ※ グループ名は最初の1回だけ使います。毎回入力する必要はありません。</div>
+                </li>
+                <li>
+                    <strong>ニックネームを入力</strong>
+                    <div class="sub">地図上に表示される名前です。例: 「ママ」「お母さん」「名前」など</div>
+                </li>
+                <li>
+                    <strong>「グループを作成して開始」をタップ</strong>
+                </li>
+            </ol>
+
+            <!-- スクリーンショット: ログイン → グループ選択 → グループ作成 -->
+            <div class="screenshot-container">
+                <div class="screenshot-label">
+                    <div class="phone-frame">
+                        <img src="screenshots/mock_01_login.png" alt="ログイン画面" loading="lazy">
+                    </div>
+                    <div class="screenshot-caption">① ログイン画面</div>
+                </div>
+                <div class="screenshot-arrow">→</div>
+                <div class="screenshot-label">
+                    <div class="phone-frame">
+                        <img src="screenshots/mock_02_group_select.png" alt="グループ選択画面" loading="lazy">
+                    </div>
+                    <div class="screenshot-caption">② 「新規グループを作成する」</div>
+                </div>
+                <div class="screenshot-arrow">→</div>
+                <div class="screenshot-label">
+                    <div class="phone-frame">
+                        <img src="screenshots/mock_03_group_create.png" alt="グループ作成画面" loading="lazy">
+                    </div>
+                    <div class="screenshot-caption">③ グループ名と表示名を入力</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hint success">
+            <strong>グループ作成完了!</strong>
+            お母さんが管理者（admin）として登録されました。<br>
+            続いて、お父さんとお子さんを招待します。
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goSection('step1')">← STEP 1</button>
+            <button class="nav-btn next" onclick="goSection('step3')">STEP 3 へ →</button>
+        </div>
+    </section>
+
+    <!-- ===== STEP 3: 招待コード発行 ===== -->
+    <section class="section" id="step3">
+        <span class="section-badge">STEP 3</span>
+        <h2>招待コードを発行する <span class="time-badge">約1分</span></h2>
+        <p class="lead">引き続きお母さんのスマホで操作します。</p>
+
+        <div class="device-section mama-section">
+            <h3>👩 お母さんのスマホで操作</h3>
+            <ol class="steps-list">
+                <li>
+                    <strong>右上のメニュー（⋮）をタップ</strong>
+                </li>
+                <li>
+                    <strong>「グループ管理」を選択</strong>
+                </li>
+                <li>
+                    <strong>「招待コードを発行」をタップ</strong>
+                    <div class="sub">招待リンク付きのコードが表示されます。「コードをコピー」で共有できます。</div>
+                </li>
+            </ol>
+
+            <!-- スクリーンショット: メニュー → グループ管理 → 招待コード -->
+            <div class="screenshot-container">
+                <div class="screenshot-label">
+                    <div class="phone-frame">
+                        <img src="screenshots/mock_15_menu.png" alt="メニュー展開" loading="lazy">
+                    </div>
+                    <div class="screenshot-caption">① メニューから「グループ管理」</div>
+                </div>
+                <div class="screenshot-arrow">→</div>
+                <div class="screenshot-label">
+                    <div class="phone-frame">
+                        <img src="screenshots/mock_04_group_mgmt.png" alt="グループ管理画面" loading="lazy">
+                    </div>
+                    <div class="screenshot-caption">② 「招待コードを発行」をタップ</div>
+                </div>
+                <div class="screenshot-arrow">→</div>
+                <div class="screenshot-label">
+                    <div class="phone-frame">
+                        <img src="screenshots/mock_05_invite_code.png" alt="招待コード表示" loading="lazy">
+                    </div>
+                    <div class="screenshot-caption">③ コードが表示される</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hint">
+            <strong>1つのリンクで2人とも招待できます。</strong><br>
+            お父さんとお子さん、それぞれ別のコードを発行する必要はありません。<br>
+            有効期限は72時間です。今すぐ3台を設定するなら十分な時間があります。
+        </div>
+
+        <div class="hint warn">
+            <strong>招待リンクの共有方法</strong><br>
+            「コードをコピー」をタップすると、招待リンク（<code>https://kinia.io/invite/xxxxx</code>）をLINEなどで家族に送れます。<br>
+            リンクをタップするだけでKiniaが開き、参加画面が表示されます。<br>
+            手元に3台を集めている場合は、直接操作してもOKです。
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goSection('step2')">← STEP 2</button>
+            <button class="nav-btn next" onclick="goSection('step4')">STEP 4 へ →</button>
+        </div>
+    </section>
+
+    <!-- ===== STEP 4: 残り2台で参加 ===== -->
+    <section class="section" id="step4">
+        <span class="section-badge">STEP 4</span>
+        <h2>お父さん・お子さんの端末で参加 <span class="time-badge">約3分</span></h2>
+        <p class="lead">残りの2台で、それぞれグループに参加します。<br>どちらの端末が先でも構いません。</p>
+
+        <div class="device-section papa-section">
+            <h3>👨 お父さんのスマホで操作</h3>
+            <ol class="steps-list">
+                <li>
+                    <strong>Kiniaを起動して「Googleでログイン」</strong>
+                    <div class="sub">お父さんのGoogleアカウントを選択</div>
+                </li>
+                <li>
+                    <strong>ニックネームを入力</strong>
+                    <div class="sub">例: 「パパ」「お父さん」「名前」など</div>
+                </li>
+                <li>
+                    <strong>招待リンクをタップ、または招待コードを入力</strong>
+                    <div class="sub">LINEなどで受け取ったリンクをタップすれば自動でKiniaが開きます</div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- 招待コード参加 → メンバー一覧 -->
+        <div class="screenshot-container">
+            <div class="screenshot-label">
+                <div class="phone-frame">
+                    <img src="screenshots/mock_06_join.png" alt="招待コードで参加" loading="lazy">
+                </div>
+                <div class="screenshot-caption">お父さんの端末での参加画面</div>
+            </div>
+            <div class="screenshot-arrow">→</div>
+            <div class="screenshot-label">
+                <div class="phone-frame">
+                    <img src="screenshots/mock_07_members.png" alt="3人参加完了" loading="lazy">
+                </div>
+                <div class="screenshot-caption">3人全員が参加した状態</div>
+            </div>
+        </div>
+
+        <div class="device-section child-section" style="margin-top: 16px;">
+            <h3>👧 お子さんのスマホで操作</h3>
+            <ol class="steps-list">
+                <li>
+                    <strong>Kiniaを起動して「Googleでログイン」</strong>
+                    <div class="sub">お子さんのGoogleアカウントを選択</div>
+                </li>
+                <li>
+                    <strong>ニックネームを入力</strong>
+                    <div class="sub">例: お子さんの名前やニックネーム</div>
+                </li>
+                <li>
+                    <strong>同じ招待リンクをタップ、またはコードを入力</strong>
+                </li>
+            </ol>
+        </div>
+
+        <div class="hint success">
+            <strong>3人全員がグループに参加しました!</strong>
+            お母さんのスマホのメンバー一覧に、3人分の名前が表示されているはずです。
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goSection('step3')">← STEP 3</button>
+            <button class="nav-btn next" onclick="goSection('step5')">STEP 5 へ →</button>
+        </div>
+    </section>
+
+    <!-- ===== STEP 5: 権限設定 ===== -->
+    <section class="section" id="step5">
+        <span class="section-badge">STEP 5</span>
+        <h2>3台すべてで権限を設定 <span class="time-badge">約5分</span></h2>
+        <p class="lead">
+            Kiniaが正しく動作するために、各端末で権限を許可します。<br>
+            アプリ内のガイドに従って進めるだけでOKです。<strong>3台すべてで同じ操作</strong>を行います。
+        </p>
+
+        <div class="hint warn">
+            <strong>この設定が一番大事です。</strong><br>
+            特に「バックグラウンド位置情報」と「省電力の除外」を設定しないと、<br>
+            アプリを閉じた瞬間に位置の更新が止まります。
+        </div>
+
+        <h3 style="font-size: 1rem; margin: 24px 0 12px; color: var(--accent);">3台すべてで設定する権限</h3>
+
+        <table class="compare-table">
+            <tr>
+                <th>権限</th>
+                <th>設定内容</th>
+                <th>設定しないと？</th>
+            </tr>
+            <tr>
+                <td>位置情報</td>
+                <td>「許可」をタップ</td>
+                <td>位置がまったく共有されない</td>
+            </tr>
+            <tr>
+                <td>バックグラウンド<br>位置情報</td>
+                <td>設定画面で<br>「<strong>常に許可</strong>」を選択</td>
+                <td>アプリを閉じると位置が止まる</td>
+            </tr>
+            <tr>
+                <td>活動認識</td>
+                <td>「許可」をタップ</td>
+                <td>歩行/車の判別ができない</td>
+            </tr>
+            <tr>
+                <td>通知</td>
+                <td>「許可」をタップ</td>
+                <td>通知エリアの通知が届かない</td>
+            </tr>
+            <tr>
+                <td>省電力の除外</td>
+                <td>「許可」をタップ</td>
+                <td>スリープ中にGPSが止まる場合がある</td>
+            </tr>
+        </table>
+
+        <!-- 権限設定のスクリーンショット -->
+        <h3 style="font-size: 1rem; margin: 24px 0 12px; color: var(--accent);">実際の画面イメージ</h3>
+        <div class="screenshot-container">
+            <div class="screenshot-label">
+                <div class="phone-frame">
+                    <img src="screenshots/mock_08_perm_location.png" alt="位置情報の許可画面" loading="lazy">
+                </div>
+                <div class="screenshot-caption">① 位置情報の許可<br>「許可する」をタップ</div>
+            </div>
+            <div class="screenshot-arrow">→</div>
+            <div class="screenshot-label">
+                <div class="phone-frame">
+                    <img src="screenshots/mock_09_perm_bg.png" alt="バックグラウンド位置情報" loading="lazy">
+                </div>
+                <div class="screenshot-caption">② バックグラウンド位置情報<br>「設定を開く」→「常に許可」</div>
+            </div>
+        </div>
+        <div class="hint" style="margin-top: 4px;">
+            <strong>画面はアプリ内のガイドに従うだけ!</strong><br>
+            Kiniaが順番に権限の設定画面を案内します。ボタンをタップして進めるだけなので、迷うことはありません。
+        </div>
+
+        <div class="hint">
+            <strong>「常に許可」って不安...</strong><br>
+            Kiniaは移動中だけGPSを使い、止まっているときはほとんどバッテリーを消費しません。<br>
+            位置データはグループ外に漏れない仕組み（座標暗号化・グループ内限定表示）で保護されています。<br>
+            詳しくは <a href="/safety.html">安全性について</a> をご覧ください。
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goSection('step4')">← STEP 4</button>
+            <button class="nav-btn next" onclick="goSection('step6')">STEP 6 へ →</button>
+        </div>
+    </section>
+
+    <!-- ===== STEP 6: 通知エリア & 共有レベル設定 ===== -->
+    <section class="section" id="step6">
+        <span class="section-badge">STEP 6</span>
+        <h2>通知エリア・共有レベルの設定 <span class="time-badge">約5分</span></h2>
+        <p class="lead">最後のステップです。フローチャートで選んだタイプに合わせて設定しましょう。</p>
+
+        <!-- タブ切替 -->
+        <div class="tab-group">
+            <button class="tab-btn active" onclick="switchTab('typeA', this)">タイプA: 通知エリアだけ</button>
+            <button class="tab-btn" onclick="switchTab('typeB', this)">タイプB: すべて共有</button>
+        </div>
+
+        <!-- タイプA -->
+        <div id="typeA" class="tab-content active">
+
+            <div class="hint success">
+                <strong>共有レベルの変更は不要です。</strong>
+                Kiniaの初期設定は「通知エリアのみ」モードなので、そのまま通知エリアの設定に進めます。
+            </div>
+
+            <h3 style="font-size: 1rem; margin: 20px 0 12px; color: var(--accent);">通知エリアの設定（お母さんのスマホで操作）</h3>
+
+            <div class="device-section mama-section">
+                <h3>👩 お母さんのスマホで設定</h3>
+                <p style="color:var(--text-sub); font-size:0.9rem; margin-bottom:12px;">
+                    通知エリアはグループ全体で共有されるため、1台から設定すれば全員に反映されます。
+                </p>
+                <ol class="steps-list">
+                    <li>
+                        <strong>画面下の「通知エリア」タブをタップ</strong>
+                    </li>
+                    <li>
+                        <strong>地図上で「自宅」の場所をタップ</strong>
+                        <div class="sub">設定パネルが表示されます</div>
+                    </li>
+                    <li>
+                        <strong>エリア名を入力</strong>
+                        <div class="sub">例: 「自宅」「おうち」</div>
+                    </li>
+                    <li>
+                        <strong>半径を調整</strong>
+                        <div class="sub">初期値は200m。住宅街なら150〜200m程度がおすすめです</div>
+                    </li>
+                    <li>
+                        <strong>通知を受け取りたいメンバーを選択</strong>
+                        <div class="sub">3人全員にチェックを入れると、誰が帰宅しても全員に通知が届きます</div>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- 通知エリア設定のスクリーンショット -->
+            <div class="screenshot-single" style="margin-top: 20px;">
+                <div class="screenshot-label">
+                    <div class="phone-frame" style="max-width: 240px;">
+                        <img src="screenshots/mock_13_geofence.png" alt="通知エリア設定画面" loading="lazy">
+                    </div>
+                    <div class="screenshot-caption">通知エリア設定画面</div>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1rem; margin: 24px 0 12px;">おすすめの通知エリア設定</h3>
+            <div class="settings-grid">
+                <div class="settings-card">
+                    <h4>🏠 自宅</h4>
+                    <p>半径: <span class="value">150〜200m</span></p>
+                    <p>対象: <span class="value">全員</span></p>
+                    <p style="margin-top:4px;">帰宅したら家族に通知</p>
+                </div>
+                <div class="settings-card">
+                    <h4>🏫 学校</h4>
+                    <p>半径: <span class="value">200〜300m</span></p>
+                    <p>対象: <span class="value">お子さん</span></p>
+                    <p style="margin-top:4px;">学校を出たらお母さんに通知</p>
+                </div>
+                <div class="settings-card">
+                    <h4>🏢 職場（任意）</h4>
+                    <p>半径: <span class="value">200m</span></p>
+                    <p>対象: <span class="value">お父さん</span></p>
+                    <p style="margin-top:4px;">退勤したらお母さんに通知</p>
+                </div>
+            </div>
+
+            <div class="hint">
+                <strong>まずは「自宅」だけでOK。</strong><br>
+                学校や職場は後からいつでも追加できます。<br>
+                最初からたくさん設定すると、通知が多くなりすぎることがあります。
+            </div>
+
+            <!-- 通知のON/OFF設定について -->
+            <h3 style="font-size: 1rem; margin: 28px 0 12px; color: var(--accent);">通知のON/OFF設定について</h3>
+            <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:16px;">
+                通知エリアの通知は<strong style="color:var(--text);">初期設定でON</strong>になっています。<br>
+                通知の管理は2段階で行えます。
+            </p>
+
+            <div class="screenshot-container">
+                <div class="screenshot-label">
+                    <div class="phone-frame">
+                        <img src="screenshots/mock_16_notif_settings.png" alt="通知設定画面" loading="lazy">
+                    </div>
+                    <div class="screenshot-caption">① 通知設定（全体のON/OFF）<br>メニュー → 通知設定</div>
+                </div>
+                <div class="screenshot-arrow">+</div>
+                <div class="screenshot-label">
+                    <div class="phone-frame">
+                        <img src="screenshots/mock_17_geofence_list.png" alt="エリア個別通知" loading="lazy">
+                    </div>
+                    <div class="screenshot-caption">② エリアごとの個別ON/OFF<br>ベルアイコンで切り替え</div>
+                </div>
+            </div>
+
+            <table class="compare-table" style="margin-top:16px;">
+                <tr>
+                    <th>設定レベル</th>
+                    <th>場所</th>
+                    <th>デフォルト</th>
+                </tr>
+                <tr>
+                    <td>全体</td>
+                    <td>メニュー → 通知設定<br>「エリア通知」スイッチ</td>
+                    <td><span style="font-size:1.2em;color:var(--success);">◯</span><br><span style="font-size:0.8em;">ON</span></td>
+                </tr>
+                <tr>
+                    <td>エリア個別</td>
+                    <td>通知エリアタブの一覧<br>各エリアのベルアイコン</td>
+                    <td><span style="font-size:1.2em;color:var(--success);">◯</span><br><span style="font-size:0.8em;">ON（対象メンバーがいれば）</span></td>
+                </tr>
+            </table>
+
+            <div class="hint">
+                <strong>通知を一時的に止めたいとき</strong><br>
+                「通知設定」の「エリア通知」をOFFにすれば、すべてのエリア通知が一括で止まります。<br>
+                特定のエリアだけ止めたい場合は、エリア一覧のベルアイコンをタップして個別にOFFにできます。
+            </div>
+        </div>
+
+        <!-- タイプB -->
+        <div id="typeB" class="tab-content">
+
+            <div class="hint warn">
+                <strong>各メンバーの端末で共有レベルを変更する必要があります。</strong>
+                初期設定は「通知エリアのみ」なので、地図で位置を見るには「すべて共有」に切り替えます。
+            </div>
+
+            <h3 style="font-size: 1rem; margin: 20px 0 12px; color: var(--accent);">共有レベルの変更（3台それぞれで操作）</h3>
+
+            <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:16px;">
+                お母さんが3台を手元に集めて、1台ずつ操作します。
+            </p>
+
+            <div class="device-section mama-section">
+                <h3>👩 お母さんのスマホ</h3>
+                <ol class="steps-list">
+                    <li><strong>右上のメニュー（⋮）→「共有設定」</strong></li>
+                    <li><strong>「すべて共有」を選択して保存</strong></li>
+                </ol>
+            </div>
+
+            <div class="device-section papa-section">
+                <h3>👨 お父さんのスマホ</h3>
+                <ol class="steps-list">
+                    <li><strong>右上のメニュー（⋮）→「共有設定」</strong></li>
+                    <li><strong>「すべて共有」を選択して保存</strong></li>
+                </ol>
+            </div>
+
+            <div class="device-section child-section">
+                <h3>👧 お子さんのスマホ</h3>
+                <ol class="steps-list">
+                    <li><strong>右上のメニュー（⋮）→「共有設定」</strong></li>
+                    <li><strong>「すべて共有」を選択して保存</strong></li>
+                </ol>
+            </div>
+
+            <!-- 共有レベル変更のスクリーンショット -->
+            <div class="screenshot-container" style="margin-top: 20px;">
+                <div class="screenshot-label">
+                    <div class="phone-frame">
+                        <img src="screenshots/mock_11_sharing_detailed.png" alt="すべて共有を選択" loading="lazy">
+                    </div>
+                    <div class="screenshot-caption">ウィザードで「すべて共有」を選択</div>
+                </div>
+                <div class="screenshot-arrow">or</div>
+                <div class="screenshot-label">
+                    <div class="phone-frame">
+                        <img src="screenshots/mock_12_sharing_settings.png" alt="共有設定画面" loading="lazy">
+                    </div>
+                    <div class="screenshot-caption">設定画面からも変更可能</div>
+                </div>
+            </div>
+
+            <div class="hint">
+                <strong>共有レベルは各メンバーが自分で変更できます。</strong><br>
+                お子さんが大きくなったら、自分で「通知エリアのみ」に戻すこともできます。<br>
+                プライバシーのコントロールは、あくまで各自の手に委ねられます。
+            </div>
+
+            <h3 style="font-size: 1rem; margin: 24px 0 12px; color: var(--accent);">通知エリアの設定</h3>
+            <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:12px;">
+                タイプBでも通知エリアは設定できます。設定方法はタイプAと同じです。
+            </p>
+            <div class="device-section mama-section">
+                <h3>👩 お母さんのスマホで設定</h3>
+                <ol class="steps-list">
+                    <li><strong>画面下の「通知エリア」タブをタップ</strong></li>
+                    <li><strong>場所をタップ → エリア名・半径を設定</strong></li>
+                    <li><strong>通知対象メンバーを選択</strong></li>
+                </ol>
+            </div>
+
+            <div class="hint">
+                <strong>通知のON/OFF設定について</strong><br>
+                エリア通知は初期設定でONです。<br>
+                全体のON/OFFはメニュー → 通知設定、<br>
+                エリア個別のON/OFFは通知エリア一覧のベルアイコンから変更できます。<br>
+                詳しくはタイプAの「通知のON/OFF設定について」をご覧ください。
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goSection('step5')">← STEP 5</button>
+            <button class="nav-btn next" onclick="goSection('complete')">完了! →</button>
+        </div>
+    </section>
+
+    <!-- ===== 完了 ===== -->
+    <section class="section" id="complete">
+        <span class="section-badge" style="background: var(--success);">COMPLETE</span>
+        <h2>セットアップ完了!</h2>
+        <p class="lead">お疲れさまでした。これで3人家族のKiniaセットアップは完了です。</p>
+
+        <!-- 完成後のイメージ -->
+        <div class="screenshot-single" style="margin: 24px 0;">
+            <div class="screenshot-label">
+                <div class="phone-frame" style="max-width: 260px;">
+                    <img src="screenshots/mock_14_map_complete.png" alt="完成後のマップ画面" loading="lazy">
+                </div>
+                <div class="screenshot-caption">セットアップ完了後のイメージ<br>（タイプB: すべて共有の場合）</div>
+            </div>
+        </div>
+
+        <h3 style="font-size: 1rem; margin: 24px 0 12px;">セットアップ確認チェックリスト</h3>
+        <ul class="checklist">
+            <li>3台すべてにKiniaがインストールされている</li>
+            <li>3人全員がグループに参加している（メンバー一覧で確認）</li>
+            <li>3台すべてで「バックグラウンド位置情報」が「常に許可」になっている</li>
+            <li>3台すべてで「省電力の除外」が設定されている</li>
+            <li>通知エリア「自宅」が設定されている</li>
+            <li>（タイプBの場合）3台すべてで共有レベルが「すべて共有」になっている</li>
+        </ul>
+
+        <div class="hint success">
+            <strong>位置の反映には少し時間がかかります。</strong>
+            セットアップ直後はまだ位置情報が送信されていない場合があります。<br>
+            各端末でアプリを開いた状態で少し歩いてみると、1〜2分で位置が反映されます。
+        </div>
+
+        <h3 style="font-size: 1rem; margin: 28px 0 12px;">よくあるトラブル</h3>
+
+        <div class="device-section" style="border-left-color: var(--accent-warm);">
+            <h3 style="color: var(--accent-warm);">位置が更新されない場合</h3>
+            <ol class="steps-list">
+                <li>
+                    <strong>「バックグラウンド位置情報」が「常に許可」になっているか確認</strong>
+                    <div class="sub">Androidの設定 → アプリ → Kinia → 位置情報 で確認できます</div>
+                </li>
+                <li>
+                    <strong>省電力モードがオンになっていないか確認</strong>
+                    <div class="sub">一部の端末では省電力モードがアプリの動作を制限します</div>
+                </li>
+                <li>
+                    <strong>アプリ内の「更新」ボタンをタップ</strong>
+                    <div class="sub">手動で最新の位置を取得します</div>
+                </li>
+            </ol>
+        </div>
+
+        <div class="device-section" style="border-left-color: var(--accent-warm); margin-top:12px;">
+            <h3 style="color: var(--accent-warm);">通知エリアの通知が届かない場合</h3>
+            <ol class="steps-list">
+                <li>
+                    <strong>「通知」権限が許可されているか確認</strong>
+                    <div class="sub">Android 13以降は通知の許可が別途必要です</div>
+                </li>
+                <li>
+                    <strong>通知エリアの半径が小さすぎないか確認</strong>
+                    <div class="sub">GPSの精度を考慮して、100m以上に設定するのがおすすめです</div>
+                </li>
+            </ol>
+        </div>
+
+        <div style="margin-top: 32px; padding: 24px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border); text-align: center;">
+            <p style="margin-bottom: 12px;">さらに詳しい使い方や設定は</p>
+            <a href="/setup.html" class="nav-btn next" style="display: inline-flex; text-decoration: none;">はじめかたガイド（詳細版）を見る</a>
+            <p style="margin-top: 12px;"><a href="/faq.html">よくある質問（FAQ）</a> もあわせてご覧ください。</p>
+        </div>
+
+        <div style="margin-top: 20px; padding: 20px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border);">
+            <h3 style="font-size: 1rem; margin-bottom: 8px;">解決しない場合</h3>
+            <p style="color: var(--text-sub); font-size: 0.9rem;">
+                <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a> までご連絡ください。<br>
+                端末名・Androidバージョン・Kiniaバージョン・症状の詳細を添えていただくとスムーズです。
+            </p>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn prev" onclick="goSection('step6')">← STEP 6</button>
+        </div>
+    </section>
+
+</main>
+
+<!-- フッター -->
+<div class="footer-links">
+    <a href="/setup.html">はじめかたガイド</a>
+    <a href="/faq.html">よくある質問</a>
+    <a href="/parents.html">お子さんを持つご家庭の方へ</a>
+    <a href="/privacy.html">プライバシーポリシー</a>
+    <a href="/safety.html">安全性について</a>
+    <a href="/delete-account.html">アカウント削除</a>
+</div>
+<div class="contact">
+    <p>お問い合わせ: <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a></p>
+    <p style="margin-top:8px;">&copy; 2026 Kinia</p>
+</div>
+
+<script>
+const SECTIONS = ['flowchart', 'setup-overview', 'step1', 'step2', 'step3', 'step4', 'step5', 'step6', 'complete'];
+
+function goSection(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function switchTab(tabId, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    btn.classList.add('active');
+}
+
+// プログレスバー + サイドナビ更新
+function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    document.getElementById('progressFill').style.width = progress + '%';
+
+    // サイドナビのアクティブ状態を更新
+    const navLinks = document.querySelectorAll('#sideNav a');
+    let activeIndex = -1;
+    SECTIONS.forEach(function(id, i) {
+        const el = document.getElementById(id);
+        if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 200) activeIndex = i;
+        }
+    });
+    navLinks.forEach(function(link, i) {
+        link.classList.remove('active', 'done');
+        if (i === activeIndex) {
+            link.classList.add('active');
+        } else if (i < activeIndex) {
+            link.classList.add('done');
+        }
+    });
+}
+window.addEventListener('scroll', updateProgress);
+updateProgress();
+
+// ドロップダウン閉じる
+document.addEventListener('click', function(e) {
+    document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
+        if (!d.contains(e.target)) d.classList.remove('open');
+    });
+});
+</script>
+
+</body>
+</html>
