@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>データの安全性 — Kinia</title>
+    <meta name="description" content="Kiniaが位置情報やプライバシーをどのように保護しているか。技術的な仕組みと運営方針をわかりやすく説明します。">
+    <style>
+        ruby rt { font-size: 0.55em; }
+        :root {
+            --bg: #12121F;
+            --bg-alt: #161628;
+            --surface: #1E1E30;
+            --surface2: #282840;
+            --text: #E8E4F0;
+            --text-sub: #B0AAC2;
+            --text-dim: #7A7490;
+            --primary: #7C8EF2;
+            --accent: #4CC9F0;
+            --accent-warm: #F4A261;
+            --border: #3D3855;
+            --safe: #4ADE80;
+            --warn: #FBBF24;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 2.0;
+            font-size: 16px;
+        }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ── ナビゲーション ── */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(18, 18, 31, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        nav .brand { font-size: 1.2rem; font-weight: 700; color: var(--primary); text-decoration: none; }
+        nav .nav-links { display: flex; gap: 20px; font-size: 0.95rem; }
+        nav .nav-links a { color: var(--text-sub); }
+        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
+
+        /* ── メインコンテンツ ── */
+        .content {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+
+        h1 {
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            color: var(--primary);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        .subtitle {
+            color: var(--text-sub);
+            margin-bottom: 48px;
+            font-size: 0.95rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin-top: 56px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            font-size: 1.05rem;
+            color: var(--accent-warm);
+            margin-top: 24px;
+            margin-bottom: 8px;
+        }
+        p {
+            margin-bottom: 16px;
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            line-height: 2.0;
+        }
+        p strong { color: var(--text); }
+
+        /* ── QAカード ── */
+        .qa-section { margin: 24px 0; }
+        .qa-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        .qa-card .concern {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .qa-card .concern-icon {
+            flex-shrink: 0;
+            width: 36px; height: 36px;
+            background: rgba(242, 114, 106, 0.12);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+        .qa-card .concern-text {
+            font-size: 1rem;
+            color: var(--text);
+            font-weight: 600;
+            line-height: 1.7;
+        }
+        .qa-card .response p { margin-bottom: 12px; }
+        .qa-card .response p:last-child { margin-bottom: 0; }
+
+        .tech-detail {
+            background: var(--surface2);
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 12px 0;
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            border-left: 3px solid var(--primary);
+            line-height: 1.9;
+        }
+        .tech-detail strong { color: var(--text-sub); }
+
+        /* ── まとめチェックリスト ── */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .summary-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+        }
+        .summary-item .icon {
+            flex-shrink: 0;
+            font-size: 1.3rem;
+            margin-top: 2px;
+        }
+        .summary-item .label { font-size: 0.9rem; color: var(--text-sub); line-height: 1.7; }
+        .summary-item .label strong { color: var(--text); }
+
+        /* ── ポリシーボックス ── */
+        .policy-box {
+            background: rgba(76, 201, 240, 0.06);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 28px;
+            margin: 24px 0;
+        }
+        .policy-box h3 { color: var(--accent); margin-top: 0; }
+        .policy-box p { margin-bottom: 10px; }
+        .policy-box p:last-child { margin-bottom: 0; }
+        .policy-box ul { padding-left: 24px; margin: 8px 0; }
+        .policy-box li { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 4px; line-height: 1.8; }
+
+        /* ── 比較テーブル ── */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 0.9rem;
+        }
+        .compare-table th, .compare-table td {
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+        .compare-table th {
+            background: var(--surface2);
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .compare-table td { background: var(--surface); color: var(--text-sub); }
+        .compare-table .yes { color: var(--safe); font-weight: 600; }
+        .compare-table .no { color: var(--text-dim); }
+
+        /* ── 関連ページリスト ── */
+        .related-links { list-style: none; padding: 0; }
+        .related-links li { padding: 6px 0; font-size: 0.95rem; }
+        .related-links li span { color: var(--text-dim); margin-left: 4px; }
+
+        /* ── フッター ── */
+        .footer-links {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 16px; padding: 48px 24px 16px;
+            border-top: 1px solid var(--border); font-size: 0.95rem;
+        }
+        .footer-links a { color: var(--text-sub); }
+        .footer-copy { text-align: center; padding: 16px 24px 48px; font-size: 0.88rem; color: var(--text-dim); }
+
+        /* ── レスポンシブ ── */
+        @media (max-width: 640px) {
+            .content { padding: 32px 18px 64px; }
+            .qa-card { padding: 20px 18px; }
+            .summary-grid { grid-template-columns: 1fr; }
+            .compare-table { font-size: 0.82rem; }
+            .compare-table th, .compare-table td { padding: 8px 10px; }
+            .policy-box { padding: 20px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" class="brand"><ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby></a>
+    <div class="nav-links">
+        <a href="/#difference">特徴</a>
+        <a href="/#security">安全性</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/#contact">お問い合わせ</a>
+    </div>
+</nav>
+
+<main class="content">
+
+    <h1>データの安全性について</h1>
+    <p class="subtitle">「位置情報を預けて大丈夫？」という疑問に、<ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>がどう向き合っているかを説明します。技術的な対策、運営方針、そして正直にお伝えすべき限界について、できるだけ分かりやすくまとめました。</p>
+
+    <!-- ═══════════════════════════════════════
+         セクション1: よくある懸念と対応
+         ═══════════════════════════════════════ -->
+    <h2>よくある懸念と、Kiniaの対応</h2>
+
+    <div class="qa-section">
+
+        <!-- Q1 -->
+        <div class="qa-card">
+            <div class="concern">
+                <div class="concern-icon">😟</div>
+                <div class="concern-text">サーバーに位置情報がそのまま保存されて、運営に見られるのでは？</div>
+            </div>
+            <div class="response">
+                <p><strong>Kiniaでは、位置情報はサーバーに送信される前に暗号化されます。</strong>暗号化の鍵は、グループ作成時に設定した「合言葉」から生成されます。この合言葉はサーバーに送信・保存されないため、運営を含め誰もサーバー上の位置データを復元することができません。</p>
+                <div class="tech-detail">
+                    <strong>技術的な仕組み:</strong> 合言葉からHMAC-SHA256で座標オフセットを導出し、すべての緯度・経度をシフトして保存します。サーバー上のデータは実際の位置から数百km離れた座標になっており、合言葉を知らなければ元の位置を復元できません。
+                </div>
+                <p>万が一データベースが流出しても、そこにあるのは意味のない数値の羅列です。</p>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="qa-card">
+            <div class="concern">
+                <div class="concern-icon">😟</div>
+                <div class="concern-text">名前やアカウント情報と位置データが紐づいているのでは？</div>
+            </div>
+            <div class="response">
+                <p><strong>サーバー上に個人名は保存されていません。</strong>各ユーザーにはランダムなID（UUID）が割り当てられ、サーバーにはこのIDだけが記録されます。「お母さん」「パパ」といった表示名は、家族それぞれの端末にだけ保存されます。</p>
+                <p>グループの識別にも、合言葉そのものではなく一方向ハッシュ（SHA-256）を使用しているため、サーバー上のデータからグループの合言葉を逆算することもできません。</p>
+                <div class="tech-detail">
+                    <strong>つまり:</strong> サーバーに保存されているのは「ランダムID＋暗号化された座標＋ハッシュ化されたグループID」だけです。これらを組み合わせても、誰がどこにいるかは分かりません。
+                </div>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="qa-card">
+            <div class="concern">
+                <div class="concern-icon">😟</div>
+                <div class="concern-text">家族に常時監視されるのが嫌。自分でコントロールできる？</div>
+            </div>
+            <div class="response">
+                <p><strong>共有する情報は自分で選べます。</strong>Kiniaには2段階の共有レベルがあり、初期設定では「通知エリアのみ」になっています。</p>
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>情報</th>
+                            <th>通知エリアのみ（初期設定）</th>
+                            <th>すべて共有</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>通知エリアのIN/OUT</td><td class="yes">共有</td><td class="yes">共有</td></tr>
+                        <tr><td>歩数・元気度</td><td class="yes">共有</td><td class="yes">共有</td></tr>
+                        <tr><td>バッテリー残量</td><td class="yes">共有</td><td class="yes">共有</td></tr>
+                        <tr><td>地図上の現在地</td><td class="no">非共有</td><td class="yes">共有</td></tr>
+                        <tr><td>移動の軌跡</td><td class="no">非共有</td><td class="yes">共有</td></tr>
+                        <tr><td>活動状態・速度</td><td class="no">非共有</td><td class="yes">共有</td></tr>
+                    </tbody>
+                </table>
+                <p>さらに、メンバーごとに共有レベルを個別に設定できます。「お母さんにはすべて共有、子どもには通知エリアだけ」といった使い分けが可能です。</p>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="qa-card">
+            <div class="concern">
+                <div class="concern-icon">😟</div>
+                <div class="concern-text">位置データがいつまでもサーバーに残り続けるのでは？</div>
+            </div>
+            <div class="response">
+                <p><strong>位置履歴は最大7日間で自動削除されます。</strong>古いデータを保持し続けることはありません。サーバー側で自動的に処理されます。</p>
+                <p>また、アプリ内の「アカウント削除」機能を使えば、サーバー上のすべてのデータ（位置履歴・グループ情報・認証情報）と端末上のデータを即座に完全削除できます。</p>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="qa-card">
+            <div class="concern">
+                <div class="concern-icon">😟</div>
+                <div class="concern-text">第三者が勝手にデータを見られるのでは？</div>
+            </div>
+            <div class="response">
+                <p><strong>Google認証で保護されています。</strong>データへのアクセスにはGoogleアカウントによるログインが必要です。ログインしていない第三者はデータベースにアクセスできません。</p>
+                <p>グループへの参加も、既存メンバーが発行する<strong>招待コード</strong>（72時間で自動失効）を使う方式です。招待なしに他人のグループに入ることはできません。</p>
+                <p>通信はすべてTLS/SSLで暗号化されており、途中で傍受されることもありません。</p>
+            </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="qa-card">
+            <div class="concern">
+                <div class="concern-icon">😟</div>
+                <div class="concern-text">位置データが広告や第三者に売られるのでは？</div>
+            </div>
+            <div class="response">
+                <p><strong>データの販売・第三者提供は一切行いません。</strong>広告IDも収集していません。アプリの品質改善のための利用状況データ（画面表示回数など）はGoogle Analyticsで取得していますが、位置情報とは紐づきません。</p>
+                <p>そもそも、前述のとおり位置データは暗号化されているため、仮に提供しようとしても運営側に復元する手段がありません。</p>
+            </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="qa-card">
+            <div class="concern">
+                <div class="concern-icon">😟</div>
+                <div class="concern-text">アプリをやめたくなった時、データはちゃんと消せる？</div>
+            </div>
+            <div class="response">
+                <p><strong>アプリ内からワンタップで完全削除できます。</strong>「グループ管理」画面の「アカウントを削除」から実行すると、以下がすべて削除されます:</p>
+                <ul style="padding-left: 24px; margin: 8px 0 16px;">
+                    <li style="color: var(--text-sub); margin-bottom: 4px;">サーバー上の位置履歴</li>
+                    <li style="color: var(--text-sub); margin-bottom: 4px;">グループ内のユーザー情報</li>
+                    <li style="color: var(--text-sub); margin-bottom: 4px;">Firebase認証情報</li>
+                    <li style="color: var(--text-sub); margin-bottom: 4px;">端末上のローカルデータ</li>
+                </ul>
+                <p>アプリにログインできなくなった場合など、アプリ内から削除操作ができない場合は、<a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a>からの削除依頼にも対応しています。</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         セクション2: セキュリティ対策の一覧
+         ═══════════════════════════════════════ -->
+    <h2>Kiniaのセキュリティ対策</h2>
+
+    <div class="summary-grid">
+        <div class="summary-item">
+            <span class="icon">🔐</span>
+            <div class="label"><strong>座標の暗号化</strong><br>合言葉ベースの暗号化で、サーバー上に実座標を保存しない</div>
+        </div>
+        <div class="summary-item">
+            <span class="icon">🔑</span>
+            <div class="label"><strong>鍵の端末保持</strong><br>暗号化の鍵（合言葉）はサーバーに送信されず、端末内にのみ保持</div>
+        </div>
+        <div class="summary-item">
+            <span class="icon">👤</span>
+            <div class="label"><strong>UUID匿名化</strong><br>サーバー上に個人名は保存されない。ランダムIDのみで識別</div>
+        </div>
+        <div class="summary-item">
+            <span class="icon">#️⃣</span>
+            <div class="label"><strong>グループIDハッシュ化</strong><br>合言葉はSHA-256で一方向変換。逆算は不可能</div>
+        </div>
+        <div class="summary-item">
+            <span class="icon">🔒</span>
+            <div class="label"><strong>Google認証</strong><br>Firebase Authenticationによるアクセス制御。未認証者はデータに触れられない</div>
+        </div>
+        <div class="summary-item">
+            <span class="icon">📡</span>
+            <div class="label"><strong>通信の暗号化</strong><br>すべてのデータ送受信はTLS/SSLで保護</div>
+        </div>
+        <div class="summary-item">
+            <span class="icon">🗑️</span>
+            <div class="label"><strong>自動削除</strong><br>位置履歴は7日間で自動消去。不要なデータを持ち続けない</div>
+        </div>
+        <div class="summary-item">
+            <span class="icon">🎟️</span>
+            <div class="label"><strong>招待コード制</strong><br>グループ参加は招待コード必須。72時間で自動失効</div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         セクション3: 正直にお伝えすること
+         ═══════════════════════════════════════ -->
+    <h2>正直にお伝えしたいこと</h2>
+
+    <p>Kiniaは安全性に真剣に取り組んでいますが、すべてのリスクをゼロにできるわけではありません。以下の点について、私たちの方針を明記します。</p>
+
+    <div class="policy-box">
+        <h3>Google / Firebaseへの依存</h3>
+        <p>Kiniaのデータは、Googleが運営するFirebase（Cloud Firestore）に保存されています。Googleのインフラは高いセキュリティ水準を備えていますが、データの物理的な保管場所やインフラレベルのセキュリティはGoogleのセキュリティポリシーに準拠します。</p>
+        <p>ただし、前述のとおり<strong>サーバー上の位置データは暗号化されている</strong>ため、仮にインフラレベルでの侵害が発生しても、実際の座標を復元するには各グループの合言葉が必要です。</p>
+    </div>
+
+    <div class="policy-box">
+        <h3>法令に基づく情報開示</h3>
+        <p>法令に基づく開示請求（裁判所の命令等）があった場合、保有するデータを開示する義務があります。ただし、開示できるデータは暗号化された座標とランダムIDのみであり、<strong>個人の特定や実際の位置の復元は運営側にはできません。</strong></p>
+    </div>
+
+    <div class="policy-box">
+        <h3>端末側のセキュリティ</h3>
+        <p>端末がマルウェアに感染している場合や、端末のロックが解除された状態で第三者に操作された場合、アプリ内の情報が閲覧される可能性があります。これはすべてのアプリに共通するリスクです。</p>
+        <p><strong>推奨:</strong> 端末のロック設定（指紋認証・PIN等）を有効にしてご利用ください。</p>
+    </div>
+
+    <div class="policy-box">
+        <h3>合言葉の管理</h3>
+        <p>合言葉は暗号化の鍵を兼ねています。合言葉が第三者に知られた場合、そのグループの位置データが復元可能になるリスクがあります。</p>
+        <p><strong>推奨:</strong> 推測されにくいフレーズを合言葉に設定し、家族以外には共有しないでください。</p>
+    </div>
+
+    <div class="policy-box">
+        <h3>個人開発であること</h3>
+        <p>Kiniaは個人開発のアプリです。大企業のような専任のセキュリティチームや第三者監査は現時点では受けていません。その代わり、「<strong>そもそも個人情報を持たない</strong>」設計を徹底することで、万が一のリスクを最小化しています。</p>
+        <ul>
+            <li>個人名を保存しない → 名前の漏洩がありえない</li>
+            <li>座標を暗号化 → 位置の漏洩が実質不可能</li>
+            <li>合言葉をサーバーに送らない → 鍵の漏洩がありえない</li>
+        </ul>
+        <p>「持たない」ことが、最も誠実なセキュリティだと考えています。</p>
+    </div>
+
+    <div class="policy-box" style="background: rgba(255,255,255,0.03);">
+        <h3>免責事項</h3>
+        <p>Kiniaは、本ページに記載した技術的・運用的対策を通じてデータの安全性に最大限努めていますが、インターネットを介したデータ通信・保存において、完全な安全性を保証することはできません。</p>
+        <p>第三者による不正アクセス、利用しているインフラサービスの障害、その他予期しない事象によってデータの漏洩・消失・改ざん等が発生した場合、開発者は合理的な範囲で対応いたしますが、<strong>それによって生じた損害について、法令上許容される最大限の範囲で責任を負いかねます。</strong></p>
+        <p>本アプリのご利用は、ユーザーご自身の判断と責任のもとで行っていただきますようお願いいたします。</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         セクション4: 他のアプリとの比較
+         ═══════════════════════════════════════ -->
+    <h2>一般的な位置共有アプリとの違い</h2>
+
+    <table class="compare-table">
+        <thead>
+            <tr>
+                <th>項目</th>
+                <th>一般的なアプリ</th>
+                <th>Kinia</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>サーバー上の位置データ</td>
+                <td>平文（そのまま保存）</td>
+                <td class="yes">暗号化して保存</td>
+            </tr>
+            <tr>
+                <td>運営が位置を見られるか</td>
+                <td>見られる</td>
+                <td class="yes">見られない</td>
+            </tr>
+            <tr>
+                <td>個人名のサーバー保存</td>
+                <td>保存される</td>
+                <td class="yes">保存しない（端末のみ）</td>
+            </tr>
+            <tr>
+                <td>初期の共有レベル</td>
+                <td>全情報を共有</td>
+                <td class="yes">通知エリアのみ（最小限）</td>
+            </tr>
+            <tr>
+                <td>位置データの保持期間</td>
+                <td>無期限〜数ヶ月</td>
+                <td class="yes">7日間で自動削除</td>
+            </tr>
+            <tr>
+                <td>広告・データ販売</td>
+                <td>あり（一部アプリ）</td>
+                <td class="yes">なし</td>
+            </tr>
+        </tbody>
+    </table>
+    <p style="font-size: 0.85rem; color: var(--text-dim);">※「一般的なアプリ」は、位置共有アプリ全般の傾向を示しています。個別のアプリについて断言するものではありません。</p>
+
+    <!-- ═══════════════════════════════════════
+         関連ページ
+         ═══════════════════════════════════════ -->
+    <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--border);">
+        <h2 style="border: none; margin-top: 0; padding-bottom: 0;">関連ページ</h2>
+        <ul class="related-links">
+            <li><a href="/privacy.html">プライバシーポリシー</a> <span>— 収集するデータの詳細と利用目的</span></li>
+            <li><a href="/delete-account.html">アカウント削除</a> <span>— データの完全削除の手順</span></li>
+            <li><a href="/safety.html">安否確認機能について</a> <span>— 非常時の安否確認と位置情報の扱い</span></li>
+            <li><a href="/faq.html">よくある質問</a></li>
+        </ul>
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align: center; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border);">
+        <p style="font-size: 1rem; color: var(--text); margin-bottom: 16px;">ご質問やご不明点があればお気軽にどうぞ</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+            <a href="https://forms.gle/qTc8UjzWVMFpx76o8" style="display: inline-block; background: var(--primary); color: #fff; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none;">お問い合わせフォーム</a>
+            <a href="/faq.html" style="display: inline-block; background: var(--surface); color: var(--text-sub); padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border);">よくある質問を見る</a>
+        </div>
+    </div>
+
+</main>
+
+<div class="footer-links">
+    <a href="/">トップページ</a>
+    <a href="/setup.html">はじめかたガイド</a>
+    <a href="/faq.html">よくある質問</a>
+    <a href="/beta-test.html">テスター募集</a>
+    <a href="/privacy.html">プライバシーポリシー</a>
+    <a href="/delete-account.html">アカウント削除</a>
+</div>
+<div class="footer-copy">
+    <p>&copy; 2026 Kinia</p>
+</div>
+
+</body>
+</html>
