@@ -44,6 +44,13 @@
         nav .nav-links { display: flex; gap: 20px; font-size: 0.9rem; flex-wrap: wrap; }
         nav .nav-links a { color: var(--text-sub); }
         nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-toggle { background: none; border: none; color: var(--text-sub); font-size: 0.9rem; cursor: pointer; padding: 0; font-family: inherit; }
+        .nav-dropdown-toggle:hover { color: var(--primary); }
+        .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 10px); right: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 0; min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 200; }
+        .nav-dropdown.open .nav-dropdown-menu { display: block; }
+        .nav-dropdown-menu a { display: block; padding: 10px 20px; color: var(--text-sub); font-size: 0.9rem; white-space: nowrap; }
+        .nav-dropdown-menu a:hover { background: var(--surface2); color: var(--text); text-decoration: none; }
 
         /* ── プログレスバー ── */
         .progress-bar { height: 3px; background: var(--border); position: sticky; top: 49px; z-index: 99; }
@@ -296,8 +303,19 @@
     <a href="/" class="brand" style="text-decoration:none;">Kinia</a>
     <div class="nav-links">
         <a href="/#features">機能</a>
-        <a href="/setup.html">はじめかた</a>
         <a href="/faq.html">FAQ</a>
+        <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open');event.stopPropagation();">ガイド ▾</button>
+            <div class="nav-dropdown-menu">
+                <a href="/setup.html">はじめかたガイド</a>
+                <a href="/guide-family-basic.html">3人家族セットアップ</a>
+                <a href="/guide-join.html" style="font-weight:600;color:var(--accent);">招待された方へ</a>
+                <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+                <a href="/senior.html">高齢のご家族がいる方へ</a>
+                <a href="/parents.html">お子さんを持つご家庭の方へ</a>
+                <a href="/students.html">学生の方へ</a>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -558,7 +576,7 @@
         <div style="margin-top: 24px; padding: 20px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border);">
             <h3 style="font-size: 1rem; margin-bottom: 8px;">解決しない場合</h3>
             <p style="color: var(--text-sub); font-size: 0.9rem;">
-                <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a> までご連絡ください。<br>
+                <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a> からご連絡ください。<br>
                 端末名・Androidバージョン・症状を添えていただくとスムーズです。
             </p>
         </div>
@@ -568,15 +586,16 @@
 
 <!-- フッター -->
 <div class="footer-links">
-    <a href="/setup.html">はじめかたガイド</a>
+    <a href="/setup.html">はじめかた</a>
+    <a href="/guide-family-basic.html">3人家族ガイド</a>
+    <a href="/guide-join.html">招待された方へ</a>
     <a href="/faq.html">よくある質問</a>
-    <a href="/guide-family-basic.html">3人家族セットアップガイド</a>
-    <a href="/privacy.html">プライバシーポリシー</a>
-    <a href="/safety.html">安全性について</a>
+    <a href="/safety.html">安全性</a>
+    <a href="/privacy.html">プライバシー</a>
     <a href="/delete-account.html">アカウント削除</a>
 </div>
 <div class="contact">
-    <p>お問い合わせ: <a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a></p>
+    <p>お困りですか？ <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a></p>
     <p style="margin-top:8px;">&copy; 2026 Kinia</p>
 </div>
 
@@ -589,6 +608,11 @@ function updateProgress() {
 }
 window.addEventListener('scroll', updateProgress);
 updateProgress();
+document.addEventListener('click', function(e) {
+    document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
+        if (!d.contains(e.target)) d.classList.remove('open');
+    });
+});
 </script>
 
 </body>
