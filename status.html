@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XCT32M2MZV');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>開発状況 — Kinia（キニア）</title>
+    <meta name="description" content="Kinia（キニア）のAndroid / iOS 開発状況をリアルタイムで公開しています。">
+    <style>
+        :root {
+            --bg: #12121F;
+            --bg-alt: #161628;
+            --surface: #1E1E30;
+            --surface2: #282840;
+            --text: #E8E4F0;
+            --text-sub: #B0AAC2;
+            --text-dim: #7A7490;
+            --primary: #7C8EF2;
+            --primary-dim: #5A6AD4;
+            --accent: #4CC9F0;
+            --accent-warm: #F4A261;
+            --border: #3D3855;
+            --green: #34D399;
+            --green-dim: rgba(52, 211, 153, 0.15);
+            --yellow: #FBBF24;
+            --yellow-dim: rgba(251, 191, 36, 0.15);
+            --red: #F87171;
+            --red-dim: rgba(248, 113, 113, 0.15);
+            --gray: #6B7280;
+            --gray-dim: rgba(107, 114, 128, 0.15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.75;
+            overflow-x: hidden;
+            font-size: 16px;
+        }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ── ナビゲーション ── */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(18, 18, 31, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        nav .brand {
+            font-size: 1.2rem; font-weight: 700; color: var(--primary);
+            letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; text-decoration: none;
+        }
+        nav .brand img { width: 28px; height: 28px; border-radius: 6px; }
+        nav .nav-links { display: flex; gap: 20px; font-size: 0.95rem; }
+        nav .nav-links a { color: var(--text-sub); transition: color 0.2s; }
+        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
+
+        /* ── メイン ── */
+        .container { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .page-header h1 {
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .page-header p {
+            color: var(--text-sub);
+            font-size: 1rem;
+        }
+        .last-updated {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            background: var(--surface);
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        /* ── サマリーカード ── */
+        .summary-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .summary-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .summary-card .label {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 4px;
+        }
+        .summary-card .value {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        .summary-card .sub {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+        .summary-card.android .value { color: var(--green); }
+        .summary-card.ios .value { color: var(--accent); }
+        .summary-card.progress .value { color: var(--accent-warm); }
+
+        /* ── プラットフォームタブ ── */
+        .platform-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .platform-tab {
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-sub);
+            transition: all 0.2s;
+        }
+        .platform-tab:hover { border-color: var(--primary-dim); color: var(--text); }
+        .platform-tab.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        /* ── セクション ── */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .icon { font-size: 1.1rem; }
+
+        /* ── テーブル ── */
+        .feature-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 32px;
+            background: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .feature-table thead th {
+            background: var(--surface2);
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .feature-table tbody td {
+            padding: 12px 16px;
+            border-top: 1px solid var(--border);
+            font-size: 0.95rem;
+            vertical-align: middle;
+        }
+        .feature-table tbody tr:hover {
+            background: rgba(124, 142, 242, 0.05);
+        }
+        .feature-name {
+            font-weight: 600;
+        }
+        .feature-desc {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+
+        /* ── ステータスバッジ ── */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .badge-done { background: var(--green-dim); color: var(--green); }
+        .badge-wip { background: var(--yellow-dim); color: var(--yellow); }
+        .badge-planned { background: var(--gray-dim); color: var(--gray); }
+        .badge-later { background: var(--red-dim); color: var(--red); }
+        .badge-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            display: inline-block; flex-shrink: 0;
+        }
+        .badge-done .badge-dot { background: var(--green); }
+        .badge-wip .badge-dot { background: var(--yellow); }
+        .badge-planned .badge-dot { background: var(--gray); }
+        .badge-later .badge-dot { background: var(--red); }
+
+        /* ── プログレスバー ── */
+        .progress-bar-wrap {
+            background: var(--surface2);
+            border-radius: 6px;
+            height: 8px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+        .progress-bar {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.6s ease;
+        }
+        .progress-bar.android { background: linear-gradient(90deg, var(--green), #6EE7B7); }
+        .progress-bar.ios { background: linear-gradient(90deg, var(--accent), #93E8FA); }
+
+        /* ── ロードマップ ── */
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .roadmap-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .roadmap-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+        }
+        .roadmap-card.phase-current::before { background: var(--accent); }
+        .roadmap-card.phase-next::before { background: var(--accent-warm); }
+        .roadmap-card.phase-future::before { background: var(--text-dim); }
+        .roadmap-card h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .roadmap-card .phase-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            margin-bottom: 4px;
+        }
+        .roadmap-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .roadmap-card li {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            padding: 3px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+        .roadmap-card li::before {
+            content: ''; position: absolute; left: 0; top: 11px;
+            width: 6px; height: 6px; border-radius: 50%; background: var(--border);
+        }
+
+        /* ── 凡例 ── */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding: 16px 20px;
+            background: var(--surface);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-sub);
+        }
+
+        /* ── フッター ── */
+        footer {
+            text-align: center;
+            padding: 32px 24px;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+        footer a { color: var(--text-sub); }
+
+        /* ── レスポンシブ ── */
+        @media (max-width: 600px) {
+            .feature-table { font-size: 0.85rem; }
+            .feature-table thead th,
+            .feature-table tbody td { padding: 10px 10px; }
+            .summary-row { grid-template-columns: 1fr 1fr; }
+            nav .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" class="brand">
+        <img src="images/icon_192.png" alt="Kinia" onerror="this.style.display='none'">
+        Kinia
+    </a>
+    <div class="nav-links">
+        <a href="/">TOP</a>
+        <a href="/status.html" style="color:var(--primary)">開発状況</a>
+        <a href="/privacy.html">プライバシー</a>
+        <a href="/faq.html">FAQ</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="page-header">
+        <h1>開発状況</h1>
+        <p>Kinia の Android / iOS 実装状況をリアルタイムで公開しています</p>
+        <div class="last-updated">最終更新: 2026-04-04</div>
+    </div>
+
+    <!-- サマリー -->
+    <div class="summary-row">
+        <div class="summary-card android">
+            <div class="label">Android</div>
+            <div class="value">v4.7.7</div>
+            <div class="sub">内部テスト中</div>
+        </div>
+        <div class="summary-card ios">
+            <div class="label">iOS</div>
+            <div class="value">v1.0</div>
+            <div class="sub">開発開始</div>
+        </div>
+        <div class="summary-card progress">
+            <div class="label">iOS 進捗</div>
+            <div class="value">0%</div>
+            <div class="sub">19機能中 0機能完了</div>
+        </div>
+    </div>
+
+    <!-- 凡例 -->
+    <div class="legend">
+        <div class="legend-item"><span class="badge badge-done"><span class="badge-dot"></span></span> 実装済み</div>
+        <div class="legend-item"><span class="badge badge-wip"><span class="badge-dot"></span></span> 実装中</div>
+        <div class="legend-item"><span class="badge badge-planned"><span class="badge-dot"></span></span> 未着手</div>
+        <div class="legend-item"><span class="badge badge-later"><span class="badge-dot"></span></span> 先送り</div>
+    </div>
+
+    <!-- ========== コア機能 ========== -->
+    <div class="section-title"><span class="icon">&#x1F4CD;</span> コア機能（位置共有・GPS）</div>
+    <table class="feature-table">
+        <thead>
+            <tr>
+                <th>機能</th>
+                <th style="width:110px">Android</th>
+                <th style="width:110px">iOS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="feature-name">バックグラウンドGPS送信</div>
+                    <div class="feature-desc">アプリを閉じていても位置情報を送信</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="feature-name">省電力GPS戦略</div>
+                    <div class="feature-desc">活動状態に応じた間隔制御でバッテリーを節約</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="feature-name">活動認識</div>
+                    <div class="feature-desc">歩行・静止・車など移動手段を自動判定</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="feature-name">座標暗号化</div>
+                    <div class="feature-desc">サーバー上でも生座標が読めないセキュリティ対策</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="feature-name">オフラインキュー</div>
+                    <div class="feature-desc">圏外時にデータを保持し、復帰後に再送</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ========== 地図・表示 ========== -->
+    <div class="section-title"><span class="icon">&#x1F5FA;</span> 地図・表示</div>
+    <table class="feature-table">
+        <thead>
+            <tr>
+                <th>機能</th>
+                <th style="width:110px">Android</th>
+                <th style="width:110px">iOS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="feature-name">マップ表示</div>
+                    <div class="feature-desc">家族の現在地をリアルタイムで地図上に表示</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="feature-name">軌跡タイムライン</div>
+                    <div class="feature-desc">過去の移動経路を地図上に表示</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="feature-name">メンバー一覧</div>
+                    <div class="feature-desc">家族の状態をカード形式で一覧表示</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ========== 通知エリア ========== -->
+    <div class="section-title"><span class="icon">&#x1F514;</span> 通知エリア（ジオフェンス）</div>
+    <table class="feature-table">
+        <thead>
+            <tr>
+                <th>機能</th>
+                <th style="width:110px">Android</th>
+                <th style="width:110px">iOS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="feature-name">通知エリア設定・通知</div>
+                    <div class="feature-desc">指定エリアへの出入りを自動通知</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ========== グループ・認証 ========== -->
+    <div class="section-title"><span class="icon">&#x1F465;</span> グループ・認証</div>
+    <table class="feature-table">
+        <thead>
+            <tr>
+                <th>機能</th>
+                <th style="width:110px">Android</th>
+                <th style="width:110px">iOS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="feature-name">グループ管理</div>
+                    <div class="feature-desc">家族グループの作成・参加・招待コード</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="feature-name">認証</div>
+                    <div class="feature-desc">匿名認証・Googleログイン</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="feature-name">管理者ロール</div>
+                    <div class="feature-desc">グループ管理権限の設定</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ========== プライバシー・設定 ========== -->
+    <div class="section-title"><span class="icon">&#x1F512;</span> プライバシー・設定</div>
+    <table class="feature-table">
+        <thead>
+            <tr>
+                <th>機能</th>
+                <th style="width:110px">Android</th>
+                <th style="width:110px">iOS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="feature-name">共有レベル</div>
+                    <div class="feature-desc">メンバーごとに位置情報の公開範囲を設定</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="feature-name">送信停止</div>
+                    <div class="feature-desc">ワンタップで位置送信を一時停止</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="feature-name">簡単モード</div>
+                    <div class="feature-desc">シンプルな操作画面への切替</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ========== コミュニケーション ========== -->
+    <div class="section-title"><span class="icon">&#x1F4AC;</span> コミュニケーション</div>
+    <table class="feature-table">
+        <thead>
+            <tr>
+                <th>機能</th>
+                <th style="width:110px">Android</th>
+                <th style="width:110px">iOS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="feature-name">メッセージボード</div>
+                    <div class="feature-desc">家族間の簡易メッセージ</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ========== 健康・活動 ========== -->
+    <div class="section-title"><span class="icon">&#x1F3C3;</span> 健康・活動</div>
+    <table class="feature-table">
+        <thead>
+            <tr>
+                <th>機能</th>
+                <th style="width:110px">Android</th>
+                <th style="width:110px">iOS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="feature-name">元気度チェック</div>
+                    <div class="feature-desc">家族の活動量から元気度を3段階で表示</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="feature-name">歩数カウンター</div>
+                    <div class="feature-desc">毎日の歩数を記録・共有</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-planned"><span class="badge-dot"></span>未着手</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ========== iOS先送り ========== -->
+    <div class="section-title"><span class="icon">&#x1F4C5;</span> iOS v1.0 以降で対応予定</div>
+    <table class="feature-table">
+        <thead>
+            <tr>
+                <th>機能</th>
+                <th style="width:110px">Android</th>
+                <th style="width:110px">iOS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="feature-name">待ち合わせ</div>
+                    <div class="feature-desc">メンバーとの距離をリアルタイム表示</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-later"><span class="badge-dot"></span>先送り</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="feature-name">速度分析</div>
+                    <div class="feature-desc">歩行速度の推移分析</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-later"><span class="badge-dot"></span>先送り</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="feature-name">リアルタイム追跡</div>
+                    <div class="feature-desc">高頻度での位置更新</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-later"><span class="badge-dot"></span>先送り</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="feature-name">デバイス引き継ぎ</div>
+                    <div class="feature-desc">端末変更時のアカウント移行</div>
+                </td>
+                <td><span class="badge badge-done"><span class="badge-dot"></span>実装済み</span></td>
+                <td><span class="badge badge-later"><span class="badge-dot"></span>先送り</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ========== ロードマップ ========== -->
+    <div class="section-title" style="margin-top:16px"><span class="icon">&#x1F680;</span> ロードマップ</div>
+    <div class="roadmap">
+        <div class="roadmap-card phase-current">
+            <div class="phase-label">Phase 1 — 現在</div>
+            <h3>iOS 基盤構築</h3>
+            <ul>
+                <li>プロジェクトセットアップ</li>
+                <li>Firebase連携</li>
+                <li>地図表示 + Firestore接続</li>
+                <li>バックグラウンドGPS</li>
+            </ul>
+        </div>
+        <div class="roadmap-card phase-next">
+            <div class="phase-label">Phase 2</div>
+            <h3>iOS コア機能</h3>
+            <ul>
+                <li>座標暗号化（Android互換）</li>
+                <li>通知エリア（ジオフェンス）</li>
+                <li>グループ参加・認証</li>
+                <li>プッシュ通知</li>
+            </ul>
+        </div>
+        <div class="roadmap-card phase-future">
+            <div class="phase-label">Phase 3</div>
+            <h3>iOS リリース準備</h3>
+            <ul>
+                <li>UI/UX仕上げ</li>
+                <li>追加機能の移植</li>
+                <li>TestFlight配布</li>
+                <li>App Store審査提出</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ========== 技術情報 ========== -->
+    <div class="section-title"><span class="icon">&#x2699;</span> 技術情報</div>
+    <table class="feature-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Android</th>
+                <th>iOS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="feature-name">言語</td>
+                <td>Kotlin</td>
+                <td>Swift 6</td>
+            </tr>
+            <tr>
+                <td class="feature-name">UI</td>
+                <td>XML + Jetpack</td>
+                <td>SwiftUI</td>
+            </tr>
+            <tr>
+                <td class="feature-name">地図</td>
+                <td>Google Maps SDK</td>
+                <td>Apple MapKit</td>
+            </tr>
+            <tr>
+                <td class="feature-name">最低対応</td>
+                <td>Android 8.0+</td>
+                <td>iOS 16.0+</td>
+            </tr>
+            <tr>
+                <td class="feature-name">バックエンド</td>
+                <td colspan="2" style="text-align:center">Firebase（Firestore / Auth / FCM / Crashlytics）— 共通</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 Kinia &mdash; <a href="/">kinia.io</a> &middot; <a href="/privacy.html">プライバシーポリシー</a></p>
+</footer>
+
+</body>
+</html>
