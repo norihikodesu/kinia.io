@@ -1,0 +1,19 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["Z4RH96347H.io.kinia.ios"],
+        "paths": ["/invite/*"],
+        "components": [
+          {
+            "/": "/invite/*"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["Z4RH96347H.io.kinia.ios"]
+  }
+}
