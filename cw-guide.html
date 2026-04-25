@@ -3,218 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>テスト参加ガイド — Kinia</title>
+    <title>Kinia — Google Playで配信中</title>
+    <meta http-equiv="refresh" content="5;url=https://play.google.com/store/apps/details?id=io.kinia">
     <style>
         :root {
             --bg: #12121F;
-            --surface: #1E1E30;
-            --surface2: #282840;
             --text: #E8E4F0;
             --text-sub: #B0AAC2;
             --primary: #7C8EF2;
-            --primary-dim: #5A6AD4;
-            --accent: #4CC9F0;
-            --border: #3D3855;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.8;
-        }
-        a { color: var(--primary); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 40px 20px 60px;
-        }
-        h1 {
-            font-size: 1.6rem;
-            text-align: center;
-            margin-bottom: 8px;
-        }
-        .lead {
-            text-align: center;
-            color: var(--text-sub);
-            font-size: 0.9rem;
-            margin-bottom: 32px;
-        }
-        h2 {
-            font-size: 1.2rem;
-            color: var(--accent);
-            margin: 32px 0 12px;
-            padding-bottom: 6px;
-            border-bottom: 1px solid var(--border);
-        }
-        .box {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px 24px;
-            margin: 16px 0;
-        }
-        .warning {
-            background: rgba(255, 138, 101, 0.1);
-            border: 1px solid rgba(255, 138, 101, 0.3);
-            border-radius: 8px;
-            padding: 14px 18px;
-            margin: 16px 0;
-            font-size: 0.9rem;
-            color: #FFAB91;
-        }
-        .warning strong { color: #FFCC80; }
-        .step {
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 14px;
-        }
-        .step-num {
-            display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 28px;
-            height: 28px;
-            background: var(--primary);
-            color: #fff;
-            border-radius: 50%;
-            font-weight: bold;
-            font-size: 0.85rem;
-            margin-right: 12px;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-        .step-body { flex: 1; }
-        .step-body strong { color: var(--text); }
-        .step-body p { color: var(--text-sub); font-size: 0.9rem; margin-top: 2px; }
-        .cta {
-            display: block;
+            min-height: 100vh;
             text-align: center;
+            padding: 24px;
+        }
+        .container { max-width: 480px; }
+        h1 { font-size: 1.6rem; margin-bottom: 16px; color: var(--primary); }
+        p { color: var(--text-sub); margin-bottom: 16px; line-height: 1.7; }
+        a {
+            display: inline-block;
             background: var(--primary);
             color: #fff;
-            font-size: 1.05rem;
-            font-weight: bold;
-            padding: 14px 28px;
-            border-radius: 12px;
+            padding: 14px 32px;
+            border-radius: 10px;
             text-decoration: none;
-            margin: 20px auto;
-            max-width: 400px;
-            transition: background 0.2s;
-        }
-        .cta:hover { background: var(--primary-dim); text-decoration: none; }
-        .cta-sub {
-            display: block;
-            text-align: center;
-            background: var(--surface2);
-            color: var(--accent);
+            font-weight: 600;
             font-size: 1rem;
-            font-weight: bold;
-            padding: 14px 28px;
-            border-radius: 12px;
-            text-decoration: none;
-            margin: 12px auto;
-            max-width: 400px;
-            border: 1px solid var(--border);
-            transition: background 0.2s;
+            margin-top: 8px;
         }
-        .cta-sub:hover { background: var(--surface); text-decoration: none; }
-        p { font-size: 0.93rem; color: var(--text-sub); margin-bottom: 8px; }
-        ul { padding-left: 20px; margin: 8px 0; }
-        li { font-size: 0.93rem; color: var(--text-sub); margin-bottom: 4px; }
-        .note { font-size: 0.85rem; color: #FFCC80; }
-        dl { margin: 8px 0; }
-        dt { font-weight: bold; color: var(--accent); font-size: 0.93rem; margin-top: 12px; }
-        dd { color: var(--text-sub); font-size: 0.9rem; margin: 2px 0 0 0; }
-        .footer {
-            text-align: center;
-            padding: 32px 0;
-            font-size: 0.85rem;
-            color: var(--text-sub);
-            border-top: 1px solid var(--border);
-            margin-top: 40px;
-        }
+        a:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
 <div class="container">
-
-<h1>テスト参加ガイド</h1>
-<p class="lead">クラウドワークスからご参加の方向けのご案内です</p>
-
-<h2>参加手順</h2>
-
-<p>テスターリストへの登録はこちらで完了しています。以下の手順で進めてください。</p>
-
-<div class="step">
-    <span class="step-num">1</span>
-    <div class="step-body">
-        <strong>テスト参加ページを開く</strong>
-        <p>下のボタンから Google Play のテスト参加ページを開いてください。</p>
-        <p class="note">※ お知らせいただいたGmailアドレスのアカウントでログインしてください。</p>
-    </div>
-</div>
-
-<div class="step">
-    <span class="step-num">2</span>
-    <div class="step-body">
-        <strong>「テスターになる」ボタンを押す</strong>
-        <p>ページ内のボタンを押せば、テスト参加の登録は完了です。</p>
-    </div>
-</div>
-
-<a href="https://play.google.com/apps/testing/io.kinia" class="cta">テストに参加する</a>
-
-<div class="step">
-    <span class="step-num">3</span>
-    <div class="step-body">
-        <strong>アプリをインストールする（プランBの方のみ）</strong>
-        <p>テスト参加の後、下のボタンからアプリをインストールしてください。</p>
-        <p class="note">※ プランAの方はインストール不要です。</p>
-    </div>
-</div>
-
-<a href="https://play.google.com/store/apps/details?id=io.kinia" class="cta-sub">アプリをインストールする</a>
-
-<h2>納品物（スクリーンショット）</h2>
-
-<div class="box">
-    <p style="color:var(--text);"><strong>プランA</strong>: テスト参加済み画面のスクリーンショット（1枚）</p>
-    <p style="color:var(--text); margin-top:8px;"><strong>プランB</strong>: テスト参加済み画面 + インストール済み画面のスクリーンショット（2枚）</p>
-</div>
-
-<p>スクリーンショットはクラウドワークスのメッセージでお送りください。</p>
-
-<h2>注意事項</h2>
-
-<div class="warning">
-<strong>重要:</strong> 参加後14日間は「テストをやめる」ボタンを押さないでください。Google Playの公開要件となっています。14日経過後は自由に退出できます。
-</div>
-
-<ul>
-    <li>プランBの方は、2週間はアプリをアンインストールしないでください。</li>
-    <li>テスト参加ページにアクセスする際は、お知らせいただいたGmailアドレスのアカウントでログインしてください。別のアカウントだと「アプリが利用できません」と表示されます。</li>
-</ul>
-
-<h2>うまくいかない場合</h2>
-
-<dl>
-    <dt>「アプリが利用できません」と表示される</dt>
-    <dd>ログイン中のGoogleアカウントが、お知らせいただいたGmailアドレスと一致しているか確認してください。Google Playアプリの右上アイコンからアカウントを切り替えられます。</dd>
-
-    <dt>「アプリがありません」と表示される</dt>
-    <dd>テスターリストの反映に時間がかかっている可能性があります。少し時間をおいてから再度お試しください。解決しない場合はクラウドワークスのメッセージでご連絡ください。</dd>
-
-    <dt>インストールボタンが表示されない</dt>
-    <dd>先にステップ1・2のテスト参加を完了してください。参加前はインストールできません。</dd>
-</dl>
-
-<div class="footer">
-    <p>ご不明な点はクラウドワークスのメッセージでお気軽にお問い合わせください。</p>
-    <p style="margin-top:8px;">&copy; 2026 Kinia</p>
-</div>
-
+    <h1>Kinia は正式公開されました</h1>
+    <p>テスト参加ガイドは不要になりました。<br>Google Play から直接インストールできます。<br>5秒後に自動的にGoogle Playへ移動します。</p>
+    <a href="https://play.google.com/store/apps/details?id=io.kinia">Google Playでインストール</a>
+    <p style="margin-top:24px;"><a href="/" style="background:none; color:var(--primary); padding:0;">トップページに戻る</a></p>
 </div>
 </body>
 </html>
