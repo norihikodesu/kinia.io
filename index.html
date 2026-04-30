@@ -11,601 +11,1176 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinia（キニア）— 心地よい距離感で家族とつながる見守りアプリ</title>
-    <meta name="description" content="Kiniaは、見る側も見られる側も心地いい家族見守りアプリ。通知エリアへの出入りだけでそっとつながる「ゆるいつながり」が基本。必要な時だけ詳細な位置共有に切り替えられます。">
-    <style>ruby rt { font-size: 0.55em; }
+    <title>Kinia — 気になった時にそっと見守る家族アプリ</title>
+    <meta name="description" content="Kiniaは、通知エリアへの出入りだけをそっと知らせる家族見守りアプリ。常時監視ではなく、気になった時だけ確認できる「ゆるいつながり」を提供します。">
+    <meta property="og:title" content="Kinia — 気になった時にそっと見守る家族アプリ">
+    <meta property="og:description" content="居場所を追いかけるのではなく、暮らしの気配だけが届く。見る人にも見られる人にも息のしやすい見守りアプリです。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kinia.io">
+    <meta property="og:image" content="https://kinia.io/images/app_icon.png">
+    <link rel="icon" href="/images/app_icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
         :root {
-            --bg: #12121F;
-            --bg-alt: #161628;
-            --surface: #1E1E30;
-            --surface2: #282840;
-            --text: #E8E4F0;
-            --text-sub: #B0AAC2;
-            --text-dim: #7A7490;
-            --primary: #7C8EF2;
-            --primary-dim: #5A6AD4;
-            --accent: #4CC9F0;
-            --accent-warm: #F4A261;
-            --border: #3D3855;
-            --section-gap: clamp(56px, 8vw, 100px);
+            --bg: #fbf6ef;
+            --bg-alt: #f4e8d8;
+            --card: #ffffff;
+            --ink: #2a2218;
+            --sub: rgba(42,34,24,0.62);
+            --mute: rgba(42,34,24,0.4);
+            --accent: #d97a5a;
+            --accent2: #b85a3e;
+            --sage: #a3b89a;
+            --navy: #2c3a5e;
+            --line: rgba(42,34,24,0.08);
+            --font-head: 'Shippori Mincho', 'Noto Serif JP', serif;
+            --font-body: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+            --font-mono: 'DM Mono', monospace;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            font-family: var(--font-body);
             background: var(--bg);
-            color: var(--text);
+            color: var(--ink);
             line-height: 1.85;
             overflow-x: hidden;
-            font-size: 18px;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
         }
-        a { color: var(--primary); text-decoration: none; }
+        a { color: var(--accent2); text-decoration: none; }
         a:hover { text-decoration: underline; }
-        img { max-width: 100%; height: auto; border-radius: 12px; }
+        img { max-width: 100%; height: auto; }
 
-        /* ── ナビゲーション ── */
-        nav {
+        /* ── Nav ── */
+        .nav {
             position: sticky; top: 0; z-index: 100;
-            background: rgba(18, 18, 31, 0.95);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 24px;
+            background: rgba(251,246,239,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+            padding: 16px 56px;
             display: flex; align-items: center; justify-content: space-between;
         }
-        nav .brand { font-size: 1.2rem; font-weight: 700; color: var(--primary); letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; text-decoration: none; }
-        nav .brand img { width: 28px; height: 28px; border-radius: 6px; }
-        nav .nav-links { display: flex; gap: 20px; font-size: 0.95rem; }
-        nav .nav-links a { color: var(--text-sub); transition: color 0.2s; }
-        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
-        .hamburger { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; padding: 4px; }
-        @media (max-width: 720px) {
-            nav .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(18,18,31,0.98); padding: 16px 24px; gap: 16px; border-bottom: 1px solid var(--border); }
-            nav .nav-links.open { display: flex; }
-            .hamburger { display: block; }
+        .nav-brand {
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none; color: var(--ink);
         }
-        /* ── ドロップダウン ── */
+        .nav-brand img { width: 36px; height: 36px; border-radius: 8px; display: block; }
+        .nav-brand-name { font-family: var(--font-head); font-size: 20px; font-weight: 600; }
+        .nav-brand-ruby { font-family: var(--font-mono); font-size: 10px; color: var(--mute); letter-spacing: 1.5px; margin-left: 2px; }
+        .nav-links { display: flex; align-items: center; gap: 28px; font-size: 13.5px; color: var(--sub); }
+        .nav-links a { color: inherit; text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent); text-decoration: none; }
+        .nav-cta {
+            background: var(--accent); color: #fff; border: none;
+            padding: 10px 20px; border-radius: 999px; font-size: 13.5px;
+            font-weight: 600; cursor: pointer; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+            box-shadow: 0 6px 16px -6px rgba(217,122,90,0.5);
+            transition: background 0.2s, transform 0.1s;
+        }
+        .nav-cta:hover { background: var(--accent2); text-decoration: none; transform: translateY(-1px); }
         .nav-dropdown { position: relative; }
         .nav-dropdown-toggle {
-            background: none; border: none; color: var(--text-sub); font-size: 0.95rem;
+            background: none; border: none; color: var(--sub); font-size: 13.5px;
             cursor: pointer; padding: 0; font-family: inherit; transition: color 0.2s;
         }
-        .nav-dropdown-toggle:hover { color: var(--primary); }
+        .nav-dropdown-toggle:hover { color: var(--accent); }
         .nav-dropdown-menu {
             display: none; position: absolute; top: calc(100% + 10px); right: 0;
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 10px; padding: 8px 0; min-width: 220px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 200;
+            background: var(--card); border: 1px solid var(--line);
+            border-radius: 14px; padding: 8px 0; min-width: 220px;
+            box-shadow: 0 12px 40px rgba(42,34,24,0.12); z-index: 200;
         }
         .nav-dropdown.open .nav-dropdown-menu { display: block; }
         .nav-dropdown-menu a {
-            display: block; padding: 10px 20px; color: var(--text-sub);
-            font-size: 0.92rem; transition: background 0.15s, color 0.15s; white-space: nowrap;
+            display: block; padding: 10px 20px; color: var(--sub);
+            font-size: 13px; transition: background 0.15s, color 0.15s; white-space: nowrap;
         }
-        .nav-dropdown-menu a:hover { background: var(--surface2); color: var(--text); text-decoration: none; }
-        @media (max-width: 720px) {
+        .nav-dropdown-menu a:hover { background: var(--bg-alt); color: var(--ink); text-decoration: none; }
+        .nav-dropdown-menu .nav-dd-primary { font-weight: 600; color: var(--accent); }
+        .hamburger { display: none; background: none; border: none; color: var(--ink); font-size: 1.5rem; cursor: pointer; padding: 4px; }
+        @media (max-width: 768px) {
+            .nav { padding: 14px 20px; }
+            .nav-links {
+                display: none; flex-direction: column; position: absolute;
+                top: 100%; left: 0; right: 0; background: rgba(251,246,239,0.98);
+                padding: 20px 24px; gap: 16px; border-bottom: 1px solid var(--line);
+                align-items: flex-start;
+            }
+            .nav-links.open { display: flex; }
+            .hamburger { display: block; }
             .nav-dropdown-menu {
                 position: static; box-shadow: none; border: none; border-radius: 0;
                 background: transparent; padding: 0 0 0 16px; min-width: auto;
             }
             .nav-dropdown.open .nav-dropdown-menu { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-            .nav-dropdown-menu a { padding: 4px 0; font-size: 0.9rem; }
+            .nav-dropdown-menu a { padding: 4px 0; }
             .nav-dropdown-menu a:hover { background: transparent; }
         }
 
-        /* ── 共通 ── */
-        .section { max-width: 800px; margin: 0 auto; padding: var(--section-gap) 24px; }
-        .section-wide { max-width: 960px; margin: 0 auto; padding: var(--section-gap) 24px; }
-        .section-label { font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
-        .section h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.4; margin-bottom: 20px; }
-        .section h2 .hl { color: var(--accent); }
-        .section-wide h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.4; margin-bottom: 20px; }
-        .section-wide h2 .hl { color: var(--accent); }
-        .lead { font-size: 1.05rem; color: var(--text-sub); line-height: 1.95; }
-        .bg-alt { background: var(--bg-alt); }
+        /* ── Shared ── */
+        .section-label {
+            font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px;
+            color: var(--accent); margin-bottom: 14px;
+        }
+        .container { max-width: 1180px; margin: 0 auto; }
+        .container-narrow { max-width: 880px; margin: 0 auto; }
+        .container-mid { max-width: 980px; margin: 0 auto; }
+        .section-heading {
+            font-family: var(--font-head); font-size: clamp(28px, 4.5vw, 40px);
+            font-weight: 500; line-height: 1.35; letter-spacing: -0.01em;
+            color: var(--ink); margin: 0 0 22px;
+        }
+        .accent-text { color: var(--accent); }
+        .body-text { font-size: 15.5px; line-height: 2.0; color: var(--sub); }
+        .icon-box {
+            width: 60px; height: 60px; border-radius: 20px;
+            background: rgba(217,122,90,0.13); display: flex;
+            align-items: center; justify-content: center; margin-bottom: 24px;
+        }
+        .pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 14px; border-radius: 999px; background: var(--card);
+            border: 1px solid var(--line); font-size: 12px; color: var(--sub); font-weight: 500;
+        }
+        .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); }
 
-        /* ── ヒーロー ── */
+        /* ── Hero ── */
         .hero {
-            display: flex; align-items: center; justify-content: center; gap: 48px;
-            max-width: 1040px; margin: 0 auto;
-            padding: clamp(48px, 8vw, 100px) 24px clamp(40px, 6vw, 80px);
+            position: relative; overflow: hidden;
+            padding: clamp(48px, 8vw, 72px) 56px clamp(60px, 10vw, 100px);
         }
-        .hero-text { flex: 1; min-width: 280px; }
-        .hero-text h1 { font-size: clamp(2rem, 5vw, 2.8rem); color: var(--primary); margin-bottom: 12px; letter-spacing: 1px; }
-        .hero-text .tagline { font-size: clamp(1.05rem, 2.5vw, 1.25rem); color: var(--text-sub); margin-bottom: 20px; line-height: 1.7; }
-        .hero-points { list-style: none; margin-bottom: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
-        .hero-points li {
-            background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-            padding: 8px 16px; font-size: 0.95rem; color: var(--text); white-space: nowrap;
+        .hero-glow-r {
+            position: absolute; top: -120px; right: -100px; width: 520px; height: 520px;
+            border-radius: 50%; background: radial-gradient(circle, rgba(217,122,90,0.2), transparent 70%);
+            pointer-events: none;
         }
-        .hero-points li .dot { color: var(--accent); margin-right: 6px; }
-        .hero-visual { flex: 0 0 auto; text-align: center; }
-        .hero-visual img { max-height: 480px; border-radius: 24px; box-shadow: 0 12px 48px rgba(0,0,0,0.5); }
-        .hero-status { margin-top: 12px; font-size: 0.85rem; color: var(--text-dim); }
-        @media (max-width: 720px) {
-            .hero { flex-direction: column; text-align: center; gap: 32px; }
-            .hero-points { justify-content: center; }
-            .hero-visual img { max-height: 360px; }
+        .hero-glow-l {
+            position: absolute; bottom: -80px; left: -60px; width: 380px; height: 380px;
+            border-radius: 50%; background: radial-gradient(circle, rgba(163,184,154,0.26), transparent 70%);
+            pointer-events: none;
+        }
+        .hero-grid {
+            max-width: 1180px; margin: 0 auto; position: relative;
+            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center;
+        }
+        .hero h1 {
+            font-family: var(--font-head); font-size: clamp(36px, 5.5vw, 60px);
+            font-weight: 500; line-height: 1.25; letter-spacing: -0.01em;
+            color: var(--ink); margin: 24px 0;
+        }
+        .hero h1 .underline-accent {
+            position: relative; display: inline-block; z-index: 1;
+        }
+        .hero h1 .underline-accent::after {
+            content: ''; position: absolute; left: -2px; right: -2px; bottom: 4px;
+            height: 12px; background: rgba(217,122,90,0.33); border-radius: 4px; z-index: -1;
+        }
+        .hero-sub {
+            font-size: 16px; line-height: 2.0; color: var(--sub);
+            margin: 0 0 36px; max-width: 480px;
+        }
+        .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--navy); color: #fff; border: none;
+            padding: 15px 26px; border-radius: 999px; font-size: 14.5px;
+            font-weight: 600; cursor: pointer; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 10px;
+            box-shadow: 0 10px 24px -8px rgba(44,58,94,0.6);
+            transition: background 0.2s, transform 0.1s;
+        }
+        .btn-primary:hover { background: #1e2c4a; text-decoration: none; transform: translateY(-1px); }
+        .hero-note { font-size: 12.5px; color: var(--sub); }
+        .hero-badges {
+            display: flex; gap: 24px; margin-top: 48px; font-size: 12.5px;
+            color: var(--sub); flex-wrap: wrap;
+        }
+        .hero-badge { display: inline-flex; align-items: center; gap: 6px; }
+        .hero-badge svg { color: var(--sage); }
+        .hero-visual { display: flex; justify-content: center; position: relative; }
+
+        /* Phone frame */
+        .phone-frame {
+            width: 270px; padding: 7px; border-radius: 36px;
+            background: #0f1628; box-shadow: 0 30px 60px -20px rgba(20,30,55,0.3);
+        }
+        .phone-screen {
+            width: 100%; height: 540px; border-radius: 30px; background: var(--card);
+            overflow: hidden; position: relative; display: flex; flex-direction: column;
+        }
+        .phone-notch {
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 90px; height: 20px; background: #0f1628;
+            border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 5;
+        }
+        .phone-content { padding-top: 32px; flex: 1; display: flex; flex-direction: column; background: var(--bg); }
+        .phone-header { padding: 12px 16px 6px; }
+        .phone-header-label { font-family: var(--font-mono); font-size: 10px; color: var(--mute); letter-spacing: 1px; }
+        .phone-header-title { font-family: var(--font-head); font-size: 18px; font-weight: 600; color: var(--ink); margin-top: 2px; }
+        .phone-members { margin: 4px 10px; background: var(--card); border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+        .member-row {
+            display: flex; align-items: center; gap: 10px; padding: 11px 14px;
+            border-bottom: 1px solid var(--line);
+        }
+        .member-row:last-child { border-bottom: none; }
+        .member-avatar {
+            width: 34px; height: 34px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 12.5px;
+            font-weight: 600; position: relative; flex-shrink: 0;
+        }
+        .member-avatar .online-dot {
+            position: absolute; right: -1px; bottom: -1px; width: 9px; height: 9px;
+            border-radius: 50%; background: #7fb98a; border: 2px solid #fff;
+        }
+        .member-info { flex: 1; min-width: 0; }
+        .member-name { font-size: 12.5px; font-weight: 600; color: var(--ink); }
+        .member-detail { font-size: 10.5px; color: var(--sub); margin-top: 1px; }
+        .member-time { font-size: 9.5px; color: var(--mute); }
+        .phone-mood {
+            margin: 10px 10px; padding: 10px 12px; background: rgba(217,122,90,0.1);
+            border-radius: 12px; font-size: 11.5px; color: var(--ink); line-height: 1.5;
+        }
+        .phone-mood-title { font-weight: 600; margin-bottom: 1px; }
+        .phone-mood-sub { opacity: 0.6; font-size: 10.5px; }
+
+        /* Floating notify cards */
+        .float-notify {
+            position: absolute; width: 230px;
+            background: var(--card); border-radius: 16px; padding: 12px 14px;
+            display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 1px 2px rgba(20,20,30,0.04), 0 12px 30px -16px rgba(20,20,30,0.15);
+            border: 1px solid var(--line); color: var(--ink);
+        }
+        .float-notify-top { top: 40px; left: -30px; transform: rotate(-3deg); }
+        .float-notify-bottom { bottom: 50px; right: -40px; transform: rotate(2deg); }
+        .notify-icon {
+            width: 32px; height: 32px; border-radius: 10px; display: flex;
+            align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .notify-text { font-size: 12.5px; font-weight: 600; line-height: 1.4; }
+        .notify-time { font-size: 10px; color: var(--mute); margin-top: 2px; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 40px 20px 60px; }
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .hero-sub { margin-left: auto; margin-right: auto; }
+            .hero-actions { justify-content: center; }
+            .hero-badges { justify-content: center; }
+            .hero-visual { margin-top: 20px; }
+            .float-notify { display: none; }
+            .phone-frame { width: 240px; }
+            .phone-screen { height: 480px; }
         }
 
-        .cta-btn {
-            display: inline-block; background: var(--primary); color: #fff;
-            font-size: 1.05rem; font-weight: 700; padding: 15px 40px;
-            border-radius: 12px; transition: background 0.2s, transform 0.1s;
+        /* ── Concept ── */
+        .concept {
+            padding: 100px 56px; background: var(--card);
+            border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
         }
-        .cta-btn:hover { background: var(--primary-dim); text-decoration: none; transform: translateY(-1px); }
-        .cta-secondary { display: inline-block; color: var(--text-sub); font-size: 0.95rem; margin-top: 12px; }
-
-        /* ── 3つの違い ── */
-        .diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
-        @media (max-width: 640px) { .diff-grid { grid-template-columns: 1fr; } }
-        .diff-card {
-            background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-            padding: 28px 24px; text-align: center;
+        .concept-inner { max-width: 880px; margin: 0 auto; text-align: center; }
+        .concept h2 {
+            font-family: var(--font-head); font-size: clamp(26px, 4vw, 36px);
+            font-weight: 500; line-height: 1.6; margin: 0 0 28px;
+            letter-spacing: -0.01em; color: var(--ink);
         }
-        .diff-card .icon { font-size: 2.4rem; margin-bottom: 12px; }
-        .diff-card h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--accent-warm); }
-        .diff-card p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.8; }
+        .concept p { font-size: 15px; line-height: 2.1; color: var(--sub); max-width: 640px; margin: 0 auto; }
+        @media (max-width: 768px) { .concept { padding: 64px 20px; } }
 
-        /* ── 通知例 ── */
-        .notif-mock {
-            background: var(--surface); border-radius: 16px; padding: 24px 28px;
-            max-width: 440px; margin: 28px auto 0; border: 1px solid var(--border);
+        /* ── Features (3-col) ── */
+        .features { padding: 100px 56px; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .feature-card {
+            background: var(--card); border-radius: 24px; padding: 36px 28px;
+            border: 1px solid var(--line); position: relative; overflow: hidden;
         }
-        .notif-mock .notif-header { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 14px; letter-spacing: 1px; }
-        .notif-row { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 1rem; }
-        .notif-row:last-child { border-bottom: none; color: var(--text-sub); }
-
-        /* ── ユースケース ── */
-        .use-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 24px; }
-        .use-card {
-            background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-            padding: 28px 20px; text-align: center;
+        .feature-card-glow {
+            position: absolute; top: -40px; right: -40px; width: 140px; height: 140px;
+            border-radius: 50%; background: rgba(217,122,90,0.07); pointer-events: none;
         }
-        .use-card img { width: 100px; height: 100px; margin-bottom: 14px; border-radius: 50%; }
-        .use-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
-        .use-card p { font-size: 0.92rem; color: var(--text-sub); line-height: 1.8; }
+        .feature-tag {
+            font-family: var(--font-mono); font-size: 10.5px; color: var(--accent);
+            letter-spacing: 1.5px; font-weight: 600; margin-bottom: 10px; position: relative;
+        }
+        .feature-card h3 {
+            font-family: var(--font-head); font-size: 20px; font-weight: 500;
+            margin: 0 0 12px; line-height: 1.45; color: var(--ink); position: relative;
+        }
+        .feature-card p { font-size: 14px; color: var(--sub); line-height: 1.9; margin: 0; position: relative; }
+        @media (max-width: 768px) {
+            .features { padding: 64px 20px; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
 
-        /* ── フェア原則（左右分割） ── */
-        .split { display: flex; align-items: flex-start; gap: 40px; margin-top: 24px; }
-        .split .split-text { flex: 1; }
-        .split .split-visual { flex: 0 0 280px; text-align: center; }
-        @media (max-width: 720px) { .split { flex-direction: column; } .split .split-visual { flex: none; width: 100%; } }
+        /* ── HowItWorks ── */
+        .how { padding: 100px 56px; background: var(--bg-alt); }
+        .how-grid {
+            max-width: 1180px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+        }
+        .how h2 { margin-bottom: 24px; }
+        .how-compare {
+            padding: 18px 22px; background: var(--card); border-radius: 18px;
+            border: 1px solid var(--line); margin-top: 28px;
+        }
+        .how-compare-label {
+            font-family: var(--font-mono); font-size: 11px; color: var(--mute);
+            letter-spacing: 1px; margin-bottom: 10px;
+        }
+        .how-compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; font-size: 13px; line-height: 1.6; }
+        .how-compare-old-label { color: #b06860; font-size: 10.5px; letter-spacing: 1px; margin-bottom: 4px; }
+        .how-compare-old { color: var(--sub); }
+        .how-compare-new-label { color: var(--sage); font-size: 10.5px; letter-spacing: 1px; margin-bottom: 4px; }
+        .how-compare-new { color: var(--ink); font-weight: 600; }
+        .how-cards { display: flex; flex-direction: column; gap: 12px; }
+        .notify-card {
+            background: var(--card); border-radius: 16px; padding: 13px 15px;
+            display: flex; align-items: center; gap: 11px;
+            box-shadow: 0 1px 2px rgba(20,20,30,0.04), 0 10px 26px -14px rgba(20,20,30,0.14);
+            border: 1px solid var(--line); color: var(--ink);
+        }
+        .notify-card-icon {
+            width: 34px; height: 34px; border-radius: 11px; display: flex;
+            align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .notify-card-text { font-size: 13px; font-weight: 600; line-height: 1.4; }
+        .notify-card-arrow { color: var(--accent); margin: 0 3px; }
+        .notify-card-time { font-size: 10.5px; color: var(--mute); margin-top: 2px; }
+        @media (max-width: 768px) {
+            .how { padding: 64px 20px; }
+            .how-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        /* ── Fair Principle ── */
+        .fair { padding: 100px 56px; }
+        .fair-grid {
+            max-width: 1080px; margin: 0 auto;
+            display: flex; align-items: flex-start; gap: 48px; margin-top: 28px;
+        }
+        .fair-text { flex: 1; }
+        .fair-text .body-text { margin-bottom: 20px; }
+        .fair-visual { flex: 0 0 280px; text-align: center; }
+        .fair-visual img { border-radius: 16px; width: 100%; }
         .quote-block {
-            font-size: 1.05rem; font-style: italic; color: var(--accent); line-height: 1.95;
-            padding: 20px 24px; background: var(--surface); border-left: 3px solid var(--accent);
-            border-radius: 0 8px 8px 0; margin: 20px 0;
+            font-size: 15px; font-style: italic; color: var(--accent2);
+            line-height: 2.0; padding: 20px 24px; background: var(--card);
+            border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+        }
+        @media (max-width: 768px) {
+            .fair { padding: 64px 20px; }
+            .fair-grid { flex-direction: column; }
+            .fair-visual { flex: none; width: 100%; max-width: 320px; margin: 0 auto; }
         }
 
-        /* ── セキュリティ要約 ── */
-        .sec-summary { display: flex; flex-direction: column; gap: 12px; margin: 24px 0; }
-        .sec-summary-item {
-            display: flex; align-items: center; gap: 12px;
-            background: var(--surface); border-radius: 10px; padding: 16px 20px;
-            border: 1px solid var(--border);
+        /* ── UseCases ── */
+        .usecases { padding: 100px 56px; background: var(--bg-alt); }
+        .usecases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .usecase-card {
+            padding: 36px 28px; border-radius: 22px; background: var(--card);
+            border: 1px solid var(--line); display: flex; flex-direction: column; gap: 16px;
         }
-        .sec-summary-item .check { color: var(--accent); font-size: 1.3rem; flex-shrink: 0; }
-        .sec-summary-item span { font-size: 1rem; }
-        .sec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
-        @media (max-width: 640px) { .sec-grid { grid-template-columns: 1fr; } }
-        .sec-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
-        .sec-card img { width: 56px; height: 56px; border-radius: 12px; margin-bottom: 12px; }
-        .sec-card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--accent-warm); }
-        .sec-card p { font-size: 0.92rem; color: var(--text-sub); line-height: 1.8; }
-
-        /* ── 共有レベル比較（モバイル対応） ── */
-        .level-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 1rem; }
-        .level-table th, .level-table td { padding: 12px 14px; border: 1px solid var(--border); text-align: center; }
-        .level-table th { background: var(--surface2); color: var(--accent); }
-        .level-table td { background: var(--surface); }
-        .default-badge { background: var(--primary); color: #fff; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; margin-left: 4px; }
-        @media (max-width: 640px) { .level-table-wrap { display: none; } }
-        .level-mobile { display: none; }
-        @media (max-width: 640px) { .level-mobile { display: block; } }
-        .level-compare { display: flex; gap: 16px; margin-top: 20px; }
-        @media (max-width: 480px) { .level-compare { flex-direction: column; } }
-        .level-col {
-            flex: 1; background: var(--surface); border: 1px solid var(--border);
-            border-radius: 12px; padding: 20px;
+        .usecase-tag {
+            display: inline-flex; align-self: flex-start; align-items: center; gap: 6px;
+            padding: 5px 13px; border-radius: 999px; background: rgba(217,122,90,0.1);
+            color: var(--accent2); font-size: 11.5px; font-weight: 600;
         }
-        .level-col h3 { font-size: 1.05rem; margin-bottom: 12px; text-align: center; }
-        .level-col ul { list-style: none; font-size: 0.95rem; color: var(--text-sub); }
-        .level-col ul li { padding: 6px 0; }
-        .level-col ul li .yes { color: var(--accent); margin-right: 6px; }
-        .level-col ul li .no { color: var(--text-dim); margin-right: 6px; }
+        .usecase-card p { font-size: 14.5px; line-height: 1.95; color: var(--sub); margin: 0; }
+        @media (max-width: 768px) {
+            .usecases { padding: 64px 20px; }
+            .usecases-grid { grid-template-columns: 1fr; }
+        }
 
-        /* ── ストーリー（短縮） ── */
-        .story-short { border-left: 3px solid var(--accent); padding-left: 24px; }
-        .story-short p { margin-bottom: 18px; font-size: 1rem; color: var(--text-sub); line-height: 1.9; }
-        .story-short strong { color: var(--text); }
+        /* ── Security ── */
+        .security { padding: 100px 56px; position: relative; overflow: hidden; }
+        .security-glow {
+            position: absolute; top: -100px; left: 40%; width: 520px; height: 520px;
+            border-radius: 50%; background: radial-gradient(circle, rgba(163,184,154,0.18), transparent 70%);
+            pointer-events: none;
+        }
+        .security-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; text-align: left; }
+        .security-card {
+            background: var(--card); border-radius: 20px; padding: 28px 24px;
+            border: 1px solid var(--line);
+        }
+        .security-card h3 {
+            font-family: var(--font-head); font-size: 17px; font-weight: 500;
+            margin: 0 0 8px; color: var(--ink);
+        }
+        .security-card p { font-size: 13px; color: var(--sub); line-height: 1.85; margin: 0; }
+        @media (max-width: 768px) {
+            .security { padding: 64px 20px; }
+            .security-grid { grid-template-columns: 1fr; }
+        }
 
-        /* ── 将来構想 ── */
-        .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
-        @media (max-width: 640px) { .vision-grid { grid-template-columns: 1fr; } }
+        /* ── Sharing Levels ── */
+        .sharing { padding: 100px 56px; background: var(--bg-alt); }
+        .sharing-table { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 14px; }
+        .sharing-table th, .sharing-table td { padding: 13px 16px; border: 1px solid var(--line); text-align: center; }
+        .sharing-table th { background: var(--card); color: var(--accent2); font-weight: 600; font-size: 13px; }
+        .sharing-table td { background: var(--card); color: var(--sub); }
+        .sharing-table td:first-child { text-align: left; color: var(--ink); }
+        .default-badge {
+            background: var(--accent); color: #fff; font-size: 10px;
+            padding: 2px 8px; border-radius: 4px; margin-left: 6px; font-weight: 500;
+        }
+        @media (max-width: 640px) { .sharing-table-wrap { display: none; } }
+        .sharing-mobile { display: none; }
+        @media (max-width: 640px) { .sharing-mobile { display: block; } }
+        .sharing-compare { display: flex; gap: 16px; margin-top: 20px; }
+        .sharing-col {
+            flex: 1; background: var(--card); border: 1px solid var(--line);
+            border-radius: 16px; padding: 22px 20px;
+        }
+        .sharing-col h3 { font-size: 15px; margin-bottom: 14px; text-align: center; font-weight: 600; }
+        .sharing-col ul { list-style: none; font-size: 14px; color: var(--sub); }
+        .sharing-col ul li { padding: 5px 0; }
+        .sharing-col .yes { color: var(--sage); margin-right: 6px; }
+        .sharing-col .no { color: var(--mute); margin-right: 6px; }
+        @media (max-width: 480px) { .sharing-compare { flex-direction: column; } }
+        @media (max-width: 768px) { .sharing { padding: 64px 20px; } }
+
+        /* ── Story ── */
+        .story { padding: 100px 56px; }
+        .story-body { border-left: 3px solid var(--accent); padding-left: 24px; max-width: 780px; }
+        .story-body p { margin-bottom: 20px; font-size: 15px; color: var(--sub); line-height: 2.0; }
+        .story-body strong { color: var(--ink); }
+        @media (max-width: 768px) { .story { padding: 64px 20px; } }
+
+        /* ── Vision ── */
+        .vision { padding: 100px 56px; background: var(--bg-alt); }
+        .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; }
         .vision-card {
-            background: linear-gradient(135deg, var(--surface2), var(--surface));
-            border: 1px solid var(--border); border-radius: 16px;
-            padding: 32px 24px; text-align: center;
+            background: linear-gradient(135deg, var(--card), var(--bg));
+            border: 1px solid var(--line); border-radius: 22px;
+            padding: 36px 28px; text-align: center;
         }
-        .vision-card img { width: 120px; height: 120px; border-radius: 20px; margin-bottom: 14px; }
-        .vision-card h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--accent-warm); }
-        .vision-card p { font-size: 0.92rem; color: var(--text-sub); line-height: 1.8; }
+        .vision-card img { width: 110px; height: 110px; border-radius: 20px; margin-bottom: 16px; }
+        .vision-card h3 {
+            font-family: var(--font-head); font-size: 18px; font-weight: 500;
+            margin-bottom: 10px; color: var(--accent2);
+        }
+        .vision-card p { font-size: 14px; color: var(--sub); line-height: 1.9; }
+        .vision-card .vision-link { font-size: 13px; margin-top: 10px; display: inline-block; }
+        @media (max-width: 768px) {
+            .vision { padding: 64px 20px; }
+            .vision-grid { grid-template-columns: 1fr; }
+        }
 
-        /* ── フッター ── */
-        .footer-links {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 16px; padding: 48px 24px 16px;
-            border-top: 1px solid var(--border); font-size: 0.95rem;
+        /* ── FAQ ── */
+        .faq { padding: 100px 56px; }
+        .faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 880px; margin: 0 auto; }
+        .faq-item {
+            background: var(--card); border-radius: 18px; padding: 22px 26px;
+            border: 1px solid var(--line); cursor: pointer;
         }
-        .footer-links a { color: var(--text-sub); }
-        .footer-copy { text-align: center; padding: 16px 24px 48px; font-size: 0.88rem; color: var(--text-dim); }
+        .faq-question {
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        }
+        .faq-question h3 {
+            font-family: var(--font-head); font-size: 15.5px; font-weight: 600;
+            color: var(--ink); margin: 0; line-height: 1.5;
+        }
+        .faq-toggle {
+            width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+            background: rgba(217,122,90,0.13); color: var(--accent2);
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.2s;
+        }
+        .faq-item.open .faq-toggle { transform: rotate(45deg); }
+        .faq-answer {
+            display: none; font-size: 14px; color: var(--sub); line-height: 1.95;
+            margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line);
+        }
+        .faq-item.open .faq-answer { display: block; }
+        @media (max-width: 768px) { .faq { padding: 64px 20px; } }
+
+        /* ── CTA ── */
+        .cta-section { padding: 100px 56px; background: var(--bg-alt); position: relative; overflow: hidden; }
+        .cta-glow-l {
+            position: absolute; top: -30%; left: -10%; width: 500px; height: 500px;
+            border-radius: 50%; background: radial-gradient(circle, rgba(217,122,90,0.2), transparent 70%);
+            pointer-events: none;
+        }
+        .cta-glow-r {
+            position: absolute; bottom: -30%; right: -10%; width: 420px; height: 420px;
+            border-radius: 50%; background: radial-gradient(circle, rgba(163,184,154,0.26), transparent 70%);
+            pointer-events: none;
+        }
+        .cta-inner { max-width: 760px; margin: 0 auto; text-align: center; position: relative; }
+        .cta-inner h2 {
+            font-family: var(--font-head); font-size: clamp(30px, 5vw, 46px);
+            font-weight: 500; line-height: 1.35; letter-spacing: -0.01em;
+            color: var(--ink); margin: 0 0 24px;
+        }
+        .cta-inner .body-text { margin-bottom: 36px; }
+        .cta-buttons { display: inline-flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: center; }
+        .btn-secondary {
+            background: transparent; color: var(--ink);
+            border: 1.5px solid var(--line); padding: 15px 24px; border-radius: 999px;
+            font-size: 14.5px; font-weight: 600; cursor: pointer; text-decoration: none;
+            transition: border-color 0.2s;
+        }
+        .btn-secondary:hover { border-color: var(--accent); text-decoration: none; }
+        @media (max-width: 768px) { .cta-section { padding: 64px 20px; } }
+
+        /* ── Contact ── */
+        .contact { padding: 80px 56px; text-align: center; }
+        .btn-contact {
+            background: var(--accent); color: #fff; border: none;
+            padding: 14px 28px; border-radius: 999px; font-size: 15px;
+            font-weight: 600; cursor: pointer; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+            box-shadow: 0 6px 16px -6px rgba(217,122,90,0.5);
+            transition: background 0.2s, transform 0.1s;
+        }
+        .btn-contact:hover { background: var(--accent2); text-decoration: none; transform: translateY(-1px); }
+        @media (max-width: 768px) { .contact { padding: 48px 20px; } }
+
+        /* ── Footer ── */
+        .footer {
+            padding: 48px 56px; border-top: 1px solid var(--line); background: var(--card);
+        }
+        .footer-inner {
+            max-width: 1180px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 24px;
+        }
+        .footer-brand { display: flex; align-items: center; gap: 10px; }
+        .footer-brand img { width: 30px; height: 30px; border-radius: 7px; }
+        .footer-brand-name { font-family: var(--font-head); font-size: 17px; font-weight: 600; color: var(--ink); }
+        .footer-brand-ruby { font-family: var(--font-mono); font-size: 10px; color: var(--mute); letter-spacing: 1.5px; }
+        .footer-links {
+            display: flex; gap: 24px; font-size: 12.5px; color: var(--sub); flex-wrap: wrap;
+        }
+        .footer-links a { color: inherit; text-decoration: none; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copy { font-size: 11px; color: var(--mute); font-family: var(--font-mono); letter-spacing: 1px; }
+        @media (max-width: 768px) {
+            .footer { padding: 32px 20px; }
+            .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .footer-links { flex-direction: column; gap: 12px; }
+        }
+
+        /* ── SVG icons (inline) ── */
+        .icon-svg { display: inline-block; vertical-align: middle; }
     </style>
 </head>
 <body>
 
-<!-- ナビゲーション -->
-<nav>
-    <a href="/" class="brand">
+<!-- ─── Nav ─── -->
+<nav class="nav">
+    <a href="/" class="nav-brand">
         <img src="/images/app_icon.png" alt="">
-        <ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>
+        <span class="nav-brand-name">Kinia</span>
+        <span class="nav-brand-ruby">キニア</span>
     </a>
     <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">☰</button>
     <div class="nav-links">
-        <a href="#difference">特徴</a>
-        <a href="#security">安全性</a>
+        <a href="#features">特徴</a>
+        <a href="#how">使い方</a>
+        <a href="#security">安心の設計</a>
         <a href="/faq.html">FAQ</a>
         <div class="nav-dropdown">
             <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">ガイド ▾</button>
             <div class="nav-dropdown-menu">
-                <a href="/setup.html" style="font-weight:600;color:var(--accent);">はじめかたガイド</a>
+                <a href="/setup.html" class="nav-dd-primary">はじめかたガイド</a>
                 <a href="/guide-family-basic.html">3人家族セットアップ</a>
                 <a href="/guide-join.html">招待された方へ</a>
-                <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+                <div style="border-top:1px solid var(--line);margin:4px 0;"></div>
                 <a href="/senior.html">高齢のご家族がいる方へ</a>
                 <a href="/parents.html">お子さんを持つご家庭の方へ</a>
                 <a href="/students.html">学生の方へ</a>
             </div>
         </div>
+        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">
+            ダウンロード
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
     </div>
 </nav>
 
-<!-- ════════════════════════════════════════
-     1. ヒーロー
-     ════════════════════════════════════════ -->
-<div class="hero">
-    <div class="hero-text">
-        <img src="/images/app_icon.png" alt="Kinia" style="width:72px; height:72px; border-radius:16px; margin-bottom:12px;">
-        <h1>心地よい距離感で、家族とつながる</h1>
-        <p class="tagline">居場所を追いかけるのではなく、暮らしの気配だけがそっと届く。見る側も見られる側も負担のない、ゆるいつながりの見守りアプリ</p>
-        <ul class="hero-points">
-            <li><span class="dot">●</span>基本は通知エリアだけ</li>
-            <li><span class="dot">●</span>見る側も見られる側も心地いい</li>
-            <li><span class="dot">●</span>運営も中身を見られない設計</li>
-        </ul>
-        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="cta-btn">Google Playで入手</a>
-        <p class="hero-status">Google Playで配信中 — Android対応（iOS版は近日公開予定）</p>
-    </div>
-    <div class="hero-visual">
-        <img src="/images/ui_member_list.webp" alt="Kiniaのメンバー一覧画面">
-    </div>
-</div>
-
-<!-- ════════════════════════════════════════
-     2. Kiniaの違い（3点）
-     ════════════════════════════════════════ -->
-<div class="bg-alt">
-<div class="section-wide" id="difference">
-    <p class="section-label">Difference</p>
-    <h2>既存の位置共有アプリと<span class="hl">何が違うのか</span></h2>
-
-    <div class="diff-grid">
-        <div class="diff-card">
-            <div class="icon">📍</div>
-            <h3>暮らしの気配だけ届く</h3>
-            <p>初期設定では地図上の現在地は共有されません。「自宅に着いた」「学校を出た」——日常のそっとした気配だけで十分な安心が届きます。</p>
-        </div>
-        <div class="diff-card">
-            <div class="icon">⚖️</div>
-            <h3>見る側も見られる側も心地いい</h3>
-            <p>共有する情報は全員同じ。監視ではなくお互いを気にかけ合う関係だから、誰もストレスを感じません。</p>
-        </div>
-        <div class="diff-card">
-            <div class="icon">🔒</div>
-            <h3>運営も見えない</h3>
-            <p>位置情報は端末側で暗号化。合言葉はサーバーに送られず、運営を含め誰も実際の座標を復元できません。</p>
-        </div>
-    </div>
-</div>
-</div>
-
-<!-- ════════════════════════════════════════
-     3. どう通知されるか / 何が見えるか
-     ════════════════════════════════════════ -->
-<div class="section">
-    <p class="section-label">How it works</p>
-    <h2>届く通知は、<span class="hl">これだけ</span></h2>
-    <p class="lead">
-        詳細な現在地ではなく、登録したエリアへの出入りだけ。<br>
-        「誰が、いつ、どこにいるか」——それだけで十分な安心があります。
-    </p>
-
-    <div class="notif-mock">
-        <div class="notif-header"><ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby> 通知</div>
-        <div class="notif-row">📍 お母さん →「自宅」に到着</div>
-        <div class="notif-row">📍 太郎 →「学校」から出発</div>
-        <div class="notif-row">📍 太郎 →「塾」に到着</div>
-        <div class="notif-row">📍 お父さん →「会社」から出発</div>
-    </div>
-
-    <p class="lead" style="margin-top:24px;">
-        メイン画面は地図ではなく、<strong style="color:var(--text);">テキストベースのメンバー一覧</strong>。位置を追わなくても「元気に過ごしているか」が一目で分かる設計です。
-    </p>
-</div>
-
-<!-- ════════════════════════════════════════
-     4. ユースケース
-     ════════════════════════════════════════ -->
-<div class="bg-alt">
-<div class="section-wide">
-    <p class="section-label">Use cases</p>
-    <h2 style="text-align:center;">あなたの家族に<span class="hl">合った使い方</span></h2>
-
-    <div class="use-grid">
-        <div class="use-card">
-            <img src="/images/icon_child_watch.webp" alt="">
-            <h3>子どもの見守り</h3>
-            <p>学校・塾・自宅を通知エリアに。「塾に着いたよ」で安心。常に追わなくても大丈夫。</p>
-        </div>
-        <div class="use-card">
-            <img src="/images/icon_distant_parent.webp" alt="">
-            <h3>離れて暮らす親</h3>
-            <p>実家を通知エリアに設定するだけ。「今日も家にいるな」が分かる。心理的ハードルゼロ。</p>
-        </div>
-        <div class="use-card">
-            <img src="/images/icon_meetup.webp" alt="">
-            <h3>待ち合わせ</h3>
-            <p>一時共有で6時間だけ位置をON。終わったら自動で元に戻ります。</p>
-        </div>
-        <div class="use-card">
-            <img src="/images/icon_child_detail.png" alt="">
-            <h3>小さなお子さんの見守り</h3>
-            <p>まだ幼いうちは「すべて共有」モードで詳しく確認。成長に合わせて、段階的にゆるい共有へ切り替えられます。</p>
-        </div>
-    </div>
-</div>
-</div>
-
-<!-- ════════════════════════════════════════
-     5. フェアであること
-     ════════════════════════════════════════ -->
-<div class="section" id="principle">
-    <p class="section-label">Principle</p>
-    <h2><ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>の原則：<span class="hl">全員がフェアであること</span></h2>
-
-    <div class="split">
-        <div class="split-text">
-            <p class="lead">
-                従来の見守りアプリには「見る側」と「見られる側」の上下関係がありました。自分がその立場だったら？ 居場所を常に見られているのに、相手の居場所は分からない。
+<!-- ─── Hero ─── -->
+<section class="hero">
+    <div class="hero-glow-r" aria-hidden="true"></div>
+    <div class="hero-glow-l" aria-hidden="true"></div>
+    <div class="hero-grid">
+        <div>
+            <span class="pill"><span class="pill-dot"></span>家族のための、やさしい見守り</span>
+            <h1>
+                ちょうどいい距離で、<br>
+                <span class="underline-accent">そっとつながる</span>
+            </h1>
+            <p class="hero-sub">
+                居場所を追いかけるのではなく、<br>
+                暮らしの気配だけが、そっと届く。<br>
+                見る人にも、見られる人にも<br>
+                息のしやすい見守りアプリです。
             </p>
-
-            <div class="quote-block">
-                知りたいなら、自分も開示する。大人でも子どもでも、全員が同じ条件で情報を共有する。——それが<ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>の「フェア」です。
+            <div class="hero-actions">
+                <a href="https://play.google.com/store/apps/details?id=io.kinia" class="btn-primary">
+                    Google Playで入手
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <span class="hero-note">Android配信中 ・ iOS版は近日公開</span>
             </div>
+            <div class="hero-badges">
+                <span class="hero-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L20 7" stroke="#a3b89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    完全無料
+                </span>
+                <span class="hero-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L20 7" stroke="#a3b89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    広告なし
+                </span>
+                <span class="hero-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L20 7" stroke="#a3b89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    運営も中身を見られない
+                </span>
+                <span class="hero-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L20 7" stroke="#a3b89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    日本人が開発
+                </span>
+            </div>
+        </div>
 
-            <p class="lead">
-                対等な関係だからこそ、子どもが大人になっても使い続けられます。「監視される側」のままなら、自立した時点でアンインストールされてしまう。フェアであることが、長く続く理由になります。
+        <div class="hero-visual">
+            <div class="phone-frame">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <div class="phone-content">
+                        <div class="phone-header">
+                            <div class="phone-header-label">OUR FAMILY</div>
+                            <div class="phone-header-title">すずき家</div>
+                        </div>
+                        <div class="phone-members">
+                            <div class="member-row">
+                                <div class="member-avatar" style="background:rgba(217,122,90,0.2);color:#d97a5a;">
+                                    お<span class="online-dot"></span>
+                                </div>
+                                <div class="member-info">
+                                    <div class="member-name">お母さん</div>
+                                    <div class="member-detail">自宅 <span style="color:var(--mute);">・ のんびり</span></div>
+                                </div>
+                                <div class="member-time">たった今</div>
+                            </div>
+                            <div class="member-row">
+                                <div class="member-avatar" style="background:rgba(44,58,94,0.2);color:#2c3a5e;">
+                                    お<span class="online-dot"></span>
+                                </div>
+                                <div class="member-info">
+                                    <div class="member-name">お父さん</div>
+                                    <div class="member-detail">会社から帰宅中 <span style="color:var(--mute);">・ 移動中</span></div>
+                                </div>
+                                <div class="member-time">たった今</div>
+                            </div>
+                            <div class="member-row">
+                                <div class="member-avatar" style="background:rgba(163,184,154,0.2);color:#a3b89a;">
+                                    ゆ<span class="online-dot"></span>
+                                </div>
+                                <div class="member-info">
+                                    <div class="member-name">ゆうき</div>
+                                    <div class="member-detail">塾に到着 <span style="color:var(--mute);">・ 勉強中</span></div>
+                                </div>
+                                <div class="member-time">たった今</div>
+                            </div>
+                            <div class="member-row">
+                                <div class="member-avatar" style="background:rgba(196,165,91,0.2);color:#c4a55b;">
+                                    さ<span class="online-dot"></span>
+                                </div>
+                                <div class="member-info">
+                                    <div class="member-name">さくら</div>
+                                    <div class="member-detail">学校 <span style="color:var(--mute);">・ 授業中</span></div>
+                                </div>
+                                <div class="member-time">たった今</div>
+                            </div>
+                        </div>
+                        <div class="phone-mood">
+                            <div class="phone-mood-title">今日もみんな元気</div>
+                            <div class="phone-mood-sub">地図は見ない、気配だけ</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Floating notification cards -->
+            <div class="float-notify float-notify-top">
+                <div class="notify-icon" style="background:rgba(217,122,90,0.13);">
+                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#d97a5a" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                    <div class="notify-text">お母さん <span class="notify-card-arrow">→</span>「自宅」に到着</div>
+                    <div class="notify-time">たった今</div>
+                </div>
+            </div>
+            <div class="float-notify float-notify-bottom">
+                <div class="notify-icon" style="background:rgba(163,184,154,0.13);">
+                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#a3b89a" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                    <div class="notify-text">ゆうき <span class="notify-card-arrow">→</span>「塾」に到着</div>
+                    <div class="notify-time">3分前</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Concept ─── -->
+<section class="concept">
+    <div class="concept-inner">
+        <div class="section-label">— CONCEPT —</div>
+        <h2>
+            知りたいのは「今どこか」ではなく、<br>
+            <span class="accent-text">「元気に過ごしているか」</span>
+        </h2>
+        <p>
+            道のりを追いかけるのは、ちょっと窮屈。<br>
+            かといって、何も分からないのは少し心配。<br><br>
+            Kiniaは、そのあいだの<br>
+            「ちょうどいい」を探した家族の見守りです。
+        </p>
+    </div>
+</section>
+
+<!-- ─── Features ─── -->
+<section class="features" id="features">
+    <div class="container">
+        <div style="text-align:center;margin-bottom:60px;">
+            <div class="section-label">— DIFFERENCE —</div>
+            <h2 class="section-heading">ふつうの位置共有と、<br>ちょっと違うところ</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-card-glow" aria-hidden="true"></div>
+                <div class="icon-box">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M8 22h16l-2-3v-5a6 6 0 0 0-12 0v5l-2 3Z" stroke="#b85a3e" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 25a2 2 0 0 0 4 0" stroke="#b85a3e" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </div>
+                <div class="feature-tag">01 ・ AMBIENT</div>
+                <h3>気配だけが、そっと届く</h3>
+                <p>地図上の現在地は共有しません。<br>「自宅に着いた」「学校を出た」——<br>暮らしの気配だけで十分な安心が伝わります。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-glow" aria-hidden="true"></div>
+                <div class="icon-box">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="12" cy="12" r="4" stroke="#b85a3e" stroke-width="1.6"/><circle cx="22" cy="13" r="3" stroke="#b85a3e" stroke-width="1.6"/><path d="M4 25c0-3.5 3.5-6 8-6s8 2.5 8 6" stroke="#b85a3e" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </div>
+                <div class="feature-tag">02 ・ FAIR</div>
+                <h3>みんな対等な関係</h3>
+                <p>共有する情報は全員フェア。<br>一方的な監視ではなく、お互いを気にかけ合う関係だから誰もストレスを感じません。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-glow" aria-hidden="true"></div>
+                <div class="icon-box">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect x="7" y="14" width="18" height="13" rx="2.5" stroke="#b85a3e" stroke-width="1.6"/><path d="M11 14v-4a5 5 0 0 1 10 0v4" stroke="#b85a3e" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </div>
+                <div class="feature-tag">03 ・ PRIVATE</div>
+                <h3>運営にも、見えない</h3>
+                <p>位置情報は端末側で暗号化。<br>合言葉はサーバーに送られず、<br>私たちですら実際の座標を復元できません。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── How It Works ─── -->
+<section class="how" id="how">
+    <div class="how-grid">
+        <div>
+            <div class="section-label">— HOW IT WORKS —</div>
+            <h2 class="section-heading">届くのは、<br>これだけ</h2>
+            <p class="body-text">
+                詳細な現在地ではなく、<br>
+                登録したエリアへの「入る」「出る」だけ。<br>
+                「誰が、いつ、どこにいるか」——<br>
+                それで十分な安心があります。
+            </p>
+            <div class="how-compare">
+                <div class="how-compare-label">従来 / Kinia</div>
+                <div class="how-compare-grid">
+                    <div>
+                        <div class="how-compare-old-label">ふつう</div>
+                        <div class="how-compare-old">「16:23 △△交差点を時速12kmで南下中」</div>
+                    </div>
+                    <div>
+                        <div class="how-compare-new-label">KINIA</div>
+                        <div class="how-compare-new">「ゆうきが塾に到着しました」</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="how-cards">
+            <div class="notify-card">
+                <div class="notify-card-icon" style="background:rgba(217,122,90,0.13);">
+                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#d97a5a" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                    <div class="notify-card-text">お母さん <span class="notify-card-arrow">→</span>「自宅」に到着</div>
+                    <div class="notify-card-time">6分前 ・ 12:42</div>
+                </div>
+            </div>
+            <div class="notify-card">
+                <div class="notify-card-icon" style="background:rgba(163,184,154,0.13);">
+                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#a3b89a" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                    <div class="notify-card-text">ゆうき <span class="notify-card-arrow">→</span>「学校」から出発</div>
+                    <div class="notify-card-time">12分前 ・ 15:30</div>
+                </div>
+            </div>
+            <div class="notify-card">
+                <div class="notify-card-icon" style="background:rgba(44,58,94,0.13);">
+                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#2c3a5e" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                    <div class="notify-card-text">ゆうき <span class="notify-card-arrow">→</span>「塾」に到着</div>
+                    <div class="notify-card-time">29分前 ・ 16:08</div>
+                </div>
+            </div>
+            <div class="notify-card">
+                <div class="notify-card-icon" style="background:rgba(196,165,91,0.13);">
+                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#c4a55b" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                    <div class="notify-card-text">さくら <span class="notify-card-arrow">→</span>「学校」から出発</div>
+                    <div class="notify-card-time">35分前 ・ 15:15</div>
+                </div>
+            </div>
+            <div class="notify-card">
+                <div class="notify-card-icon" style="background:rgba(184,90,62,0.13);">
+                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#b85a3e" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                    <div class="notify-card-text">お父さん <span class="notify-card-arrow">→</span>「会社」から出発</div>
+                    <div class="notify-card-time">1時間前 ・ 17:02</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Fair Principle ─── -->
+<section class="fair" id="principle">
+    <div class="container-mid">
+        <div class="section-label">— PRINCIPLE —</div>
+        <h2 class="section-heading">Kiniaの原則：<span class="accent-text">全員がフェアであること</span></h2>
+        <div class="fair-grid">
+            <div class="fair-text">
+                <p class="body-text">
+                    従来の見守りアプリには「見る側」と「見られる側」の上下関係がありました。<br><br>もし自分がその立場だったら？<br>居場所を常に見られているのに、相手の居場所は分からない。
+                </p>
+                <div class="quote-block">
+                    知りたいなら、自分も開示する。大人でも子どもでも、全員が同じ条件で情報を共有する。——それがKiniaの「フェア」です。
+                </div>
+                <p class="body-text">
+                    対等な関係だからこそ、子どもが大人になっても使い続けられます。「監視される側」のままなら、自立した時点でアンインストールされてしまう。フェアであることが、長く続く理由になります。
+                </p>
+            </div>
+            <div class="fair-visual">
+                <img src="/images/problem_contrast.webp" alt="監視と見守りの対比">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Use Cases ─── -->
+<section class="usecases">
+    <div class="container">
+        <div style="text-align:center;margin-bottom:60px;">
+            <div class="section-label">— USE CASES —</div>
+            <h2 class="section-heading">こんな家族に、ちょうどいい</h2>
+        </div>
+        <div class="usecases-grid">
+            <div class="usecase-card">
+                <span class="usecase-tag">子どもを見守る</span>
+                <p>「ちゃんと学校に着いたかな」「塾から出たかな」。心配な時間帯だけ、そっと知りたい。リアルタイム追跡でストーカーのようにならず、子どもの自立も尊重できます。</p>
+            </div>
+            <div class="usecase-card">
+                <span class="usecase-tag">離れた親を見守る</span>
+                <p>毎日電話するほどでもないけれど、無事に過ごしているか気になる。「自宅にいる」「散歩から帰った」だけが分かれば、安心できます。</p>
+            </div>
+            <div class="usecase-card">
+                <span class="usecase-tag">夫婦・パートナー</span>
+                <p>お互いの帰宅時間がふんわり分かるだけ。「今、家にいる？」を聞かなくていい。詮索しすぎず、思いやれる距離感。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Security ─── -->
+<section class="security" id="security">
+    <div class="security-glow" aria-hidden="true"></div>
+    <div class="container-mid" style="position:relative;text-align:center;">
+        <div class="section-label">— SAFETY —</div>
+        <h2 class="section-heading">
+            私たちは、<br>
+            <span class="accent-text">「持たない」</span>ことを選びました
+        </h2>
+        <p class="body-text" style="max-width:600px;margin:0 auto 56px;">
+            漏れる情報そのものを、<br>
+            最初から持たない設計。<br><br>
+            運営である私たちですら、<br>
+            あなたの位置を知ることができません。
+        </p>
+        <div class="security-grid">
+            <div class="security-card">
+                <div class="icon-box">
+                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="7" y="14" width="18" height="13" rx="2.5" stroke="#b85a3e" stroke-width="1.6"/><path d="M11 14v-4a5 5 0 0 1 10 0v4" stroke="#b85a3e" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </div>
+                <h3>端末側で暗号化</h3>
+                <p>位置情報は送信前に端末で暗号化。サーバーには暗号化された値しか届きません。</p>
+            </div>
+            <div class="security-card">
+                <div class="icon-box">
+                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M16 4 6 7v9c0 6 4.5 10 10 12 5.5-2 10-6 10-12V7l-10-3Z" stroke="#b85a3e" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>合言葉はローカル保存</h3>
+                <p>家族で決めた合言葉は端末にだけ保存。サーバーには送信されないため、運営も復号できません。</p>
+            </div>
+            <div class="security-card">
+                <div class="icon-box">
+                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M16 26s-9-5.5-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-9 12-9 12Z" stroke="#b85a3e" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>広告・課金なし</h3>
+                <p>完全無料。広告も課金もありません。データを売って収益化することもしません。</p>
+            </div>
+        </div>
+        <p style="margin-top:32px;">
+            <a href="/data-safety.html" style="font-size:13px;">データの安全性について詳しく見る →</a>
+        </p>
+    </div>
+</section>
+
+<!-- ─── Sharing Levels ─── -->
+<section class="sharing" id="sharing">
+    <div class="container-narrow">
+        <div class="section-label">— PRIVACY —</div>
+        <h2 class="section-heading">自分で選べる、<span class="accent-text">2つの共有レベル</span></h2>
+        <p class="body-text">共有する情報は自分でコントロール。家族の形に合わせて選べます。</p>
+
+        <!-- Desktop table -->
+        <div class="sharing-table-wrap">
+        <table class="sharing-table">
+            <thead>
+                <tr>
+                    <th style="text-align:left;">機能</th>
+                    <th>通知エリアのみ<span class="default-badge">初期設定</span></th>
+                    <th>すべて共有</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>通知エリアのIN/OUT通知</td><td>✅</td><td>✅</td></tr>
+                <tr><td>歩数・元気度</td><td>✅</td><td>✅</td></tr>
+                <tr><td>体調チェック</td><td>✅</td><td>✅</td></tr>
+                <tr><td>一時的な位置共有（6h/12h/24h/常時）</td><td>✅ リクエスト制</td><td>✅</td></tr>
+                <tr><td>地図上の現在地表示</td><td>—</td><td>✅</td></tr>
+                <tr><td>移動履歴・軌跡</td><td>—</td><td>✅</td></tr>
+                <tr><td>速度・活動状態</td><td>—</td><td>✅</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <!-- Mobile cards -->
+        <div class="sharing-mobile">
+        <div class="sharing-compare">
+            <div class="sharing-col">
+                <h3>通知エリアのみ<br><span style="font-size:11px;color:var(--accent);">初期設定</span></h3>
+                <ul>
+                    <li><span class="yes">✅</span> エリア出入り通知</li>
+                    <li><span class="yes">✅</span> 歩数・元気度</li>
+                    <li><span class="yes">✅</span> 体調チェック</li>
+                    <li><span class="yes">✅</span> 一時位置共有</li>
+                    <li><span class="no">—</span> 現在地表示</li>
+                    <li><span class="no">—</span> 移動履歴</li>
+                    <li><span class="no">—</span> 速度・活動</li>
+                </ul>
+            </div>
+            <div class="sharing-col">
+                <h3>すべて共有</h3>
+                <ul>
+                    <li><span class="yes">✅</span> エリア出入り通知</li>
+                    <li><span class="yes">✅</span> 歩数・元気度</li>
+                    <li><span class="yes">✅</span> 体調チェック</li>
+                    <li><span class="yes">✅</span> 一時位置共有</li>
+                    <li><span class="yes">✅</span> 現在地表示</li>
+                    <li><span class="yes">✅</span> 移動履歴</li>
+                    <li><span class="yes">✅</span> 速度・活動</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+
+        <p class="body-text" style="margin-top:24px;">
+            歩数と「元気度」で、位置を共有しなくても<br>
+            「今日も元気に動いてるな」と分かります。<br>
+            ステータスコメントや体調チェック、緊急時のSOSアラートも備えています。<br>
+            <strong style="color:var(--ink);">完全無料・広告なし</strong>です。
+        </p>
+    </div>
+</section>
+
+<!-- ─── Story ─── -->
+<section class="story" id="story">
+    <div class="container-narrow">
+        <div class="section-label">— STORY —</div>
+        <h2 class="section-heading">なぜKiniaを<span class="accent-text">作ったのか</span></h2>
+        <div class="story-body">
+            <p>
+                家族みんなで位置共有アプリを使っていました。でも使い続けるうちに、<strong>距離感が近すぎる</strong>こと、<strong>共有される情報が多すぎる</strong>ことに違和感を覚えるようになりました。知りたいのは「元気に過ごしているか」であって、「今どの道を何キロで走っているか」ではない。
+            </p>
+            <p>
+                一方で、離れた実家の両親の様子はもっと気にかけたい。でも「位置を常に共有して」とは言い出しにくい。両親からも「監視されるのは嫌だ」と言われている。つながりたいのに、つながる手段がハードルになっている。
+            </p>
+            <div class="quote-block">
+                「今、家にいるかどうか」——そのくらいの情報を、もっと気軽に共有できたら。お互いの日常を尊重しながら、ちゃんとつながれる方法はないだろうか。
+            </div>
+            <p>
+                「子どもを管理する」のではなく「家族としてつながる」ことを考えたとき、お互いを尊重できる<strong>ゆるい新しいつながりの形</strong>があってもいい。Kiniaは、そんな考えから生まれました。
             </p>
         </div>
-        <div class="split-visual">
-            <img src="/images/problem_contrast_v2.png" alt="監視と見守りの対比" style="border-radius:16px;">
+    </div>
+</section>
+
+<!-- ─── Vision ─── -->
+<section class="vision">
+    <div class="container-mid">
+        <div class="section-label">— VISION —</div>
+        <h2 class="section-heading">Kiniaが<span class="accent-text">目指す未来</span></h2>
+        <div class="vision-grid">
+            <div class="vision-card">
+                <img src="/images/vision_lifestage.png" alt="">
+                <h3>ライフステージを超えて</h3>
+                <p>学生時代だけで終わらない。対等な関係だから、子どもが大人になっても使い続けられます。</p>
+            </div>
+            <div class="vision-card">
+                <img src="/images/vision_safety.png" alt="">
+                <h3>災害時の安否確認</h3>
+                <p>普段は「ゆるいつながり」、いざという時は「確実につながる」。全メンバーへの全画面安否確認と、最終位置の照会機能を搭載しています。オフライン時でも端末内キャッシュから家族の最終位置を確認できます。</p>
+                <a href="/safety.html" class="vision-link">詳しくはこちら →</a>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- ════════════════════════════════════════
-     6. セキュリティ
-     ════════════════════════════════════════ -->
-<div class="bg-alt">
-<div class="section" id="security">
-    <p class="section-label">Security</p>
-    <h2>運営すら位置情報を<span class="hl">見られない設計</span></h2>
-
-    <div class="sec-summary">
-        <div class="sec-summary-item"><span class="check">✓</span><span>位置情報はサーバーに保存される前に暗号化</span></div>
-        <div class="sec-summary-item"><span class="check">✓</span><span>合言葉（暗号鍵）はサーバーに送られない</span></div>
-        <div class="sec-summary-item"><span class="check">✓</span><span>運営・管理者でも中身を読めない</span></div>
-    </div>
-
-    <div class="sec-grid">
-        <div class="sec-card">
-            <img src="/images/sec_google_v2.png" alt="">
-            <h3>Googleのセキュリティ基盤</h3>
-            <p>通信はすべて暗号化。Google認証でログインしていない第三者はデータに触れられません。</p>
+<!-- ─── FAQ ─── -->
+<section class="faq" id="faq">
+    <div class="container-narrow">
+        <div style="text-align:center;margin-bottom:48px;">
+            <div class="section-label">— FAQ —</div>
+            <h2 class="section-heading">よくある質問</h2>
         </div>
-        <div class="sec-card">
-            <img src="/images/sec_encrypt_v2.png" alt="">
-            <h3>位置情報の暗号化</h3>
-            <p>合言葉から作られる鍵で位置を暗号化。合言葉はサーバーに送信されないため、管理者でも復元不可能です。</p>
+        <div class="faq-list">
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-question">
+                    <h3>リアルタイムで現在地が見えますか？</h3>
+                    <div class="faq-toggle">
+                        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </div>
+                </div>
+                <div class="faq-answer">初期設定では見えません。Kiniaは登録したエリアへの「出入り」だけを通知する設計です。一時的に詳細位置を共有したい時だけ、お互いの同意で時間制限つきで共有できます。</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-question">
+                    <h3>本当に運営は中身を見られないの？</h3>
+                    <div class="faq-toggle">
+                        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </div>
+                </div>
+                <div class="faq-answer">はい。位置情報は端末側で暗号化され、家族の合言葉はサーバーに送信されません。私たち運営者が、ある家族の実際の座標を復元することは技術的にできません。</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-question">
+                    <h3>子どもが嫌がっています</h3>
+                    <div class="faq-toggle">
+                        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </div>
+                </div>
+                <div class="faq-answer">共有する情報は全員同じ（フェア）です。親だけが子どもを見るのではなく、子どもも親の気配を感じられます。「監視されている」感覚を最小化できる設計です。</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-question">
+                    <h3>iOS版はありますか？</h3>
+                    <div class="faq-toggle">
+                        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </div>
+                </div>
+                <div class="faq-answer">近日公開予定です。Androidからリリースしており、iOS版もまもなく配信予定です。</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-question">
+                    <h3>安否確認機能はありますか？</h3>
+                    <div class="faq-toggle">
+                        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </div>
+                </div>
+                <div class="faq-answer">はい。全メンバーへの全画面安否確認と、最終位置の照会機能を搭載しています。オフライン時でも端末内キャッシュから家族の最終位置を確認できます。</div>
+            </div>
         </div>
-        <div class="sec-card">
-            <img src="/images/sec_anonymous.png" alt="">
-            <h3>個人を特定できない</h3>
-            <p>サーバー上にはランダムIDだけ。家族の名前は端末にのみ保存。データベースを見ても誰が誰か分かりません。</p>
-        </div>
-        <div class="sec-card">
-            <img src="/images/sec_nodata.png" alt="">
-            <h3>「持たない」安全</h3>
-            <p>個人情報を預からなければ、漏洩リスクも生まれない。「持たないこと」が最も誠実な設計です。</p>
-        </div>
-    </div>
-
-    <p style="text-align:center; margin-top:28px;">
-        <a href="/data-safety.html" style="font-size:0.95rem;">データの安全性について詳しく見る →</a>
-    </p>
-</div>
-</div>
-
-<!-- ════════════════════════════════════════
-     7. 共有レベル
-     ════════════════════════════════════════ -->
-<div class="section" id="sharing">
-    <p class="section-label">Privacy</p>
-    <h2>自分で選べる、<span class="hl">2つの共有レベル</span></h2>
-    <p class="lead">共有する情報は自分でコントロール。家族の形に合わせて選べます。</p>
-
-    <!-- デスクトップ: テーブル -->
-    <div class="level-table-wrap">
-    <table class="level-table">
-        <thead>
-            <tr>
-                <th style="text-align:left;">機能</th>
-                <th>通知エリアのみ <span class="default-badge">初期設定</span></th>
-                <th>すべて共有</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td style="text-align:left;">通知エリアのIN/OUT通知</td><td>✅</td><td>✅</td></tr>
-            <tr><td style="text-align:left;">歩数・元気度</td><td>✅</td><td>✅</td></tr>
-            <tr><td style="text-align:left;">体調チェック</td><td>✅</td><td>✅</td></tr>
-            <tr><td style="text-align:left;">一時的な位置共有（6h/12h/24h/常時）</td><td>✅ リクエスト制</td><td>✅</td></tr>
-            <tr><td style="text-align:left;">地図上の現在地表示</td><td>—</td><td>✅</td></tr>
-            <tr><td style="text-align:left;">移動履歴・軌跡</td><td>—</td><td>✅</td></tr>
-            <tr><td style="text-align:left;">速度・活動状態</td><td>—</td><td>✅</td></tr>
-        </tbody>
-    </table>
-    </div>
-
-    <!-- モバイル: 比較カード -->
-    <div class="level-mobile">
-    <div class="level-compare">
-        <div class="level-col">
-            <h3>📍 通知エリアのみ<br><span style="font-size:0.75rem;color:var(--primary);">初期設定</span></h3>
-            <ul>
-                <li><span class="yes">✅</span> エリア出入り通知</li>
-                <li><span class="yes">✅</span> 歩数・元気度</li>
-                <li><span class="yes">✅</span> 体調チェック</li>
-                <li><span class="yes">✅</span> 一時位置共有</li>
-                <li><span class="no">—</span> 現在地表示</li>
-                <li><span class="no">—</span> 移動履歴</li>
-                <li><span class="no">—</span> 速度・活動</li>
-            </ul>
-        </div>
-        <div class="level-col">
-            <h3>🗺 すべて共有</h3>
-            <ul>
-                <li><span class="yes">✅</span> エリア出入り通知</li>
-                <li><span class="yes">✅</span> 歩数・元気度</li>
-                <li><span class="yes">✅</span> 体調チェック</li>
-                <li><span class="yes">✅</span> 一時位置共有</li>
-                <li><span class="yes">✅</span> 現在地表示</li>
-                <li><span class="yes">✅</span> 移動履歴</li>
-                <li><span class="yes">✅</span> 速度・活動</li>
-            </ul>
-        </div>
-    </div>
-    </div>
-
-    <p class="lead" style="margin-top:20px;">
-        歩数と「元気度」で、位置を共有しなくても「今日も元気に動いてるな」と分かります。ステータスコメントや体調チェック、緊急時のSOSアラートも備えています。<strong style="color:var(--text);">完全無料・広告なし</strong>です。
-    </p>
-</div>
-
-<!-- ════════════════════════════════════════
-     8. 開発のきっかけ（短縮版）
-     ════════════════════════════════════════ -->
-<div class="bg-alt">
-<div class="section" id="story">
-    <p class="section-label">Story</p>
-    <h2>なぜ<ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>を<span class="hl">作ったのか</span></h2>
-
-    <div class="story-short">
-        <p>
-            家族みんなで位置共有アプリを使っていました。でも使い続けるうちに、<strong>距離感が近すぎる</strong>こと、<strong>共有される情報が多すぎる</strong>ことに違和感を覚えるようになりました。知りたいのは「元気に過ごしているか」であって、「今どの道を何キロで走っているか」ではない。
-        </p>
-        <p>
-            一方で、離れた実家の両親の様子はもっと気にかけたい。でも「位置を常に共有して」とは言い出しにくい。両親からも「監視されるのは嫌だ」と言われている。つながりたいのに、つながる手段がハードルになっている。
-        </p>
-
-        <div class="quote-block">
-            「今、家にいるかどうか」——そのくらいの情報を、もっと気軽に共有できたら。お互いの日常を尊重しながら、ちゃんとつながれる方法はないだろうか。
-        </div>
-
-        <p>
-            「子どもを管理する」のではなく「家族としてつながる」ことを考えたとき、お互いを尊重できる<strong>ゆるい新しいつながりの形</strong>があってもいい。<ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>は、そんな考えから生まれました。
+        <p style="text-align:center;margin-top:28px;">
+            <a href="/faq.html" style="font-size:13px;">すべてのFAQを見る →</a>
         </p>
     </div>
-</div>
-</div>
+</section>
 
-<!-- ════════════════════════════════════════
-     9. 将来構想
-     ════════════════════════════════════════ -->
-<div class="section">
-    <p class="section-label">Vision</p>
-    <h2><ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>が<span class="hl">目指す未来</span></h2>
-
-    <div class="vision-grid">
-        <div class="vision-card">
-            <img src="/images/vision_lifestage.png" alt="">
-            <h3>ライフステージを超えて</h3>
-            <p>学生時代だけで終わらない。対等な関係だから、子供が大人になっても使い続けられます。</p>
-        </div>
-        <div class="vision-card">
-            <img src="/images/vision_safety_v2.png" alt="">
-            <h3>災害時の安否確認</h3>
-            <p>普段は「ゆるいつながり」、いざという時は「確実につながる」。全メンバーへの全画面安否確認と、最終位置の照会機能を搭載しています。オフライン時でも端末内キャッシュから家族の最終位置を確認できます。</p>
-            <p style="margin-top:8px;"><a href="/safety.html" style="font-size:0.9rem;">詳しくはこちら →</a></p>
+<!-- ─── CTA ─── -->
+<section class="cta-section">
+    <div class="cta-glow-l" aria-hidden="true"></div>
+    <div class="cta-glow-r" aria-hidden="true"></div>
+    <div class="cta-inner">
+        <h2>家族と、<br>ちょうどいい距離で</h2>
+        <p class="body-text">
+            Kiniaは完全無料。<br>
+            まずはご家族でインストールして、<br>
+            心地よい距離感を見つけてください。
+        </p>
+        <div class="cta-buttons">
+            <a href="https://play.google.com/store/apps/details?id=io.kinia" class="btn-primary">
+                Google Playで入手
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#" class="btn-secondary">iOS版を待機する</a>
         </div>
     </div>
-</div>
+</section>
 
-<!-- ════════════════════════════════════════
-     10. 最終CTA
-     ════════════════════════════════════════ -->
-<div class="bg-alt">
-<div class="section" style="text-align:center; padding-bottom:48px;">
-    <h2>ゆるいつながり、<span class="hl">始めませんか</span></h2>
-    <p class="lead" style="margin-bottom:28px;">
-        <ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>についに一般公開しました。<br>
-        あなたの家族の「ちょうどいい距離感」を、一緒に見つけましょう。
-    </p>
-    <a href="https://play.google.com/store/apps/details?id=io.kinia" class="cta-btn">Google Playで入手</a>
-    <p class="hero-status" style="margin-top:12px;">Google Playで配信中 — Android対応（iOS版は近日公開予定）</p>
-</div>
-</div>
+<!-- ─── Contact ─── -->
+<section class="contact" id="contact">
+    <div class="section-label">— CONTACT —</div>
+    <h2 class="section-heading">お問い合わせ</h2>
+    <p class="body-text" style="margin-bottom:24px;">ご質問・ご要望・バグ報告など、お気軽にご連絡ください。</p>
+    <a href="https://forms.gle/qTc8UjzWVMFpx76o8" class="btn-contact">お問い合わせフォーム</a>
+    <p style="margin-top:14px;color:var(--sub);font-size:13px;">端末名・Androidバージョン・症状を添えていただくとスムーズです。</p>
+</section>
 
-<!-- ════════════════════════════════════════
-     11. お問い合わせ
-     ════════════════════════════════════════ -->
-<div class="section" id="contact" style="text-align:center;">
-    <p class="section-label">Contact</p>
-    <h2><span class="hl">お問い合わせ</span></h2>
-    <p class="lead" style="margin-bottom:24px;">
-        ご質問・ご要望・バグ報告など、お気軽にご連絡ください。
-    </p>
-    <a href="https://forms.gle/qTc8UjzWVMFpx76o8" class="cta-btn" style="background:var(--accent); font-size:1.05rem;">お問い合わせフォーム</a>
-    <p style="margin-top:14px; color:var(--text-sub); font-size:0.95rem;">
-        端末名・Androidバージョン・症状を添えていただくとスムーズです。
-    </p>
-</div>
+<!-- ─── Footer ─── -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <img src="/images/app_icon.png" alt="">
+            <span class="footer-brand-name">Kinia</span>
+            <span class="footer-brand-ruby">キニア</span>
+        </div>
+        <div class="footer-links">
+            <a href="/setup.html">はじめかたガイド</a>
+            <a href="/faq.html">よくある質問</a>
+            <a href="/status.html">開発状況</a>
+            <a href="/safety.html">災害時の安否確認</a>
+            <a href="/data-safety.html">データの安全性</a>
+            <a href="/privacy.html">プライバシーポリシー</a>
+            <a href="/delete-account.html">アカウント削除</a>
+            <a href="#contact">お問い合わせ</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
+    </div>
+</footer>
 
-<!-- フッター -->
-<div class="footer-links">
-    <a href="/setup.html">はじめかたガイド</a>
-    <a href="/faq.html">よくある質問</a>
-    <a href="/status.html">開発状況</a>
-    <a href="/safety.html">災害時の安否確認</a>
-    <a href="/data-safety.html">データの安全性</a>
-    <a href="/privacy.html">プライバシーポリシー</a>
-    <a href="/delete-account.html">アカウント削除</a>
-    <a href="#contact">お問い合わせ</a>
-    <a href="/senior.html">高齢のご家族がいる方へ</a>
-    <a href="/students.html">学生の方へ</a>
-    <a href="/parents.html">お子さんを持つご家庭の方へ</a>
-</div>
-<div class="footer-copy">
-    <p>&copy; 2026 Kinia</p>
-</div>
-
-<script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
+<script>
+document.addEventListener('click', function(e) {
+    document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
+        if (!d.contains(e.target)) d.classList.remove('open');
+    });
+});
+</script>
 </body>
 </html>
