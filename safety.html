@@ -1,131 +1,164 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XCT32M2MZV');
-    </script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XCT32M2MZV');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>安否確認機能について — Kinia</title>
     <meta name="description" content="Kiniaの安否確認機能は、災害時に家族の無事を一斉に確認できます。普段のプライバシーを保ちながら、非常時だけ必要な確認ができる設計です。">
-    <style>ruby rt { font-size: 0.55em; }
+    <link rel="icon" href="/images/app_icon.png" type="image/png">
+    <meta property="og:title" content="安否確認機能について — Kinia">
+    <meta property="og:description" content="Kiniaの安否確認機能は、災害時に家族の無事を一斉に確認できます。普段のプライバシーを保ちながら、非常時だけ必要な確認ができる設計です。">
+    <meta property="og:image" content="https://kinia.io/images/app_icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        ruby rt { font-size: 0.55em; }
         :root {
-            --bg: #12121F;
-            --bg-alt: #161628;
-            --surface: #1E1E30;
-            --surface2: #282840;
-            --text: #E8E4F0;
-            --text-sub: #B0AAC2;
-            --text-dim: #7A7490;
-            --primary: #7C8EF2;
-            --accent: #4CC9F0;
-            --accent-warm: #F4A261;
-            --border: #3D3855;
-            --error: #F2726A;
+            --bg: #fbf6ef; --bg-alt: #f4e8d8; --card: #ffffff; --ink: #2a2218;
+            --sub: rgba(42,34,24,0.62); --mute: rgba(42,34,24,0.4);
+            --accent: #d97a5a; --accent2: #b85a3e; --sage: #a3b89a; --navy: #2c3a5e;
+            --line: rgba(42,34,24,0.08);
+            --font-head: 'Shippori Mincho', 'Noto Serif JP', serif;
+            --font-body: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+            --font-mono: 'DM Mono', monospace;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.9;
-            font-size: 18px;
-        }
-        a { color: var(--primary); text-decoration: none; }
+        *,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--ink); line-height: 1.85; overflow-x: hidden; font-size: 17px; -webkit-font-smoothing: antialiased; }
+        a { color: var(--accent2); text-decoration: none; }
         a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
 
-        nav {
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(18, 18, 31, 0.95);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 24px;
-            display: flex; align-items: center; justify-content: space-between;
+        .nav{position:sticky;top:0;z-index:100;background:rgba(251,246,239,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:16px 56px;display:flex;align-items:center;justify-content:space-between}
+        .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+        .nav-brand img{width:36px;height:36px;border-radius:8px;display:block}
+        .nav-brand-name{font-family:var(--font-head);font-size:20px;font-weight:600}
+        .nav-brand-ruby{font-family:var(--font-mono);font-size:10px;color:var(--mute);letter-spacing:1.5px;margin-left:2px}
+        .nav-links{display:flex;align-items:center;gap:28px;font-size:13.5px;color:var(--sub)}
+        .nav-links a{color:inherit;text-decoration:none;transition:color .2s}.nav-links a:hover{color:var(--accent);text-decoration:none}
+        .nav-cta{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 16px -6px rgba(217,122,90,.5);transition:background .2s,transform .1s}
+        .nav-cta:hover{background:var(--accent2);text-decoration:none;transform:translateY(-1px)}
+        .nav-dropdown{position:relative}
+        .nav-dropdown-toggle{background:none;border:none;color:var(--sub);font-size:13.5px;cursor:pointer;padding:0;font-family:inherit}
+        .nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 10px);right:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 0;min-width:260px;box-shadow:0 12px 40px rgba(42,34,24,.12);z-index:200}
+        .nav-dropdown.open .nav-dropdown-menu{display:block}
+        .nav-dropdown-menu a{display:block;padding:10px 20px;color:var(--sub);font-size:13px;white-space:nowrap}
+        .nav-dropdown-menu a:hover{background:var(--bg-alt);color:var(--ink);text-decoration:none}
+        .nav-dropdown-menu .nav-dd-primary{font-weight:600;color:var(--accent)}
+        .hamburger{display:none;background:none;border:none;color:var(--ink);font-size:1.5rem;cursor:pointer;padding:4px}
+        @media(max-width:768px){
+            .nav{padding:14px 20px}
+            .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(251,246,239,.98);padding:20px 24px;gap:16px;border-bottom:1px solid var(--line);align-items:flex-start}
+            .nav-links.open{display:flex}.hamburger{display:block}
+            .nav-dropdown-menu{position:static;box-shadow:none;border:none;border-radius:0;background:transparent;padding:0 0 0 16px;min-width:auto}
+            .nav-dropdown.open .nav-dropdown-menu{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+            .nav-dropdown-menu a{padding:4px 0}
         }
-        nav .brand { font-size: 1.2rem; font-weight: 700; color: var(--primary); text-decoration: none; }
-        nav .nav-links { display: flex; gap: 20px; font-size: 0.95rem; }
-        nav .nav-links a { color: var(--text-sub); }
-        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
+
+        .footer{padding:48px 56px;border-top:1px solid var(--line);background:var(--card)}
+        .footer-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+        .footer-brand{display:flex;align-items:center;gap:10px}
+        .footer-brand img{width:30px;height:30px;border-radius:7px}
+        .footer-brand-name{font-family:var(--font-head);font-size:17px;font-weight:600;color:var(--ink)}
+        .footer-brand-ruby{font-family:var(--font-mono);font-size:10px;color:var(--mute);letter-spacing:1.5px}
+        .footer-links{display:flex;gap:24px;font-size:12.5px;color:var(--sub);flex-wrap:wrap}
+        .footer-links a{color:inherit;text-decoration:none}.footer-links a:hover{color:var(--accent)}
+        .footer-copy{font-size:11px;color:var(--mute);font-family:var(--font-mono);letter-spacing:1px}
+        @media(max-width:768px){.footer{padding:32px 20px}.footer-inner{flex-direction:column;align-items:flex-start;gap:16px}.footer-links{flex-direction:column;gap:12px}}
 
         .content { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; }
-        h1 { font-size: clamp(1.5rem, 4vw, 2rem); color: var(--primary); margin-bottom: 8px; }
-        .subtitle { color: var(--text-sub); margin-bottom: 36px; font-size: 1rem; line-height: 1.8; }
-        h2 { font-size: 1.3rem; color: var(--accent); margin-top: 40px; margin-bottom: 12px; }
-        h3 { font-size: 1.1rem; color: var(--accent-warm); margin-top: 24px; margin-bottom: 8px; }
-        p { margin-bottom: 16px; color: var(--text-sub); font-size: 1rem; line-height: 1.95; }
-        p strong { color: var(--text); }
+        h1 { font-family: var(--font-head); font-size: clamp(1.5rem, 4vw, 2rem); color: var(--accent2); margin-bottom: 8px; }
+        .subtitle { color: var(--sub); margin-bottom: 36px; font-size: 1rem; line-height: 1.85; }
+        h2 { font-family: var(--font-head); font-size: 1.3rem; color: var(--accent2); margin-top: 40px; margin-bottom: 12px; }
+        h3 { font-family: var(--font-head); font-size: 1.1rem; color: var(--accent); margin-top: 24px; margin-bottom: 8px; }
+        p { margin-bottom: 16px; color: var(--sub); font-size: 1rem; line-height: 1.95; }
+        p strong { color: var(--ink); }
         .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
             padding: 24px;
             margin: 16px 0;
         }
         .card h3 { margin-top: 0; }
         .card p:last-child { margin-bottom: 0; }
         .quote {
-            border-left: 3px solid var(--accent);
+            border-left: 4px solid var(--accent);
             padding: 16px 20px;
-            background: var(--surface);
-            border-radius: 0 8px 8px 0;
+            background: var(--bg-alt);
+            border-radius: 0 14px 14px 0;
             margin: 20px 0;
             font-style: italic;
-            color: var(--accent);
+            color: var(--accent2);
             line-height: 1.9;
         }
         .note-box {
-            background: rgba(242, 114, 106, 0.08);
-            border: 1px solid var(--border);
-            border-radius: 12px;
+            background: var(--bg-alt);
+            border: 1px solid var(--line);
+            border-radius: 14px;
             padding: 20px 24px;
             margin: 20px 0;
         }
-        .note-box p { color: var(--text-sub); margin-bottom: 8px; }
+        .note-box p { color: var(--sub); margin-bottom: 8px; }
         .note-box p:last-child { margin-bottom: 0; }
         .steps { counter-reset: step; margin: 20px 0; }
         .step {
             display: flex; gap: 16px; margin-bottom: 12px;
-            background: var(--surface);
-            border-radius: 10px;
+            background: var(--card);
+            border-radius: 12px;
             padding: 16px 20px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--line);
         }
         .step-num {
             flex-shrink: 0;
             width: 32px; height: 32px;
-            background: var(--primary);
+            background: var(--accent);
             color: #fff;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-weight: 700;
             font-size: 0.9rem;
+            font-family: var(--font-mono);
         }
         .step-text { flex: 1; }
         .step-text p { margin-bottom: 0; }
         .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
         @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
-
-        .footer-links {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 16px; padding: 48px 24px 16px;
-            border-top: 1px solid var(--border); font-size: 0.95rem;
-        }
-        .footer-links a { color: var(--text-sub); }
-        .footer-copy { text-align: center; padding: 16px 24px 48px; font-size: 0.88rem; color: var(--text-dim); }
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="/" class="brand"><ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby></a>
+<nav class="nav">
+    <a href="/" class="nav-brand">
+        <img src="/images/app_icon.png" alt="">
+        <span class="nav-brand-name">Kinia</span>
+        <span class="nav-brand-ruby">キニア</span>
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">&#9776;</button>
     <div class="nav-links">
-        <a href="/#difference">特徴</a>
+        <a href="/#features">特徴</a>
         <a href="/faq.html">FAQ</a>
+        <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">ガイド ▾</button>
+            <div class="nav-dropdown-menu">
+                <a href="/setup.html" class="nav-dd-primary">はじめかたガイド</a>
+                <a href="/guide-family-basic.html">3人家族セットアップ</a>
+                <a href="/guide-join.html">招待された方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0;"></div>
+                <a href="/senior.html">高齢のご家族がいる方へ</a>
+                <a href="/parents.html">お子さんを持つご家庭の方へ</a>
+                <a href="/students.html">学生の方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
+                <a href="/guide-sharing-all.html">画面の見方（すべて共有）</a>
+                <a href="/guide-sharing-area.html">画面の見方（通知エリアのみ）</a>
+            </div>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">ダウンロード
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
     </div>
 </nav>
 
@@ -170,7 +203,7 @@
 
     <div class="two-col">
         <div class="card">
-            <h3 style="color:var(--accent);">✅ 安否確認時に共有されるもの</h3>
+            <h3 style="color:var(--accent2);">✅ 安否確認時に共有されるもの</h3>
             <p>・各メンバーの回答（無事/けが/助けが必要）<br>
             ・一言メッセージ<br>
             ・最後に取得できた位置（住所・エリア名・座標）<br>
@@ -178,7 +211,7 @@
             ・位置が照会されたという事実</p>
         </div>
         <div class="card">
-            <h3 style="color:var(--text-dim);">🚫 共有されないもの</h3>
+            <h3 style="color:var(--mute);">🚫 共有されないもの</h3>
             <p>・常時の詳細な位置情報（通常時の設定は変わりません）<br>
             ・移動履歴や軌跡<br>
             ・サーバー側での平文位置データ（暗号化されたまま）</p>
@@ -274,32 +307,30 @@
     </div>
 
     <!-- 9. CTA -->
-    <div style="text-align:center; margin-top:48px; padding-top:32px; border-top:1px solid var(--border);">
-        <p style="font-size:1.05rem; color:var(--text); margin-bottom:16px;">安否確認機能を試してみませんか？</p>
+    <div style="text-align:center; margin-top:48px; padding-top:32px; border-top:1px solid var(--line);">
+        <p style="font-size:1.05rem; color:var(--ink); margin-bottom:16px;">安否確認機能を試してみませんか？</p>
         <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
-            <a href="https://play.google.com/store/apps/details?id=io.kinia" style="display:inline-block; background:var(--primary); color:#fff; padding:12px 28px; border-radius:8px; font-weight:600; text-decoration:none;">Google Playで入手</a>
-            <a href="/faq.html" style="display:inline-block; background:var(--surface); color:var(--text-sub); padding:12px 28px; border-radius:8px; font-weight:600; text-decoration:none; border:1px solid var(--border);">よくある質問を見る</a>
+            <a href="https://play.google.com/store/apps/details?id=io.kinia" style="display:inline-block; background:var(--accent); color:#fff; padding:12px 28px; border-radius:8px; font-weight:600; text-decoration:none;">Google Playで入手</a>
+            <a href="/faq.html" style="display:inline-block; background:var(--card); color:var(--sub); padding:12px 28px; border-radius:8px; font-weight:600; text-decoration:none; border:1px solid var(--line);">よくある質問を見る</a>
         </div>
-        <p style="margin-top:12px; font-size:0.9rem; color:var(--text-dim);">
+        <p style="margin-top:12px; font-size:0.9rem; color:var(--mute);">
             ご質問は <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a> からお気軽にどうぞ
         </p>
     </div>
 
 </main>
 
-<div class="footer-links">
-    <a href="/">トップページ</a>
-    <a href="/setup.html">はじめかた</a>
-    <a href="/guide-join.html">招待された方へ</a>
-    <a href="/faq.html">よくある質問</a>
-    <a href="/data-safety.html">データの安全性</a>
-    <a href="/privacy.html">プライバシー</a>
-    <a href="/delete-account.html">アカウント削除</a>
-</div>
-<div class="footer-copy">
-    <p>お困りですか？ <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a></p>
-    <p>&copy; 2026 Kinia</p>
-</div>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand"><img src="/images/app_icon.png" alt=""><span class="footer-brand-name">Kinia</span><span class="footer-brand-ruby">キニア</span></div>
+        <div class="footer-links">
+            <a href="/setup.html">はじめかたガイド</a><a href="/faq.html">よくある質問</a><a href="/status.html">開発状況</a>
+            <a href="/data-safety.html">データの安全性</a><a href="/privacy.html">プライバシーポリシー</a><a href="/#contact">お問い合わせ</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
+    </div>
+</footer>
 
+<script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
 </body>
 </html>

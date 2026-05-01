@@ -1,60 +1,49 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XCT32M2MZV');
-    </script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XCT32M2MZV');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>よくある質問 — Kinia</title>
-    <style>ruby rt { font-size: 0.55em; }
-        :root {
-            --bg: #12121F;
-            --surface: #1E1E30;
-            --surface2: #282840;
-            --text: #E8E4F0;
-            --text-sub: #B0AAC2;
-            --primary: #7C8EF2;
-            --primary-dim: #5A6AD4;
-            --accent: #4CC9F0;
-            --border: #3D3855;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.8;
-        }
-        a { color: var(--primary); text-decoration: none; }
-        a:hover { text-decoration: underline; }
+    <link rel="icon" href="/images/app_icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#fbf6ef;--bg-alt:#f4e8d8;--card:#ffffff;--ink:#2a2218;--sub:rgba(42,34,24,.62);--mute:rgba(42,34,24,.4);--accent:#d97a5a;--accent2:#b85a3e;--sage:#a3b89a;--navy:#2c3a5e;--line:rgba(42,34,24,.08);--font-head:'Shippori Mincho','Noto Serif JP',serif;--font-body:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;--font-mono:'DM Mono',monospace}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font-body);background:var(--bg);color:var(--ink);line-height:1.85;font-size:17px;-webkit-font-smoothing:antialiased}
+        a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+        ruby rt{font-size:0.55em}
 
         /* ナビゲーション */
-        nav {
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(18, 18, 31, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            padding: 12px 24px;
-            display: flex; align-items: center; justify-content: space-between;
-            max-width: 100%;
+        .nav{position:sticky;top:0;z-index:100;background:rgba(251,246,239,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:16px 56px;display:flex;align-items:center;justify-content:space-between}
+        .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+        .nav-brand img{width:36px;height:36px;border-radius:8px;display:block}
+        .nav-brand-name{font-family:var(--font-head);font-size:20px;font-weight:600}
+        .nav-brand-ruby{font-family:var(--font-mono);font-size:10px;color:var(--mute);letter-spacing:1.5px;margin-left:2px}
+        .nav-links{display:flex;align-items:center;gap:28px;font-size:13.5px;color:var(--sub)}
+        .nav-links a{color:inherit;text-decoration:none;transition:color .2s}.nav-links a:hover{color:var(--accent);text-decoration:none}
+        .nav-cta{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 16px -6px rgba(217,122,90,.5);transition:background .2s,transform .1s}
+        .nav-cta:hover{background:var(--accent2);text-decoration:none;transform:translateY(-1px)}
+        .nav-dropdown{position:relative}
+        .nav-dropdown-toggle{background:none;border:none;color:var(--sub);font-size:13.5px;cursor:pointer;padding:0;font-family:inherit}
+        .nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 10px);right:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 0;min-width:260px;box-shadow:0 12px 40px rgba(42,34,24,.12);z-index:200}
+        .nav-dropdown.open .nav-dropdown-menu{display:block}
+        .nav-dropdown-menu a{display:block;padding:10px 20px;color:var(--sub);font-size:13px;white-space:nowrap}
+        .nav-dropdown-menu a:hover{background:var(--bg-alt);color:var(--ink);text-decoration:none}
+        .nav-dropdown-menu .nav-dd-primary{font-weight:600;color:var(--accent)}
+        .hamburger{display:none;background:none;border:none;color:var(--ink);font-size:1.5rem;cursor:pointer;padding:4px}
+        @media(max-width:768px){
+            .nav{padding:14px 20px}
+            .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(251,246,239,.98);padding:20px 24px;gap:16px;border-bottom:1px solid var(--line);align-items:flex-start}
+            .nav-links.open{display:flex}.hamburger{display:block}
+            .nav-dropdown-menu{position:static;box-shadow:none;border:none;border-radius:0;background:transparent;padding:0 0 0 16px;min-width:auto}
+            .nav-dropdown.open .nav-dropdown-menu{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+            .nav-dropdown-menu a{padding:4px 0}
         }
-        nav .brand { font-size: 1.2rem; font-weight: bold; color: var(--primary); }
-        nav .nav-links { display: flex; gap: 20px; font-size: 0.9rem; flex-wrap: wrap; }
-        nav .nav-links a { color: var(--text-sub); }
-        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
-        .nav-dropdown { position: relative; }
-        .nav-dropdown-toggle { background: none; border: none; color: var(--text-sub); font-size: 0.9rem; cursor: pointer; padding: 0; font-family: inherit; transition: color 0.2s; }
-        .nav-dropdown-toggle:hover { color: var(--primary); }
-        .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 10px); right: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 0; min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 200; }
-        .nav-dropdown.open .nav-dropdown-menu { display: block; }
-        .nav-dropdown-menu a { display: block; padding: 10px 20px; color: var(--text-sub); font-size: 0.9rem; transition: background 0.15s, color 0.15s; white-space: nowrap; }
-        .nav-dropdown-menu a:hover { background: var(--surface2); color: var(--text); text-decoration: none; }
 
         /* メイン */
         .content {
@@ -63,12 +52,13 @@
             padding: 40px 20px 80px;
         }
         h1 {
+            font-family: var(--font-head);
             font-size: 1.8rem;
-            color: var(--primary);
+            color: var(--ink);
             margin-bottom: 8px;
         }
         .subtitle {
-            color: var(--text-sub);
+            color: var(--sub);
             margin-bottom: 32px;
             font-size: 0.95rem;
         }
@@ -78,20 +68,21 @@
             margin-bottom: 32px;
         }
         .category-title {
+            font-family: var(--font-head);
             font-size: 1.1rem;
-            color: var(--accent);
+            color: var(--accent2);
             padding-bottom: 8px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--line);
             margin-bottom: 12px;
         }
 
         /* アコーディオン */
         .faq-item {
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
             margin-bottom: 8px;
             overflow: hidden;
-            background: var(--surface);
+            background: var(--card);
         }
         .faq-q {
             display: flex;
@@ -101,14 +92,14 @@
             cursor: pointer;
             font-size: 0.95rem;
             font-weight: 500;
-            color: var(--text);
+            color: var(--ink);
             user-select: none;
             transition: background 0.2s;
         }
-        .faq-q:hover { background: var(--surface2); }
+        .faq-q:hover { background: var(--bg-alt); }
         .faq-q .arrow {
             font-size: 0.8rem;
-            color: var(--text-sub);
+            color: var(--mute);
             transition: transform 0.2s;
             flex-shrink: 0;
             margin-left: 12px;
@@ -119,7 +110,7 @@
             overflow: hidden;
             transition: max-height 0.3s ease, padding 0.3s ease;
             padding: 0 16px;
-            color: var(--text-sub);
+            color: var(--sub);
             font-size: 0.92rem;
             line-height: 1.7;
         }
@@ -127,29 +118,29 @@
             max-height: 600px;
             padding: 0 16px 16px;
         }
-        .faq-a a { color: var(--primary); }
+        .faq-a a { color: var(--accent2); }
         .faq-a p { margin-bottom: 8px; }
         .faq-a p:last-child { margin-bottom: 0; }
 
         /* 検索 */
         .search-box {
             width: 100%;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 10px;
             padding: 12px 16px;
-            color: var(--text);
+            color: var(--ink);
             font-size: 1rem;
             margin-bottom: 32px;
             outline: none;
-            font-family: inherit;
+            font-family: var(--font-body);
         }
-        .search-box::placeholder { color: var(--text-sub); opacity: 0.5; }
-        .search-box:focus { border-color: var(--primary); }
+        .search-box::placeholder { color: var(--mute); }
+        .search-box:focus { border-color: var(--accent); }
 
         .no-results {
             text-align: center;
-            color: var(--text-sub);
+            color: var(--sub);
             padding: 32px;
             display: none;
         }
@@ -158,50 +149,59 @@
         .contact-box {
             margin-top: 40px;
             padding: 24px;
-            background: var(--surface);
-            border-radius: 12px;
-            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 14px;
+            border: 1px solid var(--line);
             text-align: center;
         }
-        .contact-box h3 { font-size: 1rem; margin-bottom: 8px; }
-        .contact-box p { color: var(--text-sub); font-size: 0.92rem; }
-        .contact-box a { color: var(--primary); text-decoration: none; }
+        .contact-box h3 { font-size: 1rem; margin-bottom: 8px; font-family: var(--font-head); }
+        .contact-box p { color: var(--sub); font-size: 0.92rem; }
+        .contact-box a { color: var(--accent2); text-decoration: none; }
 
         /* フッター */
-        .footer-links {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 16px; padding: 40px 24px;
-            border-top: 1px solid var(--border);
-            font-size: 0.9rem;
-        }
-        .footer-links a { color: var(--text-sub); }
-        .contact {
-            text-align: center;
-            padding: 20px 24px 40px;
-            font-size: 0.85rem;
-            color: var(--text-sub);
-        }
+        .footer{padding:48px 56px;border-top:1px solid var(--line);background:var(--card)}
+        .footer-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+        .footer-brand{display:flex;align-items:center;gap:10px}
+        .footer-brand img{width:30px;height:30px;border-radius:7px}
+        .footer-brand-name{font-family:var(--font-head);font-size:17px;font-weight:600;color:var(--ink)}
+        .footer-brand-ruby{font-family:var(--font-mono);font-size:10px;color:var(--mute);letter-spacing:1.5px}
+        .footer-links{display:flex;gap:24px;font-size:12.5px;color:var(--sub);flex-wrap:wrap}
+        .footer-links a{color:inherit;text-decoration:none}.footer-links a:hover{color:var(--accent)}
+        .footer-copy{font-size:11px;color:var(--mute);font-family:var(--font-mono);letter-spacing:1px}
+        @media(max-width:768px){.footer{padding:32px 20px}.footer-inner{flex-direction:column;align-items:flex-start;gap:16px}.footer-links{flex-direction:column;gap:12px}}
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="/" class="brand" style="text-decoration:none;"><ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby></a>
+<nav class="nav">
+    <a href="/" class="nav-brand">
+        <img src="/images/app_icon.png" alt="">
+        <span class="nav-brand-name">Kinia</span>
+        <span class="nav-brand-ruby">キニア</span>
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">☰</button>
     <div class="nav-links">
-        <a href="/#features">機能</a>
-        <a href="/faq.html" style="color:var(--accent);">FAQ</a>
+        <a href="/#features">特徴</a>
+        <a href="/faq.html">FAQ</a>
         <div class="nav-dropdown">
             <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">ガイド ▾</button>
             <div class="nav-dropdown-menu">
-                <a href="/setup.html">はじめかたガイド</a>
+                <a href="/setup.html" class="nav-dd-primary">はじめかたガイド</a>
                 <a href="/guide-family-basic.html">3人家族セットアップ</a>
                 <a href="/guide-join.html">招待された方へ</a>
-                <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+                <div style="border-top:1px solid var(--line);margin:4px 0;"></div>
                 <a href="/senior.html">高齢のご家族がいる方へ</a>
                 <a href="/parents.html">お子さんを持つご家庭の方へ</a>
                 <a href="/students.html">学生の方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
+                <a href="/guide-sharing-all.html">画面の見方（すべて共有）</a>
+                <a href="/guide-sharing-area.html">画面の見方（通知エリアのみ）</a>
             </div>
         </div>
+        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">
+            ダウンロード
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
     </div>
 </nav>
 
@@ -888,7 +888,7 @@
     <div class="contact-box">
         <h3>解決しませんでしたか？</h3>
         <p style="margin-bottom:12px;">
-            <a href="https://forms.gle/qTc8UjzWVMFpx76o8" style="display:inline-block; background:var(--primary); color:#fff; padding:10px 24px; border-radius:8px; font-weight:600; text-decoration:none;">お問い合わせフォーム</a>
+            <a href="https://forms.gle/qTc8UjzWVMFpx76o8" style="display:inline-block; background:var(--accent); color:#fff; padding:10px 24px; border-radius:8px; font-weight:600; text-decoration:none;">お問い合わせフォーム</a>
         </p>
         <p>
             端末名・Androidバージョン・Kiniaバージョン・症状の詳細を添えていただくとスムーズです。
@@ -896,19 +896,16 @@
     </div>
 </main>
 
-<div class="footer-links">
-    <a href="/setup.html">はじめかた</a>
-    <a href="/guide-family-basic.html">3人家族ガイド</a>
-    <a href="/guide-join.html">招待された方へ</a>
-    <a href="/faq.html">よくある質問</a>
-    <a href="/safety.html">安全性</a>
-    <a href="/privacy.html">プライバシー</a>
-    <a href="/delete-account.html">アカウント削除</a>
-</div>
-<div class="contact">
-    <p>お困りですか？ <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a></p>
-    <p style="margin-top:8px;">&copy; 2026 Kinia</p>
-</div>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand"><img src="/images/app_icon.png" alt=""><span class="footer-brand-name">Kinia</span><span class="footer-brand-ruby">キニア</span></div>
+        <div class="footer-links">
+            <a href="/setup.html">はじめかたガイド</a><a href="/faq.html">よくある質問</a><a href="/status.html">開発状況</a>
+            <a href="/data-safety.html">データの安全性</a><a href="/privacy.html">プライバシーポリシー</a><a href="/#contact">お問い合わせ</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
+    </div>
+</footer>
 
 <script>
 function toggleFaq(el) {

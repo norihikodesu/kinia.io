@@ -1,88 +1,74 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XCT32M2MZV');
-    </script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XCT32M2MZV');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kinia（キニア）— お子さんの安全とプライバシーを両立する見守りアプリ</title>
     <meta name="description" content="Kiniaは、お子さんのプライバシーを尊重しながら安心を届ける家族見守りアプリ。通知エリアだけの「ゆるい見守り」で、信頼関係を壊しません。">
-    <style>ruby rt { font-size: 0.55em; }
+    <link rel="icon" href="/images/app_icon.png" type="image/png">
+    <meta property="og:title" content="Kinia（キニア）— お子さんの安全とプライバシーを両立する見守りアプリ">
+    <meta property="og:description" content="Kiniaは、お子さんのプライバシーを尊重しながら安心を届ける家族見守りアプリ。通知エリアだけの「ゆるい見守り」で、信頼関係を壊しません。">
+    <meta property="og:image" content="https://kinia.io/images/app_icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
         :root {
-            --bg: #12121F;
-            --bg-alt: #161628;
-            --surface: #1E1E30;
-            --surface2: #282840;
-            --text: #E8E4F0;
-            --text-sub: #B0AAC2;
-            --text-dim: #7A7490;
-            --primary: #5B8DEF;
-            --primary-dim: #4A73CC;
-            --accent: #4CC9F0;
-            --accent-warm: #F4A261;
-            --border: #3D3855;
+            --bg: #fbf6ef; --bg-alt: #f4e8d8; --card: #ffffff; --ink: #2a2218;
+            --sub: rgba(42,34,24,0.62); --mute: rgba(42,34,24,0.4);
+            --accent: #d97a5a; --accent2: #b85a3e; --sage: #a3b89a; --navy: #2c3a5e;
+            --line: rgba(42,34,24,0.08);
+            --font-head: 'Shippori Mincho', 'Noto Serif JP', serif;
+            --font-body: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+            --font-mono: 'DM Mono', monospace;
             --section-gap: clamp(48px, 7vw, 88px);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.85;
-            overflow-x: hidden;
-            font-size: 17px;
-        }
-        a { color: var(--primary); text-decoration: none; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--ink); line-height: 1.85; overflow-x: hidden; font-size: 17px; -webkit-font-smoothing: antialiased; }
+        a { color: var(--accent2); text-decoration: none; }
         a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+        ruby rt { font-size: 0.55em; }
 
         /* ── ナビ ── */
-        nav {
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(18, 18, 31, 0.95);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 24px;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        nav .brand { font-size: 1.2rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 8px; text-decoration: none; }
-        nav .brand img { width: 28px; height: 28px; border-radius: 6px; }
-        nav .nav-links { display: flex; gap: 20px; font-size: 0.95rem; }
-        nav .nav-links a { color: var(--text-sub); transition: color 0.2s; }
-        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
-        .hamburger { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
-        @media (max-width: 720px) {
-            nav .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(18,18,31,0.98); padding: 16px 24px; gap: 16px; border-bottom: 1px solid var(--border); }
-            nav .nav-links.open { display: flex; }
-            .hamburger { display: block; }
-        }
+        .nav { position: sticky; top: 0; z-index: 100; background: rgba(251,246,239,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); padding: 16px 56px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+        .nav-brand img { width: 36px; height: 36px; border-radius: 8px; display: block; }
+        .nav-brand-name { font-family: var(--font-head); font-size: 20px; font-weight: 600; }
+        .nav-brand-ruby { font-family: var(--font-mono); font-size: 10px; color: var(--mute); letter-spacing: 1.5px; margin-left: 2px; }
+        .nav-links { display: flex; align-items: center; gap: 28px; font-size: 13.5px; color: var(--sub); }
+        .nav-links a { color: inherit; text-decoration: none; transition: color .2s; }
+        .nav-links a:hover { color: var(--accent); text-decoration: none; }
+        .nav-cta { background: var(--accent); color: #fff; border: none; padding: 10px 20px; border-radius: 999px; font-size: 13.5px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 6px 16px -6px rgba(217,122,90,0.5); transition: background .2s, transform .1s; }
+        .nav-cta:hover { background: var(--accent2); text-decoration: none; transform: translateY(-1px); }
         .nav-dropdown { position: relative; }
-        .nav-dropdown-toggle { background: none; border: none; color: var(--text-sub); font-size: 0.95rem; cursor: pointer; padding: 0; font-family: inherit; transition: color 0.2s; }
-        .nav-dropdown-toggle:hover { color: var(--primary); }
-        .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 10px); right: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 0; min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 200; }
+        .nav-dropdown-toggle { background: none; border: none; color: var(--sub); font-size: 13.5px; cursor: pointer; padding: 0; font-family: inherit; }
+        .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 10px); right: 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 8px 0; min-width: 260px; box-shadow: 0 12px 40px rgba(42,34,24,0.12); z-index: 200; }
         .nav-dropdown.open .nav-dropdown-menu { display: block; }
-        .nav-dropdown-menu a { display: block; padding: 10px 20px; color: var(--text-sub); font-size: 0.92rem; transition: background 0.15s, color 0.15s; white-space: nowrap; }
-        .nav-dropdown-menu a:hover { background: var(--surface2); color: var(--text); text-decoration: none; }
-        @media (max-width: 720px) {
+        .nav-dropdown-menu a { display: block; padding: 10px 20px; color: var(--sub); font-size: 13px; white-space: nowrap; }
+        .nav-dropdown-menu a:hover { background: var(--bg-alt); color: var(--ink); text-decoration: none; }
+        .nav-dropdown-menu .nav-dd-primary { font-weight: 600; color: var(--accent); }
+        .hamburger { display: none; background: none; border: none; color: var(--ink); font-size: 1.5rem; cursor: pointer; padding: 4px; }
+        @media (max-width: 768px) {
+            .nav { padding: 14px 20px; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(251,246,239,0.98); padding: 20px 24px; gap: 16px; border-bottom: 1px solid var(--line); align-items: flex-start; }
+            .nav-links.open { display: flex; }
+            .hamburger { display: block; }
             .nav-dropdown-menu { position: static; box-shadow: none; border: none; border-radius: 0; background: transparent; padding: 0 0 0 16px; min-width: auto; }
             .nav-dropdown.open .nav-dropdown-menu { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-            .nav-dropdown-menu a { padding: 4px 0; font-size: 0.9rem; }
-            .nav-dropdown-menu a:hover { background: transparent; }
+            .nav-dropdown-menu a { padding: 4px 0; }
         }
 
         /* ── 共通 ── */
         .section { max-width: 780px; margin: 0 auto; padding: var(--section-gap) 24px; }
         .section-wide { max-width: 960px; margin: 0 auto; padding: var(--section-gap) 24px; }
-        .section-label { font-size: 0.82rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
-        .section h2, .section-wide h2 { font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.45; margin-bottom: 18px; }
+        .section-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px; color: var(--accent); margin-bottom: 10px; }
+        .section h2, .section-wide h2 { font-family: var(--font-head); font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.45; margin-bottom: 18px; }
         .section h2 .hl, .section-wide h2 .hl { color: var(--accent); }
-        .lead { font-size: 1.02rem; color: var(--text-sub); line-height: 1.95; }
+        .lead { font-size: 1.02rem; color: var(--sub); line-height: 1.95; }
         .bg-alt { background: var(--bg-alt); }
 
         /* ── ヒーロー ── */
@@ -91,54 +77,55 @@
             padding: clamp(48px, 8vw, 88px) 24px clamp(32px, 5vw, 56px);
             text-align: center;
         }
-        .hero h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); line-height: 1.45; margin-bottom: 16px; }
-        .hero h1 .hl { color: var(--primary); }
-        .hero .tagline { font-size: 1.1rem; color: var(--text-sub); margin-bottom: 28px; line-height: 1.85; }
+        .hero h1 { font-family: var(--font-head); font-size: clamp(1.8rem, 5vw, 2.5rem); line-height: 1.45; margin-bottom: 16px; }
+        .hero h1 .hl { color: var(--accent); }
+        .hero .tagline { font-size: 1.1rem; color: var(--sub); margin-bottom: 28px; line-height: 1.85; }
 
         /* ── CTA ── */
         .cta-btn {
-            display: inline-block; background: var(--primary); color: #fff;
+            display: inline-block; background: var(--accent); color: #fff;
             font-size: 1.05rem; font-weight: 700; padding: 15px 40px;
-            border-radius: 12px; transition: background 0.2s, transform 0.1s;
+            border-radius: 999px; transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 6px 16px -6px rgba(217,122,90,0.5);
         }
-        .cta-btn:hover { background: var(--primary-dim); text-decoration: none; transform: translateY(-1px); }
+        .cta-btn:hover { background: var(--accent2); text-decoration: none; transform: translateY(-1px); }
 
         /* ── 問い直しカード ── */
         .rethink-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
         @media (max-width: 560px) { .rethink-grid { grid-template-columns: 1fr; } }
         .rethink-card {
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 12px; padding: 24px 20px;
+            background: var(--card); border: 1px solid var(--line);
+            border-radius: 18px; padding: 24px 20px;
         }
         .rethink-card .icon { font-size: 2rem; margin-bottom: 10px; }
-        .rethink-card h3 { font-size: 1.05rem; margin-bottom: 6px; color: var(--accent-warm); }
-        .rethink-card p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.85; }
+        .rethink-card h3 { font-family: var(--font-head); font-size: 1.05rem; margin-bottom: 6px; color: var(--accent2); }
+        .rethink-card p { font-size: 0.95rem; color: var(--sub); line-height: 1.85; }
 
         /* ── ソリューションリスト ── */
         .sol-list { list-style: none; margin: 24px 0; }
         .sol-list li {
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 12px; padding: 22px 24px; margin-bottom: 14px;
+            background: var(--card); border: 1px solid var(--line);
+            border-radius: 18px; padding: 22px 24px; margin-bottom: 14px;
             display: flex; align-items: flex-start; gap: 16px;
         }
         .sol-list li .icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
-        .sol-list li h3 { font-size: 1.05rem; margin-bottom: 4px; color: var(--accent); }
-        .sol-list li p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.85; }
+        .sol-list li h3 { font-family: var(--font-head); font-size: 1.05rem; margin-bottom: 4px; color: var(--accent); }
+        .sol-list li p { font-size: 0.95rem; color: var(--sub); line-height: 1.85; }
 
         /* ── 引用 ── */
         .quote-block {
-            font-size: 1.05rem; color: var(--accent); line-height: 1.95;
-            padding: 20px 24px; background: var(--surface);
-            border-left: 3px solid var(--accent);
-            border-radius: 0 8px 8px 0; margin: 24px 0;
+            font-size: 1.05rem; color: var(--accent2); line-height: 1.95;
+            padding: 20px 24px; background: var(--card);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 14px 14px 0; margin: 24px 0;
         }
 
         /* ── セキュリティサマリ ── */
         .sec-summary { display: flex; flex-direction: column; gap: 12px; margin: 24px 0; }
         .sec-summary-item {
             display: flex; align-items: center; gap: 12px;
-            background: var(--surface); border-radius: 10px; padding: 16px 20px;
-            border: 1px solid var(--border);
+            background: var(--card); border-radius: 14px; padding: 16px 20px;
+            border: 1px solid var(--line);
         }
         .sec-summary-item .check { color: var(--accent); font-size: 1.3rem; flex-shrink: 0; }
         .sec-summary-item span { font-size: 1rem; }
@@ -147,72 +134,81 @@
         .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
         @media (max-width: 560px) { .voice-grid { grid-template-columns: 1fr; } }
         .voice-card {
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 12px; padding: 24px 20px;
+            background: var(--card); border: 1px solid var(--line);
+            border-radius: 18px; padding: 24px 20px;
         }
-        .voice-card .persona { font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; }
-        .voice-card p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.85; font-style: italic; }
+        .voice-card .persona { font-size: 0.88rem; color: var(--mute); margin-bottom: 8px; }
+        .voice-card p { font-size: 0.95rem; color: var(--sub); line-height: 1.85; font-style: italic; }
 
         /* ── 通知例 ── */
         .notif-box {
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 16px; padding: 24px 28px;
+            background: var(--card); border: 1px solid var(--line);
+            border-radius: 18px; padding: 24px 28px;
             max-width: 440px; margin: 24px auto 0;
         }
-        .notif-box .notif-header { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 14px; letter-spacing: 1px; }
-        .notif-row { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 1rem; }
+        .notif-box .notif-header { font-family: var(--font-mono); font-size: 0.8rem; color: var(--mute); margin-bottom: 14px; letter-spacing: 1px; }
+        .notif-row { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 1rem; }
         .notif-row:last-child { border-bottom: none; }
 
         /* ── 文脈バナー ── */
         .context-banner {
-            background: rgba(91,141,239,0.1);
-            border: 1px solid rgba(91,141,239,0.3);
-            border-radius: 12px;
+            background: rgba(217,122,90,0.08);
+            border: 1px solid rgba(217,122,90,0.25);
+            border-radius: 14px;
             padding: 16px 24px;
             text-align: center;
             font-size: 0.95rem;
-            color: var(--text-sub);
+            color: var(--sub);
             max-width: 780px;
             margin: 0 auto;
         }
-        .context-banner strong { color: var(--text); }
+        .context-banner strong { color: var(--ink); }
 
         /* ── フッター ── */
-        .footer-links {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 16px; padding: 48px 24px 16px;
-            border-top: 1px solid var(--border); font-size: 0.95rem;
-        }
-        .footer-links a { color: var(--text-sub); }
-        .footer-copy { text-align: center; padding: 16px 24px 48px; font-size: 0.88rem; color: var(--text-dim); }
+        .footer { padding: 48px 56px; border-top: 1px solid var(--line); background: var(--card); }
+        .footer-inner { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+        .footer-brand { display: flex; align-items: center; gap: 10px; }
+        .footer-brand img { width: 30px; height: 30px; border-radius: 7px; }
+        .footer-brand-name { font-family: var(--font-head); font-size: 17px; font-weight: 600; color: var(--ink); }
+        .footer-brand-ruby { font-family: var(--font-mono); font-size: 10px; color: var(--mute); letter-spacing: 1.5px; }
+        .footer-links { display: flex; gap: 24px; font-size: 12.5px; color: var(--sub); flex-wrap: wrap; }
+        .footer-links a { color: inherit; text-decoration: none; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copy { font-size: 11px; color: var(--mute); font-family: var(--font-mono); letter-spacing: 1px; }
+        @media (max-width: 768px) { .footer { padding: 32px 20px; } .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; } .footer-links { flex-direction: column; gap: 12px; } }
     </style>
 </head>
 <body>
 
 <!-- ナビ -->
-<nav>
-    <a href="/" class="brand">
+<nav class="nav">
+    <a href="/" class="nav-brand">
         <img src="/images/app_icon.png" alt="">
-        Kinia（キニア）
+        <span class="nav-brand-name">Kinia</span>
+        <span class="nav-brand-ruby">キニア</span>
     </a>
     <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">☰</button>
     <div class="nav-links">
-        <a href="#rethink">見守りを考え直す</a>
-        <a href="#features">Kiniaの特徴</a>
-        <a href="#security">安全性</a>
-        <a href="/">トップページ</a>
+        <a href="/#features">特徴</a>
+        <a href="/faq.html">FAQ</a>
         <div class="nav-dropdown">
             <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">ガイド ▾</button>
             <div class="nav-dropdown-menu">
-                <a href="/setup.html">はじめかたガイド</a>
+                <a href="/setup.html" class="nav-dd-primary">はじめかたガイド</a>
                 <a href="/guide-family-basic.html">3人家族セットアップ</a>
                 <a href="/guide-join.html">招待された方へ</a>
-                <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+                <div style="border-top:1px solid var(--line);margin:4px 0;"></div>
                 <a href="/senior.html">高齢のご家族がいる方へ</a>
-                <a href="/parents.html" style="font-weight:600;">お子さんを持つご家庭の方へ</a>
+                <a href="/parents.html" style="font-weight:600;color:var(--accent);">お子さんを持つご家庭の方へ</a>
                 <a href="/students.html">学生の方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
+                <a href="/guide-sharing-all.html">画面の見方（すべて共有）</a>
+                <a href="/guide-sharing-area.html">画面の見方（通知エリアのみ）</a>
             </div>
         </div>
+        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">ダウンロード
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
     </div>
 </nav>
 
@@ -233,7 +229,7 @@
     <p class="tagline">
         お子さんの安全は確保したい。でも、過度な監視は信頼を壊す。<br>
         Kinia（キニア）は、通知エリアだけの「ちょうどいい見守り」で<br>
-        <strong style="color:var(--text);">親子の信頼関係と安心を両立</strong>します。
+        <strong style="color:var(--ink);">親子の信頼関係と安心を両立</strong>します。
     </p>
 </div>
 
@@ -258,7 +254,7 @@
     </div>
 
     <p class="lead" style="margin-top:24px;">
-        「学校に着いた」「塾から出た」「家に帰った」——<strong style="color:var(--text);">知りたいことは、これで十分ではないですか？</strong><br>
+        「学校に着いた」「塾から出た」「家に帰った」——<strong style="color:var(--ink);">知りたいことは、これで十分ではないですか？</strong><br>
         加えて歩数と「元気度」で、場所を追わなくても「今日も元気に過ごしてる」が分かります。
     </p>
 </div>
@@ -371,7 +367,7 @@
 
     <p class="lead" style="margin-top:20px;">
         万が一サーバーが攻撃されても、保存されているのは暗号化された数値とランダムIDだけ。<br>
-        誰がどこにいたかを復元することは、<strong style="color:var(--text);">運営者にもできません</strong>。
+        誰がどこにいたかを復元することは、<strong style="color:var(--ink);">運営者にもできません</strong>。
     </p>
 </div>
 </div>
@@ -419,7 +415,7 @@
             <div class="icon">👶</div>
             <div>
                 <h3>小さなお子さんには「すべて共有」も選べる</h3>
-                <p>小学生・中学生など、安全上の理由でリアルタイムの位置把握が必要なお子さんには「すべて共有」モードを設定できます。高校生のお兄ちゃんは通知エリアだけ、小学生の弟はすべて共有——<strong style="color:var(--text);">メンバーごとに共有レベルを変えられる</strong>ので、家族の状況に合わせた運用が可能です。</p>
+                <p>小学生・中学生など、安全上の理由でリアルタイムの位置把握が必要なお子さんには「すべて共有」モードを設定できます。高校生のお兄ちゃんは通知エリアだけ、小学生の弟はすべて共有——<strong style="color:var(--ink);">メンバーごとに共有レベルを変えられる</strong>ので、家族の状況に合わせた運用が可能です。</p>
             </div>
         </li>
     </ul>
@@ -437,27 +433,26 @@
         完全無料・広告なしです。
     </p>
     <a href="https://play.google.com/store/apps/details?id=io.kinia" class="cta-btn">Google Playで入手（無料）</a>
-    <p style="margin-top:14px; color:var(--text-sub); font-size:0.92rem;">
+    <p style="margin-top:14px; color:var(--sub); font-size:0.92rem;">
         <a href="/faq.html">よくある質問</a> ・ <a href="/privacy.html">プライバシーポリシー</a> ・ <a href="/">アプリ詳細</a>
     </p>
-    <p style="margin-top:8px; color:var(--text-dim); font-size:0.9rem;">
+    <p style="margin-top:8px; color:var(--mute); font-size:0.9rem;">
         ご質問は <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a> から
     </p>
 </div>
 </div>
 
 <!-- フッター -->
-<div class="footer-links">
-    <a href="/">トップページ</a>
-    <a href="/setup.html">はじめかた</a>
-    <a href="/guide-join.html">招待された方へ</a>
-    <a href="/faq.html">よくある質問</a>
-    <a href="/privacy.html">プライバシー</a>
-</div>
-<div class="footer-copy">
-    <p>お困りですか？ <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a></p>
-    <p>&copy; 2026 Kinia</p>
-</div>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand"><img src="/images/app_icon.png" alt=""><span class="footer-brand-name">Kinia</span><span class="footer-brand-ruby">キニア</span></div>
+        <div class="footer-links">
+            <a href="/setup.html">はじめかたガイド</a><a href="/faq.html">よくある質問</a><a href="/status.html">開発状況</a>
+            <a href="/data-safety.html">データの安全性</a><a href="/privacy.html">プライバシーポリシー</a><a href="/#contact">お問い合わせ</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
+    </div>
+</footer>
 
 <script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
 </body>

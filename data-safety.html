@@ -1,51 +1,73 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XCT32M2MZV');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>データの安全性 — Kinia</title>
     <meta name="description" content="Kiniaが位置情報やプライバシーをどのように保護しているか。技術的な仕組みと運営方針をわかりやすく説明します。">
+    <link rel="icon" href="/images/app_icon.png" type="image/png">
+    <meta property="og:title" content="データの安全性 — Kinia">
+    <meta property="og:description" content="Kiniaが位置情報やプライバシーをどのように保護しているか。技術的な仕組みと運営方針をわかりやすく説明します。">
+    <meta property="og:image" content="https://kinia.io/images/app_icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         ruby rt { font-size: 0.55em; }
         :root {
-            --bg: #12121F;
-            --bg-alt: #161628;
-            --surface: #1E1E30;
-            --surface2: #282840;
-            --text: #E8E4F0;
-            --text-sub: #B0AAC2;
-            --text-dim: #7A7490;
-            --primary: #7C8EF2;
-            --accent: #4CC9F0;
-            --accent-warm: #F4A261;
-            --border: #3D3855;
-            --safe: #4ADE80;
-            --warn: #FBBF24;
+            --bg: #fbf6ef; --bg-alt: #f4e8d8; --card: #ffffff; --ink: #2a2218;
+            --sub: rgba(42,34,24,0.62); --mute: rgba(42,34,24,0.4);
+            --accent: #d97a5a; --accent2: #b85a3e; --sage: #a3b89a; --navy: #2c3a5e;
+            --line: rgba(42,34,24,0.08);
+            --font-head: 'Shippori Mincho', 'Noto Serif JP', serif;
+            --font-body: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+            --font-mono: 'DM Mono', monospace;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 2.0;
-            font-size: 16px;
-        }
-        a { color: var(--primary); text-decoration: none; }
+        *,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--ink); line-height: 1.85; overflow-x: hidden; font-size: 17px; -webkit-font-smoothing: antialiased; }
+        a { color: var(--accent2); text-decoration: none; }
         a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
 
-        /* ── ナビゲーション ── */
-        nav {
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(18, 18, 31, 0.95);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 24px;
-            display: flex; align-items: center; justify-content: space-between;
+        .nav{position:sticky;top:0;z-index:100;background:rgba(251,246,239,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:16px 56px;display:flex;align-items:center;justify-content:space-between}
+        .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+        .nav-brand img{width:36px;height:36px;border-radius:8px;display:block}
+        .nav-brand-name{font-family:var(--font-head);font-size:20px;font-weight:600}
+        .nav-brand-ruby{font-family:var(--font-mono);font-size:10px;color:var(--mute);letter-spacing:1.5px;margin-left:2px}
+        .nav-links{display:flex;align-items:center;gap:28px;font-size:13.5px;color:var(--sub)}
+        .nav-links a{color:inherit;text-decoration:none;transition:color .2s}.nav-links a:hover{color:var(--accent);text-decoration:none}
+        .nav-cta{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 16px -6px rgba(217,122,90,.5);transition:background .2s,transform .1s}
+        .nav-cta:hover{background:var(--accent2);text-decoration:none;transform:translateY(-1px)}
+        .nav-dropdown{position:relative}
+        .nav-dropdown-toggle{background:none;border:none;color:var(--sub);font-size:13.5px;cursor:pointer;padding:0;font-family:inherit}
+        .nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 10px);right:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 0;min-width:260px;box-shadow:0 12px 40px rgba(42,34,24,.12);z-index:200}
+        .nav-dropdown.open .nav-dropdown-menu{display:block}
+        .nav-dropdown-menu a{display:block;padding:10px 20px;color:var(--sub);font-size:13px;white-space:nowrap}
+        .nav-dropdown-menu a:hover{background:var(--bg-alt);color:var(--ink);text-decoration:none}
+        .nav-dropdown-menu .nav-dd-primary{font-weight:600;color:var(--accent)}
+        .hamburger{display:none;background:none;border:none;color:var(--ink);font-size:1.5rem;cursor:pointer;padding:4px}
+        @media(max-width:768px){
+            .nav{padding:14px 20px}
+            .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(251,246,239,.98);padding:20px 24px;gap:16px;border-bottom:1px solid var(--line);align-items:flex-start}
+            .nav-links.open{display:flex}.hamburger{display:block}
+            .nav-dropdown-menu{position:static;box-shadow:none;border:none;border-radius:0;background:transparent;padding:0 0 0 16px;min-width:auto}
+            .nav-dropdown.open .nav-dropdown-menu{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+            .nav-dropdown-menu a{padding:4px 0}
         }
-        nav .brand { font-size: 1.2rem; font-weight: 700; color: var(--primary); text-decoration: none; }
-        nav .nav-links { display: flex; gap: 20px; font-size: 0.95rem; }
-        nav .nav-links a { color: var(--text-sub); }
-        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
+
+        .footer{padding:48px 56px;border-top:1px solid var(--line);background:var(--card)}
+        .footer-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+        .footer-brand{display:flex;align-items:center;gap:10px}
+        .footer-brand img{width:30px;height:30px;border-radius:7px}
+        .footer-brand-name{font-family:var(--font-head);font-size:17px;font-weight:600;color:var(--ink)}
+        .footer-brand-ruby{font-family:var(--font-mono);font-size:10px;color:var(--mute);letter-spacing:1.5px}
+        .footer-links{display:flex;gap:24px;font-size:12.5px;color:var(--sub);flex-wrap:wrap}
+        .footer-links a{color:inherit;text-decoration:none}.footer-links a:hover{color:var(--accent)}
+        .footer-copy{font-size:11px;color:var(--mute);font-family:var(--font-mono);letter-spacing:1px}
+        @media(max-width:768px){.footer{padding:32px 20px}.footer-inner{flex-direction:column;align-items:flex-start;gap:16px}.footer-links{flex-direction:column;gap:12px}}
 
         /* ── メインコンテンツ ── */
         .content {
@@ -55,43 +77,46 @@
         }
 
         h1 {
+            font-family: var(--font-head);
             font-size: clamp(1.4rem, 4vw, 1.8rem);
-            color: var(--primary);
+            color: var(--accent2);
             margin-bottom: 12px;
             line-height: 1.5;
         }
         .subtitle {
-            color: var(--text-sub);
+            color: var(--sub);
             margin-bottom: 48px;
             font-size: 0.95rem;
         }
         h2 {
+            font-family: var(--font-head);
             font-size: 1.25rem;
-            color: var(--accent);
+            color: var(--accent2);
             margin-top: 56px;
             margin-bottom: 16px;
             padding-bottom: 8px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--line);
         }
         h3 {
+            font-family: var(--font-head);
             font-size: 1.05rem;
-            color: var(--accent-warm);
+            color: var(--accent);
             margin-top: 24px;
             margin-bottom: 8px;
         }
         p {
             margin-bottom: 16px;
-            color: var(--text-sub);
+            color: var(--sub);
             font-size: 0.95rem;
             line-height: 2.0;
         }
-        p strong { color: var(--text); }
+        p strong { color: var(--ink); }
 
         /* ── QAカード ── */
         .qa-section { margin: 24px 0; }
         .qa-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
+            background: var(--card);
+            border: 1px solid var(--line);
             border-radius: 14px;
             padding: 24px;
             margin: 20px 0;
@@ -102,19 +127,19 @@
             gap: 12px;
             margin-bottom: 16px;
             padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--line);
         }
         .qa-card .concern-icon {
             flex-shrink: 0;
             width: 36px; height: 36px;
-            background: rgba(242, 114, 106, 0.12);
+            background: var(--bg-alt);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-size: 1.1rem;
         }
         .qa-card .concern-text {
             font-size: 1rem;
-            color: var(--text);
+            color: var(--ink);
             font-weight: 600;
             line-height: 1.7;
         }
@@ -122,16 +147,16 @@
         .qa-card .response p:last-child { margin-bottom: 0; }
 
         .tech-detail {
-            background: var(--surface2);
+            background: var(--bg-alt);
             border-radius: 8px;
             padding: 14px 18px;
             margin: 12px 0;
             font-size: 0.88rem;
-            color: var(--text-dim);
-            border-left: 3px solid var(--primary);
+            color: var(--sub);
+            border-left: 3px solid var(--accent);
             line-height: 1.9;
         }
-        .tech-detail strong { color: var(--text-sub); }
+        .tech-detail strong { color: var(--ink); }
 
         /* ── まとめチェックリスト ── */
         .summary-grid {
@@ -144,8 +169,8 @@
             display: flex;
             align-items: flex-start;
             gap: 12px;
-            background: var(--surface);
-            border: 1px solid var(--border);
+            background: var(--card);
+            border: 1px solid var(--line);
             border-radius: 12px;
             padding: 18px 20px;
         }
@@ -154,22 +179,22 @@
             font-size: 1.3rem;
             margin-top: 2px;
         }
-        .summary-item .label { font-size: 0.9rem; color: var(--text-sub); line-height: 1.7; }
-        .summary-item .label strong { color: var(--text); }
+        .summary-item .label { font-size: 0.9rem; color: var(--sub); line-height: 1.7; }
+        .summary-item .label strong { color: var(--ink); }
 
         /* ── ポリシーボックス ── */
         .policy-box {
-            background: rgba(76, 201, 240, 0.06);
-            border: 1px solid var(--border);
+            background: var(--bg-alt);
+            border: 1px solid var(--line);
             border-radius: 14px;
             padding: 24px 28px;
             margin: 24px 0;
         }
-        .policy-box h3 { color: var(--accent); margin-top: 0; }
+        .policy-box h3 { color: var(--accent2); margin-top: 0; }
         .policy-box p { margin-bottom: 10px; }
         .policy-box p:last-child { margin-bottom: 0; }
         .policy-box ul { padding-left: 24px; margin: 8px 0; }
-        .policy-box li { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 4px; line-height: 1.8; }
+        .policy-box li { color: var(--sub); font-size: 0.9rem; margin-bottom: 4px; line-height: 1.8; }
 
         /* ── 比較テーブル ── */
         .compare-table {
@@ -180,31 +205,22 @@
         }
         .compare-table th, .compare-table td {
             padding: 12px 16px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--line);
             text-align: left;
         }
         .compare-table th {
-            background: var(--surface2);
-            color: var(--accent);
+            background: var(--bg-alt);
+            color: var(--accent2);
             font-weight: 600;
         }
-        .compare-table td { background: var(--surface); color: var(--text-sub); }
-        .compare-table .yes { color: var(--safe); font-weight: 600; }
-        .compare-table .no { color: var(--text-dim); }
+        .compare-table td { background: var(--card); color: var(--sub); }
+        .compare-table .yes { color: var(--sage); font-weight: 600; }
+        .compare-table .no { color: var(--mute); }
 
         /* ── 関連ページリスト ── */
         .related-links { list-style: none; padding: 0; }
         .related-links li { padding: 6px 0; font-size: 0.95rem; }
-        .related-links li span { color: var(--text-dim); margin-left: 4px; }
-
-        /* ── フッター ── */
-        .footer-links {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 16px; padding: 48px 24px 16px;
-            border-top: 1px solid var(--border); font-size: 0.95rem;
-        }
-        .footer-links a { color: var(--text-sub); }
-        .footer-copy { text-align: center; padding: 16px 24px 48px; font-size: 0.88rem; color: var(--text-dim); }
+        .related-links li span { color: var(--mute); margin-left: 4px; }
 
         /* ── レスポンシブ ── */
         @media (max-width: 640px) {
@@ -219,13 +235,34 @@
 </head>
 <body>
 
-<nav>
-    <a href="/" class="brand"><ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby></a>
+<nav class="nav">
+    <a href="/" class="nav-brand">
+        <img src="/images/app_icon.png" alt="">
+        <span class="nav-brand-name">Kinia</span>
+        <span class="nav-brand-ruby">キニア</span>
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">&#9776;</button>
     <div class="nav-links">
-        <a href="/#difference">特徴</a>
-        <a href="/#security">安全性</a>
+        <a href="/#features">特徴</a>
         <a href="/faq.html">FAQ</a>
-        <a href="/#contact">お問い合わせ</a>
+        <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">ガイド ▾</button>
+            <div class="nav-dropdown-menu">
+                <a href="/setup.html" class="nav-dd-primary">はじめかたガイド</a>
+                <a href="/guide-family-basic.html">3人家族セットアップ</a>
+                <a href="/guide-join.html">招待された方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0;"></div>
+                <a href="/senior.html">高齢のご家族がいる方へ</a>
+                <a href="/parents.html">お子さんを持つご家庭の方へ</a>
+                <a href="/students.html">学生の方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
+                <a href="/guide-sharing-all.html">画面の見方（すべて共有）</a>
+                <a href="/guide-sharing-area.html">画面の見方（通知エリアのみ）</a>
+            </div>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">ダウンロード
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
     </div>
 </nav>
 
@@ -346,10 +383,10 @@
             <div class="response">
                 <p><strong>アプリ内からワンタップで完全削除できます。</strong>「グループ管理」画面の「アカウントを削除」から実行すると、以下がすべて削除されます:</p>
                 <ul style="padding-left: 24px; margin: 8px 0 16px;">
-                    <li style="color: var(--text-sub); margin-bottom: 4px;">サーバー上の位置履歴</li>
-                    <li style="color: var(--text-sub); margin-bottom: 4px;">グループ内のユーザー情報</li>
-                    <li style="color: var(--text-sub); margin-bottom: 4px;">Firebase認証情報</li>
-                    <li style="color: var(--text-sub); margin-bottom: 4px;">端末上のローカルデータ</li>
+                    <li style="color: var(--sub); margin-bottom: 4px;">サーバー上の位置履歴</li>
+                    <li style="color: var(--sub); margin-bottom: 4px;">グループ内のユーザー情報</li>
+                    <li style="color: var(--sub); margin-bottom: 4px;">Firebase認証情報</li>
+                    <li style="color: var(--sub); margin-bottom: 4px;">端末上のローカルデータ</li>
                 </ul>
                 <p>アプリにログインできなくなった場合など、アプリ内から削除操作ができない場合は、<a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a>からの削除依頼にも対応しています。</p>
             </div>
@@ -446,7 +483,7 @@
         <p>「持たない」ことが、最も誠実なセキュリティだと考えています。</p>
     </div>
 
-    <div class="policy-box" style="background: rgba(255,255,255,0.03);">
+    <div class="policy-box">
         <h3>免責事項</h3>
         <p>Kiniaは、本ページに記載した技術的・運用的対策を通じてデータの安全性に最大限努めていますが、インターネットを介したデータ通信・保存において、完全な安全性を保証することはできません。</p>
         <p>第三者による不正アクセス、利用しているインフラサービスの障害、その他予期しない事象によってデータの漏洩・消失・改ざん等が発生した場合、開発者は合理的な範囲で対応いたしますが、<strong>それによって生じた損害について、法令上許容される最大限の範囲で責任を負いかねます。</strong></p>
@@ -499,12 +536,12 @@
             </tr>
         </tbody>
     </table>
-    <p style="font-size: 0.85rem; color: var(--text-dim);">※「一般的なアプリ」は、位置共有アプリ全般の傾向を示しています。個別のアプリについて断言するものではありません。</p>
+    <p style="font-size: 0.85rem; color: var(--mute);">※「一般的なアプリ」は、位置共有アプリ全般の傾向を示しています。個別のアプリについて断言するものではありません。</p>
 
     <!-- ═══════════════════════════════════════
          関連ページ
          ═══════════════════════════════════════ -->
-    <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--border);">
+    <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line);">
         <h2 style="border: none; margin-top: 0; padding-bottom: 0;">関連ページ</h2>
         <ul class="related-links">
             <li><a href="/privacy.html">プライバシーポリシー</a> <span>— 収集するデータの詳細と利用目的</span></li>
@@ -515,27 +552,27 @@
     </div>
 
     <!-- CTA -->
-    <div style="text-align: center; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border);">
-        <p style="font-size: 1rem; color: var(--text); margin-bottom: 16px;">ご質問やご不明点があればお気軽にどうぞ</p>
+    <div style="text-align: center; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line);">
+        <p style="font-size: 1rem; color: var(--ink); margin-bottom: 16px;">ご質問やご不明点があればお気軽にどうぞ</p>
         <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
-            <a href="https://forms.gle/qTc8UjzWVMFpx76o8" style="display: inline-block; background: var(--primary); color: #fff; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none;">お問い合わせフォーム</a>
-            <a href="/faq.html" style="display: inline-block; background: var(--surface); color: var(--text-sub); padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border);">よくある質問を見る</a>
+            <a href="https://forms.gle/qTc8UjzWVMFpx76o8" style="display: inline-block; background: var(--accent); color: #fff; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none;">お問い合わせフォーム</a>
+            <a href="/faq.html" style="display: inline-block; background: var(--card); color: var(--sub); padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--line);">よくある質問を見る</a>
         </div>
     </div>
 
 </main>
 
-<div class="footer-links">
-    <a href="/">トップページ</a>
-    <a href="/setup.html">はじめかたガイド</a>
-    <a href="/faq.html">よくある質問</a>
-    <a href="/status.html">開発状況</a>
-    <a href="/privacy.html">プライバシーポリシー</a>
-    <a href="/delete-account.html">アカウント削除</a>
-</div>
-<div class="footer-copy">
-    <p>&copy; 2026 Kinia</p>
-</div>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand"><img src="/images/app_icon.png" alt=""><span class="footer-brand-name">Kinia</span><span class="footer-brand-ruby">キニア</span></div>
+        <div class="footer-links">
+            <a href="/setup.html">はじめかたガイド</a><a href="/faq.html">よくある質問</a><a href="/status.html">開発状況</a>
+            <a href="/data-safety.html">データの安全性</a><a href="/privacy.html">プライバシーポリシー</a><a href="/#contact">お問い合わせ</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
+    </div>
+</footer>
 
+<script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
 </body>
 </html>

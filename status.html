@@ -1,71 +1,59 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XCT32M2MZV');
-    </script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XCT32M2MZV');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>開発状況 — Kinia（キニア）</title>
     <meta name="description" content="Kinia（キニア）のAndroid / iOS 開発状況をリアルタイムで公開しています。">
+    <link rel="icon" href="/images/app_icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #12121F;
-            --bg-alt: #161628;
-            --surface: #1E1E30;
-            --surface2: #282840;
-            --text: #E8E4F0;
-            --text-sub: #B0AAC2;
-            --text-dim: #7A7490;
-            --primary: #7C8EF2;
-            --primary-dim: #5A6AD4;
-            --accent: #4CC9F0;
-            --accent-warm: #F4A261;
-            --border: #3D3855;
-            --green: #34D399;
-            --green-dim: rgba(52, 211, 153, 0.15);
-            --yellow: #FBBF24;
-            --yellow-dim: rgba(251, 191, 36, 0.15);
-            --red: #F87171;
-            --red-dim: rgba(248, 113, 113, 0.15);
-            --gray: #6B7280;
-            --gray-dim: rgba(107, 114, 128, 0.15);
+            --bg: #fbf6ef; --bg-alt: #f4e8d8; --card: #ffffff; --ink: #2a2218;
+            --sub: rgba(42,34,24,0.62); --mute: rgba(42,34,24,0.4);
+            --accent: #d97a5a; --accent2: #b85a3e; --sage: #a3b89a; --navy: #2c3a5e;
+            --line: rgba(42,34,24,0.08);
+            --font-head: 'Shippori Mincho', 'Noto Serif JP', serif;
+            --font-body: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+            --font-mono: 'DM Mono', monospace;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.75;
-            overflow-x: hidden;
-            font-size: 16px;
-        }
-        a { color: var(--primary); text-decoration: none; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--ink); line-height: 1.85; font-size: 17px; -webkit-font-smoothing: antialiased; }
+        a { color: var(--accent2); text-decoration: none; }
         a:hover { text-decoration: underline; }
+        ruby rt { font-size: 0.55em; }
 
-        /* ── ナビゲーション ── */
-        nav {
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(18, 18, 31, 0.95);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 24px;
-            display: flex; align-items: center; justify-content: space-between;
+        /* ナビゲーション */
+        .nav{position:sticky;top:0;z-index:100;background:rgba(251,246,239,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:16px 56px;display:flex;align-items:center;justify-content:space-between}
+        .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+        .nav-brand img{width:36px;height:36px;border-radius:8px;display:block}
+        .nav-brand-name{font-family:var(--font-head);font-size:20px;font-weight:600}
+        .nav-brand-ruby{font-family:var(--font-mono);font-size:10px;color:var(--mute);letter-spacing:1.5px;margin-left:2px}
+        .nav-links{display:flex;align-items:center;gap:28px;font-size:13.5px;color:var(--sub)}
+        .nav-links a{color:inherit;text-decoration:none;transition:color .2s}.nav-links a:hover{color:var(--accent);text-decoration:none}
+        .nav-cta{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 16px -6px rgba(217,122,90,.5);transition:background .2s,transform .1s}
+        .nav-cta:hover{background:var(--accent2);text-decoration:none;transform:translateY(-1px)}
+        .nav-dropdown{position:relative}
+        .nav-dropdown-toggle{background:none;border:none;color:var(--sub);font-size:13.5px;cursor:pointer;padding:0;font-family:inherit}
+        .nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 10px);right:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 0;min-width:260px;box-shadow:0 12px 40px rgba(42,34,24,.12);z-index:200}
+        .nav-dropdown.open .nav-dropdown-menu{display:block}
+        .nav-dropdown-menu a{display:block;padding:10px 20px;color:var(--sub);font-size:13px;white-space:nowrap}
+        .nav-dropdown-menu a:hover{background:var(--bg-alt);color:var(--ink);text-decoration:none}
+        .nav-dropdown-menu .nav-dd-primary{font-weight:600;color:var(--accent)}
+        .hamburger{display:none;background:none;border:none;color:var(--ink);font-size:1.5rem;cursor:pointer;padding:4px}
+        @media(max-width:768px){
+            .nav{padding:14px 20px}
+            .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(251,246,239,.98);padding:20px 24px;gap:16px;border-bottom:1px solid var(--line);align-items:flex-start}
+            .nav-links.open{display:flex}.hamburger{display:block}
+            .nav-dropdown-menu{position:static;box-shadow:none;border:none;border-radius:0;background:transparent;padding:0 0 0 16px;min-width:auto}
+            .nav-dropdown.open .nav-dropdown-menu{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+            .nav-dropdown-menu a{padding:4px 0}
         }
-        nav .brand {
-            font-size: 1.2rem; font-weight: 700; color: var(--primary);
-            letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; text-decoration: none;
-        }
-        nav .brand img { width: 28px; height: 28px; border-radius: 6px; }
-        nav .nav-links { display: flex; gap: 20px; font-size: 0.95rem; }
-        nav .nav-links a { color: var(--text-sub); transition: color 0.2s; }
-        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
 
         /* ── メイン ── */
         .container { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
@@ -75,27 +63,29 @@
             margin-bottom: 48px;
         }
         .page-header h1 {
+            font-family: var(--font-head);
             font-size: clamp(1.6rem, 4vw, 2.2rem);
-            font-weight: 800;
+            font-weight: 700;
             margin-bottom: 12px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         .page-header p {
-            color: var(--text-sub);
+            color: var(--sub);
             font-size: 1rem;
         }
         .last-updated {
             display: inline-block;
             margin-top: 12px;
             font-size: 0.85rem;
-            color: var(--text-dim);
-            background: var(--surface);
+            color: var(--mute);
+            background: var(--card);
             padding: 4px 14px;
             border-radius: 20px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--line);
+            font-family: var(--font-mono);
         }
 
         /* ── サマリーカード ── */
@@ -106,29 +96,30 @@
             margin-bottom: 40px;
         }
         .summary-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
+            background: var(--card);
+            border: 1px solid var(--line);
             border-radius: 12px;
             padding: 20px;
             text-align: center;
         }
         .summary-card .label {
             font-size: 0.85rem;
-            color: var(--text-dim);
+            color: var(--mute);
             margin-bottom: 4px;
         }
         .summary-card .value {
             font-size: 2rem;
             font-weight: 800;
+            font-family: var(--font-mono);
         }
         .summary-card .sub {
             font-size: 0.8rem;
-            color: var(--text-sub);
+            color: var(--sub);
             margin-top: 2px;
         }
-        .summary-card.android .value { color: var(--green); }
+        .summary-card.android .value { color: var(--sage); }
         .summary-card.ios .value { color: var(--accent); }
-        .summary-card.progress .value { color: var(--accent-warm); }
+        .summary-card.progress .value { color: var(--accent2); }
 
         /* ── プラットフォームタブ ── */
         .platform-tabs {
@@ -142,28 +133,30 @@
             font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            color: var(--text-sub);
+            border: 1px solid var(--line);
+            background: var(--card);
+            color: var(--sub);
             transition: all 0.2s;
         }
-        .platform-tab:hover { border-color: var(--primary-dim); color: var(--text); }
+        .platform-tab:hover { border-color: var(--accent); color: var(--ink); }
         .platform-tab.active {
-            background: var(--primary);
+            background: var(--accent);
             color: #fff;
-            border-color: var(--primary);
+            border-color: var(--accent);
         }
 
         /* ── セクション ── */
         .section-title {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-family: var(--font-head);
+            font-size: 1.2rem;
+            font-weight: 600;
             margin-bottom: 16px;
             padding-bottom: 8px;
-            border-bottom: 2px solid var(--border);
+            border-bottom: 2px solid var(--line);
             display: flex;
             align-items: center;
             gap: 10px;
+            color: var(--ink);
         }
         .section-title .icon { font-size: 1.1rem; }
 
@@ -173,36 +166,37 @@
             border-collapse: separate;
             border-spacing: 0;
             margin-bottom: 32px;
-            background: var(--surface);
+            background: var(--card);
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid var(--border);
+            border: 1px solid var(--line);
         }
         .feature-table thead th {
-            background: var(--surface2);
+            background: var(--bg-alt);
             padding: 12px 16px;
             text-align: left;
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--text-sub);
+            color: var(--sub);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
         .feature-table tbody td {
             padding: 12px 16px;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid var(--line);
             font-size: 0.95rem;
             vertical-align: middle;
         }
         .feature-table tbody tr:hover {
-            background: rgba(124, 142, 242, 0.05);
+            background: var(--bg-alt);
         }
         .feature-name {
             font-weight: 600;
+            color: var(--ink);
         }
         .feature-desc {
             font-size: 0.85rem;
-            color: var(--text-sub);
+            color: var(--sub);
             margin-top: 2px;
         }
 
@@ -217,22 +211,22 @@
             font-weight: 600;
             white-space: nowrap;
         }
-        .badge-done { background: var(--green-dim); color: var(--green); }
-        .badge-wip { background: var(--yellow-dim); color: var(--yellow); }
-        .badge-planned { background: var(--gray-dim); color: var(--gray); }
-        .badge-later { background: var(--red-dim); color: var(--red); }
+        .badge-done { background: rgba(163,184,154,0.2); color: #5a7a52; }
+        .badge-wip { background: rgba(217,122,90,0.15); color: var(--accent2); }
+        .badge-planned { background: rgba(44,58,94,0.1); color: var(--navy); }
+        .badge-later { background: rgba(42,34,24,0.08); color: var(--mute); }
         .badge-dot {
             width: 7px; height: 7px; border-radius: 50%;
             display: inline-block; flex-shrink: 0;
         }
-        .badge-done .badge-dot { background: var(--green); }
-        .badge-wip .badge-dot { background: var(--yellow); }
-        .badge-planned .badge-dot { background: var(--gray); }
-        .badge-later .badge-dot { background: var(--red); }
+        .badge-done .badge-dot { background: var(--sage); }
+        .badge-wip .badge-dot { background: var(--accent); }
+        .badge-planned .badge-dot { background: var(--navy); }
+        .badge-later .badge-dot { background: var(--mute); }
 
         /* ── プログレスバー ── */
         .progress-bar-wrap {
-            background: var(--surface2);
+            background: var(--bg-alt);
             border-radius: 6px;
             height: 8px;
             overflow: hidden;
@@ -243,8 +237,8 @@
             border-radius: 6px;
             transition: width 0.6s ease;
         }
-        .progress-bar.android { background: linear-gradient(90deg, var(--green), #6EE7B7); }
-        .progress-bar.ios { background: linear-gradient(90deg, var(--accent), #93E8FA); }
+        .progress-bar.android { background: linear-gradient(90deg, var(--sage), #c5d9be); }
+        .progress-bar.ios { background: linear-gradient(90deg, var(--accent), #e8a990); }
 
         /* ── ロードマップ ── */
         .roadmap {
@@ -254,8 +248,8 @@
             margin-bottom: 40px;
         }
         .roadmap-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
+            background: var(--card);
+            border: 1px solid var(--line);
             border-radius: 12px;
             padding: 20px;
             position: relative;
@@ -267,18 +261,21 @@
             top: 0; left: 0; right: 0; height: 3px;
         }
         .roadmap-card.phase-current::before { background: var(--accent); }
-        .roadmap-card.phase-next::before { background: var(--accent-warm); }
-        .roadmap-card.phase-future::before { background: var(--text-dim); }
+        .roadmap-card.phase-next::before { background: var(--accent2); }
+        .roadmap-card.phase-future::before { background: var(--mute); }
         .roadmap-card h3 {
+            font-family: var(--font-head);
             font-size: 1rem;
             margin-bottom: 8px;
+            color: var(--ink);
         }
         .roadmap-card .phase-label {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--text-dim);
+            color: var(--mute);
             margin-bottom: 4px;
+            font-family: var(--font-mono);
         }
         .roadmap-card ul {
             list-style: none;
@@ -286,14 +283,14 @@
         }
         .roadmap-card li {
             font-size: 0.9rem;
-            color: var(--text-sub);
+            color: var(--sub);
             padding: 3px 0;
             padding-left: 16px;
             position: relative;
         }
         .roadmap-card li::before {
             content: ''; position: absolute; left: 0; top: 11px;
-            width: 6px; height: 6px; border-radius: 50%; background: var(--border);
+            width: 6px; height: 6px; border-radius: 50%; background: var(--line);
         }
 
         /* ── 凡例 ── */
@@ -303,27 +300,29 @@
             gap: 16px;
             margin-bottom: 32px;
             padding: 16px 20px;
-            background: var(--surface);
+            background: var(--card);
             border-radius: 10px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--line);
             font-size: 0.9rem;
         }
         .legend-item {
             display: flex;
             align-items: center;
             gap: 6px;
-            color: var(--text-sub);
+            color: var(--sub);
         }
 
         /* ── フッター ── */
-        footer {
-            text-align: center;
-            padding: 32px 24px;
-            color: var(--text-dim);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border);
-        }
-        footer a { color: var(--text-sub); }
+        .footer{padding:48px 56px;border-top:1px solid var(--line);background:var(--card)}
+        .footer-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+        .footer-brand{display:flex;align-items:center;gap:10px}
+        .footer-brand img{width:30px;height:30px;border-radius:7px}
+        .footer-brand-name{font-family:var(--font-head);font-size:17px;font-weight:600;color:var(--ink)}
+        .footer-brand-ruby{font-family:var(--font-mono);font-size:10px;color:var(--mute);letter-spacing:1.5px}
+        .footer-links{display:flex;gap:24px;font-size:12.5px;color:var(--sub);flex-wrap:wrap}
+        .footer-links a{color:inherit;text-decoration:none}.footer-links a:hover{color:var(--accent)}
+        .footer-copy{font-size:11px;color:var(--mute);font-family:var(--font-mono);letter-spacing:1px}
+        @media(max-width:768px){.footer{padding:32px 20px}.footer-inner{flex-direction:column;align-items:flex-start;gap:16px}.footer-links{flex-direction:column;gap:12px}}
 
         /* ── レスポンシブ ── */
         @media (max-width: 600px) {
@@ -331,22 +330,39 @@
             .feature-table thead th,
             .feature-table tbody td { padding: 10px 10px; }
             .summary-row { grid-template-columns: 1fr 1fr; }
-            nav .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="/" class="brand">
-        <img src="images/icon_192.png" alt="Kinia" onerror="this.style.display='none'">
-        Kinia
+<nav class="nav">
+    <a href="/" class="nav-brand">
+        <img src="/images/app_icon.png" alt="">
+        <span class="nav-brand-name">Kinia</span>
+        <span class="nav-brand-ruby">キニア</span>
     </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">☰</button>
     <div class="nav-links">
-        <a href="/">TOP</a>
-        <a href="/status.html" style="color:var(--primary)">開発状況</a>
-        <a href="/privacy.html">プライバシー</a>
+        <a href="/#features">特徴</a>
         <a href="/faq.html">FAQ</a>
+        <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">ガイド ▾</button>
+            <div class="nav-dropdown-menu">
+                <a href="/setup.html" class="nav-dd-primary">はじめかたガイド</a>
+                <a href="/guide-family-basic.html">3人家族セットアップ</a>
+                <a href="/guide-join.html">招待された方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0;"></div>
+                <a href="/senior.html">高齢のご家族がいる方へ</a>
+                <a href="/parents.html">お子さんを持つご家庭の方へ</a>
+                <a href="/students.html">学生の方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
+                <a href="/guide-sharing-all.html">画面の見方（すべて共有）</a>
+                <a href="/guide-sharing-area.html">画面の見方（通知エリアのみ）</a>
+            </div>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">ダウンロード
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
     </div>
 </nav>
 
@@ -756,9 +772,17 @@
 
 </div>
 
-<footer>
-    <p>&copy; 2026 Kinia &mdash; <a href="/">kinia.io</a> &middot; <a href="/privacy.html">プライバシーポリシー</a></p>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand"><img src="/images/app_icon.png" alt=""><span class="footer-brand-name">Kinia</span><span class="footer-brand-ruby">キニア</span></div>
+        <div class="footer-links">
+            <a href="/setup.html">はじめかたガイド</a><a href="/faq.html">よくある質問</a><a href="/status.html">開発状況</a>
+            <a href="/data-safety.html">データの安全性</a><a href="/privacy.html">プライバシーポリシー</a><a href="/#contact">お問い合わせ</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
+    </div>
 </footer>
 
+<script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
 </body>
 </html>
