@@ -317,52 +317,56 @@
 
         /* ── HowItWorks ── */
         .how { padding: 100px 56px; background: var(--bg-alt); }
+        .how-header {
+            max-width: 780px; margin: 0 auto 48px; text-align: center;
+        }
         .how-grid {
-            max-width: 1180px; margin: 0 auto;
-            display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 56px; align-items: center;
+            max-width: 1080px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
         }
-        .how h2 { margin-bottom: 24px; }
-        .how-compare {
-            padding: 14px; background: var(--card); border-radius: 22px;
-            border: 1px solid var(--line); margin-top: 24px;
-            max-width: 340px;
+        .how-column {
+            text-align: center;
         }
-        .how-compare img {
-            width: 100%; border-radius: 18px; display: block; margin-top: 8px;
-            box-shadow: 0 4px 20px rgba(42,34,24,0.1);
+        .how-column-label {
+            font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px;
+            margin-bottom: 16px; font-weight: 500;
         }
-        .how-compare-label {
-            font-family: var(--font-mono); font-size: 11px; color: var(--mute);
-            letter-spacing: 1px; margin-bottom: 10px;
+        .how-column-label.old { color: #b06860; }
+        .how-column-label.new { color: var(--sage); }
+        .how-phone-frame {
+            background: var(--card); border-radius: 24px;
+            border: 1px solid var(--line); padding: 16px;
+            box-shadow: 0 4px 24px rgba(42,34,24,0.08);
+            display: inline-block; max-width: 340px; width: 100%;
         }
-        .how-compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; font-size: 13px; line-height: 1.6; }
-        .how-compare-old-label { color: #b06860; font-size: 10.5px; letter-spacing: 1px; margin-bottom: 4px; }
-        .how-compare-old { color: var(--sub); }
-        .how-compare-new-label { color: var(--sage); font-size: 10.5px; letter-spacing: 1px; margin-bottom: 4px; }
-        .how-compare-new { color: var(--ink); font-weight: 600; }
-        .how-cards { display: flex; flex-direction: column; gap: 14px; }
+        .how-phone-frame img {
+            width: 100%; border-radius: 16px; display: block;
+        }
+        .how-phone-frame .how-cards {
+            text-align: left;
+        }
+        .how-cards { display: flex; flex-direction: column; gap: 10px; }
         .member-card {
-            background: var(--card); border-radius: 18px; padding: 16px 18px;
-            box-shadow: 0 1px 2px rgba(20,20,30,0.04), 0 10px 26px -14px rgba(20,20,30,0.14);
+            background: var(--bg); border-radius: 14px; padding: 14px 16px;
             border: 1px solid var(--line); color: var(--ink);
         }
         .member-card-header {
-            display: flex; align-items: center; gap: 10px; margin-bottom: 6px;
+            display: flex; align-items: center; gap: 10px; margin-bottom: 4px;
         }
         .member-card-dot {
             width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
         }
-        .member-card-name { font-size: 14.5px; font-weight: 700; }
+        .member-card-name { font-size: 14px; font-weight: 700; }
         .member-card-status {
-            font-size: 13px; color: var(--accent2); font-weight: 600;
+            font-size: 12.5px; color: var(--accent2); font-weight: 600;
             margin-left: auto; white-space: nowrap;
         }
         .member-card-history {
-            margin: 6px 0 0 20px; padding-left: 12px;
+            margin: 4px 0 0 20px; padding-left: 12px;
             border-left: 2px solid var(--line);
         }
         .member-card-history-item {
-            font-size: 11.5px; color: var(--mute); line-height: 1.6; padding: 2px 0;
+            font-size: 11px; color: var(--mute); line-height: 1.5; padding: 2px 0;
         }
         .member-card-history-item .hist-area { color: var(--sub); font-weight: 500; }
         /* legacy notify-card (hero section) */
@@ -381,8 +385,8 @@
         .notify-card-time { font-size: 10.5px; color: var(--mute); margin-top: 2px; }
         @media (max-width: 768px) {
             .how { padding: 64px 20px; }
-            .how-grid { grid-template-columns: 1fr; gap: 32px; }
-            .how-compare { max-width: 280px; margin-left: auto; margin-right: auto; }
+            .how-grid { grid-template-columns: 1fr; gap: 40px; }
+            .how-phone-frame { max-width: 300px; }
         }
 
         /* ── Fair Principle ── */
@@ -817,66 +821,69 @@
 
 <!-- ─── How It Works ─── -->
 <section class="how" id="how">
+    <div class="how-header">
+        <div class="section-label">— HOW IT WORKS —</div>
+        <h2 class="section-heading">わかるのは、これだけ</h2>
+        <p class="body-text">
+            交差点レベルの移動経路ではなく、「誰が、いつ、どのエリアにいるか」だけ。<br>
+            家族一人ひとりの今の状況と直近の動きが、ひと目で見渡せます。
+        </p>
+    </div>
     <div class="how-grid">
-        <div>
-            <div class="section-label">— HOW IT WORKS —</div>
-            <h2 class="section-heading">わかるのは、これだけ</h2>
-            <p class="body-text">
-                交差点レベルの移動経路ではなく、<br>
-                「誰が、いつ、どのエリアにいるか」だけ。<br>
-                家族一人ひとりの今の状況と直近の動きが<br>
-                ひと目で見渡せます。
-            </p>
-            <div class="how-compare">
-                <div class="how-compare-label">従来のアプリ</div>
+        <!-- 左: 従来のアプリ -->
+        <div class="how-column">
+            <div class="how-column-label old">従来のアプリ</div>
+            <div class="how-phone-frame">
                 <img src="/images/how_traditional_app.png" alt="従来の位置追跡アプリ">
             </div>
         </div>
-        <div class="how-cards">
-            <!-- ゆうき -->
-            <div class="member-card">
-                <div class="member-card-header">
-                    <div class="member-card-dot" style="background:#a3b89a;"></div>
-                    <div class="member-card-name">ゆうき</div>
-                    <div class="member-card-status">「塾」にいます</div>
-                </div>
-                <div class="member-card-history">
-                    <div class="member-card-history-item"><span class="hist-area">「塾」に入った</span> — 16:08</div>
-                    <div class="member-card-history-item"><span class="hist-area">「学校」から出た</span> — 15:30</div>
-                </div>
-            </div>
-            <!-- さくら -->
-            <div class="member-card">
-                <div class="member-card-header">
-                    <div class="member-card-dot" style="background:#c4a55b;"></div>
-                    <div class="member-card-name">さくら</div>
-                    <div class="member-card-status">エリア外（移動中）</div>
-                </div>
-                <div class="member-card-history">
-                    <div class="member-card-history-item"><span class="hist-area">「学校」から出た</span> — 15:15</div>
-                    <div class="member-card-history-item"><span class="hist-area">「学校」に入った</span> — 08:12</div>
-                </div>
-            </div>
-            <!-- お母さん -->
-            <div class="member-card">
-                <div class="member-card-header">
-                    <div class="member-card-dot" style="background:#d97a5a;"></div>
-                    <div class="member-card-name">お母さん</div>
-                    <div class="member-card-status">「自宅」にいます</div>
-                </div>
-                <div class="member-card-history">
-                    <div class="member-card-history-item"><span class="hist-area">「自宅」に入った</span> — 12:42</div>
-                </div>
-            </div>
-            <!-- お父さん -->
-            <div class="member-card">
-                <div class="member-card-header">
-                    <div class="member-card-dot" style="background:#b85a3e;"></div>
-                    <div class="member-card-name">お父さん</div>
-                    <div class="member-card-status">エリア外（移動中）</div>
-                </div>
-                <div class="member-card-history">
-                    <div class="member-card-history-item"><span class="hist-area">「会社」から出た</span> — 17:02</div>
+        <!-- 右: Kinia -->
+        <div class="how-column">
+            <div class="how-column-label new">KINIA</div>
+            <div class="how-phone-frame">
+                <div class="how-cards">
+                    <div class="member-card">
+                        <div class="member-card-header">
+                            <div class="member-card-dot" style="background:#a3b89a;"></div>
+                            <div class="member-card-name">ゆうき</div>
+                            <div class="member-card-status">「塾」にいます</div>
+                        </div>
+                        <div class="member-card-history">
+                            <div class="member-card-history-item"><span class="hist-area">「塾」に入った</span> — 16:08</div>
+                            <div class="member-card-history-item"><span class="hist-area">「学校」から出た</span> — 15:30</div>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-card-header">
+                            <div class="member-card-dot" style="background:#c4a55b;"></div>
+                            <div class="member-card-name">さくら</div>
+                            <div class="member-card-status">エリア外（移動中）</div>
+                        </div>
+                        <div class="member-card-history">
+                            <div class="member-card-history-item"><span class="hist-area">「学校」から出た</span> — 15:15</div>
+                            <div class="member-card-history-item"><span class="hist-area">「学校」に入った</span> — 08:12</div>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-card-header">
+                            <div class="member-card-dot" style="background:#d97a5a;"></div>
+                            <div class="member-card-name">お母さん</div>
+                            <div class="member-card-status">「自宅」にいます</div>
+                        </div>
+                        <div class="member-card-history">
+                            <div class="member-card-history-item"><span class="hist-area">「自宅」に入った</span> — 12:42</div>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-card-header">
+                            <div class="member-card-dot" style="background:#b85a3e;"></div>
+                            <div class="member-card-name">お父さん</div>
+                            <div class="member-card-status">エリア外（移動中）</div>
+                        </div>
+                        <div class="member-card-history">
+                            <div class="member-card-history-item"><span class="hist-area">「会社」から出た</span> — 17:02</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
