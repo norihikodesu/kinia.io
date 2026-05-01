@@ -12,21 +12,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kinia - プライバシーポリシー / Privacy Policy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #12121F;
-            --surface: #1E1E30;
-            --surface2: #282840;
-            --text: #E8E4F0;
-            --text-sub: #B0AAC2;
-            --primary: #7C8EF2;
-            --primary-dim: #5A6AD4;
-            --accent: #4CC9F0;
-            --border: #3D3855;
+            --bg: #fbf6ef;
+            --surface: #ffffff;
+            --surface2: #f4e8d8;
+            --text: #2a2218;
+            --text-sub: rgba(42,34,24,0.62);
+            --text-dim: rgba(42,34,24,0.4);
+            --primary: #d97a5a;
+            --primary-dim: #b85a3e;
+            --accent: #a3b89a;
+            --border: rgba(42,34,24,0.08);
+            --line: rgba(42,34,24,0.08);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.8;
@@ -34,27 +39,38 @@
         a { color: var(--primary); text-decoration: none; }
         a:hover { text-decoration: underline; }
 
-        /* ナビゲーション */
-        nav {
+        /* -- Navigation (peach) -- */
+        .nav {
             position: sticky; top: 0; z-index: 100;
-            background: rgba(18, 18, 31, 0.95);
-            backdrop-filter: blur(12px);
+            background: rgba(251,246,239,0.92);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
-            padding: 12px 24px;
+            padding: 14px 24px;
             display: flex; align-items: center; justify-content: space-between;
-            max-width: 100%;
         }
-        nav .brand { font-size: 1.2rem; font-weight: bold; color: var(--primary); }
-        nav .nav-links { display: flex; gap: 20px; font-size: 0.9rem; flex-wrap: wrap; }
-        nav .nav-links a { color: var(--text-sub); }
-        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
+        .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700; }
+        .nav-brand img { width: 28px; height: 28px; border-radius: 6px; }
+        .nav-brand-name { font-size: 1.2rem; color: var(--primary); letter-spacing: 0.5px; }
+        .nav-brand-ruby { font-size: 0.75rem; color: var(--text-sub); }
+        .hamburger { display: none; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--text); }
+        .nav-links { display: flex; align-items: center; gap: 20px; font-size: 0.95rem; }
+        .nav-links a { color: var(--text-sub); text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--primary); }
         .nav-dropdown { position: relative; }
-        .nav-dropdown-toggle { background: none; border: none; color: var(--text-sub); font-size: 0.9rem; cursor: pointer; padding: 0; font-family: inherit; transition: color 0.2s; }
+        .nav-dropdown-toggle { background: none; border: none; color: var(--text-sub); font-size: 0.95rem; cursor: pointer; padding: 0; font-family: inherit; transition: color 0.2s; }
         .nav-dropdown-toggle:hover { color: var(--primary); }
-        .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 10px); right: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 0; min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 200; }
+        .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 10px); right: 0; background: #ffffff; border: 1px solid var(--border); border-radius: 10px; padding: 8px 0; min-width: 240px; box-shadow: 0 8px 32px rgba(42,34,24,0.12); z-index: 200; }
         .nav-dropdown.open .nav-dropdown-menu { display: block; }
-        .nav-dropdown-menu a { display: block; padding: 10px 20px; color: var(--text-sub); font-size: 0.9rem; transition: background 0.15s, color 0.15s; white-space: nowrap; }
-        .nav-dropdown-menu a:hover { background: var(--surface2); color: var(--text); text-decoration: none; }
+        .nav-dropdown-menu a { display: block; padding: 10px 20px; color: var(--text-sub); font-size: 0.9rem; transition: background 0.15s, color 0.15s; white-space: nowrap; text-decoration: none; }
+        .nav-dropdown-menu a:hover { background: var(--surface2); color: var(--text); }
+        .nav-dd-primary { font-weight: 600; color: var(--primary) !important; }
+        .nav-cta { background: var(--primary); color: #fff !important; padding: 8px 16px; border-radius: 8px; font-weight: 600; display: flex; align-items: center; gap: 4px; text-decoration: none; transition: background 0.2s; }
+        .nav-cta:hover { background: var(--primary-dim) !important; }
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(251,246,239,0.98); border-bottom: 1px solid var(--border); flex-direction: column; padding: 16px 24px; gap: 12px; }
+            .nav-links.open { display: flex; }
+        }
 
         /* メイン */
         .content {
@@ -91,40 +107,42 @@
         th { color: var(--accent); font-weight: 600; background: var(--surface2); }
         td { background: var(--surface); }
 
-        /* フッター */
-        .footer-links {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 16px; padding: 40px 24px;
-            border-top: 1px solid var(--border);
-            font-size: 0.9rem;
-        }
-        .footer-links a { color: var(--text-sub); }
-        .contact-footer {
-            text-align: center;
-            padding: 20px 24px 40px;
-            font-size: 0.85rem;
-            color: var(--text-sub);
-        }
+        /* -- Footer (peach) -- */
+        .footer { border-top: 1px solid var(--border); padding: 40px 24px; }
+        .footer-inner { max-width: 960px; margin: 0 auto; text-align: center; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 16px; }
+        .footer-brand img { width: 28px; height: 28px; border-radius: 6px; }
+        .footer-brand-name { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+        .footer-brand-ruby { font-size: 0.75rem; color: var(--text-sub); }
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 20px; margin-bottom: 16px; }
+        .footer-links a { color: var(--text-sub); font-size: 0.9rem; text-decoration: none; }
+        .footer-links a:hover { color: var(--primary); }
+        .footer-copy { font-size: 0.82rem; color: var(--text-dim); }
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="/" class="brand" style="text-decoration:none;">Kinia</a>
+<nav class="nav">
+    <a href="/" class="nav-brand"><img src="/images/app_icon.png" alt=""><span class="nav-brand-name">Kinia</span><span class="nav-brand-ruby">キニア</span></a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">&#9776;</button>
     <div class="nav-links">
-        <a href="/#features">機能</a>
-        <a href="/#sharing">共有設定</a>
-        <a href="/setup.html">はじめかた</a>
-        <a href="/faq.html">FAQ</a>
-        <a href="/status.html">開発状況</a>
+        <a href="/#features">特徴</a><a href="/faq.html">FAQ</a>
         <div class="nav-dropdown">
-            <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">家族別ガイド ▾</button>
+            <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">ガイド ▾</button>
             <div class="nav-dropdown-menu">
+                <a href="/setup.html" class="nav-dd-primary">はじめかたガイド</a>
+                <a href="/guide-family-basic.html">3人家族セットアップ</a>
+                <a href="/guide-join.html">招待された方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
                 <a href="/senior.html">高齢のご家族がいる方へ</a>
-                <a href="/students.html">学生の方へ</a>
                 <a href="/parents.html">お子さんを持つご家庭の方へ</a>
+                <a href="/students.html">学生の方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
+                <a href="/guide-sharing-all.html">画面の見方（すべて共有）</a>
+                <a href="/guide-sharing-area.html">画面の見方（通知エリアのみ）</a>
             </div>
         </div>
+        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">ダウンロード <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
 </nav>
 
@@ -352,17 +370,16 @@
     </div>
 </main>
 
-<div class="footer-links">
-    <a href="/setup.html">はじめかたガイド</a>
-    <a href="/faq.html">よくある質問</a>
-    <a href="/privacy.html">プライバシー</a>
-    <a href="/delete-account.html">アカウント削除</a>
-    <a href="/faq.html">よくある質問</a>
-</div>
-<div class="contact-footer">
-    <p>お困りですか？ <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a></p>
-    <p style="margin-top:8px;">&copy; 2026 Kinia</p>
-</div>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand"><img src="/images/app_icon.png" alt=""><span class="footer-brand-name">Kinia</span><span class="footer-brand-ruby">キニア</span></div>
+        <div class="footer-links">
+            <a href="/setup.html">はじめかたガイド</a><a href="/faq.html">よくある質問</a><a href="/status.html">開発状況</a>
+            <a href="/data-safety.html">データの安全性</a><a href="/privacy.html">プライバシーポリシー</a><a href="/#contact">お問い合わせ</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
+    </div>
+</footer>
 
 <script>
     function toggleLang() {
