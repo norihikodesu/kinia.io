@@ -5,11 +5,11 @@
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XCT32M2MZV');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>各タブの見方と操作（すべて共有） — Kinia</title>
-    <meta name="description" content="Kiniaの「すべてを共有」モードでの各タブの見方と操作方法を解説します。">
+    <title>各タブの見方と操作（通知エリアのみ） — Kinia</title>
+    <meta name="description" content="Kiniaの「通知エリアのみ」モードでの各タブの見方と操作方法を解説します。">
     <link rel="icon" href="/images/app_icon.png" type="image/png">
-    <meta property="og:title" content="各タブの見方と操作（すべて共有） — Kinia">
-    <meta property="og:description" content="現在地・履歴・通知エリア・メンバー・メッセージ、5つのタブの使い方ガイド。">
+    <meta property="og:title" content="各タブの見方と操作（通知エリアのみ） — Kinia">
+    <meta property="og:description" content="通知エリアへの出入りだけで見守る、Kiniaの基本モードの使い方ガイド。">
     <meta property="og:image" content="https://kinia.io/images/app_icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,7 +59,7 @@
         .mode-switch a{flex:1;text-align:center;padding:14px 16px;font-size:14px;font-weight:600;color:var(--sub);text-decoration:none;transition:background .2s,color .2s;border-right:1px solid var(--line)}
         .mode-switch a:last-child{border-right:none}
         .mode-switch a:hover{text-decoration:none}
-        .mode-switch a.active{background:var(--accent);color:#fff}
+        .mode-switch a.active{background:var(--sage);color:#fff}
         .mode-switch a:not(.active):hover{background:var(--bg-alt);color:var(--ink)}
 
         .section-label{font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:10px}
@@ -75,8 +75,9 @@
         .card strong{color:var(--ink)}
         .lead{font-size:15px;line-height:1.9;color:var(--sub);margin-bottom:20px}
 
-        .callout{background:var(--card);border-left:4px solid var(--accent);border-radius:0 14px 14px 0;padding:16px 20px;margin:16px 0;font-size:14.5px;color:var(--sub);line-height:1.85}
+        .callout{background:var(--card);border-left:4px solid var(--sage);border-radius:0 14px 14px 0;padding:16px 20px;margin:16px 0;font-size:14.5px;color:var(--sub);line-height:1.85}
         .callout strong{color:var(--accent2)}
+        .callout.accent{border-left-color:var(--accent)}
 
         .toc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin:0 0 36px}
         .toc h3{font-family:var(--font-head);font-size:15px;font-weight:500;margin-bottom:12px}
@@ -108,8 +109,8 @@
                 <a href="/guide-family-basic.html">3人家族セットアップ</a>
                 <a href="/guide-join.html">招待された方へ</a>
                 <div style="border-top:1px solid var(--line);margin:4px 0"></div>
-                <a href="/guide-sharing-all.html" style="color:var(--accent);font-weight:600">画面の見方（すべて共有）</a>
-                <a href="/guide-sharing-area.html">画面の見方（通知エリアのみ）</a>
+                <a href="/guide-sharing-all.html">画面の見方（すべて共有）</a>
+                <a href="/guide-sharing-area.html" style="color:var(--accent);font-weight:600">画面の見方（通知エリアのみ）</a>
             </div>
         </div>
         <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">ダウンロード <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -119,20 +120,21 @@
 <div class="guide-hero">
     <div class="pill"><span class="pill-dot"></span>使い方ガイド</div>
     <h1>各タブの見方と<span class="accent-text">操作</span></h1>
-    <p>画面下部の5つのタブでできることを、<br>「すべてを共有」モードの場合で解説します。</p>
+    <p>画面下部の5つのタブでできることを、<br>「通知エリアのみ」モードの場合で解説します。</p>
 </div>
 
 <div class="content">
     <div class="mode-switch">
-        <a href="/guide-sharing-all.html" class="active">すべて共有</a>
-        <a href="/guide-sharing-area.html">通知エリアのみ</a>
+        <a href="/guide-sharing-all.html">すべて共有</a>
+        <a href="/guide-sharing-area.html" class="active">通知エリアのみ</a>
     </div>
 
     <div class="callout" style="margin-bottom:32px">
-        <strong>すべて共有モードとは：</strong><br>
-        家族の現在地を地図で確認でき、<br>
-        移動の履歴や速度も見られるモードです。<br>
-        お互いの位置をしっかり把握したい家族向け。
+        <strong>通知エリアのみモードとは：</strong><br>
+        Kiniaの初期設定（デフォルト）です。<br>
+        登録したエリアへの出入りだけを通知し、<br>
+        リアルタイムの現在地は共有しません。<br>
+        お互いの日常を尊重しながら見守りたい家族向け。
     </div>
 
     <div class="toc">
@@ -149,36 +151,36 @@
     <div class="guide-section" id="map">
         <div class="section-label">— TAB 1 —</div>
         <h2 class="section-heading">現在地<span class="accent-text">タブ</span></h2>
-        <p class="lead">アプリを開くと最初に表示される画面です。<br>家族全員の居場所を地図上で確認できます。</p>
+        <p class="lead">地図が表示されますが、<br>他の家族のマーカーは表示されません。<br>自分の位置と通知エリアの確認に使います。</p>
         <div class="card">
             <h3>画面に表示されるもの</h3>
             <ul>
-                <li><strong>カラーマーカー</strong><br>家族それぞれが色分けで表示されます。<br>名前もマーカーの横に出ます</li>
-                <li><strong>活動アイコン</strong><br>静止中・歩行中・車移動中など、<br>今の状態がアイコンでわかります</li>
+                <li><strong>自分の位置</strong><br>自分の現在地だけが表示されます</li>
                 <li><strong>通知エリアの円</strong><br>登録したエリアが薄い円で表示されます</li>
             </ul>
         </div>
-        <div class="callout"><strong>ヒント：</strong>マーカーをタップすると、<br>バッテリー残量や最終更新時刻など<br>詳しい情報が表示されます。</div>
+        <div class="callout"><strong>ポイント：</strong>このモードでは<br>家族の居場所は地図に表示されません。<br>エリアへの出入り通知で見守る設計です。</div>
     </div>
 
     <div class="guide-section" id="history">
         <div class="section-label">— TAB 2 —</div>
         <h2 class="section-heading">履歴<span class="accent-text">タブ</span></h2>
-        <p class="lead">家族の移動の軌跡を地図上で確認できます。<br>「いつ、どこを通ったか」が視覚的にわかります。</p>
+        <p class="lead">通知エリアへの出入り履歴が<br>タイムライン形式で表示されます。</p>
         <div class="card">
-            <h3>できること</h3>
+            <h3>確認できること</h3>
             <ul>
-                <li><strong>移動軌跡の表示</strong><br>メンバーを選ぶと、<br>その日の移動ルートが線で表示されます</li>
-                <li><strong>日付の切替</strong><br>過去の日付に切り替えて、<br>別の日の移動も確認できます</li>
-                <li><strong>速度・活動状態</strong><br>軌跡上のポイントをタップすると、<br>その時点の速度や状態が見られます</li>
+                <li><strong>出入りの記録</strong><br>「お母さんが自宅に到着」<br>「ゆうきが学校を出発」など</li>
+                <li><strong>時刻</strong><br>いつ出入りがあったかが表示されます</li>
+                <li><strong>日付の切替</strong><br>過去の日付の履歴も確認できます</li>
             </ul>
         </div>
+        <div class="callout"><strong>ポイント：</strong>移動の軌跡は表示されません。<br>エリアへの出入りだけが記録されます。</div>
     </div>
 
     <div class="guide-section" id="area">
         <div class="section-label">— TAB 3 —</div>
         <h2 class="section-heading">通知エリア<span class="accent-text">タブ</span></h2>
-        <p class="lead">「自宅」「学校」などのエリアを登録し、<br>出入りがあった時に通知を受け取れます。</p>
+        <p class="lead">このモードの中心となるタブです。<br>エリアの登録と通知の管理を行います。</p>
         <div class="card">
             <h3>エリアの確認と管理</h3>
             <ul>
@@ -195,19 +197,19 @@
                 <li><strong>「出る」</strong> — エリアから出た時に通知</li>
             </ul>
         </div>
-        <div class="callout"><strong>例：</strong>「学校」でお子さんの「入る」だけオンにすると、<br>学校に着いたときだけ通知が届きます。</div>
+        <div class="callout"><strong>おすすめ：</strong>まずは「自宅」と「学校」や「職場」を<br>登録するところから始めてみてください。</div>
     </div>
 
     <div class="guide-section" id="members">
         <div class="section-label">— TAB 4 —</div>
         <h2 class="section-heading">メンバー<span class="accent-text">タブ</span></h2>
-        <p class="lead">家族全員の状態を一覧で確認できます。<br>地図を開かなくても、ここで概要がわかります。</p>
+        <p class="lead">家族の状態を一覧で確認できます。<br>位置は共有されませんが、<br>活動の気配はここでわかります。</p>
         <div class="card">
             <h3>一覧で見える情報</h3>
             <ul>
                 <li><strong>活動状態</strong><br>静止中・徒歩・車などをアイコンで表示</li>
-                <li><strong>バッテリー残量</strong><br>パーセント＋色で残量がわかります</li>
-                <li><strong>更新時刻</strong><br>「たった今」「5分前」など</li>
+                <li><strong>歩数・元気度</strong><br>「今日も元気に動いてるな」が<br>位置を知らなくてもわかります</li>
+                <li><strong>ステータスコメント</strong><br>自分で設定したひとこと</li>
                 <li><strong>通知エリア</strong><br>エリア内にいる場合、エリア名が表示されます</li>
             </ul>
         </div>
@@ -217,8 +219,7 @@
             <ul>
                 <li>今日の歩数</li>
                 <li>最終更新の正確な日時</li>
-                <li>ステータスコメント</li>
-                <li>共有設定の確認</li>
+                <li>体調チェックの結果</li>
             </ul>
         </div>
     </div>
@@ -226,7 +227,7 @@
     <div class="guide-section" id="message">
         <div class="section-label">— TAB 5 —</div>
         <h2 class="section-heading">メッセージ<span class="accent-text">タブ</span></h2>
-        <p class="lead">グループ内でメッセージのやりとりができます。<br>ちょっとした連絡に便利です。</p>
+        <p class="lead">グループ内でメッセージのやりとりができます。<br>共有モードに関係なく使えます。</p>
         <div class="card">
             <h3>できること</h3>
             <ul>
@@ -238,7 +239,16 @@
     </div>
 
     <div style="padding-top:36px">
-        <div class="callout"><strong>困ったときは：</strong><a href="/faq.html">よくある質問（FAQ）</a>もご覧ください。</div>
+        <div class="callout accent">
+            <strong>もっと詳しく見守りたくなったら：</strong><br>
+            設定からいつでも<br>
+            「すべてを共有」モードに変更できます。<br>
+            <a href="/guide-sharing-all.html">すべて共有モードの画面の見方はこちら →</a>
+        </div>
+    </div>
+
+    <div style="padding-top:8px">
+        <div class="callout accent"><strong>困ったときは：</strong><a href="/faq.html">よくある質問（FAQ）</a>もご覧ください。</div>
     </div>
 </div>
 
