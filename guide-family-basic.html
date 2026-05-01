@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XCT32M2MZV');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3人家族セットアップガイド — Kinia</title>
     <meta name="description" content="大人2人＋お子さん1人の3人家族向け。Kiniaの導入から通知エリア設定まで、ご家族の代表がまとめてセットアップする手順をわかりやすく解説します。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #12121F;
-            --surface: #1E1E30;
-            --surface2: #282840;
-            --text: #E8E4F0;
-            --text-sub: #B0AAC2;
-            --primary: #7C8EF2;
-            --primary-dim: #5A6AD4;
-            --accent: #4CC9F0;
-            --accent-warm: #F4A261;
-            --border: #3D3855;
-            --success: #66BB6A;
+            --bg: #fbf6ef;
+            --bg-alt: #f4e8d8;
+            --card: #ffffff;
+            --ink: #2a2218;
+            --sub: rgba(42,34,24,0.62);
+            --mute: rgba(42,34,24,0.4);
+            --accent: #d97a5a;
+            --accent2: #b85a3e;
+            --sage: #a3b89a;
+            --navy: #2c3a5e;
+            --line: rgba(42,34,24,0.08);
+            --font-head: 'Shippori Mincho', 'Noto Serif JP', serif;
+            --font-body: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+            --font-mono: 'DM Mono', monospace;
             --papa: #42A5F5;
             --mama: #EF5350;
             --child: #FFA726;
@@ -25,39 +39,86 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+            font-family: var(--font-body);
             background: var(--bg);
-            color: var(--text);
-            line-height: 1.8;
-            font-size: 16px;
+            color: var(--ink);
+            line-height: 1.85;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
         }
-        a { color: var(--primary); text-decoration: none; }
+        a { color: var(--accent2); text-decoration: none; }
         a:hover { text-decoration: underline; }
 
-        /* ── ナビゲーション ── */
-        nav {
+        /* ── Nav ── */
+        .nav {
             position: sticky; top: 0; z-index: 100;
-            background: rgba(18, 18, 31, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            padding: 12px 24px;
+            background: rgba(251,246,239,0.92);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+            padding: 16px 56px;
             display: flex; align-items: center; justify-content: space-between;
         }
-        nav .brand { font-size: 1.2rem; font-weight: bold; color: var(--primary); }
-        nav .nav-links { display: flex; gap: 20px; font-size: 0.9rem; flex-wrap: wrap; }
-        nav .nav-links a { color: var(--text-sub); }
-        nav .nav-links a:hover { color: var(--primary); text-decoration: none; }
+        .nav-brand {
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none; color: var(--ink);
+        }
+        .nav-brand img { width: 36px; height: 36px; border-radius: 8px; display: block; }
+        .nav-brand-name { font-family: var(--font-head); font-size: 20px; font-weight: 600; }
+        .nav-brand-ruby { font-family: var(--font-mono); font-size: 10px; color: var(--mute); letter-spacing: 1.5px; margin-left: 2px; }
+        .nav-links { display: flex; align-items: center; gap: 28px; font-size: 13.5px; color: var(--sub); }
+        .nav-links a { color: inherit; text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent); text-decoration: none; }
+        .nav-cta {
+            background: var(--accent); color: #fff; border: none;
+            padding: 10px 20px; border-radius: 999px; font-size: 13.5px;
+            font-weight: 600; cursor: pointer; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+            box-shadow: 0 6px 16px -6px rgba(217,122,90,0.5);
+            transition: background 0.2s, transform 0.1s;
+        }
+        .nav-cta:hover { background: var(--accent2); text-decoration: none; transform: translateY(-1px); }
         .nav-dropdown { position: relative; }
-        .nav-dropdown-toggle { background: none; border: none; color: var(--text-sub); font-size: 0.9rem; cursor: pointer; padding: 0; font-family: inherit; }
-        .nav-dropdown-toggle:hover { color: var(--primary); }
-        .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 10px); right: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 0; min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 200; }
+        .nav-dropdown-toggle {
+            background: none; border: none; color: var(--sub); font-size: 13.5px;
+            cursor: pointer; padding: 0; font-family: inherit; transition: color 0.2s;
+        }
+        .nav-dropdown-toggle:hover { color: var(--accent); }
+        .nav-dropdown-menu {
+            display: none; position: absolute; top: calc(100% + 10px); right: 0;
+            background: var(--card); border: 1px solid var(--line);
+            border-radius: 14px; padding: 8px 0; min-width: 220px;
+            box-shadow: 0 12px 40px rgba(42,34,24,0.12); z-index: 200;
+        }
         .nav-dropdown.open .nav-dropdown-menu { display: block; }
-        .nav-dropdown-menu a { display: block; padding: 10px 20px; color: var(--text-sub); font-size: 0.9rem; white-space: nowrap; }
-        .nav-dropdown-menu a:hover { background: var(--surface2); color: var(--text); text-decoration: none; }
+        .nav-dropdown-menu a {
+            display: block; padding: 10px 20px; color: var(--sub);
+            font-size: 13px; transition: background 0.15s, color 0.15s; white-space: nowrap;
+        }
+        .nav-dropdown-menu a:hover { background: var(--bg-alt); color: var(--ink); text-decoration: none; }
+        .nav-dropdown-menu .nav-dd-primary { font-weight: 600; color: var(--accent); }
+        .hamburger { display: none; background: none; border: none; color: var(--ink); font-size: 1.5rem; cursor: pointer; padding: 4px; }
+        @media (max-width: 768px) {
+            .nav { padding: 14px 20px; }
+            .nav-links {
+                display: none; flex-direction: column; position: absolute;
+                top: 100%; left: 0; right: 0; background: rgba(251,246,239,0.98);
+                padding: 20px 24px; gap: 16px; border-bottom: 1px solid var(--line);
+                align-items: flex-start;
+            }
+            .nav-links.open { display: flex; }
+            .hamburger { display: block; }
+            .nav-dropdown-menu {
+                position: static; box-shadow: none; border: none; border-radius: 0;
+                background: transparent; padding: 0 0 0 16px; min-width: auto;
+            }
+            .nav-dropdown.open .nav-dropdown-menu { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+            .nav-dropdown-menu a { padding: 4px 0; }
+            .nav-dropdown-menu a:hover { background: transparent; }
+        }
 
         /* ── プログレスバー ── */
-        .progress-bar { height: 3px; background: var(--border); position: sticky; top: 49px; z-index: 99; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width 0.3s ease; width: 0%; }
+        .progress-bar { height: 3px; background: var(--line); position: sticky; top: 49px; z-index: 99; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--sage)); transition: width 0.3s ease; width: 0%; }
 
         /* ── コンテンツ ── */
         .content { max-width: 780px; margin: 0 auto; padding: 0 20px 80px; }
@@ -69,7 +130,7 @@
         }
         .hero-label {
             display: inline-block;
-            background: var(--surface2);
+            background: var(--bg-alt);
             color: var(--accent);
             font-size: 0.85rem;
             font-weight: 600;
@@ -78,12 +139,13 @@
             margin-bottom: 16px;
         }
         .hero h1 {
+            font-family: var(--font-head);
             font-size: clamp(1.5rem, 4vw, 2rem);
             line-height: 1.4;
             margin-bottom: 12px;
         }
         .hero p {
-            color: var(--text-sub);
+            color: var(--sub);
             font-size: 1rem;
             max-width: 560px;
             margin: 0 auto;
@@ -100,9 +162,9 @@
         .family-member {
             text-align: center;
             padding: 16px 20px;
-            background: var(--surface);
+            background: var(--card);
             border-radius: 16px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--line);
             min-width: 120px;
         }
         .family-member .avatar {
@@ -112,9 +174,9 @@
             font-size: 1.8rem;
             margin: 0 auto 8px;
         }
-        .family-member.papa .avatar { background: rgba(66,165,245,0.15); }
-        .family-member.mama .avatar { background: rgba(239,83,80,0.15); }
-        .family-member.child .avatar { background: rgba(255,167,38,0.15); }
+        .family-member.papa .avatar { background: rgba(66,165,245,0.12); }
+        .family-member.mama .avatar { background: rgba(239,83,80,0.12); }
+        .family-member.child .avatar { background: rgba(255,167,38,0.12); }
         .family-member .role {
             font-size: 0.9rem;
             font-weight: 600;
@@ -122,11 +184,11 @@
         }
         .family-member .detail {
             font-size: 0.8rem;
-            color: var(--text-sub);
+            color: var(--sub);
         }
         .family-member.mama {
             border-color: var(--mama);
-            box-shadow: 0 0 12px rgba(239,83,80,0.15);
+            box-shadow: 0 0 12px rgba(239,83,80,0.12);
         }
         .family-member.mama .role::after {
             content: " (セットアップ担当)";
@@ -142,7 +204,7 @@
         }
         .section-badge {
             display: inline-block;
-            background: var(--primary);
+            background: var(--accent);
             color: #fff;
             font-size: 0.8rem;
             font-weight: bold;
@@ -150,13 +212,14 @@
             border-radius: 12px;
             margin-bottom: 12px;
         }
-        .section-badge.flowchart { background: var(--accent); color: var(--bg); }
+        .section-badge.flowchart { background: var(--sage); color: var(--ink); }
         .section h2 {
+            font-family: var(--font-head);
             font-size: 1.4rem;
             margin-bottom: 8px;
         }
         .section .lead {
-            color: var(--text-sub);
+            color: var(--sub);
             font-size: 0.95rem;
             margin-bottom: 24px;
         }
@@ -173,7 +236,7 @@
             text-align: center;
         }
         .flow-question {
-            background: var(--surface);
+            background: var(--card);
             border: 2px solid var(--accent);
             max-width: 520px;
             margin: 0 auto;
@@ -184,14 +247,14 @@
         }
         .flow-question .sub {
             font-size: 0.85rem;
-            color: var(--text-sub);
+            color: var(--sub);
             margin-top: 6px;
         }
 
         .flow-arrow {
             text-align: center;
             padding: 8px 0;
-            color: var(--text-sub);
+            color: var(--sub);
             font-size: 1.2rem;
             position: relative;
         }
@@ -214,8 +277,8 @@
             font-size: 0.85rem;
             font-weight: bold;
         }
-        .flow-branch-label.yes { color: var(--success); }
-        .flow-branch-label.no { color: var(--accent-warm); }
+        .flow-branch-label.yes { color: var(--sage); }
+        .flow-branch-label.no { color: var(--accent); }
 
         .flow-result {
             padding: 20px;
@@ -223,22 +286,22 @@
             text-align: center;
         }
         .flow-result.type-a {
-            background: rgba(102,187,106,0.1);
-            border: 2px solid var(--success);
+            background: rgba(163,184,154,0.12);
+            border: 2px solid var(--sage);
         }
         .flow-result.type-b {
-            background: rgba(244,162,97,0.1);
-            border: 2px solid var(--accent-warm);
+            background: rgba(217,122,90,0.08);
+            border: 2px solid var(--accent);
         }
         .flow-result h3 {
             font-size: 1.05rem;
             margin-bottom: 6px;
         }
-        .flow-result.type-a h3 { color: var(--success); }
-        .flow-result.type-b h3 { color: var(--accent-warm); }
+        .flow-result.type-a h3 { color: var(--sage); }
+        .flow-result.type-b h3 { color: var(--accent); }
         .flow-result p {
             font-size: 0.85rem;
-            color: var(--text-sub);
+            color: var(--sub);
             line-height: 1.6;
         }
         .flow-result ul {
@@ -246,7 +309,7 @@
             list-style: none;
             margin-top: 10px;
             font-size: 0.85rem;
-            color: var(--text-sub);
+            color: var(--sub);
         }
         .flow-result ul li::before {
             content: "- ";
@@ -255,7 +318,7 @@
         .flow-connector {
             text-align: center;
             padding: 12px 0;
-            color: var(--text-sub);
+            color: var(--sub);
             font-size: 0.9rem;
         }
         .flow-connector .arrow { font-size: 1.2rem; display: block; }
@@ -270,20 +333,20 @@
         .compare-table th {
             padding: 12px;
             text-align: left;
-            background: var(--surface2);
-            border-bottom: 2px solid var(--border);
+            background: var(--bg-alt);
+            border-bottom: 2px solid var(--line);
         }
-        .compare-table th:nth-child(2) { color: var(--success); }
-        .compare-table th:nth-child(3) { color: var(--accent-warm); }
+        .compare-table th:nth-child(2) { color: var(--sage); }
+        .compare-table th:nth-child(3) { color: var(--accent); }
         .compare-table td {
             padding: 10px 12px;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-sub);
+            border-bottom: 1px solid var(--line);
+            color: var(--sub);
             vertical-align: middle;
             text-align: center;
         }
         .compare-table td:first-child {
-            color: var(--text);
+            color: var(--ink);
             font-weight: 600;
             white-space: nowrap;
             text-align: left;
@@ -302,7 +365,7 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: var(--border);
+            background: var(--line);
         }
         .tl-item {
             position: relative;
@@ -316,10 +379,10 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: var(--primary);
+            background: var(--accent);
             border: 2px solid var(--bg);
         }
-        .tl-item.done .tl-dot { background: var(--success); }
+        .tl-item.done .tl-dot { background: var(--sage); }
         .tl-header {
             display: flex;
             align-items: baseline;
@@ -330,8 +393,8 @@
         .tl-step {
             font-size: 0.75rem;
             font-weight: bold;
-            color: var(--primary);
-            background: rgba(124,142,242,0.12);
+            color: var(--accent);
+            background: rgba(217,122,90,0.10);
             padding: 2px 10px;
             border-radius: 10px;
         }
@@ -341,10 +404,10 @@
             border-radius: 10px;
             font-weight: 600;
         }
-        .tl-device.papa { background: rgba(66,165,245,0.15); color: var(--papa); }
-        .tl-device.mama { background: rgba(239,83,80,0.15); color: var(--mama); }
-        .tl-device.child { background: rgba(255,167,38,0.15); color: var(--child); }
-        .tl-device.all { background: rgba(124,142,242,0.12); color: var(--accent); }
+        .tl-device.papa { background: rgba(66,165,245,0.12); color: var(--papa); }
+        .tl-device.mama { background: rgba(239,83,80,0.12); color: var(--mama); }
+        .tl-device.child { background: rgba(255,167,38,0.12); color: var(--child); }
+        .tl-device.all { background: rgba(217,122,90,0.10); color: var(--accent); }
         .tl-title {
             font-size: 1.05rem;
             font-weight: 600;
@@ -354,7 +417,7 @@
         }
         .tl-body p {
             font-size: 0.9rem;
-            color: var(--text-sub);
+            color: var(--sub);
             margin-bottom: 6px;
         }
 
@@ -368,7 +431,7 @@
             counter-increment: step-counter;
             padding: 10px 0 10px 44px;
             position: relative;
-            border-bottom: 1px solid rgba(61,56,85,0.5);
+            border-bottom: 1px solid var(--line);
             font-size: 0.9rem;
         }
         .steps-list li:last-child { border-bottom: none; }
@@ -377,40 +440,40 @@
             position: absolute;
             left: 0; top: 10px;
             width: 28px; height: 28px;
-            background: var(--primary);
+            background: var(--accent);
             color: #fff;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-size: 0.8rem; font-weight: bold;
         }
         .steps-list li .sub {
-            color: var(--text-sub);
+            color: var(--sub);
             font-size: 0.85rem;
             margin-top: 4px;
         }
 
         /* ── ヒント ── */
         .hint {
-            background: var(--surface);
-            border-left: 3px solid var(--primary);
+            background: var(--card);
+            border-left: 3px solid var(--accent);
             border-radius: 0 8px 8px 0;
             padding: 14px 18px;
             margin: 16px 0;
             font-size: 0.88rem;
-            color: var(--text-sub);
+            color: var(--sub);
             line-height: 1.7;
         }
-        .hint strong { color: var(--text); }
-        .hint.warn { border-left-color: var(--accent-warm); }
-        .hint.success { border-left-color: var(--success); }
+        .hint strong { color: var(--ink); }
+        .hint.warn { border-left-color: var(--accent2); }
+        .hint.success { border-left-color: var(--sage); }
 
         /* ── 端末ごとのセクション ── */
         .device-section {
             margin: 20px 0;
             padding: 20px;
             border-radius: 14px;
-            background: var(--surface);
-            border: 1px solid var(--border);
+            background: var(--card);
+            border: 1px solid var(--line);
         }
         .device-section h3 {
             font-size: 1.05rem;
@@ -434,10 +497,10 @@
             margin: 20px 0;
         }
         .settings-card {
-            background: var(--surface);
+            background: var(--card);
             border-radius: 12px;
             padding: 16px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--line);
         }
         .settings-card h4 {
             font-size: 0.9rem;
@@ -456,11 +519,11 @@
         .settings-card .member-dot.child { background: var(--child); }
         .settings-card p {
             font-size: 0.85rem;
-            color: var(--text-sub);
+            color: var(--sub);
         }
         .settings-card .value {
             font-weight: 600;
-            color: var(--text);
+            color: var(--ink);
         }
 
         /* ── チェックリスト ── */
@@ -472,14 +535,14 @@
             padding: 8px 0 8px 32px;
             position: relative;
             font-size: 0.9rem;
-            color: var(--text-sub);
+            color: var(--sub);
         }
         .checklist li::before {
             content: "[ ]";
             position: absolute;
             left: 0;
             font-family: monospace;
-            color: var(--text-sub);
+            color: var(--sub);
         }
 
         /* ── ナビボタン ── */
@@ -503,15 +566,15 @@
             text-decoration: none;
         }
         .nav-btn.next {
-            background: var(--primary);
+            background: var(--accent);
             color: #fff;
             margin-left: auto;
         }
-        .nav-btn.next:hover { background: var(--primary-dim); }
+        .nav-btn.next:hover { background: var(--accent2); }
         .nav-btn.prev {
-            background: var(--surface);
-            color: var(--text-sub);
-            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--sub);
+            border: 1px solid var(--line);
         }
         .nav-btn:hover { opacity: 0.85; }
 
@@ -520,14 +583,15 @@
             display: flex;
             gap: 4px;
             margin: 20px 0 16px;
-            background: var(--surface);
+            background: var(--card);
             border-radius: 10px;
             padding: 4px;
+            border: 1px solid var(--line);
         }
         .tab-btn {
             flex: 1;
             background: transparent;
-            color: var(--text-sub);
+            color: var(--sub);
             border: none;
             border-radius: 8px;
             padding: 10px 16px;
@@ -538,25 +602,35 @@
             text-align: center;
         }
         .tab-btn.active {
-            background: var(--primary-dim);
+            background: var(--accent);
             color: #fff;
         }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
         /* ── フッター ── */
-        .footer-links {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 16px; padding: 40px 24px;
-            border-top: 1px solid var(--border);
-            font-size: 0.9rem;
+        .footer {
+            padding: 48px 56px; border-top: 1px solid var(--line); background: var(--card);
         }
-        .footer-links a { color: var(--text-sub); }
-        .contact {
-            text-align: center;
-            padding: 20px 24px 40px;
-            font-size: 0.85rem;
-            color: var(--text-sub);
+        .footer-inner {
+            max-width: 1180px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 24px;
+        }
+        .footer-brand { display: flex; align-items: center; gap: 10px; }
+        .footer-brand img { width: 30px; height: 30px; border-radius: 7px; }
+        .footer-brand-name { font-family: var(--font-head); font-size: 17px; font-weight: 600; color: var(--ink); }
+        .footer-brand-ruby { font-family: var(--font-mono); font-size: 10px; color: var(--mute); letter-spacing: 1.5px; }
+        .footer-links {
+            display: flex; gap: 24px; font-size: 12.5px; color: var(--sub); flex-wrap: wrap;
+        }
+        .footer-links a { color: inherit; text-decoration: none; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copy { font-size: 11px; color: var(--mute); font-family: var(--font-mono); letter-spacing: 1px; }
+        @media (max-width: 768px) {
+            .footer { padding: 32px 20px; }
+            .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .footer-links { flex-direction: column; gap: 12px; }
         }
 
         /* ── セットアップ全体像 ── */
@@ -569,8 +643,8 @@
             margin: 16px 0;
         }
         .overview-step {
-            background: var(--surface);
-            border: 1px solid var(--border);
+            background: var(--card);
+            border: 1px solid var(--line);
             border-radius: 10px;
             padding: 12px 24px;
             text-align: center;
@@ -581,12 +655,12 @@
         .overview-step .num {
             display: block;
             font-size: 0.7rem;
-            color: var(--primary);
+            color: var(--accent);
             font-weight: bold;
             margin-bottom: 2px;
         }
         .overview-arrow {
-            color: var(--text-sub);
+            color: var(--sub);
             font-size: 1rem;
             padding: 4px 0;
         }
@@ -594,7 +668,7 @@
         /* ── 所要時間バッジ ── */
         .time-badge {
             display: inline-block;
-            background: var(--surface2);
+            background: var(--bg-alt);
             color: var(--accent);
             font-size: 0.78rem;
             padding: 2px 10px;
@@ -625,12 +699,12 @@
             width: 100%;
             border-radius: 16px;
             display: block;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 32px rgba(42,34,24,0.12);
         }
         .screenshot-caption {
             text-align: center;
             font-size: 0.8rem;
-            color: var(--text-sub);
+            color: var(--sub);
             margin-top: 8px;
         }
         .screenshot-single {
@@ -677,43 +751,43 @@
             border-radius: 0 20px 20px 0;
             text-decoration: none;
             font-size: 0.72rem;
-            color: var(--text-sub);
-            background: rgba(18, 18, 31, 0.85);
+            color: var(--sub);
+            background: rgba(251,246,239,0.88);
             backdrop-filter: blur(8px);
             border: 1px solid transparent;
             transition: all 0.25s;
             white-space: nowrap;
         }
         .side-nav a:hover {
-            color: var(--text);
-            background: var(--surface);
-            border-color: var(--border);
+            color: var(--ink);
+            background: var(--card);
+            border-color: var(--line);
             text-decoration: none;
         }
         .side-nav a.active {
-            color: var(--primary);
-            background: var(--surface);
-            border-color: var(--primary);
+            color: var(--accent);
+            background: var(--card);
+            border-color: var(--accent);
         }
         .side-nav a.done {
-            color: var(--success);
+            color: var(--sage);
         }
         .side-nav .nav-dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            border: 2px solid var(--border);
+            border: 2px solid var(--line);
             flex-shrink: 0;
             transition: all 0.25s;
         }
         .side-nav a.active .nav-dot {
-            border-color: var(--primary);
-            background: var(--primary);
-            box-shadow: 0 0 8px rgba(124,142,242,0.4);
+            border-color: var(--accent);
+            background: var(--accent);
+            box-shadow: 0 0 8px rgba(217,122,90,0.35);
         }
         .side-nav a.done .nav-dot {
-            border-color: var(--success);
-            background: var(--success);
+            border-color: var(--sage);
+            background: var(--sage);
         }
         .side-nav .nav-label {
             opacity: 0;
@@ -741,23 +815,29 @@
 <body>
 
 <!-- ナビゲーション -->
-<nav>
-    <a href="/" class="brand" style="text-decoration:none;">Kinia</a>
+<nav class="nav">
+    <a href="/" class="nav-brand">
+        <img src="/images/app_icon.png" alt="">
+        <span class="nav-brand-name">Kinia</span>
+        <span class="nav-brand-ruby">キニア</span>
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">&#9776;</button>
     <div class="nav-links">
-        <a href="/#features">機能</a>
+        <a href="/#features">特徴</a>
         <a href="/faq.html">FAQ</a>
         <div class="nav-dropdown">
             <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">ガイド ▾</button>
             <div class="nav-dropdown-menu">
-                <a href="/setup.html">はじめかたガイド</a>
-                <a href="/guide-family-basic.html" style="font-weight:600;color:var(--accent);">3人家族セットアップ</a>
+                <a href="/setup.html" class="nav-dd-primary">はじめかたガイド</a>
+                <a href="/guide-family-basic.html">3人家族セットアップ</a>
                 <a href="/guide-join.html">招待された方へ</a>
-                <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
-                <a href="/senior.html">高齢のご家族がいる方へ</a>
-                <a href="/parents.html">お子さんを持つご家庭の方へ</a>
-                <a href="/students.html">学生の方へ</a>
+                <a href="/guide-sharing-all.html">「すべてを共有」の使い方</a>
             </div>
         </div>
+        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">
+            ダウンロード
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
     </div>
 </nav>
 
@@ -874,32 +954,32 @@
             <tr>
                 <td>地図上の位置表示</td>
                 <td><span style="font-size:1.3em;">✕</span><br><span style="font-size:0.8em;">なし</span></td>
-                <td><span style="font-size:1.3em;color:var(--success);">◎</span><br><span style="font-size:0.8em;">リアルタイム表示</span></td>
+                <td><span style="font-size:1.3em;color:var(--sage);">◎</span><br><span style="font-size:0.8em;">リアルタイム表示</span></td>
             </tr>
             <tr>
                 <td>通知エリアの通知</td>
-                <td><span style="font-size:1.3em;color:var(--success);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
-                <td><span style="font-size:1.3em;color:var(--success);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
+                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
+                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
             </tr>
             <tr>
                 <td>移動履歴・軌跡</td>
                 <td><span style="font-size:1.3em;">✕</span><br><span style="font-size:0.8em;">なし</span></td>
-                <td><span style="font-size:1.3em;color:var(--success);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
+                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
             </tr>
             <tr>
                 <td>歩数・元気度</td>
-                <td><span style="font-size:1.3em;color:var(--success);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
-                <td><span style="font-size:1.3em;color:var(--success);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
+                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
+                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
             </tr>
             <tr>
                 <td>プライバシー</td>
-                <td><span style="font-size:1.3em;color:var(--success);">◎</span><br><span style="font-size:0.8em;">高い（居場所は非表示）</span></td>
-                <td><span style="font-size:1.3em;color:var(--accent-warm);">△</span><br><span style="font-size:0.8em;">全員に位置が見える</span></td>
+                <td><span style="font-size:1.3em;color:var(--sage);">◎</span><br><span style="font-size:0.8em;">高い（居場所は非表示）</span></td>
+                <td><span style="font-size:1.3em;color:var(--accent);">△</span><br><span style="font-size:0.8em;">全員に位置が見える</span></td>
             </tr>
             <tr>
                 <td>追加設定</td>
-                <td><span style="font-size:1.3em;color:var(--success);">◎</span><br><span style="font-size:0.8em;">不要（初期設定のまま）</span></td>
-                <td><span style="font-size:1.3em;color:var(--accent-warm);">△</span><br><span style="font-size:0.8em;">各端末で共有レベル変更</span></td>
+                <td><span style="font-size:1.3em;color:var(--sage);">◎</span><br><span style="font-size:0.8em;">不要（初期設定のまま）</span></td>
+                <td><span style="font-size:1.3em;color:var(--accent);">△</span><br><span style="font-size:0.8em;">各端末で共有レベル変更</span></td>
             </tr>
             <tr>
                 <td>おすすめ</td>
@@ -933,7 +1013,7 @@
             <span class="overview-arrow">↓</span>
             <div class="overview-step"><span class="num">STEP 6</span>通知エリア<br>設定</div>
             <span class="overview-arrow">↓</span>
-            <div class="overview-step" style="border-color:var(--success);"><span class="num" style="color:var(--success);">DONE</span>完了!</div>
+            <div class="overview-step" style="border-color:var(--sage);"><span class="num" style="color:var(--sage);">DONE</span>完了!</div>
         </div>
 
         <div class="hint">
@@ -1296,7 +1376,7 @@
 
             <div class="device-section mama-section">
                 <h3>👩 お母さんのスマホで設定</h3>
-                <p style="color:var(--text-sub); font-size:0.9rem; margin-bottom:12px;">
+                <p style="color:var(--sub); font-size:0.9rem; margin-bottom:12px;">
                     通知エリアはグループ全体で共有されるため、1台から設定すれば全員に反映されます。
                 </p>
                 <ol class="steps-list">
@@ -1362,8 +1442,8 @@
 
             <!-- 通知のON/OFF設定について -->
             <h3 style="font-size: 1rem; margin: 28px 0 12px; color: var(--accent);">通知のON/OFF設定について</h3>
-            <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:16px;">
-                通知エリアの通知は<strong style="color:var(--text);">初期設定でON</strong>になっています。<br>
+            <p style="font-size:0.9rem; color:var(--sub); margin-bottom:16px;">
+                通知エリアの通知は<strong style="color:var(--ink);">初期設定でON</strong>になっています。<br>
                 通知の管理は2段階で行えます。
             </p>
 
@@ -1392,12 +1472,12 @@
                 <tr>
                     <td>全体</td>
                     <td>メニュー → 通知設定<br>「エリア通知」スイッチ</td>
-                    <td><span style="font-size:1.2em;color:var(--success);">◯</span><br><span style="font-size:0.8em;">ON</span></td>
+                    <td><span style="font-size:1.2em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">ON</span></td>
                 </tr>
                 <tr>
                     <td>エリア個別</td>
                     <td>通知エリアタブの一覧<br>各エリアのベルアイコン</td>
-                    <td><span style="font-size:1.2em;color:var(--success);">◯</span><br><span style="font-size:0.8em;">ON（対象メンバーがいれば）</span></td>
+                    <td><span style="font-size:1.2em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">ON（対象メンバーがいれば）</span></td>
                 </tr>
             </table>
 
@@ -1418,7 +1498,7 @@
 
             <h3 style="font-size: 1rem; margin: 20px 0 12px; color: var(--accent);">共有レベルの変更（3台それぞれで操作）</h3>
 
-            <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:16px;">
+            <p style="font-size:0.9rem; color:var(--sub); margin-bottom:16px;">
                 お母さんが3台を手元に集めて、1台ずつ操作します。
             </p>
 
@@ -1470,7 +1550,7 @@
             </div>
 
             <h3 style="font-size: 1rem; margin: 24px 0 12px; color: var(--accent);">通知エリアの設定</h3>
-            <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:12px;">
+            <p style="font-size:0.9rem; color:var(--sub); margin-bottom:12px;">
                 タイプBでも通知エリアは設定できます。設定方法はタイプAと同じです。
             </p>
             <div class="device-section mama-section">
@@ -1499,7 +1579,7 @@
 
     <!-- ===== 完了 ===== -->
     <section class="section" id="complete">
-        <span class="section-badge" style="background: var(--success);">COMPLETE</span>
+        <span class="section-badge" style="background: var(--sage); color: var(--ink);">COMPLETE</span>
         <h2>セットアップ完了!</h2>
         <p class="lead">お疲れさまでした。これで3人家族のKiniaセットアップは完了です。</p>
 
@@ -1531,8 +1611,8 @@
 
         <h3 style="font-size: 1rem; margin: 28px 0 12px;">よくあるトラブル</h3>
 
-        <div class="device-section" style="border-left-color: var(--accent-warm);">
-            <h3 style="color: var(--accent-warm);">位置が更新されない場合</h3>
+        <div class="device-section" style="border-left-color: var(--accent);">
+            <h3 style="color: var(--accent);">位置が更新されない場合</h3>
             <ol class="steps-list">
                 <li>
                     <strong>「バックグラウンド位置情報」が「常に許可」になっているか確認</strong>
@@ -1549,8 +1629,8 @@
             </ol>
         </div>
 
-        <div class="device-section" style="border-left-color: var(--accent-warm); margin-top:12px;">
-            <h3 style="color: var(--accent-warm);">通知エリアの通知が届かない場合</h3>
+        <div class="device-section" style="border-left-color: var(--accent); margin-top:12px;">
+            <h3 style="color: var(--accent);">通知エリアの通知が届かない場合</h3>
             <ol class="steps-list">
                 <li>
                     <strong>「通知」権限が許可されているか確認</strong>
@@ -1563,15 +1643,15 @@
             </ol>
         </div>
 
-        <div style="margin-top: 32px; padding: 24px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border); text-align: center;">
+        <div style="margin-top: 32px; padding: 24px; background: var(--card); border-radius: 12px; border: 1px solid var(--line); text-align: center;">
             <p style="margin-bottom: 12px;">さらに詳しい使い方や設定は</p>
             <a href="/setup.html" class="nav-btn next" style="display: inline-flex; text-decoration: none;">はじめかたガイド（詳細版）を見る</a>
             <p style="margin-top: 12px;"><a href="/faq.html">よくある質問（FAQ）</a> もあわせてご覧ください。</p>
         </div>
 
-        <div style="margin-top: 20px; padding: 20px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border);">
+        <div style="margin-top: 20px; padding: 20px; background: var(--card); border-radius: 12px; border: 1px solid var(--line);">
             <h3 style="font-size: 1rem; margin-bottom: 8px;">解決しない場合</h3>
-            <p style="color: var(--text-sub); font-size: 0.9rem;">
+            <p style="color: var(--sub); font-size: 0.9rem;">
                 <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a> からご連絡ください。<br>
                 端末名・Androidバージョン・Kiniaバージョン・症状の詳細を添えていただくとスムーズです。
             </p>
@@ -1586,19 +1666,24 @@
 </main>
 
 <!-- フッター -->
-<div class="footer-links">
-    <a href="/setup.html">はじめかた</a>
-    <a href="/guide-family-basic.html">3人家族ガイド</a>
-    <a href="/guide-join.html">招待された方へ</a>
-    <a href="/faq.html">よくある質問</a>
-    <a href="/safety.html">安全性</a>
-    <a href="/privacy.html">プライバシー</a>
-    <a href="/delete-account.html">アカウント削除</a>
-</div>
-<div class="contact">
-    <p>お困りですか？ <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a></p>
-    <p style="margin-top:8px;">&copy; 2026 Kinia</p>
-</div>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <img src="/images/app_icon.png" alt="">
+            <span class="footer-brand-name">Kinia</span>
+            <span class="footer-brand-ruby">キニア</span>
+        </div>
+        <div class="footer-links">
+            <a href="/setup.html">はじめかたガイド</a>
+            <a href="/faq.html">よくある質問</a>
+            <a href="/status.html">開発状況</a>
+            <a href="/data-safety.html">データの安全性</a>
+            <a href="/privacy.html">プライバシーポリシー</a>
+            <a href="/#contact">お問い合わせ</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
+    </div>
+</footer>
 
 <script>
 const SECTIONS = ['flowchart', 'setup-overview', 'step1', 'step2', 'step3', 'step4', 'step5', 'step6', 'complete'];
