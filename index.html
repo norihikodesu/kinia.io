@@ -335,7 +335,32 @@
         .how-compare-old { color: var(--sub); }
         .how-compare-new-label { color: var(--sage); font-size: 10.5px; letter-spacing: 1px; margin-bottom: 4px; }
         .how-compare-new { color: var(--ink); font-weight: 600; }
-        .how-cards { display: flex; flex-direction: column; gap: 12px; }
+        .how-cards { display: flex; flex-direction: column; gap: 14px; }
+        .member-card {
+            background: var(--card); border-radius: 16px; padding: 14px 16px;
+            box-shadow: 0 1px 2px rgba(20,20,30,0.04), 0 10px 26px -14px rgba(20,20,30,0.14);
+            border: 1px solid var(--line); color: var(--ink);
+        }
+        .member-card-header {
+            display: flex; align-items: center; gap: 10px; margin-bottom: 6px;
+        }
+        .member-card-dot {
+            width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+        }
+        .member-card-name { font-size: 14.5px; font-weight: 700; }
+        .member-card-status {
+            font-size: 13px; color: var(--accent2); font-weight: 600;
+            margin-left: auto; white-space: nowrap;
+        }
+        .member-card-history {
+            margin: 6px 0 0 20px; padding-left: 12px;
+            border-left: 2px solid var(--line);
+        }
+        .member-card-history-item {
+            font-size: 11.5px; color: var(--mute); line-height: 1.6; padding: 2px 0;
+        }
+        .member-card-history-item .hist-area { color: var(--sub); font-weight: 500; }
+        /* legacy notify-card (hero section) */
         .notify-card {
             background: var(--card); border-radius: 16px; padding: 13px 15px;
             display: flex; align-items: center; gap: 11px;
@@ -789,71 +814,72 @@
     <div class="how-grid">
         <div>
             <div class="section-label">— HOW IT WORKS —</div>
-            <h2 class="section-heading">届くのは、<br>これだけ</h2>
+            <h2 class="section-heading">わかるのは、<br>これだけ</h2>
             <p class="body-text">
-                詳細な現在地ではなく、<br>
-                登録したエリアへの「入る」「出る」だけ。<br>
-                「誰が、いつ、どこにいるか」——<br>
-                それで十分な安心があります。
+                交差点レベルの移動経路ではなく、<br>
+                「誰が、いつ、どのエリアにいるか」だけ。<br>
+                家族一人ひとりの今の状況と直近の動きが<br>
+                ひと目で見渡せます。
             </p>
             <div class="how-compare">
-                <div class="how-compare-label">従来 / Kinia</div>
+                <div class="how-compare-label">従来のアプリ / Kinia</div>
                 <div class="how-compare-grid">
                     <div>
-                        <div class="how-compare-old-label">ふつう</div>
-                        <div class="how-compare-old">「16:23 △△交差点を時速12kmで南下中」</div>
+                        <div class="how-compare-old-label">従来のアプリ</div>
+                        <div class="how-compare-old">地図上でリアルタイムに移動経路を追跡。交差点・速度・方角まで常時表示</div>
                     </div>
                     <div>
                         <div class="how-compare-new-label">KINIA</div>
-                        <div class="how-compare-new">「ゆうきが塾に到着しました」</div>
+                        <div class="how-compare-new">「ゆうき」は今「塾」にいます。15:30に「学校」を出ました</div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="how-cards">
-            <div class="notify-card">
-                <div class="notify-card-icon" style="background:rgba(217,122,90,0.13);">
-                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#d97a5a" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <!-- ゆうき -->
+            <div class="member-card">
+                <div class="member-card-header">
+                    <div class="member-card-dot" style="background:#a3b89a;"></div>
+                    <div class="member-card-name">ゆうき</div>
+                    <div class="member-card-status">「塾」にいます</div>
                 </div>
-                <div>
-                    <div class="notify-card-text">お母さん <span class="notify-card-arrow">→</span>「自宅」に到着</div>
-                    <div class="notify-card-time">6分前 ・ 12:42</div>
-                </div>
-            </div>
-            <div class="notify-card">
-                <div class="notify-card-icon" style="background:rgba(163,184,154,0.13);">
-                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#a3b89a" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                </div>
-                <div>
-                    <div class="notify-card-text">ゆうき <span class="notify-card-arrow">→</span>「学校」から出発</div>
-                    <div class="notify-card-time">12分前 ・ 15:30</div>
+                <div class="member-card-history">
+                    <div class="member-card-history-item"><span class="hist-area">「塾」に入った</span> — 16:08</div>
+                    <div class="member-card-history-item"><span class="hist-area">「学校」から出た</span> — 15:30</div>
                 </div>
             </div>
-            <div class="notify-card">
-                <div class="notify-card-icon" style="background:rgba(44,58,94,0.13);">
-                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#2c3a5e" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <!-- さくら -->
+            <div class="member-card">
+                <div class="member-card-header">
+                    <div class="member-card-dot" style="background:#c4a55b;"></div>
+                    <div class="member-card-name">さくら</div>
+                    <div class="member-card-status">エリア外（移動中）</div>
                 </div>
-                <div>
-                    <div class="notify-card-text">ゆうき <span class="notify-card-arrow">→</span>「塾」に到着</div>
-                    <div class="notify-card-time">29分前 ・ 16:08</div>
-                </div>
-            </div>
-            <div class="notify-card">
-                <div class="notify-card-icon" style="background:rgba(196,165,91,0.13);">
-                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#c4a55b" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                </div>
-                <div>
-                    <div class="notify-card-text">さくら <span class="notify-card-arrow">→</span>「学校」から出発</div>
-                    <div class="notify-card-time">35分前 ・ 15:15</div>
+                <div class="member-card-history">
+                    <div class="member-card-history-item"><span class="hist-area">「学校」から出た</span> — 15:15</div>
+                    <div class="member-card-history-item"><span class="hist-area">「学校」に入った</span> — 08:12</div>
                 </div>
             </div>
-            <div class="notify-card">
-                <div class="notify-card-icon" style="background:rgba(184,90,62,0.13);">
-                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#b85a3e" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <!-- お母さん -->
+            <div class="member-card">
+                <div class="member-card-header">
+                    <div class="member-card-dot" style="background:#d97a5a;"></div>
+                    <div class="member-card-name">お母さん</div>
+                    <div class="member-card-status">「自宅」にいます</div>
                 </div>
-                <div>
-                    <div class="notify-card-text">お父さん <span class="notify-card-arrow">→</span>「会社」から出発</div>
-                    <div class="notify-card-time">1時間前 ・ 17:02</div>
+                <div class="member-card-history">
+                    <div class="member-card-history-item"><span class="hist-area">「自宅」に入った</span> — 12:42</div>
+                </div>
+            </div>
+            <!-- お父さん -->
+            <div class="member-card">
+                <div class="member-card-header">
+                    <div class="member-card-dot" style="background:#b85a3e;"></div>
+                    <div class="member-card-name">お父さん</div>
+                    <div class="member-card-status">エリア外（移動中）</div>
+                </div>
+                <div class="member-card-history">
+                    <div class="member-card-history-item"><span class="hist-area">「会社」から出た</span> — 17:02</div>
                 </div>
             </div>
         </div>
