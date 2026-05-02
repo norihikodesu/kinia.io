@@ -91,7 +91,7 @@
         .member-meta{display:flex;align-items:center;gap:6px;font-size:11px;color:#8a7d6f}
         .member-status{font-size:11px;color:#c47a3a;background:rgba(196,122,58,.1);padding:2px 10px;border-radius:6px;margin-top:6px;display:inline-block}
         .member-expanded{margin-top:12px;padding-top:12px;border-top:1px solid rgba(42,34,24,.06)}
-        .emergency-btn{width:100%;padding:12px;border-radius:10px;border:1.5px solid var(--accent);background:transparent;color:var(--accent2);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-family:inherit}
+        .emergency-btn{width:100%;padding:14px;border-radius:12px;border:none;background:#1565C0;color:#fff;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-family:inherit;box-shadow:0 2px 8px rgba(21,101,192,.3)}
 
         .screen-dialog-overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:10}
         .dialog-box{background:#fff;border-radius:16px;padding:24px 20px 16px;width:260px;box-shadow:0 8px 32px rgba(0,0,0,.2)}
@@ -230,7 +230,7 @@
                 </div>
                 <div class="flow-body">
                     <h3>居場所を確認したい相手を選ぶ</h3>
-                    <p>メンバー一覧で相手のカードを開き、「📍 いまどこ確認」ボタンをタップします。確認画面が出るので「送信」を押してください。<strong>あなたの居場所も相手に伝わります</strong>（一方的に見るのではなく、お互いに開示する仕組みです）。</p>
+                    <p>メンバー一覧で相手の名前をタップして展開し、青い「📍 いまどこ確認」ボタンを押します。機能の説明と確認画面が表示されるので、「送信」を押してください。<strong>あなたの居場所も相手に伝わります</strong>（一方的に見るのではなく、お互いに開示する仕組みです）。</p>
                 </div>
             </div>
             <div class="flow-step">
@@ -285,7 +285,7 @@
                 <div class="phone-frame">
                     <div class="screen-members">
                         <div class="screen-header">
-                            <span class="screen-header-title">メンバー</span>
+                            <span class="screen-header-title">メンバー一覧</span>
                             <div class="screen-header-btns">
                                 <span class="screen-header-btn">簡単モード</span>
                                 <span class="screen-header-btn">共有設定</span>
@@ -364,7 +364,7 @@
                 <div class="phone-frame">
                     <div class="screen-members" style="filter:brightness(.7) blur(1px)">
                         <div class="screen-header">
-                            <span class="screen-header-title">メンバー</span>
+                            <span class="screen-header-title">メンバー一覧</span>
                             <div class="screen-header-btns">
                                 <span class="screen-header-btn">簡単モード</span>
                                 <span class="screen-header-btn">共有設定</span>
@@ -391,8 +391,8 @@
                     </div>
                     <div class="screen-dialog-overlay">
                         <div class="dialog-box">
-                            <div class="dialog-title">いまどこ確認</div>
-                            <div class="dialog-message">ママの居場所を確認しますか？<br><br>あなたの現在位置も相手に共有されます。</div>
+                            <div class="dialog-title">📍 いまどこ確認</div>
+                            <div class="dialog-message">ママの居場所を確認します。<br><br>• 相手の端末に通知が届きます<br>• あなたの位置も相手に共有されます<br>• 60秒間応答がなければ自動で届きます<br><br>送信しますか？</div>
                             <div class="dialog-buttons">
                                 <button class="dialog-btn dialog-btn-cancel">キャンセル</button>
                                 <button class="dialog-btn dialog-btn-send">送信</button>
