@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XCT32M2MZV');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>いまどこ確認 — Kinia</title>
+    <meta name="description" content="連絡がつかないとき、帰りが遅いとき。家族の居場所をすぐに確認できる「いまどこ確認」機能の使い方をご紹介します。">
+    <link rel="icon" href="/images/app_icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#fbf6ef;--bg-alt:#f4e8d8;--card:#ffffff;--ink:#2a2218;--sub:rgba(42,34,24,.62);--mute:rgba(42,34,24,.4);--accent:#d97a5a;--accent2:#b85a3e;--sage:#a3b89a;--navy:#2c3a5e;--line:rgba(42,34,24,.08);--font-head:'Shippori Mincho','Noto Serif JP',serif;--font-body:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;--font-mono:'DM Mono',monospace}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font-body);background:var(--bg);color:var(--ink);line-height:1.85;font-size:17px;-webkit-font-smoothing:antialiased}
+        a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+        ruby rt{font-size:0.55em}
+
+        .nav{position:sticky;top:0;z-index:100;background:rgba(251,246,239,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:16px 56px;display:flex;align-items:center;justify-content:space-between}
+        .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+        .nav-brand img{width:36px;height:36px;border-radius:8px;display:block}
+        .nav-brand-name{font-family:var(--font-head);font-size:20px;font-weight:600}
+        .nav-brand-ruby{font-family:var(--font-mono);font-size:10px;color:var(--mute);letter-spacing:1.5px;margin-left:2px}
+        .nav-links{display:flex;align-items:center;gap:28px;font-size:13.5px;color:var(--sub)}
+        .nav-links a{color:inherit;text-decoration:none;transition:color .2s}.nav-links a:hover{color:var(--accent);text-decoration:none}
+        .nav-cta{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 16px -6px rgba(217,122,90,.5);transition:background .2s,transform .1s}
+        .nav-cta:hover{background:var(--accent2);text-decoration:none;transform:translateY(-1px)}
+        .nav-dropdown{position:relative}
+        .nav-dropdown-toggle{background:none;border:none;color:var(--sub);font-size:13.5px;cursor:pointer;padding:0;font-family:inherit}
+        .nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 10px);right:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 0;min-width:260px;box-shadow:0 12px 40px rgba(42,34,24,.12);z-index:200}
+        .nav-dropdown.open .nav-dropdown-menu{display:block}
+        .nav-dropdown-menu a{display:block;padding:10px 20px;color:var(--sub);font-size:13px;white-space:nowrap}
+        .nav-dropdown-menu a:hover{background:var(--bg-alt);color:var(--ink);text-decoration:none}
+        .nav-dropdown-menu .nav-dd-primary{font-weight:600;color:var(--accent)}
+        .hamburger{display:none;background:none;border:none;color:var(--ink);font-size:1.5rem;cursor:pointer;padding:10px;min-width:44px;min-height:44px}
+        @media(max-width:768px){
+            .nav{padding:14px 20px}
+            .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(251,246,239,.98);padding:20px 24px;gap:16px;border-bottom:1px solid var(--line);align-items:flex-start}
+            .nav-links.open{display:flex}.hamburger{display:block}
+            .nav-dropdown-menu{position:static;box-shadow:none;border:none;border-radius:0;background:transparent;padding:0 0 0 16px;min-width:auto}
+            .nav-dropdown.open .nav-dropdown-menu{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+            .nav-dropdown-menu a{padding:4px 0}
+        }
+
+        .hero{padding:64px 20px 48px;text-align:center;background:var(--bg)}
+        .hero-label{font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:12px}
+        .hero h1{font-family:var(--font-head);font-size:clamp(26px,4.5vw,38px);font-weight:500;color:var(--ink);margin-bottom:12px;line-height:1.4}
+        .hero p{color:var(--sub);font-size:16px;max-width:620px;margin:0 auto;line-height:1.9}
+
+        .content{max-width:800px;margin:0 auto;padding:0 20px 80px}
+
+        .section{padding:48px 0 0}
+        .section-label{font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+        .section h2{font-family:var(--font-head);font-size:clamp(22px,3.5vw,30px);font-weight:500;color:var(--ink);margin-bottom:20px}
+
+        .overview-box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px;margin-bottom:40px}
+        .overview-box p{color:var(--sub);font-size:15.5px;line-height:2.0;margin-bottom:12px}
+        .overview-box p:last-child{margin-bottom:0}
+
+        .flow-steps{display:flex;flex-direction:column;gap:0}
+        .flow-step{display:flex;gap:24px;position:relative;padding-bottom:40px}
+        .flow-step:last-child{padding-bottom:0}
+        .flow-step:last-child .flow-line{display:none}
+        .flow-marker{flex-shrink:0;width:48px;display:flex;flex-direction:column;align-items:center}
+        .flow-num{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--font-mono);font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
+        .flow-line{position:absolute;top:40px;left:19px;width:2px;bottom:0;background:linear-gradient(to bottom,var(--accent),rgba(217,122,90,.2))}
+        .flow-body{flex:1;padding-top:6px}
+        .flow-body h3{font-family:var(--font-head);font-size:18px;font-weight:500;margin-bottom:8px;color:var(--ink)}
+        .flow-body p{color:var(--sub);font-size:15px;line-height:1.9}
+
+        .mockup-row{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin:40px 0}
+        .mockup-wrapper{display:flex;flex-direction:column;align-items:center;gap:12px}
+        .mockup-caption{font-family:var(--font-mono);font-size:11px;letter-spacing:1px;color:var(--accent2);font-weight:500}
+
+        .phone-frame{width:300px;height:600px;border-radius:32px;border:3px solid #d4cfc7;background:#1a1a2e;overflow:hidden;position:relative;box-shadow:0 12px 40px rgba(42,34,24,.15)}
+
+        .screen-members{background:#fbf3eb;height:100%;display:flex;flex-direction:column}
+        .screen-header{background:#fbf3eb;padding:12px 16px 8px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(0,0,0,.06)}
+        .screen-header-title{font-size:16px;font-weight:700;color:#2a2218}
+        .screen-header-btns{display:flex;gap:8px}
+        .screen-header-btn{font-size:10px;padding:4px 10px;border-radius:6px;background:rgba(42,34,24,.06);color:#6b5c4d;border:none}
+        .member-list{flex:1;padding:12px 14px;overflow-y:auto}
+        .member-card{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:10px;border:1px solid rgba(42,34,24,.06);box-shadow:0 2px 8px rgba(42,34,24,.04)}
+        .member-card-header{display:flex;align-items:center;justify-content:space-between}
+        .member-name-area{display:flex;align-items:center;gap:8px}
+        .member-dot{width:10px;height:10px;border-radius:50%}
+        .member-name{font-size:15px;font-weight:700;color:#2a2218}
+        .member-meta{display:flex;align-items:center;gap:6px;font-size:11px;color:#8a7d6f}
+        .member-status{font-size:11px;color:#c47a3a;background:rgba(196,122,58,.1);padding:2px 10px;border-radius:6px;margin-top:6px;display:inline-block}
+        .member-expanded{margin-top:12px;padding-top:12px;border-top:1px solid rgba(42,34,24,.06)}
+        .emergency-btn{width:100%;padding:12px;border-radius:10px;border:1.5px solid var(--accent);background:transparent;color:var(--accent2);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-family:inherit}
+
+        .screen-dialog-overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:10}
+        .dialog-box{background:#fff;border-radius:16px;padding:24px 20px 16px;width:260px;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+        .dialog-title{font-size:16px;font-weight:700;color:#2a2218;margin-bottom:8px}
+        .dialog-message{font-size:13px;color:#5a5046;line-height:1.7;margin-bottom:20px}
+        .dialog-buttons{display:flex;justify-content:flex-end;gap:12px}
+        .dialog-btn{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:inherit}
+        .dialog-btn-cancel{background:transparent;color:#8a7d6f}
+        .dialog-btn-send{background:var(--accent);color:#fff}
+
+        .screen-response{background:rgba(18,18,31,.92);height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px}
+        .response-icon{font-size:52px;margin-bottom:8px}
+        .response-title{font-size:28px;font-weight:700;color:rgba(232,228,240,.95);margin-bottom:8px}
+        .response-subtitle{font-size:14px;color:rgba(232,228,240,.65);text-align:center;margin-bottom:4px}
+        .response-countdown{font-size:52px;font-weight:700;color:#FF6B6B;margin:16px 0 4px;font-family:var(--font-mono)}
+        .response-countdown-unit{font-size:16px;font-weight:400;color:#FF6B6B;opacity:.7;margin-left:2px}
+        .response-auto-note{font-size:12px;color:rgba(232,228,240,.45);text-align:center;margin-bottom:28px}
+        .response-btn{width:240px;padding:16px;border-radius:12px;background:transparent;font-size:16px;font-weight:600;cursor:pointer;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:6px;font-family:inherit;color:rgba(232,228,240,.9)}
+        .response-btn-allow{border:1.5px solid rgba(39,174,96,.4)}
+        .response-btn-deny{border:1.5px solid rgba(230,126,34,.4)}
+        .response-btn-block{border:1.5px solid rgba(231,76,60,.4)}
+        .response-btn-note{font-size:10px;color:rgba(232,228,240,.35);margin-top:-6px;margin-bottom:8px}
+
+        .screen-notification{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);height:100%;display:flex;flex-direction:column;padding:40px 16px 20px}
+        .notif-time{font-size:48px;font-weight:300;color:rgba(255,255,255,.9);text-align:center;margin-bottom:4px;font-family:var(--font-mono)}
+        .notif-date{font-size:13px;color:rgba(255,255,255,.5);text-align:center;margin-bottom:32px}
+        .notif-card{background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border-radius:14px;padding:14px 16px;margin-bottom:10px;border:1px solid rgba(255,255,255,.08)}
+        .notif-card-header{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+        .notif-app-icon{width:18px;height:18px;border-radius:4px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff}
+        .notif-app-name{font-size:11px;color:rgba(255,255,255,.6);font-weight:600}
+        .notif-time-small{font-size:10px;color:rgba(255,255,255,.35);margin-left:auto}
+        .notif-card-body{font-size:13px;color:rgba(255,255,255,.85);line-height:1.6}
+        .notif-pin-badge{display:inline-block;background:rgba(231,76,60,.25);color:#FF6B6B;font-size:10px;padding:2px 8px;border-radius:4px;margin-top:6px;font-weight:600}
+
+        .spec-table{width:100%;border-collapse:collapse;margin:20px 0 32px;font-size:14.5px}
+        .spec-table th{text-align:left;padding:12px 16px;background:var(--bg-alt);color:var(--ink);font-weight:600;border-bottom:1px solid var(--line);font-size:13px}
+        .spec-table td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--sub);vertical-align:top}
+        .spec-table tr:last-child td{border-bottom:none}
+
+        .note-box{background:var(--card);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:20px 24px;margin:24px 0;font-size:15px;color:var(--sub);line-height:2.1}
+        .note-box strong{color:var(--ink)}
+        .note-box.sage{border-left-color:var(--sage)}
+
+        .mini-faq{margin:32px 0}
+        .mini-faq-item{border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden;background:var(--card)}
+        .mini-faq-q{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;font-size:15px;font-weight:500;color:var(--ink);user-select:none;transition:background .2s}
+        .mini-faq-q:hover{background:var(--bg-alt)}
+        .mini-faq-q .arrow{font-size:.8rem;color:var(--mute);transition:transform .2s;flex-shrink:0;margin-left:12px}
+        .mini-faq-item.open .mini-faq-q .arrow{transform:rotate(180deg)}
+        .mini-faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 16px;color:var(--sub);font-size:14.5px;line-height:1.8}
+        .mini-faq-item.open .mini-faq-a{max-height:400px;padding:0 16px 16px}
+
+        .footer{padding:48px 56px;border-top:1px solid var(--line);background:var(--card)}
+        .footer-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+        .footer-brand{display:flex;align-items:center;gap:10px}
+        .footer-brand img{width:30px;height:30px;border-radius:7px}
+        .footer-brand-name{font-family:var(--font-head);font-size:17px;font-weight:600;color:var(--ink)}
+        .footer-brand-ruby{font-family:var(--font-mono);font-size:10px;color:var(--mute);letter-spacing:1.5px}
+        .footer-links{display:flex;gap:24px;font-size:12.5px;color:var(--sub);flex-wrap:wrap}
+        .footer-links a{color:inherit;text-decoration:none}.footer-links a:hover{color:var(--accent)}
+        .footer-copy{font-size:11px;color:var(--mute);font-family:var(--font-mono);letter-spacing:1px}
+        @media(max-width:768px){.footer{padding:32px 20px}.footer-inner{flex-direction:column;align-items:flex-start;gap:16px}.footer-links{flex-direction:column;gap:12px}}
+
+        @media(max-width:768px){
+            .mockup-row{gap:24px}
+            .phone-frame{width:260px;height:520px}
+            .flow-step{gap:16px}
+            .hero{padding:48px 20px 32px}
+        }
+        @media(max-width:480px){
+            .phone-frame{width:240px;height:480px}
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="/" class="nav-brand">
+        <img src="/images/app_icon.png" alt="">
+        <span class="nav-brand-name">Kinia</span>
+        <span class="nav-brand-ruby">キニア</span>
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">☰</button>
+    <div class="nav-links">
+        <a href="/#features">特徴</a>
+        <a href="/faq.html">FAQ</a>
+        <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">ガイド ▾</button>
+            <div class="nav-dropdown-menu">
+                <a href="/setup.html" class="nav-dd-primary">はじめかたガイド</a>
+                <a href="/guide-family-basic.html">3人家族セットアップ</a>
+                <a href="/guide-join.html">招待された方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0;"></div>
+                <a href="/senior.html">高齢のご家族がいる方へ</a>
+                <a href="/parents.html">お子さんを持つご家庭の方へ</a>
+                <a href="/students.html">学生の方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
+                <a href="/guide-sharing-all.html">画面の見方（すべて共有）</a>
+                <a href="/guide-sharing-area.html">画面の見方（通知エリアのみ）</a>
+            </div>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">
+            ダウンロード
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-label">— LOCATION CHECK —</div>
+    <h1>いまどこ確認</h1>
+    <p>連絡がつかない、帰りが遅い——そんなとき、家族の居場所をすぐに確認できます。<br>確認された側にも必ず通知が届くので、こっそり見られる心配はありません。</p>
+</section>
+
+<main class="content">
+
+    <section class="section">
+        <div class="section-label">— OVERVIEW —</div>
+        <h2>どんな機能？</h2>
+        <div class="overview-box">
+            <p><ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>では、ふだんは家族の詳しい居場所を共有しない「通知エリアのみ」という設定を選ぶことができます。自宅や学校などに着いたときだけ通知が届く、ゆるやかな見守りです。</p>
+            <p>でも、<strong>本当に心配なとき</strong>はどうすればいいでしょうか？ 電話に出ない、LINEも既読にならない——そんな場面で使えるのがこの機能です。</p>
+            <p>「いまどこ確認」を送ると、相手の端末に通知が届きます。60秒以内に応答がなければ、居場所が自動的に共有されます。確認した側も自分の居場所を相手に開示するので、お互いさまの対等な仕組みです。</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-label">— HOW IT WORKS —</div>
+        <h2>使い方の流れ</h2>
+
+        <div class="flow-steps">
+            <div class="flow-step">
+                <div class="flow-marker">
+                    <div class="flow-num">1</div>
+                    <div class="flow-line"></div>
+                </div>
+                <div class="flow-body">
+                    <h3>居場所を確認したい相手を選ぶ</h3>
+                    <p>メンバー一覧で相手のカードを開き、「📍 いまどこ確認」ボタンをタップします。確認画面が出るので「送信」を押してください。<strong>あなたの居場所も相手に伝わります</strong>（一方的に見るのではなく、お互いに開示する仕組みです）。</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-marker">
+                    <div class="flow-num">2</div>
+                    <div class="flow-line"></div>
+                </div>
+                <div class="flow-body">
+                    <h3>相手のスマホに通知が届く</h3>
+                    <p>相手の画面に全画面の通知が表示されます。スマホがロック中でも画面の上に出るので、見落としにくい仕組みです。60秒のカウントダウンが始まります。</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-marker">
+                    <div class="flow-num">3</div>
+                    <div class="flow-line"></div>
+                </div>
+                <div class="flow-body">
+                    <h3>相手が選ぶ（または選ばない）</h3>
+                    <p>相手には「許可する」「許可しない」「1時間ブロック」の3つが表示されます。「許可しない」「1時間ブロック」を押すには<strong>スマホのロック解除が必要</strong>です（万が一スマホが他人の手に渡っても、勝手に拒否できないようにするためです）。</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-marker">
+                    <div class="flow-num">4</div>
+                    <div class="flow-line"></div>
+                </div>
+                <div class="flow-body">
+                    <h3>60秒たつと自動で居場所が届く</h3>
+                    <p>カウントダウンが0になっても何も操作されなければ、居場所は<strong>自動的にあなたに届きます</strong>。相手がスマホを見ていなくても、電波が届かない場所にいても、最後に記録された位置が返ってきます。</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-marker">
+                    <div class="flow-num">5</div>
+                </div>
+                <div class="flow-body">
+                    <h3>相手には「確認されたよ」と通知が残る</h3>
+                    <p>居場所が共有されたあと、相手のスマホに「パパがあなたの居場所を確認しました」という通知が残ります。この通知は消せないので、あとから必ず気づけます。知らないうちに居場所を見られ続ける、ということはありません。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-label">— APP SCREENS —</div>
+        <h2>画面イメージ</h2>
+
+        <div class="mockup-row">
+            <div class="mockup-wrapper">
+                <div class="mockup-caption">STEP 1 — ボタンを押す</div>
+                <div class="phone-frame">
+                    <div class="screen-members">
+                        <div class="screen-header">
+                            <span class="screen-header-title">メンバー</span>
+                            <div class="screen-header-btns">
+                                <span class="screen-header-btn">簡単モード</span>
+                                <span class="screen-header-btn">共有設定</span>
+                            </div>
+                        </div>
+                        <div class="member-list">
+                            <div class="member-card">
+                                <div class="member-card-header">
+                                    <div class="member-name-area">
+                                        <div class="member-dot" style="background:#5B8DEF"></div>
+                                        <span class="member-name">パパ</span>
+                                    </div>
+                                    <div class="member-meta">
+                                        <span>🚶</span>
+                                        <span>たった今</span>
+                                        <span>🔋72%</span>
+                                    </div>
+                                </div>
+                                <div class="member-status">通知エリア外</div>
+                            </div>
+
+                            <div class="member-card" style="border-color:var(--accent);border-width:1.5px">
+                                <div class="member-card-header">
+                                    <div class="member-name-area">
+                                        <div class="member-dot" style="background:#E8943A"></div>
+                                        <span class="member-name">ママ</span>
+                                    </div>
+                                    <div class="member-meta">
+                                        <span>🚶‍♀️</span>
+                                        <span>たった今</span>
+                                        <span>🔋85%</span>
+                                    </div>
+                                </div>
+                                <div class="member-status">通知エリア外</div>
+                                <div class="member-expanded">
+                                    <button class="emergency-btn">📍 いまどこ確認</button>
+                                </div>
+                            </div>
+
+                            <div class="member-card">
+                                <div class="member-card-header">
+                                    <div class="member-name-area">
+                                        <div class="member-dot" style="background:#4BC8A3"></div>
+                                        <span class="member-name">ゆうた</span>
+                                    </div>
+                                    <div class="member-meta">
+                                        <span>🚴</span>
+                                        <span>たった今</span>
+                                        <span>🔋56%</span>
+                                    </div>
+                                </div>
+                                <div class="member-status">通知エリア外</div>
+                            </div>
+
+                            <div class="member-card">
+                                <div class="member-card-header">
+                                    <div class="member-name-area">
+                                        <div class="member-dot" style="background:#A872DE"></div>
+                                        <span class="member-name">みか</span>
+                                    </div>
+                                    <div class="member-meta">
+                                        <span>🚗</span>
+                                        <span>たった今</span>
+                                        <span>🔋41%</span>
+                                    </div>
+                                </div>
+                                <div class="member-status">通知エリア外</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mockup-wrapper">
+                <div class="mockup-caption">STEP 2 — 確認画面</div>
+                <div class="phone-frame">
+                    <div class="screen-members" style="filter:brightness(.7) blur(1px)">
+                        <div class="screen-header">
+                            <span class="screen-header-title">メンバー</span>
+                            <div class="screen-header-btns">
+                                <span class="screen-header-btn">簡単モード</span>
+                                <span class="screen-header-btn">共有設定</span>
+                            </div>
+                        </div>
+                        <div class="member-list">
+                            <div class="member-card">
+                                <div class="member-card-header">
+                                    <div class="member-name-area">
+                                        <div class="member-dot" style="background:#5B8DEF"></div>
+                                        <span class="member-name">パパ</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="member-card">
+                                <div class="member-card-header">
+                                    <div class="member-name-area">
+                                        <div class="member-dot" style="background:#E8943A"></div>
+                                        <span class="member-name">ママ</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-dialog-overlay">
+                        <div class="dialog-box">
+                            <div class="dialog-title">いまどこ確認</div>
+                            <div class="dialog-message">ママの居場所を確認しますか？<br><br>あなたの現在位置も相手に共有されます。</div>
+                            <div class="dialog-buttons">
+                                <button class="dialog-btn dialog-btn-cancel">キャンセル</button>
+                                <button class="dialog-btn dialog-btn-send">送信</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mockup-row">
+            <div class="mockup-wrapper">
+                <div class="mockup-caption">STEP 3 — 相手に届く画面</div>
+                <div class="phone-frame">
+                    <div class="screen-response">
+                        <div class="response-icon">📍</div>
+                        <div class="response-title">いまどこ確認</div>
+                        <div class="response-subtitle">パパさんがあなたの<br>居場所を確認しています</div>
+                        <div class="response-countdown">45<span class="response-countdown-unit">秒</span></div>
+                        <div class="response-auto-note">応答がない場合、自動的に居場所が共有されます</div>
+                        <button class="response-btn response-btn-allow">✅ 許可する</button>
+                        <button class="response-btn response-btn-deny">❌ 許可しない</button>
+                        <div class="response-btn-note">※ スマホのロック解除が必要</div>
+                        <button class="response-btn response-btn-block">🚫 1時間ブロック</button>
+                        <div class="response-btn-note">※ スマホのロック解除が必要</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mockup-wrapper">
+                <div class="mockup-caption">STEP 5 — あとから届く通知</div>
+                <div class="phone-frame">
+                    <div class="screen-notification">
+                        <div class="notif-time">15:42</div>
+                        <div class="notif-date">5月2日（金）</div>
+                        <div class="notif-card">
+                            <div class="notif-card-header">
+                                <div class="notif-app-icon">K</div>
+                                <span class="notif-app-name">Kinia</span>
+                                <span class="notif-time-small">たった今</span>
+                            </div>
+                            <div class="notif-card-body">
+                                パパがあなたの居場所を確認し、最新の位置情報が共有されました。
+                            </div>
+                            <div class="notif-pin-badge">📌 この通知は消せません</div>
+                        </div>
+                        <div class="notif-card" style="opacity:.5;margin-top:6px">
+                            <div class="notif-card-header">
+                                <div class="notif-app-icon">K</div>
+                                <span class="notif-app-name">Kinia</span>
+                                <span class="notif-time-small">14:30</span>
+                            </div>
+                            <div class="notif-card-body" style="font-size:12px">
+                                ゆうたが「自宅」に入りました
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-label">— RESPONSE OPTIONS —</div>
+        <h2>届いた側はどうなる？</h2>
+
+        <table class="spec-table">
+            <thead>
+                <tr>
+                    <th style="width:30%">ボタン</th>
+                    <th>押すとどうなる？</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>✅ 許可する</strong></td>
+                    <td>いまの居場所がすぐに相手に届きます。そのまま押すだけでOKです。</td>
+                </tr>
+                <tr>
+                    <td><strong>❌ 許可しない</strong></td>
+                    <td>居場所を教えずに断ります。<strong>スマホのロック解除</strong>が必要です。</td>
+                </tr>
+                <tr>
+                    <td><strong>🚫 1時間ブロック</strong></td>
+                    <td>断ったうえで、同じ相手からの確認を1時間のあいだ自動で断り続けます。<strong>スマホのロック解除</strong>が必要です。</td>
+                </tr>
+                <tr>
+                    <td><strong>（何もしない）</strong></td>
+                    <td>60秒たつと、居場所が<strong>自動で届きます</strong>。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="note-box">
+            <strong>「断る」のにロック解除がいる理由</strong><br>
+            もしスマホが知らない人の手に渡ってしまったとき、「許可しない」を簡単に押されてしまうと、家族がその人の居場所をまったく確認できなくなります。ロック解除を求めることで、本人だけが断れるようにしています。
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-label">— OFFLINE —</div>
+        <h2>相手のスマホがつながらないときは？</h2>
+
+        <div class="overview-box">
+            <p>相手が電波の届かない場所にいたり、スマホの電源が切れていても大丈夫です。<strong>最後に記録された居場所</strong>が自動的にあなたに届きます。</p>
+            <p>届いた位置には「最終確認: 〇分前」と表示されるので、リアルタイムではないことがひと目で分かります。</p>
+            <p>相手のスマホが再びつながった時点で、「あなたの居場所が確認されました」という通知が届くため、知らないままになることはありません。</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-label">— FAQ —</div>
+        <h2>よくある質問</h2>
+
+        <div class="mini-faq">
+            <div class="mini-faq-item">
+                <div class="mini-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                    何回でも送れますか？
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="mini-faq-a">
+                    <p>回数の制限はありません。ただし、相手が「1時間ブロック」を押した場合は、その間は送っても自動的に断られます。あなたの画面には「相手が確認を一時的にブロックしています」と表示されます。</p>
+                </div>
+            </div>
+
+            <div class="mini-faq-item">
+                <div class="mini-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                    確認したことは他の家族にも分かりますか？
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="mini-faq-a">
+                    <p>はい。誰が誰にいつ確認を送ったかは、グループ全員に見えるようになっています。これは、この機能が不必要に使われることを防ぐためです。</p>
+                </div>
+            </div>
+
+            <div class="mini-faq-item">
+                <div class="mini-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                    居場所を常に共有している相手にも使えますか？
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="mini-faq-a">
+                    <p>「すべて共有」に設定している相手は、地図上にリアルタイムで位置が見えているので、通常はこの機能を使う必要はありません。ただし、最後の更新が古い場合に最新の位置を取りたいときには使えます。</p>
+                </div>
+            </div>
+
+            <div class="mini-faq-item">
+                <div class="mini-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                    「安否確認」とはどう違いますか？
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="mini-faq-a">
+                    <p>「安否確認」は地震などの災害時に、家族全員にまとめて「大丈夫？」と送る機能です。「いまどこ確認」は、特定の1人の居場所を確認する機能です。「帰りが遅い」「電話に出ない」など、日常のちょっと心配な場面に向いています。</p>
+                </div>
+            </div>
+
+            <div class="mini-faq-item">
+                <div class="mini-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                    この機能を完全にオフにできますか？
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="mini-faq-a">
+                    <p>現在は完全にオフにする設定はありません。「1時間ブロック」で一時的に断ることはできます。完全オフの設定は、今後のアップデートで追加を検討しています。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-label">— PRIVACY —</div>
+        <h2>プライバシーについて</h2>
+
+        <div class="note-box sage">
+            <strong>この機能は「監視」のためのものではありません。</strong><br><br>
+            確認された側には必ず通知が届きます。あとからも消せない通知で気づけます。確認する側も自分の居場所を開示するので、一方的に見ることはできません。誰がいつ使ったかも記録に残ります。<br><br>
+            家族の帰りが遅いとき、連絡がつかないとき、地震があったとき——本当に心配な瞬間に「いまどこにいるか」を知るための機能です。
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand"><img src="/images/app_icon.png" alt=""><span class="footer-brand-name">Kinia</span><span class="footer-brand-ruby">キニア</span></div>
+        <div class="footer-links">
+            <a href="/setup.html">はじめかたガイド</a><a href="/faq.html">よくある質問</a><a href="/status.html">開発状況</a>
+            <a href="/data-safety.html">データの安全性</a><a href="/privacy.html">プライバシーポリシー</a><a href="/#contact">お問い合わせ</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
+    </div>
+</footer>
+
+<script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
+</body>
+</html>
