@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XCT32M2MZV');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安否確認 — Kinia</title>
+    <meta name="description" content="地震や災害のとき、家族全員の安否をすばやく確認。スワイプ操作で誤送信を防ぐ安心設計です。">
+    <link rel="icon" href="/images/app_icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#fbf6ef;--bg-alt:#f4e8d8;--card:#ffffff;--ink:#2a2218;--sub:rgba(42,34,24,.62);--mute:rgba(42,34,24,.4);--accent:#d97a5a;--accent2:#b85a3e;--sage:#a3b89a;--navy:#2c3a5e;--line:rgba(42,34,24,.08);--font-head:'Shippori Mincho','Noto Serif JP',serif;--font-body:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;--font-mono:'DM Mono',monospace}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font-body);background:var(--bg);color:var(--ink);line-height:1.85;font-size:17px;-webkit-font-smoothing:antialiased}
+        a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+        ruby rt{font-size:0.55em}
+
+        .nav{position:sticky;top:0;z-index:100;background:rgba(251,246,239,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:16px 56px;display:flex;align-items:center;justify-content:space-between}
+        .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+        .nav-brand img{width:36px;height:36px;border-radius:8px;display:block}
+        .nav-brand-name{font-family:var(--font-head);font-size:20px;font-weight:600}
+        .nav-brand-ruby{font-family:var(--font-mono);font-size:10px;color:var(--mute);letter-spacing:1.5px;margin-left:2px}
+        .nav-links{display:flex;align-items:center;gap:28px;font-size:13.5px;color:var(--sub)}
+        .nav-links a{color:inherit;text-decoration:none;transition:color .2s}.nav-links a:hover{color:var(--accent);text-decoration:none}
+        .nav-cta{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 16px -6px rgba(217,122,90,.5);transition:background .2s,transform .1s}
+        .nav-cta:hover{background:var(--accent2);text-decoration:none;transform:translateY(-1px)}
+        .nav-dropdown{position:relative}
+        .nav-dropdown-toggle{background:none;border:none;color:var(--sub);font-size:13.5px;cursor:pointer;padding:0;font-family:inherit}
+        .nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 10px);right:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 0;min-width:260px;box-shadow:0 12px 40px rgba(42,34,24,.12);z-index:200}
+        .nav-dropdown.open .nav-dropdown-menu{display:block}
+        .nav-dropdown-menu a{display:block;padding:10px 20px;color:var(--sub);font-size:13px;white-space:nowrap}
+        .nav-dropdown-menu a:hover{background:var(--bg-alt);color:var(--ink);text-decoration:none}
+        .nav-dropdown-menu .nav-dd-primary{font-weight:600;color:var(--accent)}
+        .hamburger{display:none;background:none;border:none;color:var(--ink);font-size:1.5rem;cursor:pointer;padding:10px;min-width:44px;min-height:44px}
+        @media(max-width:768px){
+            .nav{padding:14px 20px}
+            .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(251,246,239,.98);padding:20px 24px;gap:16px;border-bottom:1px solid var(--line);align-items:flex-start}
+            .nav-links.open{display:flex}.hamburger{display:block}
+            .nav-dropdown-menu{position:static;box-shadow:none;border:none;border-radius:0;background:transparent;padding:0 0 0 16px;min-width:auto}
+            .nav-dropdown.open .nav-dropdown-menu{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+            .nav-dropdown-menu a{padding:4px 0}
+        }
+
+        .hero{padding:64px 20px 48px;text-align:center;background:var(--bg)}
+        .hero-label{font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:12px}
+        .hero h1{font-family:var(--font-head);font-size:clamp(26px,4.5vw,38px);font-weight:500;color:var(--ink);margin-bottom:12px;line-height:1.4}
+        .hero p{color:var(--sub);font-size:16px;max-width:620px;margin:0 auto;line-height:1.9}
+
+        .content{max-width:800px;margin:0 auto;padding:0 20px 80px}
+
+        .section{padding:48px 0 0}
+        .section-label{font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+        .section h2{font-family:var(--font-head);font-size:clamp(22px,3.5vw,30px);font-weight:500;color:var(--ink);margin-bottom:20px}
+
+        .overview-box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px;margin-bottom:40px}
+        .overview-box p{color:var(--sub);font-size:15.5px;line-height:2.0;margin-bottom:12px}
+        .overview-box p:last-child{margin-bottom:0}
+
+        .flow-steps{display:flex;flex-direction:column;gap:0}
+        .flow-step{display:flex;gap:24px;position:relative;padding-bottom:40px}
+        .flow-step:last-child{padding-bottom:0}
+        .flow-step:last-child .flow-line{display:none}
+        .flow-marker{flex-shrink:0;width:48px;display:flex;flex-direction:column;align-items:center}
+        .flow-num{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--font-mono);font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
+        .flow-line{position:absolute;top:40px;left:19px;width:2px;bottom:0;background:linear-gradient(to bottom,var(--accent),rgba(217,122,90,.2))}
+        .flow-body{flex:1;padding-top:6px}
+        .flow-body h3{font-family:var(--font-head);font-size:18px;font-weight:500;margin-bottom:8px;color:var(--ink)}
+        .flow-body p{color:var(--sub);font-size:15px;line-height:1.9}
+
+        .mockup-row{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin:40px 0}
+        .mockup-wrapper{display:flex;flex-direction:column;align-items:center;gap:12px}
+        .mockup-caption{font-family:var(--font-mono);font-size:11px;letter-spacing:1px;color:var(--accent2);font-weight:500}
+
+        .phone-frame{width:300px;height:600px;border-radius:32px;border:3px solid #d4cfc7;background:#1a1a2e;overflow:hidden;position:relative;box-shadow:0 12px 40px rgba(42,34,24,.15)}
+
+        .screen-members{background:#fbf3eb;height:100%;display:flex;flex-direction:column}
+        .screen-header{background:#fbf3eb;padding:12px 16px 8px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(0,0,0,.06)}
+        .screen-header-title{font-size:16px;font-weight:700;color:#2a2218}
+        .screen-header-btns{display:flex;gap:8px}
+        .screen-header-btn{font-size:10px;padding:4px 10px;border-radius:6px;background:rgba(42,34,24,.06);color:#6b5c4d;border:none}
+        .member-list{flex:1;padding:12px 14px;overflow-y:auto}
+        .member-card{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:10px;border:1px solid rgba(42,34,24,.06);box-shadow:0 2px 8px rgba(42,34,24,.04)}
+        .member-card-header{display:flex;align-items:center;justify-content:space-between}
+        .member-name-area{display:flex;align-items:center;gap:8px}
+        .member-dot{width:10px;height:10px;border-radius:50%}
+        .member-name{font-size:15px;font-weight:700;color:#2a2218}
+        .member-meta{display:flex;align-items:center;gap:6px;font-size:11px;color:#8a7d6f}
+        .member-status{font-size:11px;color:#c47a3a;background:rgba(196,122,58,.1);padding:2px 10px;border-radius:6px;margin-top:6px;display:inline-block}
+        .member-expanded{margin-top:12px;padding-top:12px;border-top:1px solid rgba(42,34,24,.06)}
+        .emergency-btn{width:100%;padding:12px;border-radius:10px;border:1.5px solid var(--accent);background:transparent;color:var(--accent2);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-family:inherit}
+
+        .screen-dialog-overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:10}
+        .dialog-box{background:#fff;border-radius:16px;padding:24px 20px 16px;width:260px;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+        .dialog-title{font-size:16px;font-weight:700;color:#2a2218;margin-bottom:8px}
+        .dialog-message{font-size:13px;color:#5a5046;line-height:1.7;margin-bottom:20px}
+        .dialog-buttons{display:flex;justify-content:flex-end;gap:12px}
+        .dialog-btn{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:inherit}
+        .dialog-btn-cancel{background:transparent;color:#8a7d6f}
+        .dialog-btn-send{background:var(--accent);color:#fff}
+
+        .screen-response{background:rgba(18,18,31,.92);height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px}
+        .response-icon{font-size:52px;margin-bottom:8px}
+        .response-title{font-size:28px;font-weight:700;color:rgba(232,228,240,.95);margin-bottom:8px}
+        .response-subtitle{font-size:14px;color:rgba(232,228,240,.65);text-align:center;margin-bottom:4px}
+        .response-countdown{font-size:52px;font-weight:700;color:#FF6B6B;margin:16px 0 4px;font-family:var(--font-mono)}
+        .response-countdown-unit{font-size:16px;font-weight:400;color:#FF6B6B;opacity:.7;margin-left:2px}
+        .response-auto-note{font-size:12px;color:rgba(232,228,240,.45);text-align:center;margin-bottom:28px}
+        .response-btn{width:240px;padding:16px;border-radius:12px;background:transparent;font-size:16px;font-weight:600;cursor:pointer;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:6px;font-family:inherit;color:rgba(232,228,240,.9)}
+        .response-btn-allow{border:1.5px solid rgba(39,174,96,.4)}
+        .response-btn-deny{border:1.5px solid rgba(230,126,34,.4)}
+        .response-btn-block{border:1.5px solid rgba(231,76,60,.4)}
+        .response-btn-note{font-size:10px;color:rgba(232,228,240,.35);margin-top:-6px;margin-bottom:8px}
+
+        .screen-notification{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);height:100%;display:flex;flex-direction:column;padding:40px 16px 20px}
+        .notif-time{font-size:48px;font-weight:300;color:rgba(255,255,255,.9);text-align:center;margin-bottom:4px;font-family:var(--font-mono)}
+        .notif-date{font-size:13px;color:rgba(255,255,255,.5);text-align:center;margin-bottom:32px}
+        .notif-card{background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border-radius:14px;padding:14px 16px;margin-bottom:10px;border:1px solid rgba(255,255,255,.08)}
+        .notif-card-header{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+        .notif-app-icon{width:18px;height:18px;border-radius:4px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff}
+        .notif-app-name{font-size:11px;color:rgba(255,255,255,.6);font-weight:600}
+        .notif-time-small{font-size:10px;color:rgba(255,255,255,.35);margin-left:auto}
+        .notif-card-body{font-size:13px;color:rgba(255,255,255,.85);line-height:1.6}
+        .notif-pin-badge{display:inline-block;background:rgba(231,76,60,.25);color:#FF6B6B;font-size:10px;padding:2px 8px;border-radius:4px;margin-top:6px;font-weight:600}
+
+        .spec-table{width:100%;border-collapse:collapse;margin:20px 0 32px;font-size:14.5px}
+        .spec-table th{text-align:left;padding:12px 16px;background:var(--bg-alt);color:var(--ink);font-weight:600;border-bottom:1px solid var(--line);font-size:13px}
+        .spec-table td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--sub);vertical-align:top}
+        .spec-table tr:last-child td{border-bottom:none}
+
+        .note-box{background:var(--card);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:20px 24px;margin:24px 0;font-size:15px;color:var(--sub);line-height:2.1}
+        .note-box strong{color:var(--ink)}
+        .note-box.sage{border-left-color:var(--sage)}
+
+        .mini-faq{margin:32px 0}
+        .mini-faq-item{border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden;background:var(--card)}
+        .mini-faq-q{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;font-size:15px;font-weight:500;color:var(--ink);user-select:none;transition:background .2s}
+        .mini-faq-q:hover{background:var(--bg-alt)}
+        .mini-faq-q .arrow{font-size:.8rem;color:var(--mute);transition:transform .2s;flex-shrink:0;margin-left:12px}
+        .mini-faq-item.open .mini-faq-q .arrow{transform:rotate(180deg)}
+        .mini-faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 16px;color:var(--sub);font-size:14.5px;line-height:1.8}
+        .mini-faq-item.open .mini-faq-a{max-height:400px;padding:0 16px 16px}
+
+        .footer{padding:48px 56px;border-top:1px solid var(--line);background:var(--card)}
+        .footer-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+        .footer-brand{display:flex;align-items:center;gap:10px}
+        .footer-brand img{width:30px;height:30px;border-radius:7px}
+        .footer-brand-name{font-family:var(--font-head);font-size:17px;font-weight:600;color:var(--ink)}
+        .footer-brand-ruby{font-family:var(--font-mono);font-size:10px;color:var(--mute);letter-spacing:1.5px}
+        .footer-links{display:flex;gap:24px;font-size:12.5px;color:var(--sub);flex-wrap:wrap}
+        .footer-links a{color:inherit;text-decoration:none}.footer-links a:hover{color:var(--accent)}
+        .footer-copy{font-size:11px;color:var(--mute);font-family:var(--font-mono);letter-spacing:1px}
+        @media(max-width:768px){.footer{padding:32px 20px}.footer-inner{flex-direction:column;align-items:flex-start;gap:16px}.footer-links{flex-direction:column;gap:12px}}
+
+        @media(max-width:768px){
+            .mockup-row{gap:24px}
+            .phone-frame{width:260px;height:520px}
+            .flow-step{gap:16px}
+            .hero{padding:48px 20px 32px}
+        }
+        @media(max-width:480px){
+            .phone-frame{width:240px;height:480px}
+        }
+
+        .swipe-bar{background:#E67E22;border-radius:28px;height:56px;position:relative;display:flex;align-items:center;justify-content:center;margin:0 14px 8px}
+        .swipe-thumb{position:absolute;left:6px;width:44px;height:44px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
+        .swipe-thumb-arrow{font-size:20px;color:#E67E22;font-weight:700}
+        .swipe-label{color:rgba(255,255,255,.85);font-size:13px;font-weight:600;letter-spacing:1px}
+        .swipe-arrows{position:absolute;left:58px;color:rgba(255,255,255,.35);font-size:16px;animation:swipeHint 1.5s infinite}
+        @keyframes swipeHint{0%{opacity:.3;transform:translateX(0)}50%{opacity:.6;transform:translateX(12px)}100%{opacity:.3;transform:translateX(0)}}
+        .screen-safety-result{background:#fbf3eb;height:100%;display:flex;flex-direction:column}
+        .safety-result-header{background:#2E7D32;padding:16px;text-align:center}
+        .safety-result-title{color:#fff;font-size:18px;font-weight:700}
+        .safety-result-list{flex:1;padding:14px;overflow-y:auto}
+        .safety-result-card{background:#fff;border-radius:12px;padding:14px 16px;margin-bottom:8px;border:1px solid rgba(42,34,24,.06);display:flex;align-items:center;justify-content:space-between}
+        .safety-result-name{font-size:15px;font-weight:600;color:#2a2218}
+        .safety-result-status{font-size:13px;font-weight:600;padding:4px 12px;border-radius:8px}
+        .status-safe{background:rgba(46,125,50,.1);color:#2E7D32}
+        .status-injured{background:rgba(230,126,34,.1);color:#E67E22}
+        .status-pending{background:rgba(42,34,24,.06);color:#8a7d6f}
+        .screen-safety-notify{background:rgba(18,18,31,.92);height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px}
+        .safety-notify-icon{font-size:52px;margin-bottom:8px}
+        .safety-notify-title{font-size:26px;font-weight:700;color:rgba(232,228,240,.95);margin-bottom:8px}
+        .safety-notify-sub{font-size:14px;color:rgba(232,228,240,.65);text-align:center;margin-bottom:24px}
+        .safety-notify-btn{width:240px;padding:14px;border-radius:12px;background:transparent;font-size:15px;font-weight:600;cursor:pointer;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:6px;font-family:inherit;color:rgba(232,228,240,.9)}
+        .safety-btn-safe{border:1.5px solid rgba(46,125,50,.5)}
+        .safety-btn-injured{border:1.5px solid rgba(230,126,34,.5)}
+        .safety-btn-help{border:1.5px solid rgba(231,76,60,.5)}
+        .safety-notify-close{margin-top:16px;color:rgba(232,228,240,.4);font-size:13px;border:none;background:none;cursor:pointer;font-family:inherit}
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="/" class="nav-brand">
+        <img src="/images/app_icon.png" alt="">
+        <span class="nav-brand-name">Kinia</span>
+        <span class="nav-brand-ruby">キニア</span>
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">☰</button>
+    <div class="nav-links">
+        <a href="/#features">特徴</a>
+        <a href="/faq.html">FAQ</a>
+        <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">ガイド ▾</button>
+            <div class="nav-dropdown-menu">
+                <a href="/setup.html" class="nav-dd-primary">はじめかたガイド</a>
+                <a href="/guide-family-basic.html">3人家族セットアップ</a>
+                <a href="/guide-join.html">招待された方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0;"></div>
+                <a href="/senior.html">高齢のご家族がいる方へ</a>
+                <a href="/parents.html">お子さんを持つご家庭の方へ</a>
+                <a href="/students.html">学生の方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
+                <a href="/guide-sharing-all.html">画面の見方（すべて共有）</a>
+                <a href="/guide-sharing-area.html">画面の見方（通知エリアのみ）</a>
+            </div>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">
+            ダウンロード
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+    </div>
+</nav>
+
+
+<section class="hero">
+    <div class="hero-label">&mdash; SAFETY CHECK &mdash;</div>
+    <h1>安否確認</h1>
+    <p>地震や災害のとき、家族全員に「大丈夫？」を一斉送信。<br>スワイプ操作と2段階確認で、誤送信を防ぎます。</p>
+</section>
+
+<main class="content">
+
+    <section class="section">
+        <div class="section-label">&mdash; OVERVIEW &mdash;</div>
+        <h2>どんな機能？</h2>
+        <div class="overview-box">
+            <p>地震や台風などの災害時に、家族全員へ安否確認の通知を一斉送信できます。</p>
+            <p>受け取った側は<strong>「無事です」「けがをしました」「助けが必要」</strong>の3つから回答。回答結果はグループ全員がリアルタイムで確認できます。</p>
+            <p>スワイプ操作＋2段階確認で、うっかり触っただけでは送信されない安心設計です。</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-label">&mdash; HOW IT WORKS &mdash;</div>
+        <h2>使い方の流れ</h2>
+        <div class="flow-steps">
+            <div class="flow-step"><div class="flow-marker"><div class="flow-num">1</div><div class="flow-line"></div></div><div class="flow-body"><h3>スワイプで安否確認を開始</h3><p>メンバー一覧の下部にあるオレンジ色のスライダーを、<strong>右にスワイプ</strong>します。60%以上スライドしないと反応しないので、誤タップの心配はありません。</p></div></div>
+            <div class="flow-step"><div class="flow-marker"><div class="flow-num">2</div><div class="flow-line"></div></div><div class="flow-body"><h3>2段階の確認ダイアログ</h3><p>スワイプ後に「安否確認を送りますか？」&rarr;「最終確認」と2回確認が出ます。本当に送りたいときだけ「安否確認を送信」を押してください。</p></div></div>
+            <div class="flow-step"><div class="flow-marker"><div class="flow-num">3</div><div class="flow-line"></div></div><div class="flow-body"><h3>全メンバーに全画面通知が届く</h3><p>家族全員のスマホに全画面の通知が届きます。ロック画面でも表示されるので、見落としにくい仕組みです。「閉じる」ボタンを押すまで画面に残り続けます。</p></div></div>
+            <div class="flow-step"><div class="flow-marker"><div class="flow-num">4</div><div class="flow-line"></div></div><div class="flow-body"><h3>3つの選択肢から回答</h3><p>「&#x2705; 無事です」「&#x1FA79; けがをしました」「&#x1F198; 助けが必要」の中から状況に合ったものをタップ。回答はすぐに送信者に届きます。</p></div></div>
+            <div class="flow-step"><div class="flow-marker"><div class="flow-num">5</div></div><div class="flow-body"><h3>回答結果をまとめて確認</h3><p>メンバー一覧のボタンが「&#x1F4CB; 安否確認の結果を見る」に変わります。タップすると、誰がどう回答したかを一覧で確認できます。</p></div></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-label">&mdash; APP SCREENS &mdash;</div>
+        <h2>画面イメージ</h2>
+        <div class="mockup-row">
+            <div class="mockup-wrapper">
+                <div class="mockup-caption">STEP 1 &mdash; スワイプで開始</div>
+                <div class="phone-frame">
+                    <div class="screen-members">
+                        <div class="screen-header"><span class="screen-header-title">メンバー一覧</span></div>
+                        <div class="member-list">
+                            <div class="member-card"><div class="member-card-header"><div class="member-name-area"><div class="member-dot" style="background:#5B8DEF"></div><span class="member-name">パパ</span></div><div class="member-meta"><span>&#x1F6B6;</span><span>たった今</span><span>&#x1F50B;72%</span></div></div></div>
+                            <div class="member-card"><div class="member-card-header"><div class="member-name-area"><div class="member-dot" style="background:#E8943A"></div><span class="member-name">ママ</span></div><div class="member-meta"><span>&#x1F6B6;&#x200D;&#x2640;&#xFE0F;</span><span>たった今</span><span>&#x1F50B;85%</span></div></div></div>
+                            <div class="member-card"><div class="member-card-header"><div class="member-name-area"><div class="member-dot" style="background:#4BC8A3"></div><span class="member-name">ゆうた</span></div><div class="member-meta"><span>&#x1F6B4;</span><span>たった今</span><span>&#x1F50B;56%</span></div></div></div>
+                        </div>
+                        <div class="swipe-bar"><div class="swipe-thumb"><span class="swipe-thumb-arrow">&rsaquo;</span></div><span class="swipe-arrows">&rsaquo;&rsaquo;&rsaquo;</span><span class="swipe-label">スライドして安否確認</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mockup-wrapper">
+                <div class="mockup-caption">STEP 2 &mdash; 最終確認</div>
+                <div class="phone-frame">
+                    <div class="screen-members" style="filter:brightness(.7) blur(1px)">
+                        <div class="screen-header"><span class="screen-header-title">メンバー一覧</span></div>
+                        <div class="member-list"><div class="member-card"><div class="member-card-header"><div class="member-name-area"><div class="member-dot" style="background:#5B8DEF"></div><span class="member-name">パパ</span></div></div></div><div class="member-card"><div class="member-card-header"><div class="member-name-area"><div class="member-dot" style="background:#E8943A"></div><span class="member-name">ママ</span></div></div></div></div>
+                    </div>
+                    <div class="screen-dialog-overlay"><div class="dialog-box"><div class="dialog-title">最終確認</div><div class="dialog-message">安否確認を送信します。<br>全メンバーに全画面通知が届きます。</div><div class="dialog-buttons"><button class="dialog-btn dialog-btn-cancel">やめる</button><button class="dialog-btn dialog-btn-send">安否確認を送信</button></div></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="mockup-row">
+            <div class="mockup-wrapper">
+                <div class="mockup-caption">STEP 3 &mdash; 相手に届く通知</div>
+                <div class="phone-frame">
+                    <div class="screen-safety-notify">
+                        <div class="safety-notify-icon">&#x1F198;</div>
+                        <div class="safety-notify-title">安否確認</div>
+                        <div class="safety-notify-sub">パパさんが安否確認を<br>送信しました</div>
+                        <button class="safety-notify-btn safety-btn-safe">&#x2705; 無事です</button>
+                        <button class="safety-notify-btn safety-btn-injured">&#x1FA79; けがをしました</button>
+                        <button class="safety-notify-btn safety-btn-help">&#x1F198; 助けが必要</button>
+                        <button class="safety-notify-close">閉じる</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mockup-wrapper">
+                <div class="mockup-caption">STEP 5 &mdash; 回答結果一覧</div>
+                <div class="phone-frame">
+                    <div class="screen-safety-result">
+                        <div class="safety-result-header"><div class="safety-result-title">&#x1F4CB; 安否確認結果</div></div>
+                        <div class="safety-result-list">
+                            <div class="safety-result-card"><span class="safety-result-name">パパ</span><span class="safety-result-status status-safe">&#x2705; 無事</span></div>
+                            <div class="safety-result-card"><span class="safety-result-name">ママ</span><span class="safety-result-status status-injured">&#x1FA79; けが</span></div>
+                            <div class="safety-result-card"><span class="safety-result-name">ゆうた</span><span class="safety-result-status status-pending">未回答</span></div>
+                            <div class="safety-result-card"><span class="safety-result-name">みか</span><span class="safety-result-status status-safe">&#x2705; 無事</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-label">&mdash; SPEC &mdash;</div>
+        <h2>仕様</h2>
+        <table class="spec-table">
+            <thead><tr><th style="width:30%">項目</th><th>内容</th></tr></thead>
+            <tbody>
+                <tr><td><strong>送信対象</strong></td><td>グループ全メンバー（一斉送信）</td></tr>
+                <tr><td><strong>通知方法</strong></td><td>全画面通知（ロック画面でも表示）</td></tr>
+                <tr><td><strong>回答選択肢</strong></td><td>無事です / けがをしました / 助けが必要</td></tr>
+                <tr><td><strong>回答期限</strong></td><td>なし（いつでも回答可能）</td></tr>
+                <tr><td><strong>誤送信防止</strong></td><td>スワイプ操作＋2段階確認ダイアログ</td></tr>
+                <tr><td><strong>送信制限</strong></td><td>なし（何度でも送信可能）</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="section">
+        <div class="section-label">&mdash; FAQ &mdash;</div>
+        <h2>よくある質問</h2>
+        <div class="mini-faq">
+            <div class="mini-faq-item"><div class="mini-faq-q" onclick="this.parentElement.classList.toggle('open')">間違えて送ってしまったら？<span class="arrow">&#x25BC;</span></div><div class="mini-faq-a"><p>一度送信した安否確認は取り消せません。メッセージ機能で「間違いでした」と伝えることができます。スワイプ＋2段階確認があるので、誤送信はかなり起きにくい設計です。</p></div></div>
+            <div class="mini-faq-item"><div class="mini-faq-q" onclick="this.parentElement.classList.toggle('open')">「いまどこ確認」との違いは？<span class="arrow">&#x25BC;</span></div><div class="mini-faq-a"><p>安否確認は<strong>全員一斉送信</strong>で「大丈夫？」と聞く災害時向け機能です。いまどこ確認は<strong>特定の1人</strong>の居場所を確認する日常向け機能です。</p></div></div>
+            <div class="mini-faq-item"><div class="mini-faq-q" onclick="this.parentElement.classList.toggle('open')">回答は後から変更できますか？<span class="arrow">&#x25BC;</span></div><div class="mini-faq-a"><p>現在のバージョンでは、一度送った回答の変更はできません。今後のアップデートで対応を検討しています。</p></div></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-label">&mdash; PRIVACY &mdash;</div>
+        <h2>プライバシーについて</h2>
+        <div class="note-box sage">
+            <strong>安否確認は家族の安全を確認するための機能です。</strong><br><br>
+            送信記録は全員に見えるため、不必要な利用は他のメンバーに分かります。スワイプ操作と2段階確認により、意図しない送信が起きにくい設計にしています。<br><br>
+            地震があったとき、家族と連絡がつかないとき&mdash;&mdash;「みんな大丈夫？」をすぐに届けるための機能です。
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand"><img src="/images/app_icon.png" alt=""><span class="footer-brand-name">Kinia</span><span class="footer-brand-ruby">キニア</span></div>
+        <div class="footer-links">
+            <a href="/setup.html">はじめかたガイド</a><a href="/faq.html">よくある質問</a><a href="/status.html">開発状況</a>
+            <a href="/data-safety.html">データの安全性</a><a href="/privacy.html">プライバシーポリシー</a><a href="/#contact">お問い合わせ</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
+    </div>
+</footer>
+
+<script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
+</body>
+</html>
