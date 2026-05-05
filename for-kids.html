@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XCT32M2MZV');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiniaってどんなアプリ？ — 中高生のあなたへ — Kinia</title>
+    <meta name="description" content="Kiniaは監視アプリではありません。家族がお互いに「着いたよ」をそっと伝え合うためのアプリです。仕組みと設定について、対等に説明します。">
+    <meta property="og:title" content="Kiniaってどんなアプリ？ — 中高生のあなたへ">
+    <meta property="og:description" content="監視するためのアプリじゃない。家族がお互いに「ちゃんと着いたよ」をそっと伝え合うためのアプリ。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kinia.io/for-kids.html">
+    <meta property="og:image" content="https://kinia.io/images/app_icon.png">
+    <link rel="icon" href="/images/app_icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fbf6ef;
+            --bg-alt: #f4e8d8;
+            --card: #ffffff;
+            --ink: #2a2218;
+            --sub: rgba(42,34,24,0.62);
+            --mute: rgba(42,34,24,0.4);
+            --accent: #d97a5a;
+            --accent2: #b85a3e;
+            --sage: #a3b89a;
+            --navy: #2c3a5e;
+            --line: rgba(42,34,24,0.08);
+            --font-head: 'Shippori Mincho', 'Noto Serif JP', serif;
+            --font-body: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+            --font-mono: 'DM Mono', monospace;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.85;
+            overflow-x: hidden;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--accent2); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+
+        /* ── Nav ── */
+        .nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(251,246,239,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+            padding: 16px 56px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-brand {
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none; color: var(--ink);
+        }
+        .nav-brand img { width: 36px; height: 36px; border-radius: 8px; display: block; }
+        .nav-brand-name { font-family: var(--font-head); font-size: 20px; font-weight: 600; }
+        .nav-brand-ruby { font-family: var(--font-mono); font-size: 10px; color: var(--mute); letter-spacing: 1.5px; margin-left: 2px; }
+        .nav-links { display: flex; align-items: center; gap: 28px; font-size: 13.5px; color: var(--sub); }
+        .nav-links a { color: inherit; text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent); text-decoration: none; }
+        .nav-cta {
+            background: var(--accent); color: #fff; border: none;
+            padding: 10px 20px; border-radius: 999px; font-size: 13.5px;
+            font-weight: 600; cursor: pointer; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+            box-shadow: 0 6px 16px -6px rgba(217,122,90,0.5);
+            transition: background 0.2s, transform 0.1s;
+        }
+        .nav-cta:hover { background: var(--accent2); text-decoration: none; transform: translateY(-1px); }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-toggle {
+            background: none; border: none; color: var(--sub); font-size: 13.5px;
+            cursor: pointer; padding: 0; font-family: inherit; transition: color 0.2s;
+        }
+        .nav-dropdown-toggle:hover { color: var(--accent); }
+        .nav-dropdown-menu {
+            display: none; position: absolute; top: calc(100% + 10px); right: 0;
+            background: var(--card); border: 1px solid var(--line);
+            border-radius: 14px; padding: 8px 0; min-width: 220px;
+            box-shadow: 0 12px 40px rgba(42,34,24,0.12); z-index: 200;
+        }
+        .nav-dropdown.open .nav-dropdown-menu { display: block; }
+        .nav-dropdown-menu a {
+            display: block; padding: 10px 20px; color: var(--sub);
+            font-size: 13px; transition: background 0.15s, color 0.15s; white-space: nowrap;
+        }
+        .nav-dropdown-menu a:hover { background: var(--bg-alt); color: var(--ink); text-decoration: none; }
+        .nav-dropdown-menu .nav-dd-primary { font-weight: 600; color: var(--accent); }
+        .hamburger { display: none; background: none; border: none; color: var(--ink); font-size: 1.5rem; cursor: pointer; padding: 10px; min-width: 44px; min-height: 44px; }
+        @media (max-width: 768px) {
+            .nav { padding: 14px 20px; }
+            .nav-links {
+                display: none; flex-direction: column; position: absolute;
+                top: 100%; left: 0; right: 0; background: rgba(251,246,239,0.98);
+                padding: 20px 24px; gap: 16px; border-bottom: 1px solid var(--line);
+                align-items: flex-start;
+            }
+            .nav-links.open { display: flex; }
+            .hamburger { display: block; }
+            .nav-dropdown-menu {
+                position: static; box-shadow: none; border: none; border-radius: 0;
+                background: transparent; padding: 0 0 0 16px; min-width: auto;
+            }
+            .nav-dropdown.open .nav-dropdown-menu { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+            .nav-dropdown-menu a { padding: 4px 0; }
+            .nav-dropdown-menu a:hover { background: transparent; }
+        }
+
+        /* ── Shared ── */
+        .section-label {
+            font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px;
+            color: var(--accent); margin-bottom: 14px;
+        }
+        .container { max-width: 1180px; margin: 0 auto; }
+        .container-narrow { max-width: 880px; margin: 0 auto; }
+        .container-mid { max-width: 980px; margin: 0 auto; }
+        .section-heading {
+            font-family: var(--font-head); font-size: clamp(28px, 4.5vw, 40px);
+            font-weight: 500; line-height: 1.35; letter-spacing: -0.01em;
+            color: var(--ink); margin: 0 0 22px;
+        }
+        .accent-text { color: var(--accent); }
+        .body-text { font-size: 16.5px; line-height: 2.0; color: var(--sub); }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative; overflow: hidden;
+            padding: clamp(60px, 10vw, 100px) 56px;
+            text-align: center;
+        }
+        .hero-glow {
+            position: absolute; top: -100px; right: -80px; width: 480px; height: 480px;
+            border-radius: 50%; background: radial-gradient(circle, rgba(217,122,90,0.15), transparent 70%);
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-family: var(--font-head); font-size: clamp(28px, 5vw, 48px);
+            font-weight: 500; line-height: 1.35; letter-spacing: -0.01em;
+            color: var(--ink); margin: 0 0 28px; position: relative;
+        }
+        .hero-sub {
+            font-size: 17px; line-height: 2.0; color: var(--sub);
+            max-width: 600px; margin: 0 auto;
+        }
+
+        /* ── Points (3 cards) ── */
+        .points {
+            padding: 100px 56px; background: var(--bg-alt);
+        }
+        .points-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+            margin-top: 48px;
+        }
+        .point-card {
+            background: var(--card); border: 1px solid var(--line);
+            border-radius: 18px; padding: 40px 32px; position: relative;
+        }
+        .point-num {
+            font-family: var(--font-mono); font-size: 13px; color: var(--accent);
+            margin-bottom: 16px; font-weight: 500;
+        }
+        .point-card h3 {
+            font-family: var(--font-head); font-size: 20px; font-weight: 500;
+            margin-bottom: 16px; line-height: 1.5;
+        }
+        .point-card p {
+            font-size: 15px; line-height: 1.9; color: var(--sub);
+        }
+        @media (max-width: 768px) {
+            .points { padding: 64px 20px; }
+            .points-grid { grid-template-columns: 1fr; gap: 20px; }
+        }
+
+        /* ── Notification Area (dark) ── */
+        .notify-section {
+            padding: 100px 56px; background: var(--navy); color: #fff;
+        }
+        .notify-section .section-label { color: rgba(217,122,90,0.8); }
+        .notify-section .section-heading { color: #fff; }
+        .notify-section .body-text { color: rgba(255,255,255,0.7); }
+        .notify-map {
+            margin: 48px auto; max-width: 600px; position: relative;
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 18px; padding: 48px 40px; display: flex;
+            align-items: center; justify-content: space-between;
+        }
+        .notify-zone {
+            text-align: center; flex: 0 0 auto;
+        }
+        .notify-zone-circle {
+            width: 80px; height: 80px; border-radius: 50%;
+            border: 2px dashed rgba(163,184,154,0.6);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 10px;
+        }
+        .notify-zone-label {
+            font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 500;
+        }
+        .notify-between {
+            flex: 1; text-align: center; padding: 0 20px;
+        }
+        .notify-between-line {
+            height: 2px; background: repeating-linear-gradient(90deg, rgba(255,255,255,0.2) 0, rgba(255,255,255,0.2) 8px, transparent 8px, transparent 16px);
+            margin-bottom: 10px;
+        }
+        .notify-between-text {
+            font-size: 12px; color: rgba(255,255,255,0.4); font-family: var(--font-mono);
+        }
+        .notify-examples {
+            margin-top: 40px; max-width: 600px; margin-left: auto; margin-right: auto;
+        }
+        .notify-example {
+            display: flex; align-items: center; gap: 16px;
+            padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .notify-time {
+            font-family: var(--font-mono); font-size: 13px; color: var(--sage);
+            flex: 0 0 50px;
+        }
+        .notify-msg {
+            font-size: 15px; color: rgba(255,255,255,0.85);
+        }
+        .notify-note {
+            margin-top: 32px; font-size: 15px; color: rgba(255,255,255,0.6);
+            text-align: center; line-height: 1.9;
+        }
+        @media (max-width: 768px) {
+            .notify-section { padding: 64px 20px; }
+            .notify-map { flex-direction: column; gap: 24px; padding: 32px 24px; }
+            .notify-between-line { width: 2px; height: 40px; margin: 0 auto 10px; background: repeating-linear-gradient(180deg, rgba(255,255,255,0.2) 0, rgba(255,255,255,0.2) 8px, transparent 8px, transparent 16px); }
+        }
+
+        /* ── Sharing Levels (tabs) ── */
+        .sharing {
+            padding: 100px 56px; background: var(--bg);
+        }
+        .sharing-tabs {
+            display: flex; gap: 0; margin: 48px auto 0; max-width: 600px;
+            border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
+        }
+        .sharing-tab {
+            flex: 1; padding: 14px 16px; text-align: center;
+            font-size: 13.5px; font-weight: 500; cursor: pointer;
+            background: var(--card); color: var(--sub);
+            border: none; font-family: inherit;
+            transition: background 0.2s, color 0.2s;
+            border-right: 1px solid var(--line);
+        }
+        .sharing-tab:last-child { border-right: none; }
+        .sharing-tab.active {
+            background: var(--accent); color: #fff;
+        }
+        .sharing-panel {
+            display: none; max-width: 600px; margin: 32px auto 0;
+            background: var(--card); border: 1px solid var(--line);
+            border-radius: 18px; padding: 40px 36px;
+        }
+        .sharing-panel.active { display: block; }
+        .sharing-panel h4 {
+            font-family: var(--font-head); font-size: 18px; font-weight: 500;
+            margin-bottom: 16px;
+        }
+        .sharing-panel p {
+            font-size: 15px; line-height: 1.9; color: var(--sub);
+        }
+        .sharing-visible {
+            margin-top: 20px; padding: 16px 20px;
+            background: var(--bg-alt); border-radius: 12px;
+        }
+        .sharing-visible-label {
+            font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px;
+            color: var(--accent); margin-bottom: 8px;
+        }
+        .sharing-visible-item {
+            font-size: 14px; color: var(--sub); padding: 4px 0;
+        }
+        @media (max-width: 768px) {
+            .sharing { padding: 64px 20px; }
+            .sharing-tabs { flex-direction: column; border-radius: 12px; }
+            .sharing-tab { border-right: none; border-bottom: 1px solid var(--line); }
+            .sharing-tab:last-child { border-bottom: none; }
+            .sharing-panel { padding: 28px 24px; }
+        }
+
+        /* ── Bidirectional ── */
+        .bidirectional {
+            padding: 100px 56px; background: var(--bg-alt);
+        }
+        .bidi-visual {
+            max-width: 480px; margin: 48px auto 0; text-align: center;
+        }
+        .bidi-row {
+            display: flex; align-items: center; justify-content: center; gap: 32px;
+        }
+        .bidi-person {
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+        }
+        .bidi-circle {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: var(--card); border: 2px solid var(--line);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .bidi-circle svg { width: 28px; height: 28px; }
+        .bidi-label { font-size: 14px; font-weight: 500; color: var(--ink); }
+        .bidi-arrows {
+            display: flex; flex-direction: column; align-items: center; gap: 4px;
+            color: var(--accent);
+        }
+        .bidi-arrows svg { width: 40px; height: 20px; }
+        .bidi-note {
+            margin-top: 32px; font-size: 15.5px; line-height: 2.0; color: var(--sub);
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .bidirectional { padding: 64px 20px; }
+        }
+
+        /* ── Timeline ── */
+        .timeline-section {
+            padding: 100px 56px; background: var(--bg);
+        }
+        .timeline {
+            max-width: 600px; margin: 48px auto 0;
+            border-left: 3px solid var(--line); padding-left: 32px;
+        }
+        .timeline-item {
+            position: relative; margin-bottom: 36px;
+        }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -41px; top: 6px;
+            width: 14px; height: 14px; border-radius: 50%;
+            background: var(--accent); border: 3px solid var(--bg);
+        }
+        .timeline-scene {
+            font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px;
+        }
+        .timeline-setting {
+            font-size: 15px; color: var(--sub); display: flex; align-items: center; gap: 8px;
+        }
+        .timeline-badge {
+            display: inline-block; padding: 3px 10px; border-radius: 999px;
+            font-size: 11.5px; font-weight: 500; background: rgba(217,122,90,0.12);
+            color: var(--accent2);
+        }
+        .timeline-note {
+            margin-top: 32px; padding: 20px 24px;
+            background: var(--card); border-left: 3px solid var(--accent);
+            border-radius: 0 12px 12px 0; font-size: 14.5px;
+            line-height: 1.9; color: var(--sub);
+        }
+        @media (max-width: 768px) {
+            .timeline-section { padding: 64px 20px; }
+            .timeline { padding-left: 24px; }
+            .timeline-item::before { left: -33px; }
+        }
+
+        /* ── Closing (dark) ── */
+        .closing {
+            padding: 100px 56px; background: var(--navy); color: #fff;
+            text-align: center;
+        }
+        .closing .section-heading { color: #fff; }
+        .closing-text {
+            font-size: 16px; line-height: 2.1; color: rgba(255,255,255,0.75);
+            max-width: 580px; margin: 0 auto 40px;
+        }
+        .closing-hints {
+            max-width: 480px; margin: 0 auto;
+            display: flex; flex-direction: column; gap: 12px;
+        }
+        .closing-hint {
+            padding: 14px 20px; background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; font-size: 15px;
+            color: rgba(255,255,255,0.85); text-align: left;
+        }
+        .closing-footer {
+            margin-top: 40px; font-size: 14px; color: rgba(255,255,255,0.5);
+        }
+        @media (max-width: 768px) {
+            .closing { padding: 64px 20px; }
+        }
+
+        /* ── Footer ── */
+        .footer {
+            padding: 48px 56px; border-top: 1px solid var(--line); background: var(--card);
+        }
+        .footer-inner {
+            max-width: 1180px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 24px;
+        }
+        .footer-brand { display: flex; align-items: center; gap: 10px; }
+        .footer-brand img { width: 30px; height: 30px; border-radius: 7px; }
+        .footer-brand-name { font-family: var(--font-head); font-size: 17px; font-weight: 600; color: var(--ink); }
+        .footer-brand-ruby { font-family: var(--font-mono); font-size: 10px; color: var(--mute); letter-spacing: 1.5px; }
+        .footer-links {
+            display: flex; gap: 24px; font-size: 12.5px; color: var(--sub); flex-wrap: wrap;
+        }
+        .footer-links a { color: inherit; text-decoration: none; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copy { font-size: 11px; color: var(--mute); font-family: var(--font-mono); letter-spacing: 1px; }
+        @media (max-width: 768px) {
+            .footer { padding: 32px 20px; }
+            .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .footer-links { flex-direction: column; gap: 12px; }
+        }
+
+        /* ── Hero section adjustments ── */
+        @media (max-width: 768px) {
+            .hero { padding: clamp(48px, 8vw, 80px) 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="/" class="nav-brand">
+        <img src="/images/app_icon.png" alt="">
+        <span class="nav-brand-name">Kinia</span>
+        <span class="nav-brand-ruby">キニア</span>
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">&#9776;</button>
+    <div class="nav-links">
+        <a href="/#features">特徴</a>
+        <a href="/#how">使い方</a>
+        <a href="/#security">安心の設計</a>
+        <a href="/faq.html">FAQ</a>
+        <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">ガイド &#9662;</button>
+            <div class="nav-dropdown-menu">
+                <a href="/setup.html" class="nav-dd-primary">はじめかたガイド</a>
+                <a href="/guide-family-basic.html">3人家族セットアップ</a>
+                <a href="/guide-join.html">招待された方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0;"></div>
+                <a href="/senior.html">高齢のご家族がいる方へ</a>
+                <a href="/parents.html">お子さんを持つご家庭の方へ</a>
+                <a href="/students.html">学生の方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
+                <a href="/guide-sharing-all.html">画面の見方（すべて共有）</a>
+                <a href="/guide-sharing-area.html">画面の見方（通知エリアのみ）</a>
+            </div>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">
+            ダウンロード
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+    </div>
+</nav>
+
+<!-- ─── Section 1: Hero ─── -->
+<section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container-narrow">
+        <div class="section-label">— FOR YOU —</div>
+        <h1>これは、監視するためのアプリじゃない。</h1>
+        <p class="hero-sub">
+            Kiniaは、家族がお互いに「ちゃんと着いたよ」を<br>
+            そっと伝え合うためのアプリ。<br>
+            どういう仕組みで動いているのか、ここで説明する。
+        </p>
+    </div>
+</section>
+
+<!-- ─── Section 2: 3 Points ─── -->
+<section class="points">
+    <div class="container-mid">
+        <div class="section-label">— 3 THINGS TO KNOW —</div>
+        <h2 class="section-heading">まず知っておいてほしい<span class="accent-text">3つのこと</span></h2>
+        <div class="points-grid">
+            <div class="point-card">
+                <div class="point-num">01</div>
+                <h3>居場所を、ずっと見られているわけじゃない</h3>
+                <p>初期設定では「着いた / 出た」だけが通知される。通学路のどこを歩いているか、途中の道のりは送られない。</p>
+            </div>
+            <div class="point-card">
+                <div class="point-num">02</div>
+                <h3>共有レベルは、自分で選べる</h3>
+                <p>「まったく共有しない」から「今いる場所も見せる」まで、自分のスマホからいつでも切り替えられる。</p>
+            </div>
+            <div class="point-card">
+                <div class="point-num">03</div>
+                <h3>親も同じように共有している</h3>
+                <p>一方的にきみだけ見られる仕組みではない。親の居場所もきみに見える。おたがいさま。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Section 3: Notification Area (dark) ─── -->
+<section class="notify-section">
+    <div class="container-narrow">
+        <div class="section-label">— NOTIFICATION AREA —</div>
+        <h2 class="section-heading">「通知エリア」モードで<br>親に見えるのはこれだけ</h2>
+
+        <div class="notify-map">
+            <div class="notify-zone">
+                <div class="notify-zone-circle">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M6 14l10-10 10 10M8 14v12h16V14" stroke="#a3b89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="notify-zone-label">家</div>
+            </div>
+            <div class="notify-between">
+                <div class="notify-between-line"></div>
+                <div class="notify-between-text">見えない</div>
+            </div>
+            <div class="notify-zone">
+                <div class="notify-zone-circle">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M8 28V8l8-4 8 4v20M8 12h16M8 18h16M14 28v-6h4v6" stroke="#a3b89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="notify-zone-label">学校</div>
+            </div>
+        </div>
+
+        <div class="notify-examples">
+            <div class="notify-example">
+                <span class="notify-time">7:48</span>
+                <span class="notify-msg">家を出ました</span>
+            </div>
+            <div class="notify-example">
+                <span class="notify-time">8:21</span>
+                <span class="notify-msg">学校に着きました</span>
+            </div>
+        </div>
+
+        <p class="notify-note">
+            通学路のどこを歩いているか、放課後どこに寄ったかは送られない。<br>
+            届くのは「出た」と「着いた」、それだけ。
+        </p>
+    </div>
+</section>
+
+<!-- ─── Section 4: Sharing Levels ─── -->
+<section class="sharing">
+    <div class="container-narrow">
+        <div class="section-label">— SHARING LEVEL —</div>
+        <h2 class="section-heading">共有レベルは<span class="accent-text">自分で選べる</span></h2>
+        <p class="body-text" style="text-align:center; margin-bottom:0;">3つのモードから選ぶ。いつでも変えられる。</p>
+
+        <div class="sharing-tabs">
+            <button class="sharing-tab active" data-tab="0">共有しない</button>
+            <button class="sharing-tab" data-tab="1">通知エリアだけ</button>
+            <button class="sharing-tab" data-tab="2">いまの場所も共有</button>
+        </div>
+
+        <div class="sharing-panel active" data-panel="0">
+            <h4>共有しない</h4>
+            <p>位置情報は誰にも送られない。アプリを入れていないのと同じ状態。</p>
+            <div class="sharing-visible">
+                <div class="sharing-visible-label">PARENT SEES</div>
+                <div class="sharing-visible-item">何も見えない</div>
+            </div>
+        </div>
+
+        <div class="sharing-panel" data-panel="1">
+            <h4>通知エリアだけ</h4>
+            <p>設定したエリア（家・学校など）に「着いた / 出た」だけが届く。移動中の位置は送られない。</p>
+            <div class="sharing-visible">
+                <div class="sharing-visible-label">PARENT SEES</div>
+                <div class="sharing-visible-item">7:48 家を出ました</div>
+                <div class="sharing-visible-item">8:21 学校に着きました</div>
+            </div>
+        </div>
+
+        <div class="sharing-panel" data-panel="2">
+            <h4>いまの場所も共有</h4>
+            <p>現在地が地図上に表示される。遠征や旅行のとき、心配をかけたくないときに便利。</p>
+            <div class="sharing-visible">
+                <div class="sharing-visible-label">PARENT SEES</div>
+                <div class="sharing-visible-item">地図上のリアルタイム位置</div>
+                <div class="sharing-visible-item">通知エリアの出入り通知</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Section 5: Bidirectional ─── -->
+<section class="bidirectional">
+    <div class="container-narrow">
+        <div class="section-label">— FAIR —</div>
+        <h2 class="section-heading">親も同じ。<span class="accent-text">お互いに見せ合う。</span></h2>
+
+        <div class="bidi-visual">
+            <div class="bidi-row">
+                <div class="bidi-person">
+                    <div class="bidi-circle">
+                        <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="10" r="5" stroke="#2a2218" stroke-width="2"/><path d="M6 28c0-5.5 4.5-10 10-10s10 4.5 10 10" stroke="#2a2218" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <span class="bidi-label">きみ</span>
+                </div>
+                <div class="bidi-arrows">
+                    <svg viewBox="0 0 40 20" fill="none"><path d="M4 7h28m-5-4 5 4-5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg viewBox="0 0 40 20" fill="none"><path d="M36 7H8m5-4-5 4 5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="bidi-person">
+                    <div class="bidi-circle">
+                        <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="10" r="5" stroke="#2a2218" stroke-width="2"/><path d="M6 28c0-5.5 4.5-10 10-10s10 4.5 10 10" stroke="#2a2218" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <span class="bidi-label">親</span>
+                </div>
+            </div>
+        </div>
+
+        <p class="bidi-note">
+            おたがいに、おたがいの場所を見せ合う。<br>
+            片方だけONにはできない仕組み。<br>
+            きみが見られているなら、きみも相手を見られる。
+        </p>
+    </div>
+</section>
+
+<!-- ─── Section 6: Timeline ─── -->
+<section class="timeline-section">
+    <div class="container-narrow">
+        <div class="section-label">— ANYTIME —</div>
+        <h2 class="section-heading">いつでも変えられる</h2>
+        <p class="body-text" style="margin-bottom: 0;">場面に合わせて、自分で切り替える。</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-scene">ふだんの平日</div>
+                <div class="timeline-setting">
+                    <span class="timeline-badge">通知エリアだけ</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-scene">部活の遠征の日</div>
+                <div class="timeline-setting">
+                    <span class="timeline-badge">いまの場所も共有</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-scene">友だちと出かける休日</div>
+                <div class="timeline-setting">
+                    <span class="timeline-badge">共有しない</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-note">
+            設定を変えたことは親にも届く。こっそり切る仕組みではない。<br>
+            隠すためのアプリではなく、話し合って使うアプリだから。
+        </div>
+    </div>
+</section>
+
+<!-- ─── Section 7: Closing (dark) ─── -->
+<section class="closing">
+    <div class="container-narrow">
+        <div class="section-label">— TRUST —</div>
+        <h2 class="section-heading">このアプリは、<br>お互いの信頼の上で使うもの。</h2>
+        <p class="closing-text">
+            わからないことや、もやっとしたことがあったら<br>
+            親に聞いてみてほしい。話し合いのヒントを置いておく。
+        </p>
+
+        <div class="closing-hints">
+            <div class="closing-hint">「これってどう動いてるの？」</div>
+            <div class="closing-hint">「この設定、変えたいんだけど」</div>
+            <div class="closing-hint">「やっぱり使いたくないかも」</div>
+        </div>
+
+        <p class="closing-footer">ぜんぶ、ふつうに話していい話題。</p>
+    </div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <img src="/images/app_icon.png" alt="">
+            <span class="footer-brand-name">Kinia</span>
+            <span class="footer-brand-ruby">キニア</span>
+        </div>
+        <div class="footer-links">
+            <a href="/setup.html">はじめかたガイド</a>
+            <a href="/faq.html">よくある質問</a>
+            <a href="/status.html">開発状況</a>
+            <a href="/safety.html">災害時の安否確認</a>
+            <a href="/data-safety.html">データの安全性</a>
+            <a href="/privacy.html">プライバシーポリシー</a>
+            <a href="/delete-account.html">アカウント削除</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
+    </div>
+</footer>
+
+<script>
+// Dropdown control
+document.addEventListener('click', function(e) {
+    document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
+        if (!d.contains(e.target)) d.classList.remove('open');
+    });
+});
+
+// Sharing level tabs
+document.querySelectorAll('.sharing-tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+        var idx = this.getAttribute('data-tab');
+        document.querySelectorAll('.sharing-tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.sharing-panel').forEach(function(p) { p.classList.remove('active'); });
+        this.classList.add('active');
+        document.querySelector('.sharing-panel[data-panel="' + idx + '"]').classList.add('active');
+    });
+});
+</script>
+</body>
+</html>
