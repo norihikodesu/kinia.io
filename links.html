@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XCT32M2MZV');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinia リンク集</title>
+    <meta name="description" content="Kinia（キニア）の公式リンク集。アプリのダウンロード、note記事、公式サイトへのリンクをまとめています。">
+    <meta property="og:title" content="Kinia — 家族をそっと見守る位置共有アプリ">
+    <meta property="og:description" content="公式リンク集。ダウンロード・note記事・公式サイトはこちらから。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kinia.io/links">
+    <meta property="og:image" content="https://kinia.io/images/app_icon.png">
+    <link rel="icon" href="/images/app_icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fbf6ef;
+            --bg-alt: #f4e8d8;
+            --card: #ffffff;
+            --ink: #2a2218;
+            --sub: rgba(42,34,24,0.62);
+            --mute: rgba(42,34,24,0.4);
+            --accent: #d97a5a;
+            --accent2: #b85a3e;
+            --sage: #a3b89a;
+            --navy: #2c3a5e;
+            --line: rgba(42,34,24,0.08);
+            --font-head: 'Shippori Mincho', 'Noto Serif JP', serif;
+            --font-body: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+            --font-mono: 'DM Mono', monospace;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.85;
+            overflow-x: hidden;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        a { color: var(--accent2); text-decoration: none; }
+
+        .links-page {
+            width: 100%;
+            max-width: 480px;
+            padding: 48px 24px 64px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .links-icon {
+            width: 88px;
+            height: 88px;
+            border-radius: 22px;
+            box-shadow: 0 8px 24px -8px rgba(42,34,24,0.15);
+            margin-bottom: 16px;
+        }
+
+        .links-name {
+            font-family: var(--font-head);
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 4px;
+        }
+
+        .links-ruby {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--mute);
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .links-bio {
+            font-size: 14.5px;
+            color: var(--sub);
+            text-align: center;
+            line-height: 1.8;
+            margin-bottom: 36px;
+        }
+
+        .links-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 22px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--ink);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -6px rgba(42,34,24,0.1);
+            text-decoration: none;
+        }
+
+        .link-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .link-card-icon svg { width: 20px; height: 20px; }
+
+        .link-card-icon.store { background: rgba(44,58,94,0.1); }
+        .link-card-icon.store svg { stroke: var(--navy); }
+        .link-card-icon.site { background: rgba(217,122,90,0.13); }
+        .link-card-icon.site svg { stroke: var(--accent2); }
+        .link-card-icon.note { background: rgba(163,184,154,0.2); }
+        .link-card-icon.note svg { stroke: #5a7a50; }
+        .link-card-icon.instagram { background: rgba(193,53,132,0.1); }
+        .link-card-icon.instagram svg { stroke: #c13584; }
+
+        .link-card-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .link-card-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .link-card-desc {
+            font-size: 12.5px;
+            color: var(--mute);
+        }
+
+        .link-card-arrow {
+            margin-left: auto;
+            flex-shrink: 0;
+            color: var(--mute);
+        }
+
+        .link-card.primary {
+            background: var(--navy);
+            border-color: var(--navy);
+            box-shadow: 0 8px 20px -6px rgba(44,58,94,0.4);
+        }
+        .link-card.primary:hover {
+            background: #1e2c4a;
+            box-shadow: 0 10px 28px -6px rgba(44,58,94,0.5);
+        }
+        .link-card.primary .link-card-title { color: #fff; }
+        .link-card.primary .link-card-desc { color: rgba(255,255,255,0.65); }
+        .link-card.primary .link-card-icon { background: rgba(255,255,255,0.15); }
+        .link-card.primary .link-card-icon svg { stroke: #fff; }
+        .link-card.primary .link-card-arrow { color: rgba(255,255,255,0.5); }
+
+        .link-card.disabled {
+            opacity: 0.55;
+            pointer-events: none;
+        }
+
+        .links-section-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin: 28px 0 8px;
+            align-self: flex-start;
+        }
+
+        .links-share {
+            margin-top: 36px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--mute);
+            cursor: pointer;
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--card);
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .links-share:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .links-footer {
+            margin-top: 48px;
+            font-size: 12px;
+            color: var(--mute);
+        }
+
+        .share-toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--navy);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 13px;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+            z-index: 100;
+        }
+        .share-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .links-qr {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .links-qr img {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+        }
+        .links-qr span {
+            font-size: 11px;
+            color: var(--mute);
+            font-family: var(--font-mono);
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="links-page">
+    <img src="/images/app_icon.png" alt="Kinia" class="links-icon">
+    <div class="links-name">Kinia</div>
+    <div class="links-ruby">KINIA</div>
+    <div class="links-bio">
+        家族の「気になる」をそっと届けるアプリ。<br>
+        監視しない。気にかけるだけ。
+    </div>
+
+    <div class="links-section-label">— DOWNLOAD —</div>
+    <div class="links-list">
+        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="link-card primary" target="_blank" rel="noopener">
+            <div class="link-card-icon store">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div class="link-card-text">
+                <div class="link-card-title">Google Play で入手</div>
+                <div class="link-card-desc">Android 無料配信中</div>
+            </div>
+            <svg class="link-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a href="#" class="link-card disabled">
+            <div class="link-card-icon store">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div class="link-card-text">
+                <div class="link-card-title">App Store（近日公開）</div>
+                <div class="link-card-desc">iOS版は準備中です</div>
+            </div>
+            <svg class="link-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+    </div>
+
+    <div class="links-section-label">— ABOUT —</div>
+    <div class="links-list">
+        <a href="https://kinia.io" class="link-card" target="_blank" rel="noopener">
+            <div class="link-card-icon site">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div class="link-card-text">
+                <div class="link-card-title">公式サイト</div>
+                <div class="link-card-desc">kinia.io</div>
+            </div>
+            <svg class="link-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a href="https://kinia.io/setup.html" class="link-card" target="_blank" rel="noopener">
+            <div class="link-card-icon site">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div class="link-card-text">
+                <div class="link-card-title">はじめかたガイド</div>
+                <div class="link-card-desc">初期設定をかんたんに</div>
+            </div>
+            <svg class="link-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a href="https://kinia.io/faq.html" class="link-card" target="_blank" rel="noopener">
+            <div class="link-card-icon site">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div class="link-card-text">
+                <div class="link-card-title">よくある質問</div>
+                <div class="link-card-desc">FAQ</div>
+            </div>
+            <svg class="link-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+    </div>
+
+    <div class="links-section-label">— STORIES —</div>
+    <div class="links-list">
+        <a href="https://note.com/kinia" class="link-card" target="_blank" rel="noopener">
+            <div class="link-card-icon note">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <div class="link-card-text">
+                <div class="link-card-title">note</div>
+                <div class="link-card-desc">開発の裏側や想いを綴っています</div>
+            </div>
+            <svg class="link-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a href="https://www.instagram.com/kinia_app" class="link-card" target="_blank" rel="noopener">
+            <div class="link-card-icon instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <div class="link-card-text">
+                <div class="link-card-title">Instagram</div>
+                <div class="link-card-desc">@kinia_app</div>
+            </div>
+            <svg class="link-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+    </div>
+
+    <button class="links-share" onclick="shareKinia()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><polyline points="16 6 12 2 8 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="2" x2="12" y2="15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        このページを共有する
+    </button>
+
+    <div class="links-qr">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://kinia.io/links&color=2a2218&bgcolor=fbf6ef" alt="QR Code" loading="lazy">
+        <span>SCAN TO OPEN</span>
+    </div>
+
+    <div class="links-footer">&copy; 2026 Kinia</div>
+</div>
+
+<div class="share-toast" id="shareToast">リンクをコピーしました</div>
+
+<script>
+function shareKinia() {
+    var data = {
+        title: 'Kinia（キニア）',
+        text: '家族をそっと見守る位置共有アプリ',
+        url: 'https://kinia.io/links'
+    };
+    if (navigator.share) {
+        navigator.share(data);
+    } else {
+        navigator.clipboard.writeText(data.url).then(function() {
+            var toast = document.getElementById('shareToast');
+            toast.classList.add('show');
+            setTimeout(function() { toast.classList.remove('show'); }, 2000);
+        });
+    }
+}
+</script>
+
+</body>
+</html>
