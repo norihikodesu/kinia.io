@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XCT32M2MZV');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>比較してみる — Kinia</title>
+    <meta name="description" content="海外の定番アプリとKiniaの違い。料金・プライバシー・位置共有の仕組み・開発体制を比較します。">
+    <meta property="og:title" content="あなたに合うのは、どちら？ — Kinia">
+    <meta property="og:description" content="家族の位置共有アプリ、4つの観点で比較してみました。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kinia.io/compare">
+    <meta property="og:image" content="https://kinia.io/images/app_icon.png">
+    <link rel="icon" href="/images/app_icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fbf6ef;
+            --bg-alt: #f4e8d8;
+            --card: #ffffff;
+            --ink: #2a2218;
+            --sub: rgba(42,34,24,0.62);
+            --mute: rgba(42,34,24,0.4);
+            --accent: #d97a5a;
+            --accent2: #b85a3e;
+            --sage: #a3b89a;
+            --navy: #2c3a5e;
+            --line: rgba(42,34,24,0.08);
+            --font-head: 'Shippori Mincho', 'Noto Serif JP', serif;
+            --font-body: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+            --font-mono: 'DM Mono', monospace;
+            --mark-ok: #7a9170;
+            --mark-warn: #c9967a;
+            --mark-bad: #b9655a;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.85;
+            overflow-x: hidden;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--accent2); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+
+        /* Nav */
+        .nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(251,246,239,0.92);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+            padding: 16px 56px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+        .nav-brand img { width: 36px; height: 36px; border-radius: 8px; }
+        .nav-brand-name { font-family: var(--font-head); font-size: 20px; font-weight: 600; }
+        .nav-brand-ruby { font-family: var(--font-mono); font-size: 10px; color: var(--mute); letter-spacing: 1.5px; }
+        .nav-links { display: flex; align-items: center; gap: 28px; font-size: 13.5px; color: var(--sub); }
+        .nav-links a { color: inherit; text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent); text-decoration: none; }
+        .nav-cta {
+            background: var(--accent); color: #fff; border: none;
+            padding: 10px 20px; border-radius: 999px; font-size: 13.5px;
+            font-weight: 600; cursor: pointer; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+            box-shadow: 0 6px 16px -6px rgba(217,122,90,0.5);
+            transition: background 0.2s, transform 0.1s;
+        }
+        .nav-cta:hover { background: var(--accent2); text-decoration: none; transform: translateY(-1px); }
+        .hamburger { display: none; background: none; border: none; color: var(--ink); font-size: 1.5rem; cursor: pointer; padding: 10px; min-width: 44px; min-height: 44px; }
+        @media (max-width: 768px) {
+            .nav { padding: 14px 20px; }
+            .nav-links {
+                display: none; flex-direction: column; position: absolute;
+                top: 100%; left: 0; right: 0; background: rgba(251,246,239,0.98);
+                padding: 20px 24px; gap: 16px; border-bottom: 1px solid var(--line);
+                align-items: flex-start;
+            }
+            .nav-links.open { display: flex; }
+            .hamburger { display: block; }
+        }
+
+        /* Hero */
+        .compare-hero {
+            padding: 80px 56px 48px;
+            text-align: center;
+        }
+        .compare-hero .section-label {
+            font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px;
+            color: var(--accent); margin-bottom: 14px;
+        }
+        .compare-hero h1 {
+            font-family: var(--font-head); font-size: clamp(28px, 4.5vw, 44px);
+            font-weight: 500; line-height: 1.35; color: var(--ink); margin-bottom: 16px;
+        }
+        .compare-hero h1 .accent { color: var(--accent); }
+        .compare-hero .lede {
+            font-size: 16px; color: var(--sub); max-width: 560px; margin: 0 auto; line-height: 1.9;
+        }
+
+        /* Table */
+        .compare-section {
+            max-width: 980px; margin: 0 auto; padding: 0 56px 80px;
+        }
+        .compare-header {
+            display: grid; grid-template-columns: 140px 1fr 1fr; gap: 0;
+            border-bottom: 2px solid var(--ink); padding-bottom: 16px; margin-bottom: 0;
+            align-items: end;
+        }
+        .compare-header .col-label {
+            font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; color: var(--mute);
+        }
+        .compare-header .col-name {
+            text-align: center; padding: 0 12px;
+        }
+        .compare-header .col-name .tag {
+            font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; color: var(--mute); margin-bottom: 4px;
+        }
+        .compare-header .col-name.b .tag { color: var(--accent); }
+        .compare-header .col-name .nm {
+            font-family: var(--font-head); font-size: 22px; font-weight: 500; color: var(--ink);
+        }
+        .compare-header .col-name .meta {
+            font-size: 11px; color: var(--sub); margin-top: 2px;
+        }
+
+        .compare-row {
+            display: grid; grid-template-columns: 140px 1fr 1fr; gap: 0;
+            border-bottom: 1px solid var(--line); min-height: 160px; align-items: stretch;
+        }
+        .compare-row:last-of-type { border-bottom: none; }
+
+        .row-topic {
+            padding: 24px 12px 24px 0; border-right: 1px solid var(--line);
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .row-topic .num {
+            font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 1px; margin-bottom: 4px;
+        }
+        .row-topic .tname {
+            font-family: var(--font-head); font-size: 18px; font-weight: 500; color: var(--ink); line-height: 1.4;
+        }
+
+        .row-cell {
+            padding: 24px 20px; display: flex; align-items: center; gap: 16px;
+            border-right: 1px solid var(--line); position: relative;
+        }
+        .row-cell:last-child { border-right: none; }
+        .row-cell.highlight { background: rgba(217,122,90,0.03); }
+
+        .mark-icon { flex-shrink: 0; width: 48px; height: 48px; }
+        .mark-icon svg { width: 48px; height: 48px; }
+
+        .cell-content { flex: 1; }
+        .cell-content .summary {
+            font-family: var(--font-head); font-size: 15px; font-weight: 500;
+            color: var(--ink); line-height: 1.5; margin-bottom: 4px;
+        }
+        .cell-content .detail {
+            font-size: 12.5px; color: var(--sub); line-height: 1.7;
+        }
+
+        .cell-status {
+            position: absolute; top: 10px; right: 14px;
+            font-family: var(--font-mono); font-size: 9px; letter-spacing: 2px;
+        }
+        .cell-status.ok { color: var(--mark-ok); }
+        .cell-status.warn { color: var(--mark-warn); }
+        .cell-status.bad { color: var(--mark-bad); }
+
+        /* Legend + Quote */
+        .compare-footer-card {
+            max-width: 980px; margin: 0 auto 48px; padding: 0 56px;
+        }
+        .quote-block {
+            padding: 28px 32px; background: var(--bg-alt); border-radius: 12px;
+            border-left: 3px solid var(--sage);
+            display: flex; align-items: center; justify-content: space-between; gap: 24px;
+            flex-wrap: wrap;
+        }
+        .quote-block .q {
+            font-family: var(--font-head); font-size: 18px; font-weight: 500;
+            color: var(--ink); line-height: 1.6;
+        }
+        .legend {
+            display: flex; gap: 16px; font-family: var(--font-mono); font-size: 10px; color: var(--sub); letter-spacing: 1px;
+        }
+        .legend .item { display: flex; align-items: center; gap: 6px; }
+        .legend .item svg { width: 18px; height: 18px; }
+
+        /* CTA */
+        .compare-cta {
+            text-align: center; padding: 0 56px 80px;
+        }
+        .btn-primary {
+            background: var(--navy); color: #fff; border: none;
+            padding: 15px 26px; border-radius: 999px; font-size: 14.5px;
+            font-weight: 600; cursor: pointer; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 10px;
+            box-shadow: 0 10px 24px -8px rgba(44,58,94,0.6);
+            transition: background 0.2s, transform 0.1s;
+        }
+        .btn-primary:hover { background: #1e2c4a; text-decoration: none; transform: translateY(-1px); }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-alt); padding: 48px 56px; border-top: 1px solid var(--line);
+        }
+        .footer-inner { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .footer-brand { display: flex; align-items: center; gap: 10px; }
+        .footer-brand img { width: 28px; height: 28px; border-radius: 6px; }
+        .footer-brand-name { font-family: var(--font-head); font-size: 16px; font-weight: 600; }
+        .footer-brand-ruby { font-family: var(--font-mono); font-size: 9px; color: var(--mute); letter-spacing: 1.5px; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: center; font-size: 12.5px; }
+        .footer-links a { color: var(--sub); }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copy { font-size: 11px; color: var(--mute); }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .compare-hero { padding: 56px 20px 32px; }
+            .compare-section { padding: 0 20px 48px; }
+            .compare-header { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .compare-header .col-label { display: none; }
+            .compare-row {
+                grid-template-columns: 1fr; gap: 0;
+                min-height: auto; padding: 20px 0;
+            }
+            .row-topic {
+                border-right: none; border-bottom: 1px solid var(--line);
+                padding: 0 0 12px; flex-direction: row; align-items: center; gap: 10px;
+            }
+            .row-cell { border-right: none; padding: 16px 0; }
+            .row-cell.highlight { background: transparent; border-left: 3px solid var(--accent); padding-left: 16px; border-radius: 4px; }
+            .compare-footer-card { padding: 0 20px; }
+            .quote-block { flex-direction: column; align-items: flex-start; }
+            .compare-cta { padding: 0 20px 48px; }
+            .footer { padding: 36px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="/" class="nav-brand">
+        <img src="/images/app_icon.png" alt="">
+        <span class="nav-brand-name">Kinia</span>
+        <span class="nav-brand-ruby">キニア</span>
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">☰</button>
+    <div class="nav-links">
+        <a href="/">トップ</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/for-kids.html">中高生の方へ</a>
+        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">
+            ダウンロード
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+    </div>
+</nav>
+
+<section class="compare-hero">
+    <div class="section-label">— COMPARE —</div>
+    <h1>あなたに合うのは、<span class="accent">どちら</span>？</h1>
+    <p class="lede">家族の位置を共有するアプリは、いくつもあります。<br>それぞれの考え方を、4つの観点で並べてみました。</p>
+</section>
+
+<section class="compare-section">
+    <div class="compare-header">
+        <div class="col-label">COMPARISON</div>
+        <div class="col-name a">
+            <div class="tag">OPTION A</div>
+            <div class="nm">海外の定番アプリ</div>
+            <div class="meta">米国・大手企業</div>
+        </div>
+        <div class="col-name b">
+            <div class="tag">OPTION B</div>
+            <div class="nm">Kinia</div>
+            <div class="meta">日本・個人開発</div>
+        </div>
+    </div>
+
+    <!-- 01 料金 -->
+    <div class="compare-row">
+        <div class="row-topic">
+            <div class="num">01</div>
+            <div class="tname">料金</div>
+        </div>
+        <div class="row-cell">
+            <span class="cell-status warn">LIMITED</span>
+            <div class="mark-icon">
+                <svg viewBox="0 0 48 48"><path d="M24 8 L42 38 L6 38 Z" fill="none" stroke="#c9967a" stroke-width="2.5" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="cell-content">
+                <div class="summary">無料プランあり、ただし制限つき</div>
+                <div class="detail">履歴は2日まで・通知エリアは2箇所まで。それ以上は有料。</div>
+            </div>
+        </div>
+        <div class="row-cell highlight">
+            <span class="cell-status ok">FREE</span>
+            <div class="mark-icon">
+                <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="none" stroke="#7a9170" stroke-width="2.5"/></svg>
+            </div>
+            <div class="cell-content">
+                <div class="summary">基本機能は、すべて無料</div>
+                <div class="detail">広告も、子供のうっかり課金導線もなし。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 02 プライバシー -->
+    <div class="compare-row">
+        <div class="row-topic">
+            <div class="num">02</div>
+            <div class="tname">プライバシー</div>
+        </div>
+        <div class="row-cell">
+            <span class="cell-status bad">CONCERN</span>
+            <div class="mark-icon">
+                <svg viewBox="0 0 48 48"><path d="M14 14 L34 34 M34 14 L14 34" fill="none" stroke="#b9655a" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="cell-content">
+                <div class="summary">過去にデータ販売の議論あり</div>
+                <div class="detail">現在は方針改定とされていますが、不安の声は残ります。</div>
+            </div>
+        </div>
+        <div class="row-cell highlight">
+            <span class="cell-status ok">ENCRYPTED</span>
+            <div class="mark-icon">
+                <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="none" stroke="#7a9170" stroke-width="2.5"/></svg>
+            </div>
+            <div class="cell-content">
+                <div class="summary">座標は暗号化、運営者にも見えない</div>
+                <div class="detail">見られない設計。売ることも、渡すこともできません。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 03 位置の共有 -->
+    <div class="compare-row">
+        <div class="row-topic">
+            <div class="num">03</div>
+            <div class="tname">位置の共有</div>
+        </div>
+        <div class="row-cell">
+            <span class="cell-status warn">ALWAYS-ON</span>
+            <div class="mark-icon">
+                <svg viewBox="0 0 48 48"><path d="M24 8 L42 38 L6 38 Z" fill="none" stroke="#c9967a" stroke-width="2.5" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="cell-content">
+                <div class="summary">常時追跡のみ、選べない</div>
+                <div class="detail">家族には安心、本人には少し気になる。そんな声も。</div>
+            </div>
+        </div>
+        <div class="row-cell highlight">
+            <span class="cell-status ok">2 MODES</span>
+            <div class="mark-icon">
+                <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="none" stroke="#7a9170" stroke-width="2.5"/></svg>
+            </div>
+            <div class="cell-content">
+                <div class="summary">2段階で選べる共有モード</div>
+                <div class="detail">「通知エリアだけ」か「すべて共有」か。距離感を自分で。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 04 つくり手 -->
+    <div class="compare-row">
+        <div class="row-topic">
+            <div class="num">04</div>
+            <div class="tname">つくり手</div>
+        </div>
+        <div class="row-cell">
+            <span class="cell-status warn">US CORP</span>
+            <div class="mark-icon">
+                <svg viewBox="0 0 48 48"><path d="M24 8 L42 38 L6 38 Z" fill="none" stroke="#c9967a" stroke-width="2.5" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="cell-content">
+                <div class="summary">米国の大企業、規模は大きい</div>
+                <div class="detail">サポートは手厚いが、声は届きにくい距離。</div>
+            </div>
+        </div>
+        <div class="row-cell highlight">
+            <span class="cell-status ok">JP INDIE</span>
+            <div class="mark-icon">
+                <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="none" stroke="#7a9170" stroke-width="2.5"/></svg>
+            </div>
+            <div class="cell-content">
+                <div class="summary">日本の個人開発、声が直接届く</div>
+                <div class="detail">小さなチームだからこそ、ていねいに。要望は開発者まで直接。</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="compare-footer-card">
+    <div class="quote-block">
+        <div class="q">"安心"のかたちは、<br>家族の数だけある。</div>
+        <div class="legend">
+            <div class="item"><svg viewBox="0 0 18 18"><circle cx="9" cy="9" r="7" fill="none" stroke="#7a9170" stroke-width="1.5"/></svg>適合</div>
+            <div class="item"><svg viewBox="0 0 18 18"><path d="M9 3 L16 14 L2 14 Z" fill="none" stroke="#c9967a" stroke-width="1.5" stroke-linejoin="round"/></svg>条件付</div>
+            <div class="item"><svg viewBox="0 0 18 18"><path d="M5 5 L13 13 M13 5 L5 13" fill="none" stroke="#b9655a" stroke-width="1.5" stroke-linecap="round"/></svg>注意</div>
+        </div>
+    </div>
+</section>
+
+<section class="compare-cta">
+    <a href="https://play.google.com/store/apps/details?id=io.kinia" class="btn-primary">
+        Google Play で入手
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+</section>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <img src="/images/app_icon.png" alt="">
+            <span class="footer-brand-name">Kinia</span>
+            <span class="footer-brand-ruby">キニア</span>
+        </div>
+        <div class="footer-links">
+            <a href="/setup.html">はじめかたガイド</a>
+            <a href="/faq.html">よくある質問</a>
+            <a href="/status.html">開発状況</a>
+            <a href="/for-kids.html">中高生の方へ</a>
+            <a href="/data-safety.html">データの安全性</a>
+            <a href="/privacy.html">プライバシーポリシー</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('click', function(e) {
+    document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
+        if (!d.contains(e.target)) d.classList.remove('open');
+    });
+});
+</script>
+
+</body>
+</html>
