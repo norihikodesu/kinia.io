@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XCT32M2MZV');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ページが見つかりません — Kinia</title>
+    <link rel="icon" href="/images/app_icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fbf6ef;
+            --bg-alt: #f4e8d8;
+            --ink: #2a2218;
+            --sub: rgba(42,34,24,0.62);
+            --accent: #d97a5a;
+            --accent2: #b85a3e;
+            --sage: #a3b89a;
+            --line: rgba(42,34,24,0.08);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+            background: var(--bg); color: var(--ink);
+            min-height: 100vh; display: flex; flex-direction: column;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent2); }
+        .nav { position: sticky; top: 0; z-index: 100; background: rgba(251,246,239,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+        .hamburger { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--ink); padding: 10px; min-width: 44px; min-height: 44px; }
+        .nav-links { display: flex; align-items: center; gap: 20px; font-size: 0.85rem; }
+        .nav-links a { color: var(--sub); text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent); text-decoration: none; }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-toggle { background: none; border: none; color: var(--sub); font-size: 0.85rem; cursor: pointer; padding: 0; font-family: inherit; transition: color 0.2s; }
+        .nav-dropdown-toggle:hover { color: var(--accent); }
+        .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 10px); right: 0; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 8px 0; min-width: 240px; box-shadow: 0 8px 32px rgba(42,34,24,0.12); z-index: 200; }
+        .nav-dropdown.open .nav-dropdown-menu { display: block; }
+        .nav-dropdown-menu a { display: block; padding: 10px 20px; color: var(--sub); font-size: 0.9rem; transition: background 0.15s, color 0.15s; white-space: nowrap; }
+        .nav-dropdown-menu a:hover { background: var(--bg-alt); color: var(--ink); }
+        .nav-dd-primary { font-weight: 600; color: var(--accent) !important; }
+        .nav-cta { background: var(--accent); color: #fff !important; padding: 8px 16px; border-radius: 999px; font-weight: 600; display: flex; align-items: center; gap: 4px; text-decoration: none !important; transition: background 0.2s; font-size: 0.85rem; }
+        .nav-cta:hover { background: var(--accent2) !important; }
+        main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 60px 24px; text-align: center; }
+        .error-code { font-family: 'DM Mono', monospace; font-size: clamp(80px, 15vw, 140px); font-weight: 500; color: var(--accent); opacity: 0.25; line-height: 1; }
+        .error-message { font-family: 'Shippori Mincho', serif; font-size: clamp(20px, 3vw, 28px); font-weight: 500; margin: 16px 0 12px; color: var(--ink); }
+        .error-sub { color: var(--sub); font-size: 0.95rem; margin-bottom: 32px; }
+        .error-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+        .error-links a { padding: 10px 24px; border-radius: 999px; font-size: 0.9rem; font-weight: 600; transition: all 0.2s; }
+        .btn-fill { background: var(--accent); color: #fff !important; }
+        .btn-fill:hover { background: var(--accent2); }
+        .btn-outline { border: 1.5px solid var(--line); color: var(--sub) !important; }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent) !important; }
+        .footer { border-top: 1px solid var(--line); padding: 24px; text-align: center; font-size: 0.8rem; color: var(--sub); }
+        .footer a { color: var(--sub); margin: 0 8px; }
+        .footer a:hover { color: var(--accent); }
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(251,246,239,0.98); border-bottom: 1px solid var(--line); flex-direction: column; padding: 16px 24px; gap: 12px; }
+            .nav-links.open { display: flex; }
+        }
+    </style>
+</head>
+<body>
+<nav class="nav">
+    <a href="/" class="nav-brand">
+        <img src="/images/app_icon.png" alt="" width="28" height="28" style="border-radius:6px">
+        <span style="font-family:'Shippori Mincho',serif;font-size:1.15rem;color:var(--accent);font-weight:600">Kinia</span>
+        <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--sub)">キニア</span>
+    </a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">&#9776;</button>
+    <div class="nav-links">
+        <a href="/#features">特徴</a>
+        <a href="/#how">使い方</a>
+        <a href="/#security">安心の設計</a>
+        <a href="/faq.html">FAQ</a>
+        <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">ガイド ▾</button>
+            <div class="nav-dropdown-menu">
+                <a href="/setup.html" class="nav-dd-primary">はじめかたガイド</a>
+                <a href="/guide-family-basic.html">3人家族セットアップ</a>
+                <a href="/guide-join.html">招待された方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
+                <a href="/senior.html">高齢のご家族がいる方へ</a>
+                <a href="/parents.html">お子さんを持つご家庭の方へ</a>
+                <a href="/students.html">学生の方へ</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
+                <a href="/guide-sharing-all.html">画面の見方（すべて共有）</a>
+                <a href="/guide-sharing-area.html">画面の見方（通知エリアのみ）</a>
+                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
+                <a href="/compare.html">比較してみる</a>
+                <a href="/for-kids.html">中高生の方へ</a>
+            </div>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">
+            ダウンロード
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+    </div>
+</nav>
+<main>
+    <div>
+        <div class="error-code">404</div>
+        <h1 class="error-message">ページが見つかりませんでした</h1>
+        <p class="error-sub">お探しのページは移動または削除された可能性があります。</p>
+        <div class="error-links">
+            <a href="/" class="btn-fill">トップページへ</a>
+            <a href="/faq.html" class="btn-outline">FAQ</a>
+            <a href="/setup.html" class="btn-outline">はじめかたガイド</a>
+        </div>
+    </div>
+</main>
+<footer class="footer">
+    <div>
+        <a href="/">トップ</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/setup.html">はじめかたガイド</a>
+        <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+    <div style="margin-top:8px">&copy; 2025 Kinia</div>
+</footer>
+<script>
+document.addEventListener('click', function(e) {
+    document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
+        if (!d.contains(e.target)) d.classList.remove('open');
+    });
+});
+</script>
+</body>
+</html>
