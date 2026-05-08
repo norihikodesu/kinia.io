@@ -178,40 +178,7 @@
 </head>
 <body>
 
-<nav class="nav">
-    <a href="/" class="nav-brand">
-        <img src="/images/app_icon.png" alt="">
-        <span class="nav-brand-name">Kinia</span>
-        <span class="nav-brand-ruby">キニア</span>
-    </a>
-    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="メニュー">☰</button>
-    <div class="nav-links">
-        <a href="/#features">特徴</a>
-        <a href="/faq.html">FAQ</a>
-        <div class="nav-dropdown">
-            <button class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">ガイド ▾</button>
-            <div class="nav-dropdown-menu">
-                <a href="/setup.html" class="nav-dd-primary">はじめかたガイド</a>
-                <a href="/guide-family-basic.html">3人家族セットアップ</a>
-                <a href="/guide-join.html">招待された方へ</a>
-                <div style="border-top:1px solid var(--line);margin:4px 0;"></div>
-                <a href="/senior.html">高齢のご家族がいる方へ</a>
-                <a href="/parents.html">お子さんを持つご家庭の方へ</a>
-                <a href="/students.html">学生の方へ</a>
-                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
-                <a href="/guide-sharing-all.html">画面の見方（すべて共有）</a>
-                <a href="/guide-sharing-area.html">画面の見方（通知エリアのみ）</a>
-                <div style="border-top:1px solid var(--line);margin:4px 0"></div>
-                <a href="/compare.html">比較してみる</a>
-                <a href="/for-kids.html">中高生の方へ</a>
-            </div>
-        </div>
-        <a href="https://play.google.com/store/apps/details?id=io.kinia" class="nav-cta">
-            ダウンロード
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-    </div>
-</nav>
+<script src="/nav.js"></script>
 
 <main class="content">
     <h1>よくある質問</h1>
@@ -395,6 +362,7 @@
                 ・<strong>運営も見られない暗号化</strong> — 技術的に運営がデータを閲覧できない設計です<br>
                 ・<strong>完全無料・広告なし</strong> — データ収集や広告収益を目的としていません</p>
                 <p>「もっと緩くつながりたい」「監視感のない見守りをしたい」という方に向いています。</p>
+                <p>プライバシー設計の詳細は<a href="/data-safety.html">データの安全性</a>、他アプリとの具体的な比較は<a href="/compare.html">比較ページ</a>もご覧ください。</p>
             </div>
         </div>
 
@@ -613,6 +581,7 @@
                 <p>グループ作成時の情報をもとに座標をずらして保存する仕組みで、
                    万が一サーバーのデータが漏洩しても、家族の正確な居場所は復元できません。
                    開発者ですらデータから個人の居場所を特定することはできない設計です。</p>
+                <p>暗号化の詳しい仕組みは<a href="/data-safety.html">データの安全性</a>をご覧ください。</p>
             </div>
         </div>
 
@@ -638,6 +607,7 @@
                 <p>この合言葉はサーバーに送信されず、お使いのスマートフォンにだけ保存されています。つまり、暗号を解くための鍵を持っているのは家族だけです。</p>
                 <p>サーバー上のデータベースを直接見ても、保存されているのは暗号化された座標とランダムなIDだけ。開発者・運営を含め、誰が誰か、どこにいるかを特定することは技術的に不可能です。</p>
                 <p>これは単なるポリシーではなく、技術的な設計として「見ることができない」仕組みにしています。</p>
+                <p>暗号化や匿名化の技術的な詳細は<a href="/data-safety.html">データの安全性</a>で解説しています。</p>
             </div>
         </div>
 
@@ -660,6 +630,7 @@
             <div class="faq-a">
                 <p>一切ありません。<ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>は広告を表示せず、位置データや個人情報を第三者に提供・販売することはありません。</p>
                 <p>そもそもサーバー上には個人を特定できる情報（本名・メールアドレス等）を保存していないため、仮にデータが漏洩しても「誰の情報か」を特定することはできません。</p>
+                <p>データの扱いについて詳しくは<a href="/data-safety.html">データの安全性</a>をご覧ください。</p>
             </div>
         </div>
     </div>
