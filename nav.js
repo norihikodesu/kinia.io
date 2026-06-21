@@ -7,7 +7,7 @@ border-bottom:1px solid var(--n-line);padding:14px 24px;display:flex;align-items
 font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif}\
 nav.nav .nav-brand{display:flex;align-items:center;gap:8px;text-decoration:none}\
 nav.nav .nav-brand-name{font-family:"Shippori Mincho",serif;font-size:1.15rem;color:var(--n-accent);font-weight:600}\
-nav.nav .nav-brand-ruby{font-family:"DM Mono",monospace;font-size:0.7rem;color:var(--n-sub)}\
+nav.nav .nav-brand-ruby{font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;font-size:0.72rem;color:var(--n-sub);letter-spacing:0}\
 nav.nav .hamburger{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--n-ink);padding:10px;min-width:44px;min-height:44px}\
 nav.nav .nav-links{display:flex;align-items:center;gap:20px;font-size:0.85rem}\
 nav.nav .nav-links>a{color:var(--n-sub);text-decoration:none;transition:color .2s}\
@@ -26,8 +26,11 @@ nav.nav .nav-cta{background:var(--n-accent);color:#fff!important;padding:8px 16p
 nav.nav .nav-cta:hover{background:var(--n-accent2)!important}\
 @media(max-width:768px){\
 nav.nav .hamburger{display:block}\
-nav.nav .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(251,246,239,0.98);border-bottom:1px solid var(--n-line);flex-direction:column;padding:16px 24px;gap:12px}\
+nav.nav .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#fbf6ef;border-bottom:1px solid var(--n-line);flex-direction:column;padding:18px 24px 24px;gap:14px;align-items:center;box-shadow:0 18px 44px rgba(42,34,24,0.10)}\
 nav.nav .nav-links.open{display:flex}\
+nav.nav .nav-dropdown{width:100%;text-align:center}\
+nav.nav .nav-dropdown-toggle{min-height:36px}\
+nav.nav .nav-cta{margin-top:4px}\
 }';
 
 var html='\

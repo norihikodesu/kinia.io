@@ -23,7 +23,7 @@
     <meta name="twitter:description" content="学校・学童・塾・自宅への出入りだけを通知。仕事中でも、子どもに何度も聞かなくてすみます。">
     <meta name="twitter:image" content="https://kinia.io/images/app_icon.png">
 
-    <link rel="icon" href="/images/app_icon.png" type="image/png">
+    <link rel="icon" href="images/app_icon.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -54,18 +54,31 @@
             font-size: 17px;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: 100%;
+            line-break: strict;
         }
         a { color: var(--accent2); text-decoration: none; }
         a:hover { text-decoration: underline; }
         img { max-width: 100%; height: auto; }
+        h1, h2, h3, .btn-primary, .hero-pill, .trust-row span, .notice-main, .shot-caption {
+            word-break: keep-all;
+            overflow-wrap: normal;
+        }
+        .keep { display: inline-block; white-space: nowrap; }
+        .hero-title-line {
+            display: block;
+            width: fit-content;
+            white-space: nowrap;
+            letter-spacing: 0;
+        }
 
         .section-label {
-            font-family: var(--font-mono);
+            font-family: var(--font-body);
             font-size: 11px;
-            letter-spacing: 2px;
+            letter-spacing: 0.08em;
             color: var(--accent2);
             margin-bottom: 14px;
-            text-transform: uppercase;
+            font-weight: 700;
         }
         .container { max-width: 1160px; margin: 0 auto; }
         .container-mid { max-width: 980px; margin: 0 auto; }
@@ -198,16 +211,16 @@
         }
         .phone-screen {
             width: 100%;
-            height: 620px;
+            aspect-ratio: 9 / 20;
             border-radius: 34px;
             overflow: hidden;
-            background: #fff;
+            background: #111827;
         }
         .phone-screen img {
             display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
         .notice-card {
             position: absolute;
@@ -221,7 +234,7 @@
         }
         .notice-card.school { top: 78px; left: 18px; transform: rotate(-2deg); }
         .notice-card.home { bottom: 96px; right: 0; transform: rotate(2deg); }
-        .notice-label { font-family: var(--font-mono); color: var(--mute); font-size: 11px; letter-spacing: 1px; margin-bottom: 6px; }
+        .notice-label { font-family: var(--font-body); color: var(--mute); font-size: 11px; letter-spacing: 0.06em; margin-bottom: 6px; font-weight: 700; }
         .notice-main { font-weight: 700; color: var(--ink); font-size: 16px; line-height: 1.55; }
         .notice-time { color: var(--mute); font-size: 12px; margin-top: 4px; }
 
@@ -463,7 +476,7 @@
         }
         .footer-brand img { width: 30px; height: 30px; border-radius: 7px; }
         .footer-brand-name { font-family: var(--font-head); font-size: 17px; font-weight: 600; }
-        .footer-brand-ruby { font-family: var(--font-mono); font-size: 10px; color: var(--mute); letter-spacing: 1.5px; }
+        .footer-brand-ruby { font-family: var(--font-body); font-size: 11px; color: var(--mute); letter-spacing: 0; }
         .footer-links { display: flex; gap: 22px; font-size: 12.5px; color: var(--sub); flex-wrap: wrap; }
         .footer-links a { color: inherit; text-decoration: none; }
         .footer-links a:hover { color: var(--accent); }
@@ -497,18 +510,65 @@
                 padding-left: 20px;
                 padding-right: 20px;
             }
-            .hero h1 { font-size: 34px; }
-            .hero-visual { min-height: 520px; }
-            .phone-frame { width: 250px; }
-            .phone-screen { height: 500px; }
-            .notice-card { width: 226px; }
-            .notice-card.school { left: 0; top: 34px; }
-            .notice-card.home { right: 0; bottom: 36px; }
+            .section-label { font-size: 10px; letter-spacing: 1.5px; }
+            .section-heading {
+                font-size: clamp(26px, 7.2vw, 32px);
+                line-height: 1.45;
+                text-wrap: balance;
+            }
+            .body-text { font-size: 15.5px; line-height: 1.9; }
+            .hero { padding-top: 26px; padding-bottom: 52px; }
+            .hero-grid { gap: 22px; }
+            .hero h1 {
+                font-size: clamp(30px, 8.4vw, 36px);
+                line-height: 1.3;
+                margin: 18px 0 18px;
+            }
+            .hero-sub { font-size: 15.4px; line-height: 1.78; margin-bottom: 20px; }
+            .hero-sub br { display: none; }
+            .hero-actions { align-items: stretch; margin-bottom: 18px; }
+            .btn-primary { width: 100%; justify-content: center; text-align: center; }
+            .hero-note { display: block; width: 100%; }
+            .trust-row {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 8px 12px;
+                font-size: 12.5px;
+                line-height: 1.45;
+            }
+            .trust-row span { align-items: flex-start; }
+            .hero-visual {
+                min-height: 0;
+                display: grid;
+                gap: 12px;
+                padding-top: 2px;
+            }
+            .phone-frame { width: min(280px, 78vw); justify-self: center; }
+            .hero-visual .phone-frame { order: 1; }
+            .notice-card.school { order: 2; }
+            .notice-card.home { order: 3; }
+            .notice-card {
+                position: relative;
+                width: 100%;
+                max-width: 300px;
+                justify-self: center;
+                transform: none !important;
+            }
+            .notice-card.school,
+            .notice-card.home {
+                left: auto;
+                right: auto;
+                top: auto;
+                bottom: auto;
+            }
             .screenshot-stack,
             .voice-grid {
                 grid-template-columns: 1fr;
             }
+            .screenshot-stack { max-width: 360px; margin: 0 auto; }
             .shot-card:nth-child(2) { margin-top: 0; }
+            .timeline-row { padding: 18px 20px; }
+            .quote-panel { font-size: 19px; line-height: 1.75; padding: 24px 22px; }
             .safety-card h3 {
                 font-size: 19px;
                 line-height: 1.55;
@@ -521,7 +581,7 @@
 </head>
 <body>
 
-<script src="/nav.js"></script>
+<script src="nav.js"></script>
 
 <section class="hero">
     <div class="hero-glow-r" aria-hidden="true"></div>
@@ -529,11 +589,15 @@
     <div class="container hero-grid">
         <div>
             <span class="hero-pill">小学生の通学・習い事に</span>
-            <h1>「着いた？」と<br>聞く前に、<br><span class="accent-text">通知でわかる。</span></h1>
+            <h1>
+                <span class="hero-title-line">着いたかな？</span>
+                <span class="hero-title-line">聞く前に、</span>
+                <span class="hero-title-line accent-text">通知でわかる。</span>
+            </h1>
             <p class="hero-sub">
                 学校、学童、塾、習い事、自宅。<br>
                 登録した場所に着いたとき、出たときだけ通知が届きます。<br>
-                仕事中でも、子どもに何度も聞かなくてすみます。
+                <span class="keep">仕事中でも、</span>子どもに何度も聞かなくてすみます。
             </p>
             <div class="hero-actions">
                 <a href="https://play.google.com/store/apps/details?id=io.kinia" class="btn-primary">
@@ -557,7 +621,7 @@
             </div>
             <div class="phone-frame">
                 <div class="phone-screen">
-                    <img src="/screenshots/manual/04_geofence_tab.png" alt="通知エリア画面">
+                    <img src="screenshots/manual/04_geofence_tab.png" alt="通知エリア画面">
                 </div>
             </div>
             <div class="notice-card home">
@@ -652,11 +716,11 @@
     <div class="container product-layout">
         <div class="screenshot-stack">
             <div class="shot-card">
-                <img src="/screenshots/manual/04_geofence_tab.png" alt="通知エリア画面">
+                <img src="screenshots/manual/04_geofence_tab.png" alt="通知エリア画面">
                 <div class="shot-caption">自宅・学校・塾などを通知エリアに</div>
             </div>
             <div class="shot-card">
-                <img src="/screenshots/manual/08_notif_settings.png" alt="通知設定画面">
+                <img src="screenshots/manual/08_notif_settings.png" alt="通知設定画面">
                 <div class="shot-caption">メンバーごとに通知を調整</div>
             </div>
         </div>
@@ -697,14 +761,14 @@
 <section class="child-respect">
     <div class="container-narrow">
         <div class="section-label">親子の距離感</div>
-        <h2 class="section-heading">聞きすぎない。<br><span class="accent-text">でも、放っておかない。</span></h2>
+        <h2 class="section-heading">聞きすぎない。<br><span class="accent-text">安心は、ちゃんと残る。</span></h2>
         <p class="body-text">
             「今どこ？」「着いた？」「帰った？」を毎日くり返すと、親も子も少し疲れます。
             通知で分かることは通知に任せる。
             子どもに何度も確認しなくていいから、親の不安も、子どもの小さな負担も減らせます。
         </p>
         <div class="quote-panel">
-            聞かなくても分かることが増えると、<br>
+            必要なことだけ届くから、<br>
             親子のやり取りが少しやわらかくなります。
         </div>
     </div>
@@ -733,7 +797,7 @@
             </div>
         </div>
         <p class="body-text" style="margin-top:28px;">
-            詳しい仕組みは <a href="/data-safety.html">データの安全性</a> と <a href="/faq.html">よくある質問</a> で確認できます。
+            詳しい仕組みは <a href="data-safety.html">データの安全性</a> と <a href="faq.html">よくある質問</a> で確認できます。
         </p>
     </div>
 </section>
@@ -773,17 +837,17 @@
 <footer class="footer">
     <div class="footer-inner">
         <div class="footer-brand">
-            <img src="/images/app_icon.png" alt="">
+            <img src="images/app_icon.png" alt="">
             <span class="footer-brand-name">Kinia</span>
             <span class="footer-brand-ruby">キニア</span>
         </div>
         <div class="footer-links">
-            <a href="/setup.html">はじめかたガイド</a>
-            <a href="/school-child-watch.html">小学生の見守り</a>
-            <a href="/parents.html">お子さんを持つご家庭へ</a>
-            <a href="/data-safety.html">データの安全性</a>
-            <a href="/faq.html">よくある質問</a>
-            <a href="/privacy.html">プライバシーポリシー</a>
+            <a href="setup.html">はじめかたガイド</a>
+            <a href="school-child-watch.html">小学生の見守り</a>
+            <a href="parents.html">お子さんを持つご家庭へ</a>
+            <a href="data-safety.html">データの安全性</a>
+            <a href="faq.html">よくある質問</a>
+            <a href="privacy.html">プライバシーポリシー</a>
         </div>
         <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
     </div>
