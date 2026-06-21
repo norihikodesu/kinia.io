@@ -13,14 +13,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kinia — 気になった時にそっと見守る家族アプリ</title>
     <meta name="description" content="Kiniaは、通知エリアへの出入りだけをそっと知らせる家族見守りアプリ。常時監視ではなく、気になった時だけ確認できる「ゆるいつながり」を提供します。">
-    <meta property="og:title" content="Kinia — 気になった時にそっと見守る家族アプリ">
-    <meta property="og:description" content="ピンポイントではなく、今いるエリアと出入りの時刻だけが届く。見る人にも見られる人にも息のしやすい見守りアプリです。">
+    <meta property="og:title" content="Kinia — 家族をそっと見守るアプリ">
+    <meta property="og:description" content="エリアへの出入りだけを通知。基本無料で使える、家族の見守りアプリです。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kinia.io">
     <meta property="og:image" content="https://kinia.io/images/app_icon.png">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Kinia — 気になった時にそっと見守る家族アプリ">
-    <meta name="twitter:description" content="ピンポイントではなく、今いるエリアと出入りの時刻だけが届く。見る人にも見られる人にも息のしやすい見守りアプリです。">
+    <meta name="twitter:title" content="Kinia — 家族をそっと見守るアプリ">
+    <meta name="twitter:description" content="エリアへの出入りだけを通知。基本無料で使える、家族の見守りアプリです。">
     <meta name="twitter:image" content="https://kinia.io/images/app_icon.png">
 
     <link rel="icon" href="/images/app_icon.png" type="image/png">
@@ -214,8 +214,12 @@
             background: #0f1628; box-shadow: 0 30px 60px -20px rgba(20,30,55,0.3);
         }
         .phone-screen {
-            width: 100%; height: 540px; border-radius: 30px; background: var(--card);
+            width: 100%; height: 540px; border-radius: 30px; background: #111827;
             overflow: hidden; position: relative; display: flex; flex-direction: column;
+        }
+        .phone-screen img {
+            display: block; width: 100%; height: 100%;
+            object-fit: cover; object-position: center top;
         }
         .phone-notch {
             position: absolute; top: 0; left: 50%; transform: translateX(-50%);
@@ -270,15 +274,18 @@
         .notify-time { font-size: 10px; color: var(--mute); margin-top: 2px; }
 
         @media (max-width: 768px) {
-            .hero { padding: 40px 20px 60px; }
-            .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-            .hero-sub { margin-left: auto; margin-right: auto; }
-            .hero-actions { justify-content: center; }
-            .hero-badges { justify-content: center; }
-            .hero-visual { margin-top: 20px; }
+            .hero { padding: 32px 20px 56px; }
+            .hero-grid { grid-template-columns: 1fr; gap: 30px; text-align: left; }
+            .hero h1 { font-size: clamp(34px, 9.4vw, 42px); line-height: 1.34; margin: 20px 0 18px; }
+            .hero-sub { margin-left: 0; margin-right: 0; font-size: 15.5px; line-height: 1.9; }
+            .hero-actions { justify-content: flex-start; align-items: flex-start; flex-direction: column; gap: 10px; }
+            .btn-primary { width: 100%; max-width: 320px; justify-content: center; }
+            .hero-badges { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 30px; }
+            .hero-badge { align-items: flex-start; line-height: 1.45; }
+            .hero-visual { margin-top: 0; }
             .float-notify { display: none; }
-            .phone-frame { width: 240px; }
-            .phone-screen { height: 480px; }
+            .phone-frame { width: min(252px, 76vw); }
+            .phone-screen { height: auto; aspect-ratio: 9 / 19.5; }
         }
 
         /* ── Concept ── */
@@ -391,7 +398,7 @@
         @media (max-width: 768px) {
             .how { padding: 64px 20px; }
             .how-grid { grid-template-columns: 1fr; gap: 40px; }
-            .how-phone-frame { max-width: 300px; }
+            .how-phone-frame { max-width: 260px; padding: 12px; border-radius: 22px; }
         }
 
         /* ── Fair Principle ── */
@@ -679,59 +686,7 @@
         <div class="hero-visual">
             <div class="phone-frame">
                 <div class="phone-screen">
-                    <div class="phone-notch"></div>
-                    <div class="phone-content">
-                        <div class="phone-header">
-                            <div class="phone-header-label">OUR FAMILY</div>
-                            <div class="phone-header-title">すずき家</div>
-                        </div>
-                        <div class="phone-members">
-                            <div class="member-row">
-                                <div class="member-avatar" style="background:rgba(217,122,90,0.2);color:#d97a5a;">
-                                    お<span class="online-dot"></span>
-                                </div>
-                                <div class="member-info">
-                                    <div class="member-name">お母さん</div>
-                                    <div class="member-detail">自宅 <span style="color:var(--mute);">・ のんびり</span></div>
-                                </div>
-                                <div class="member-time">たった今</div>
-                            </div>
-                            <div class="member-row">
-                                <div class="member-avatar" style="background:rgba(44,58,94,0.2);color:#2c3a5e;">
-                                    お<span class="online-dot"></span>
-                                </div>
-                                <div class="member-info">
-                                    <div class="member-name">お父さん</div>
-                                    <div class="member-detail">会社から帰宅中 <span style="color:var(--mute);">・ 移動中</span></div>
-                                </div>
-                                <div class="member-time">たった今</div>
-                            </div>
-                            <div class="member-row">
-                                <div class="member-avatar" style="background:rgba(163,184,154,0.2);color:#a3b89a;">
-                                    ゆ<span class="online-dot"></span>
-                                </div>
-                                <div class="member-info">
-                                    <div class="member-name">ゆうき</div>
-                                    <div class="member-detail">塾に到着 <span style="color:var(--mute);">・ 勉強中</span></div>
-                                </div>
-                                <div class="member-time">たった今</div>
-                            </div>
-                            <div class="member-row">
-                                <div class="member-avatar" style="background:rgba(196,165,91,0.2);color:#c4a55b;">
-                                    さ<span class="online-dot"></span>
-                                </div>
-                                <div class="member-info">
-                                    <div class="member-name">さくら</div>
-                                    <div class="member-detail">学校 <span style="color:var(--mute);">・ 授業中</span></div>
-                                </div>
-                                <div class="member-time">たった今</div>
-                            </div>
-                        </div>
-                        <div class="phone-mood">
-                            <div class="phone-mood-title">今日もみんな元気</div>
-                            <div class="phone-mood-sub">地図は見ない、気配だけ</div>
-                        </div>
-                    </div>
+                    <img src="/screenshots/manual/02_member_list.png" alt="Kiniaのメンバー一覧画面">
                 </div>
             </div>
             <!-- Floating notification cards -->
@@ -836,7 +791,7 @@
         <div class="how-column">
             <div class="how-column-label new">KINIA</div>
             <div class="how-phone-frame">
-                <img src="/images/ui_member_list_generated.png" alt="Kiniaの家族見守り画面">
+                <img src="/screenshots/manual/02_member_list.png" alt="Kiniaの家族見守り画面">
             </div>
         </div>
     </div>
