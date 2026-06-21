@@ -11,16 +11,16 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小学生の通学・習い事をそっと見守る — Kinia</title>
-    <meta name="description" content="Kiniaは、学校・学童・塾・習い事・自宅への出入りだけを通知で確認できる家族見守りアプリ。仕事中でも、子どもに何度も聞かなくてすみます。基本無料、広告なし、運営も実際の位置を読めない設計です。">
-    <meta property="og:title" content="小学生の通学・習い事見守り — Kinia">
-    <meta property="og:description" content="学校・学童・塾・自宅への出入りだけを通知。仕事中でも、子どもに何度も聞かなくてすみます。">
+    <title>子どもの通学・習い事をそっと見守る — Kinia</title>
+    <meta name="description" content="Kiniaは、学校・自宅・習い事への出入りを通知で確認できる家族見守りアプリ。仕事中でもアプリを開き続けず、欲しい通知だけで安心できます。必要な機能はすべて無料、広告なし、個人を特定する情報を保存しない設計です。">
+    <meta property="og:title" content="子どもの通学・習い事見守り — Kinia">
+    <meta property="og:description" content="学校・自宅・習い事への出入りを通知。仕事中でも、欲しいタイミングで欲しい通知だけが届きます。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kinia.io/school-child-watch.html">
     <meta property="og:image" content="https://kinia.io/images/app_icon.png">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="小学生の通学・習い事見守り — Kinia">
-    <meta name="twitter:description" content="学校・学童・塾・自宅への出入りだけを通知。仕事中でも、子どもに何度も聞かなくてすみます。">
+    <meta name="twitter:title" content="子どもの通学・習い事見守り — Kinia">
+    <meta name="twitter:description" content="学校・自宅・習い事への出入りを通知。仕事中でも、欲しいタイミングで欲しい通知だけが届きます。">
     <meta name="twitter:image" content="https://kinia.io/images/app_icon.png">
 
     <link rel="icon" href="images/app_icon.png" type="image/png">
@@ -119,25 +119,6 @@
             grid-template-columns: 1.06fr 0.94fr;
             gap: 64px;
             align-items: center;
-        }
-        .hero-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.8);
-            border: 1px solid var(--line);
-            border-radius: 999px;
-            padding: 7px 15px;
-            color: var(--sub);
-            font-size: 13px;
-            font-weight: 600;
-        }
-        .hero-pill::before {
-            content: "";
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--sage);
         }
         .hero h1 {
             font-family: var(--font-head);
@@ -276,7 +257,7 @@
         }
         .timeline-row {
             display: grid;
-            grid-template-columns: 120px 1fr 210px;
+            grid-template-columns: 96px 1fr;
             gap: 22px;
             align-items: center;
             background: rgba(255,255,255,0.76);
@@ -296,12 +277,6 @@
             margin-bottom: 2px;
         }
         .timeline-main span { color: var(--sub); font-size: 14.5px; }
-        .timeline-notice {
-            color: var(--navy);
-            font-weight: 700;
-            font-size: 14px;
-            text-align: right;
-        }
 
         .product {
             padding: 104px 56px;
@@ -366,24 +341,6 @@
             color: var(--sub);
             font-size: 14.5px;
             line-height: 1.8;
-        }
-
-        .child-respect {
-            padding: 100px 56px;
-            background: var(--card);
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
-        }
-        .quote-panel {
-            margin-top: 34px;
-            background: var(--bg);
-            border-left: 4px solid var(--accent);
-            border-radius: 0 20px 20px 0;
-            padding: 28px 32px;
-            color: var(--accent2);
-            font-family: var(--font-head);
-            font-size: 22px;
-            line-height: 1.75;
         }
 
         .safety {
@@ -496,14 +453,12 @@
                 grid-template-columns: 1fr;
                 gap: 8px;
             }
-            .timeline-notice { text-align: left; }
         }
         @media (max-width: 768px) {
             .hero,
             .empathy,
             .daily,
             .product,
-            .child-respect,
             .safety,
             .voice,
             .cta-section {
@@ -518,6 +473,8 @@
             }
             .body-text { font-size: 15.5px; line-height: 1.9; }
             .hero { padding-top: 26px; padding-bottom: 52px; }
+            .hero-glow-r,
+            .hero-glow-l { display: none; }
             .hero-grid { gap: 22px; }
             .hero h1 {
                 font-size: clamp(30px, 8.4vw, 36px);
@@ -568,7 +525,6 @@
             .screenshot-stack { max-width: 360px; margin: 0 auto; }
             .shot-card:nth-child(2) { margin-top: 0; }
             .timeline-row { padding: 18px 20px; }
-            .quote-panel { font-size: 19px; line-height: 1.75; padding: 24px 22px; }
             .safety-card h3 {
                 font-size: 19px;
                 line-height: 1.55;
@@ -588,29 +544,28 @@
     <div class="hero-glow-l" aria-hidden="true"></div>
     <div class="container hero-grid">
         <div>
-            <span class="hero-pill">小学生の通学・習い事に</span>
             <h1>
-                <span class="hero-title-line">着いたかな？</span>
-                <span class="hero-title-line">聞く前に、</span>
-                <span class="hero-title-line accent-text">通知でわかる。</span>
+                <span class="hero-title-line">ついた？</span>
+                <span class="hero-title-line">聞く前に通知で</span>
+                <span class="hero-title-line accent-text">わかる。</span>
             </h1>
             <p class="hero-sub">
-                学校、学童、塾、習い事、自宅。<br>
+                学校、自宅、習い事。<br>
                 登録した場所に着いたとき、出たときだけ通知が届きます。<br>
-                <span class="keep">仕事中でも、</span>子どもに何度も聞かなくてすみます。
+                <span class="keep">仕事中でも、</span>子供に何度も聞かなくてすみます。
             </p>
             <div class="hero-actions">
                 <a href="https://play.google.com/store/apps/details?id=io.kinia" class="btn-primary">
-                    Google Playで無料ではじめる
+                    Google Playで無料で使う
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </a>
                 <span class="hero-note">Android配信中 ・ iOS版は近日公開</span>
             </div>
             <div class="trust-row">
-                <span>基本無料で十分使える</span>
+                <span>必要な機能はすべて無料</span>
                 <span>広告なし</span>
-                <span>名前は端末に保存</span>
-                <span>運営も実際の位置を読めない</span>
+                <span>個人を特定する情報を保存しない</span>
+                <span>位置情報は端末内で暗号化</span>
             </div>
         </div>
         <div class="hero-visual" aria-label="Kiniaの通知イメージ">
@@ -636,24 +591,24 @@
 <section class="empathy">
     <div class="container-mid">
         <div class="section-label">こんな日に</div>
-        <h2 class="section-heading">仕事中にふと浮かぶ、<br><span class="accent-text">あの「着いたかな」を減らす。</span></h2>
+        <h2 class="section-heading">通知で、<br><span class="accent-text">日々の不安を減らす。</span></h2>
         <p class="body-text">
-            小学生にスマホを持たせても、仕事中はすぐに連絡できない時間があります。
-            朝ちゃんと学校に着いたか、放課後は学童や塾に行けたか、家に帰ったか。
-            Kiniaは、そのたびに子どもへ連絡しなくても分かるようにするアプリです。
+            子供にスマホを持たせた時、仕事中、すぐには連絡できない時間もあります。
+            朝は学校に無事着いているか、夕方は家や習い事に着いているか、夜はいつ帰ってくるのか。
+            Kiniaは、そのたびに子供へ連絡しなくても分かるようにするアプリです。
         </p>
         <div class="empathy-grid">
             <div class="empathy-card">
-                <h3>朝、学校に着いたか</h3>
-                <p>出社後や会議前に、到着通知をさっと確認。通学路をずっと見続けなくても、ひとまず安心できます。</p>
+                <h3>朝、学校に無事着いているか</h3>
+                <p>出社後や会議前に、到着通知をさっと確認。通学路をずっと見続けなくても、安心して仕事に戻れます。</p>
             </div>
             <div class="empathy-card">
-                <h3>放課後、予定どおり行けたか</h3>
-                <p>学童や習い事がある日も、「学校を出た」「塾に着いた」の流れが分かります。</p>
+                <h3>夕方、家や習い事に着いているか</h3>
+                <p>家に着いているか、予定通り塾に行けているか、習い事に行けているかを通知で確認できます。</p>
             </div>
             <div class="empathy-card">
-                <h3>いつ頃、家に着きそうか</h3>
-                <p>塾を出た時間や帰宅通知が分かるので、夕方の段取りを考えやすくなります。</p>
+                <h3>夜、帰宅のタイミングが分かるか</h3>
+                <p>塾を出たタイミングや帰宅通知が分かるので、落ち着いて夕飯の支度ができます。</p>
             </div>
         </div>
     </div>
@@ -662,51 +617,40 @@
 <section class="daily">
     <div class="container-mid">
         <div class="section-label">1日の流れ</div>
-        <h2 class="section-heading">必要なタイミングだけ、<br><span class="accent-text">通知が届く。</span></h2>
+        <h2 class="section-heading">欲しいタイミングで、<br><span class="accent-text">欲しい通知だけが届く。</span></h2>
         <p class="body-text">
-            自宅・学校・学童・塾・習い事を通知エリアに登録。
-            出入りがあったときだけ届くので、画面を開き続ける必要はありません。
+            自宅・学校・習い事を通知エリアに登録。
+            出入りがあったときだけ通知が届くので、アプリを開く手間もかかりません。
+            待っていれば、必要なことを通知が教えてくれます。
         </p>
         <div class="timeline">
             <div class="timeline-row">
                 <div class="timeline-time">08:12</div>
                 <div class="timeline-main">
                     <strong>学校に到着</strong>
-                    <span>朝の到着を、仕事前に確認。</span>
+                    <span>朝の不安を減らして、仕事に集中しやすくなります。</span>
                 </div>
-                <div class="timeline-notice">確認できた</div>
-            </div>
-            <div class="timeline-row">
-                <div class="timeline-time">15:24</div>
-                <div class="timeline-main">
-                    <strong>学校を出発</strong>
-                    <span>学童や習い事へ向かったことが分かります。</span>
-                </div>
-                <div class="timeline-notice">次の予定へ</div>
             </div>
             <div class="timeline-row">
                 <div class="timeline-time">16:02</div>
                 <div class="timeline-main">
-                    <strong>塾に到着</strong>
-                    <span>「着いた？」と聞かずに、到着だけ確認。</span>
+                    <strong>習い事に到着</strong>
+                    <span>予定通り塾に行けているか、習い事に行けているかを確認できます。</span>
                 </div>
-                <div class="timeline-notice">連絡なしでOK</div>
             </div>
             <div class="timeline-row">
-                <div class="timeline-time">17:12</div>
+                <div class="timeline-time">18:10</div>
                 <div class="timeline-main">
-                    <strong>塾を出発</strong>
-                    <span>帰宅の目安が分かるので、夕方の段取りがしやすくなります。</span>
+                    <strong>習い事を出発</strong>
+                    <span>帰宅のタイミングが見えて、夕飯や迎えの段取りがしやすくなります。</span>
                 </div>
-                <div class="timeline-notice">帰宅の目安に</div>
             </div>
             <div class="timeline-row">
-                <div class="timeline-time">17:48</div>
+                <div class="timeline-time">18:42</div>
                 <div class="timeline-main">
                     <strong>自宅に帰宅</strong>
-                    <span>通知を見て、ひとまず安心できます。</span>
+                    <span>帰宅通知が届くと、家にいる時も外出中もひとまず安心できます。</span>
                 </div>
-                <div class="timeline-notice">ひと安心</div>
             </div>
         </div>
     </div>
@@ -717,7 +661,7 @@
         <div class="screenshot-stack">
             <div class="shot-card">
                 <img src="screenshots/manual/04_geofence_tab.png" alt="通知エリア画面">
-                <div class="shot-caption">自宅・学校・塾などを通知エリアに</div>
+                <div class="shot-caption">自宅・学校・習い事を通知エリアに</div>
             </div>
             <div class="shot-card">
                 <img src="screenshots/manual/08_notif_settings.png" alt="通知設定画面">
@@ -725,51 +669,36 @@
             </div>
         </div>
         <div>
-            <div class="section-label">使い方</div>
-            <h2 class="section-heading">見守るけれど、<br><span class="accent-text">見すぎない。</span></h2>
+            <div class="section-label">通知と共有の設定</div>
+            <h2 class="section-heading">監視ではなく、<br><span class="accent-text">ちょうどいい見守りに。</span></h2>
             <p class="body-text">
                 知りたいのは、細かい移動ルートではなく「いつもの場所に着いたか」「そこを出たか」。
-                Kiniaは、その距離感を家族で選べます。
+                監視したいわけではないけれど、必要な時には安心したい。
+                Kiniaは、そのつながりの距離感を家族で選べます。
             </p>
             <div class="feature-list">
                 <div class="feature-item">
                     <div class="feature-icon">1</div>
                     <div>
-                        <h3>まずは通知エリアだけ</h3>
-                        <p>自宅と学校から始められます。移動中の細かい位置まで見続けなくても、日常の確認には十分です。</p>
+                        <h3>必要な通知エリアだけ設定</h3>
+                        <p>自宅、学校、習い事など、家族にとって必要な場所だけを選べます。毎日の確認に不要な場所まで増やす必要はありません。</p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">2</div>
                     <div>
-                        <h3>心配な日だけ、見守り方を変える</h3>
-                        <p>初めての塾、帰りが遅い日、雨の日などは共有範囲を調整できます。ふだんはゆるく、必要なときだけ詳しく。</p>
+                        <h3>出入りの通知を分けられる</h3>
+                        <p>「着いた時だけ」「出た時だけ」「出入りの両方」など、場所ごとに欲しい通知を選べます。</p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">3</div>
                     <div>
-                        <h3>通知は必要なものだけ</h3>
-                        <p>学校は到着だけ、塾は出入り両方、自宅は帰宅だけ。人ごと・場所ごとに受け取り方を調整できます。</p>
+                        <h3>平日・休日の使い分けにも対応</h3>
+                        <p>学校の日、習い事の日、休日など、生活リズムに合わせて通知を細かく区分けできます。</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<section class="child-respect">
-    <div class="container-narrow">
-        <div class="section-label">親子の距離感</div>
-        <h2 class="section-heading">聞きすぎない。<br><span class="accent-text">安心は、ちゃんと残る。</span></h2>
-        <p class="body-text">
-            「今どこ？」「着いた？」「帰った？」を毎日くり返すと、親も子も少し疲れます。
-            通知で分かることは通知に任せる。
-            子どもに何度も確認しなくていいから、親の不安も、子どもの小さな負担も減らせます。
-        </p>
-        <div class="quote-panel">
-            必要なことだけ届くから、<br>
-            親子のやり取りが少しやわらかくなります。
         </div>
     </div>
 </section>
@@ -777,23 +706,24 @@
 <section class="safety">
     <div class="container-mid">
         <div class="section-label">料金とプライバシー</div>
-        <h2 class="section-heading">無料で始められて、<br><span class="accent-text">プライバシーにも配慮。</span></h2>
+        <h2 class="section-heading">無料で使えて、<br><span class="accent-text">プライバシーにも配慮。</span></h2>
         <p class="body-text">
-            子どもの見守りに使うものだから、料金や広告、データの扱いは気になるところ。
-            Kiniaは、毎日の見守りに必要な機能を基本無料で使えます。
+            子供の見守りに使うものだから、料金や広告、データの扱いは気になるところ。
+            Kiniaは、毎日の見守りに必要な機能をすべて無料で使えます。
+            広告を表示したり、位置データを販売したりすることもありません。
         </p>
         <div class="safety-grid">
             <div class="safety-card">
-                <h3>基本無料で十分使える</h3>
-                <p>通知エリアの見守りなど、毎日の確認に必要な機能は無料で使えます。広告も表示しません。</p>
+                <h3>必要な機能はすべて無料</h3>
+                <p>通知エリアの見守りなど、通常利用に必要な機能は無料で使えます。毎日の確認で不自由なく使える設計です。</p>
             </div>
             <div class="safety-card">
-                <h3>名前はサーバーに保存しない</h3>
-                <p>家族の表示名は端末側で持ち、サーバーにはランダムIDで記録されます。個人名がサーバーに残らない仕組みです。</p>
+                <h3>個人を特定する情報は一切保存しない</h3>
+                <p>本名・メールアドレス・表示名など、個人を特定できる情報はサーバーに保存しません。サーバー上ではランダムIDなどで扱います。</p>
             </div>
             <div class="safety-card">
-                <h3>運営も実際の位置を読めない</h3>
-                <p>位置情報は送信前に端末で暗号化されます。暗号を解く鍵は端末側にあるため、運営でも実際の居場所を見ることはできません。</p>
+                <h3>位置情報は送信前に端末内で暗号化</h3>
+                <p>保存データから実際の位置を特定することはできません。第三者はもちろん運営管理者にも読み取れず、万が一の流出時にも個人や場所の特定につながらない仕組みです。</p>
             </div>
         </div>
         <p class="body-text" style="margin-top:28px;">
@@ -805,15 +735,13 @@
 <section class="voice">
     <div class="container-mid">
         <div class="section-label">利用イメージ</div>
-        <h2 class="section-heading">通知がひとつ届くだけで、<br><span class="accent-text">気持ちはずいぶん軽くなる。</span></h2>
+        <h2 class="section-heading">通知がひとつ届くだけで、<br><span class="accent-text">日常のそわそわが減る。</span></h2>
         <div class="voice-grid">
             <div class="voice-card">
-                <p>「学校に着いた通知を見て、朝の会議に戻れる。毎朝『着いた？』と送らなくてよくなりました。」</p>
-                <span>小学生の子どもを持つ共働き家庭の利用イメージ</span>
+                <p>「学校に着いた通知を見て、安心して仕事に集中できる。毎朝『着いた？』と送らなくてよくなりました。」</p>
             </div>
             <div class="voice-card">
-                <p>「塾を出た時間が分かるので、帰ってくる時間の見当がつきます。夕方のそわそわが減りました。」</p>
-                <span>学童・習い事がある日の利用イメージ</span>
+                <p>「習い事を出た時間が分かるので、帰ってくる時間の見当がつきます。落ち着いて夕飯の支度ができるようになりました。」</p>
             </div>
         </div>
     </div>
@@ -821,14 +749,14 @@
 
 <section class="cta-section">
     <div class="container-narrow">
-        <div class="section-label" style="color:rgba(255,255,255,0.58);">無料で始める</div>
-        <h2 class="section-heading">まずは、<br>自宅と学校だけ。</h2>
+        <div class="section-label" style="color:rgba(255,255,255,0.58);">無料でできる</div>
+        <h2 class="section-heading">通知で届ける、<br>安心のかたち。</h2>
         <p class="body-text">
-            毎日の確認を少し軽くするところから始めてみてください。<br>
-            Kiniaは基本無料で使えます。
+            アプリを開き続けなくても、欲しい通知だけが届く。<br>
+            Kiniaは、そっと寄り添う見守りの仕組みを無料で使えます。
         </p>
         <a href="https://play.google.com/store/apps/details?id=io.kinia" class="btn-primary">
-            Google Playで無料ではじめる
+            Google Playで無料で使う
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
     </div>
@@ -843,7 +771,7 @@
         </div>
         <div class="footer-links">
             <a href="setup.html">はじめかたガイド</a>
-            <a href="school-child-watch.html">小学生の見守り</a>
+            <a href="school-child-watch.html">通学・習い事の見守り</a>
             <a href="parents.html">お子さんを持つご家庭へ</a>
             <a href="data-safety.html">データの安全性</a>
             <a href="faq.html">よくある質問</a>

@@ -63,7 +63,7 @@ var html='\
 <a href="/guide-join.html">招待された方へ</a>\
 <hr class="nav-dd-sep">\
 <a href="/senior.html">高齢のご家族がいる方へ</a>\
-<a href="/school-child-watch.html" class="nav-dd-primary">小学生の見守り</a>\
+<a href="/school-child-watch.html" class="nav-dd-primary">通学・習い事の見守り</a>\
 <a href="/parents.html">お子さんを持つご家庭の方へ</a>\
 <a href="/students.html">学生の方へ</a>\
 <hr class="nav-dd-sep">\
