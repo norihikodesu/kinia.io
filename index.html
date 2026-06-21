@@ -418,10 +418,17 @@
 
         /* ── UseCases ── */
         .usecases { padding: 100px 56px; background: var(--bg-alt); }
-        .usecases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .usecases-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
         .usecase-card {
             padding: 36px 28px; border-radius: 22px; background: var(--card);
             border: 1px solid var(--line); display: flex; flex-direction: column; gap: 16px;
+        }
+        .usecase-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 18px;
+            box-shadow: 0 14px 34px rgba(42,34,24,.08);
         }
         .usecase-tag {
             display: inline-flex; align-self: flex-start; align-items: center; gap: 6px;
@@ -429,9 +436,20 @@
             color: var(--accent2); font-size: 11.5px; font-weight: 600;
         }
         .usecase-card p { font-size: 15.5px; line-height: 1.95; color: var(--sub); margin: 0; }
+        .usecase-link {
+            margin-top: auto;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent2);
+        }
+        .usecase-link:hover { color: var(--accent); text-decoration: none; }
+        @media (max-width: 980px) {
+            .usecases-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 768px) {
             .usecases { padding: 64px 20px; }
             .usecases-grid { grid-template-columns: 1fr; }
+            .usecase-card img { max-width: 240px; margin: 0 auto; }
         }
 
         /* ── Security ── */
@@ -641,7 +659,7 @@
             <div class="hero-badges">
                 <span class="hero-badge">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L20 7" stroke="#a3b89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    完全無料
+                    基本無料で使える
                 </span>
                 <span class="hero-badge">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L20 7" stroke="#a3b89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -818,50 +836,7 @@
         <div class="how-column">
             <div class="how-column-label new">KINIA</div>
             <div class="how-phone-frame">
-                <div class="how-cards">
-                    <div class="member-card">
-                        <div class="member-card-header">
-                            <div class="member-card-dot" style="background:#a3b89a;"></div>
-                            <div class="member-card-name">ゆうき</div>
-                            <div class="member-card-status">「塾」にいます</div>
-                        </div>
-                        <div class="member-card-history">
-                            <div class="member-card-history-item"><span class="hist-area">「塾」に入った</span> — 16:08</div>
-                            <div class="member-card-history-item"><span class="hist-area">「学校」から出た</span> — 15:30</div>
-                        </div>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-card-header">
-                            <div class="member-card-dot" style="background:#c4a55b;"></div>
-                            <div class="member-card-name">さくら</div>
-                            <div class="member-card-status">エリア外（移動中）</div>
-                        </div>
-                        <div class="member-card-history">
-                            <div class="member-card-history-item"><span class="hist-area">「学校」から出た</span> — 15:15</div>
-                            <div class="member-card-history-item"><span class="hist-area">「学校」に入った</span> — 08:12</div>
-                        </div>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-card-header">
-                            <div class="member-card-dot" style="background:#d97a5a;"></div>
-                            <div class="member-card-name">お母さん</div>
-                            <div class="member-card-status">「自宅」にいます</div>
-                        </div>
-                        <div class="member-card-history">
-                            <div class="member-card-history-item"><span class="hist-area">「自宅」に入った</span> — 12:42</div>
-                        </div>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-card-header">
-                            <div class="member-card-dot" style="background:#b85a3e;"></div>
-                            <div class="member-card-name">お父さん</div>
-                            <div class="member-card-status">エリア外（移動中）</div>
-                        </div>
-                        <div class="member-card-history">
-                            <div class="member-card-history-item"><span class="hist-area">「会社」から出た</span> — 17:02</div>
-                        </div>
-                    </div>
-                </div>
+                <img src="/images/ui_member_list_generated.png" alt="Kiniaの家族見守り画面">
             </div>
         </div>
     </div>
@@ -900,14 +875,23 @@
         </div>
         <div class="usecases-grid">
             <div class="usecase-card">
+                <img src="/images/icon_child_watch_generated.png" alt="">
                 <span class="usecase-tag">子どもを見守る</span>
-                <p>「ちゃんと学校に着いたかな」「塾から出たかな」。心配な時間帯だけ、そっと知りたい。リアルタイム追跡でストーカーのようにならず、子どもの自立も尊重できます。</p>
+                <p>「ちゃんと学校に着いたかな」「塾から出たかな」。心配な時間帯だけ、そっと知りたい。見張る感じになりすぎず、子どもの自立も尊重できます。</p>
+                <a href="/school-child-watch.html" class="usecase-link">小学生の見守りページへ →</a>
             </div>
             <div class="usecase-card">
+                <img src="/images/icon_distant_parent_generated.png" alt="">
                 <span class="usecase-tag">離れた親を見守る</span>
                 <p>毎日電話するほどでもないけれど、無事に過ごしているか気になる。「自宅にいる」「散歩から帰った」だけが分かれば、安心できます。</p>
             </div>
             <div class="usecase-card">
+                <img src="/images/icon_meetup_generated.png" alt="">
+                <span class="usecase-tag">待ち合わせ・一時共有</span>
+                <p>集合場所に向かうときだけ、今の位置を一時的に共有。ずっと見せ続けるのではなく、必要な時間だけつながれます。</p>
+            </div>
+            <div class="usecase-card">
+                <img src="/images/icon_share_all_generated.png" alt="">
                 <span class="usecase-tag">夫婦・パートナー</span>
                 <p>お互いの帰宅時間がふんわり分かるだけ。「今、家にいる？」を聞かなくていい。詮索しすぎず、思いやれる距離感。</p>
             </div>
@@ -949,8 +933,8 @@
                 <div class="icon-box">
                     <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M16 26s-9-5.5-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-9 12-9 12Z" stroke="#b85a3e" stroke-width="1.6" stroke-linejoin="round"/></svg>
                 </div>
-                <h3>広告・課金なし</h3>
-                <p>完全無料。広告も課金もありません。データを売って収益化することもしません。</p>
+                <h3>基本無料・広告なし</h3>
+                <p>見守りに必要な機能は無料で十分使えます。広告を表示したり、データを売って収益化したりしません。</p>
             </div>
         </div>
         <p style="margin-top:32px;">
@@ -1022,7 +1006,7 @@
             歩数と「元気度」で、エリアの出入り通知と合わせて<br>
             日々の活動量もひと目で分かります。<br>
             ステータスコメントや体調チェック、緊急時のSOSアラートも備えています。<br>
-            <strong style="color:var(--ink);">完全無料・広告なし</strong>です。
+            <strong style="color:var(--ink);">見守りに必要な機能は無料で十分使えて、広告なし</strong>です。
         </p>
     </div>
 </section>
@@ -1137,7 +1121,7 @@
     <div class="cta-inner">
         <h2>家族と、<br>ちょうどいい距離で</h2>
         <p class="body-text">
-            Kiniaは完全無料。<br>
+            Kiniaは基本無料で使えます。<br>
             まずはご家族でインストールして、<br>
             心地よい距離感を見つけてください。
         </p>
@@ -1170,6 +1154,7 @@
         </div>
         <div class="footer-links">
             <a href="/setup.html">はじめかたガイド</a>
+            <a href="/school-child-watch.html">小学生の見守り</a>
             <a href="/faq.html">よくある質問</a>
             <a href="/status.html">開発状況</a>
             <a href="/safety.html">災害時の安否確認</a>
