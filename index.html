@@ -181,6 +181,7 @@
         .hero h1 .underline-accent {
             position: relative; display: inline-block; z-index: 1;
         }
+        .hero-main-line { display: inline-block; white-space: nowrap; }
         .hero h1 .underline-accent::after {
             content: ''; position: absolute; left: -2px; right: -2px; bottom: 4px;
             height: 12px; background: rgba(217,122,90,0.33); border-radius: 4px; z-index: -1;
@@ -214,7 +215,7 @@
             background: #0f1628; box-shadow: 0 30px 60px -20px rgba(20,30,55,0.3);
         }
         .phone-screen {
-            width: 100%; height: 540px; border-radius: 30px; background: #111827;
+            width: 100%; height: auto; aspect-ratio: 430 / 932; border-radius: 30px; background: #111827;
             overflow: hidden; position: relative; display: flex; flex-direction: column;
         }
         .phone-screen img {
@@ -277,6 +278,7 @@
             .hero { padding: 32px 20px 56px; }
             .hero-grid { grid-template-columns: 1fr; gap: 30px; text-align: left; }
             .hero h1 { font-size: clamp(34px, 9.4vw, 42px); line-height: 1.34; margin: 20px 0 18px; }
+            .hero-main-line { white-space: nowrap; font-size: 0.82em; }
             .hero-sub { margin-left: 0; margin-right: 0; font-size: 15.5px; line-height: 1.9; }
             .hero-actions { justify-content: flex-start; align-items: flex-start; flex-direction: column; gap: 10px; }
             .btn-primary { width: 100%; max-width: 320px; justify-content: center; }
@@ -285,7 +287,110 @@
             .hero-visual { margin-top: 0; }
             .float-notify { display: none; }
             .phone-frame { width: min(252px, 76vw); }
-            .phone-screen { height: auto; aspect-ratio: 9 / 19.5; }
+            .phone-screen { height: auto; aspect-ratio: 430 / 932; }
+        }
+
+        @media (min-width: 769px) and (max-width: 980px) {
+            .hero-main-line { font-size: 0.9em; }
+        }
+
+        /* ── Top Video ── */
+        .top-video {
+            padding: 86px 56px;
+            background: var(--card);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            scroll-margin-top: 88px;
+        }
+        .top-video-layout {
+            max-width: 980px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+            gap: 52px;
+            align-items: center;
+        }
+        .top-video-copy .body-text {
+            margin: 16px 0 24px;
+            max-width: 520px;
+        }
+        .top-video-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+        .top-video-secondary {
+            color: var(--navy);
+            border: 1px solid rgba(44,58,94,0.22);
+            background: rgba(255,255,255,0.72);
+            padding: 14px 22px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .top-video-secondary:hover { background: #fff; text-decoration: none; }
+        .top-video-shell {
+            width: min(100%, 340px);
+            justify-self: center;
+        }
+        .top-video-trigger,
+        .top-video-player {
+            display: block;
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            border: 0;
+            border-radius: 28px;
+            overflow: hidden;
+            background: #141827;
+            box-shadow: 0 22px 52px rgba(44,58,94,0.18);
+        }
+        .top-video-trigger {
+            position: relative;
+            cursor: pointer;
+            padding: 0;
+        }
+        .top-video-trigger img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .top-video-play {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(180deg, rgba(17,24,39,0.04), rgba(17,24,39,0.18));
+        }
+        .top-video-play span {
+            width: 74px;
+            height: 74px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.94);
+            color: var(--navy);
+            display: grid;
+            place-items: center;
+            box-shadow: 0 16px 32px rgba(17,24,39,0.18);
+        }
+        .top-video-caption {
+            margin-top: 12px;
+            color: var(--mute);
+            font-size: 12.5px;
+            line-height: 1.6;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .top-video { padding: 64px 20px; }
+            .top-video-layout { grid-template-columns: 1fr; gap: 32px; }
+            .top-video-actions { align-items: stretch; flex-direction: column; }
+            .top-video-actions .btn-primary,
+            .top-video-actions .top-video-secondary { width: 100%; max-width: 340px; justify-content: center; }
+            .top-video-shell { width: min(100%, 320px); }
         }
 
         /* ── Concept ── */
@@ -647,7 +752,7 @@
         <div>
             <span class="pill"><span class="pill-dot"></span>家族のための、やさしい見守り</span>
             <h1>
-                ちょうどいい距離で、<br>
+                <span class="hero-main-line">ちょうどいい距離で、</span><br>
                 <span class="underline-accent">そっとつながる</span>
             </h1>
             <p class="hero-sub">
@@ -686,7 +791,7 @@
         <div class="hero-visual">
             <div class="phone-frame">
                 <div class="phone-screen">
-                    <img src="/screenshots/manual/02_member_list.png" alt="Kiniaのメンバー一覧画面">
+                    <img src="/screenshots/website/top-member-list-light.png" alt="Kiniaのメンバー一覧画面">
                 </div>
             </div>
             <!-- Floating notification cards -->
@@ -695,7 +800,7 @@
                     <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#d97a5a" stroke-width="1.6" stroke-linejoin="round"/></svg>
                 </div>
                 <div>
-                    <div class="notify-text">お母さん <span class="notify-card-arrow">→</span>「自宅」に到着</div>
+                    <div class="notify-text">ゆうた <span class="notify-card-arrow">→</span>「学校」に到着</div>
                     <div class="notify-time">たった今</div>
                 </div>
             </div>
@@ -704,10 +809,45 @@
                     <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#a3b89a" stroke-width="1.6" stroke-linejoin="round"/></svg>
                 </div>
                 <div>
-                    <div class="notify-text">ゆうき <span class="notify-card-arrow">→</span>「塾」に到着</div>
+                    <div class="notify-text">みか <span class="notify-card-arrow">→</span>「習い事」に到着</div>
                     <div class="notify-time">3分前</div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Top Video ─── -->
+<section class="top-video" id="top-video">
+    <div class="top-video-layout">
+        <div class="top-video-copy">
+            <div class="section-label">— SHORT VIDEO —</div>
+            <h2 class="section-heading">たとえば、子どもに<br>スマホを持たせたら、<br><span class="accent-text">気になることが増えた。</span></h2>
+            <p class="body-text">
+                Kiniaの見守りが、短い動画でわかります。<br>
+                通知でそっと安心を受け取れます。
+            </p>
+            <div class="top-video-actions">
+                <a href="https://play.google.com/store/apps/details?id=io.kinia" class="btn-primary">
+                    Google Playで入手
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="/school-child-watch.html" class="top-video-secondary">
+                    詳しい使い方を見る
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#2c3a5e" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="top-video-shell" data-video-shell>
+            <button class="top-video-trigger" type="button" data-video-src="/videos/kinia-top-watch-35s-720p.mp4" aria-label="Kiniaの紹介動画を再生">
+                <img src="/images/kinia-top-watch-video-poster.webp" alt="Kiniaの紹介動画">
+                <span class="top-video-play" aria-hidden="true">
+                    <span>
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M9 7.5v9l7-4.5-7-4.5Z" fill="#2c3a5e"/></svg>
+                    </span>
+                </span>
+            </button>
+            <div class="top-video-caption">音声ありの短い紹介動画です。</div>
         </div>
     </div>
 </section>
@@ -718,14 +858,14 @@
         <div class="section-label">— CONCEPT —</div>
         <h2>
             知りたいのは、<br>
-            <span class="accent-text">「今どのエリアにいるか」</span>だけ
+            <span class="accent-text">「今いるエリア」だけ</span>
         </h2>
         <p>
-            交差点レベルの詳細な居場所までは、いらない。<br>
-            でも「塾にいるのか、学校にいるのか、家にいるのか」と<br>
+            細かな移動経路までは、いらない。<br>
+            でも「塾、学校、家のどこにいるのか」と<br>
             「いつそこを出たのか」は知っておきたい。<br><br>
-            Kiniaは、フル追跡と何も知らないの間にある<br>
-            「ちょうどいい」を形にした家族の見守りです。
+            Kiniaは、追いかけすぎない<br>
+            「ちょうどいい」家族の見守りです。
         </p>
     </div>
 </section>
@@ -791,7 +931,7 @@
         <div class="how-column">
             <div class="how-column-label new">KINIA</div>
             <div class="how-phone-frame">
-                <img src="/screenshots/manual/02_member_list.png" alt="Kiniaの家族見守り画面">
+                <img src="/screenshots/website/top-member-list-light.png" alt="Kiniaの家族見守り画面">
             </div>
         </div>
     </div>
@@ -1125,6 +1265,24 @@
 </footer>
 
 <script>
+document.querySelectorAll('[data-video-src]').forEach(function(trigger) {
+    trigger.addEventListener('click', function() {
+        var shell = trigger.closest('[data-video-shell]');
+        if (!shell) return;
+        var video = document.createElement('video');
+        video.className = 'top-video-player';
+        video.src = trigger.dataset.videoSrc;
+        video.poster = '/images/kinia-top-watch-video-poster.webp';
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        video.preload = 'metadata';
+        shell.replaceChild(video, trigger);
+        video.focus();
+        video.play().catch(function() {});
+    }, { once: true });
+});
+
 document.addEventListener('click', function(e) {
     document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
         if (!d.contains(e.target)) d.classList.remove('open');
