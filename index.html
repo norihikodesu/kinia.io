@@ -17,11 +17,11 @@
     <meta property="og:description" content="エリアへの出入りだけを通知。必要な機能は無料で使える、家族の見守りアプリです。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kinia.io">
-    <meta property="og:image" content="https://kinia.io/images/app_icon.png">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://kinia.io/images/ogp/og_default.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Kinia — 家族をそっと見守るアプリ">
     <meta name="twitter:description" content="エリアへの出入りだけを通知。必要な機能は無料で使える、家族の見守りアプリです。">
-    <meta name="twitter:image" content="https://kinia.io/images/app_icon.png">
+    <meta name="twitter:image" content="https://kinia.io/images/ogp/og_default.jpg">
 
     <link rel="icon" href="/images/app_icon.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -129,7 +129,7 @@
 
         /* ── Shared ── */
         .section-label {
-            font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px;
+            font-family: var(--font-mono); font-size: 12px; letter-spacing: 2px;
             color: var(--accent); margin-bottom: 14px;
         }
         .container { max-width: 1180px; margin: 0 auto; }
@@ -200,7 +200,7 @@
             transition: background 0.2s, transform 0.1s;
         }
         .btn-primary:hover { background: #1e2c4a; text-decoration: none; transform: translateY(-1px); }
-        .hero-note { font-size: 12.5px; color: var(--sub); }
+        .hero-note { font-size: 13px; color: var(--sub); }
         .hero-badges {
             display: flex; gap: 24px; margin-top: 48px; font-size: 12.5px;
             color: var(--sub); flex-wrap: wrap;
@@ -279,7 +279,7 @@
             .hero-grid { grid-template-columns: 1fr; gap: 30px; text-align: left; }
             .hero h1 { font-size: clamp(34px, 9.4vw, 42px); line-height: 1.34; margin: 20px 0 18px; }
             .hero-main-line { white-space: nowrap; font-size: 0.82em; }
-            .hero-sub { margin-left: 0; margin-right: 0; font-size: 15.5px; line-height: 1.9; }
+            .hero-sub { margin-left: 0; margin-right: 0; font-size: 16.5px; line-height: 1.9; }
             .hero-actions { justify-content: flex-start; align-items: flex-start; flex-direction: column; gap: 10px; }
             .btn-primary { width: 100%; max-width: 320px; justify-content: center; }
             .hero-badges { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 30px; }
@@ -392,6 +392,20 @@
             .top-video-actions .top-video-secondary { width: 100%; max-width: 340px; justify-content: center; }
             .top-video-shell { width: min(100%, 320px); }
         }
+
+        /* ── Audience paths ── */
+        .audience { padding: 86px 56px; background: var(--bg); }
+        .audience-inner { max-width: 1060px; margin: 0 auto; }
+        .audience-head { max-width: 600px; margin-bottom: 32px; }
+        .audience-head .body-text { margin-top: 14px; }
+        .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        .audience-card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; color: inherit; display: block; min-height: 220px; padding: 28px 24px; text-decoration: none; transition: border-color .2s, box-shadow .2s, transform .2s; }
+        .audience-card:hover { border-color: rgba(217,122,90,.55); box-shadow: 0 16px 32px rgba(42,34,24,.09); transform: translateY(-3px); }
+        .audience-card .audience-num { color: var(--accent); font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; }
+        .audience-card h3 { color: var(--accent2); font-family: var(--font-head); font-size: 20px; font-weight: 500; line-height: 1.5; margin: 18px 0 10px; }
+        .audience-card p { color: var(--sub); font-size: 14px; line-height: 1.8; margin: 0; }
+        .audience-card .audience-link { color: var(--accent2); display: block; font-size: 13px; margin-top: 18px; }
+        @media (max-width: 768px) { .audience { padding: 64px 20px; } .audience-grid { grid-template-columns: 1fr; } .audience-card { min-height: 0; } }
 
         /* ── Concept ── */
         .concept {
@@ -738,6 +752,20 @@
         /* ── SVG icons (inline) ── */
         .icon-svg { display: inline-block; vertical-align: middle; }
     </style>
+    <link rel="canonical" href="https://kinia.io/">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "Kinia（キニア）",
+      "operatingSystem": "Android",
+      "applicationCategory": "LifestyleApplication",
+      "description": "通知エリアへの出入りだけをそっと知らせる家族見守りアプリ。監視ではなく、そっと見守る。",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+      "url": "https://kinia.io/",
+      "installUrl": "https://play.google.com/store/apps/details?id=io.kinia"
+    }
+    </script>
 </head>
 <body>
 
@@ -750,7 +778,7 @@
     <div class="hero-glow-l" aria-hidden="true"></div>
     <div class="hero-grid">
         <div>
-            <span class="pill"><span class="pill-dot"></span>家族のための、やさしい見守り</span>
+            <span class="pill"><span class="pill-dot"></span>家族の居場所がわかる、見守りアプリ</span>
             <h1>
                 <span class="hero-main-line">ちょうどいい距離で、</span><br>
                 <span class="underline-accent">そっとつながる</span>
@@ -766,7 +794,7 @@
                     Google Playで入手
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </a>
-                <span class="hero-note">Android配信中 ・ iOS版は近日公開</span>
+                <span class="hero-note">Android配信中 ・ iOS版は準備中</span>
             </div>
             <div class="hero-badges">
                 <span class="hero-badge">
@@ -848,6 +876,22 @@
                 </span>
             </button>
             <div class="top-video-caption">音声ありの短い紹介動画です。</div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Audience paths ─── -->
+<section class="audience" aria-labelledby="audience-title">
+    <div class="audience-inner">
+        <div class="audience-head">
+            <div class="section-label">— FOR YOUR FAMILY —</div>
+            <h2 class="section-heading" id="audience-title">あなたの家族には、<br><span class="accent-text">どの見守りが合いますか？</span></h2>
+            <p class="body-text">ご家族の状況に合う使い方から、Kiniaの考え方をご覧ください。</p>
+        </div>
+        <div class="audience-grid">
+            <a class="audience-card" href="/school-child-watch.html"><span class="audience-num">01 / SCHOOL</span><h3>通学・習い事を<br>見守りたい</h3><p>帰宅や到着の気配を、必要なときに受け取る使い方です。</p><span class="audience-link">通学・習い事の見守りを見る →</span></a>
+            <a class="audience-card" href="/senior.html"><span class="audience-num">02 / SENIOR</span><h3>離れて暮らす親が<br>気になる</h3><p>見守られる人の気持ちも大切にした、ゆるいつながりです。</p><span class="audience-link">高齢のご家族がいる方へ →</span></a>
+            <a class="audience-card" href="/for-kids.html"><span class="audience-num">03 / FAIR</span><h3>「見守られる側」の<br>あなたへ</h3><p>親だけが見るのではなく、みんなが対等につながる考え方です。</p><span class="audience-link">中高生の方へ →</span></a>
         </div>
     </div>
 </section>
@@ -1123,6 +1167,7 @@
             <p>
                 「子どもを管理する」のではなく「家族としてつながる」ことを考えたとき、お互いを尊重できる<strong>ゆるい新しいつながりの形</strong>があってもいい。Kiniaは、そんな考えから生まれました。
             </p>
+            <p><a href="/about.html">Kiniaについて、もう少し →</a></p>
         </div>
     </div>
 </section>
@@ -1190,7 +1235,7 @@
                         <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
                     </div>
                 </div>
-                <div class="faq-answer">近日公開予定です。Androidからリリースしており、iOS版もまもなく配信予定です。</div>
+                <div class="faq-answer">Android版はGoogle Playで配信中です。iOS版は現在準備中です。公開が決まりましたら、本サイトでお知らせします。</div>
             </div>
             <div class="faq-item" onclick="this.classList.toggle('open')">
                 <div class="faq-question">
@@ -1199,7 +1244,16 @@
                         <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
                     </div>
                 </div>
-                <div class="faq-answer">はい。全メンバーへの全画面安否確認と、最終位置の照会機能を搭載しています。オフライン時でも端末内キャッシュから家族の最終位置を確認できます。</div>
+                <div class="faq-answer">はい。全メンバーへの全画面安否確認と、最終位置の照会機能を搭載しています。オフライン時でも端末内キャッシュから家族の最終位置を確認できます。詳しくは<a href="/safety.html">災害時の安否確認</a>をご覧ください。</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-question">
+                    <h3>ずっと無料で使えますか？</h3>
+                    <div class="faq-toggle">
+                        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </div>
+                </div>
+                <div class="faq-answer">現在、必要な機能はすべて無料でご利用いただけます。広告もありません。将来、追加機能の一部を有料で提供する可能性は検討していますが、変更がある場合は必ず事前に本サイトとアプリ内でお知らせします。</div>
             </div>
         </div>
         <p style="text-align:center;margin-top:28px;">
@@ -1224,7 +1278,7 @@
                 Google Playで入手
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
-            <span class="btn-secondary" style="opacity:0.6;cursor:default">iOS版 — 近日公開</span>
+            <span class="btn-secondary" style="opacity:0.6;cursor:default">iOS版 — 準備中</span>
         </div>
     </div>
 </section>
@@ -1250,11 +1304,14 @@
             <a href="/setup.html">はじめかたガイド</a>
             <a href="/school-child-watch.html">通学・習い事の見守り</a>
             <a href="/faq.html">よくある質問</a>
-            <a href="/status.html">開発状況</a>
+            <a href="/status.html">開発ロードマップ</a>
             <a href="/safety.html">災害時の安否確認</a>
+            <a href="/emergency-query.html">いまどこ確認</a>
             <a href="/data-safety.html">データの安全性</a>
             <a href="/compare.html">比較してみる</a>
             <a href="/for-kids.html">中高生の方へ</a>
+            <a href="/about.html">Kiniaについて</a>
+            <a href="https://note.com/kinia" target="_blank" rel="noopener">開発ノート（note）</a>
             <a href="/privacy.html">プライバシーポリシー</a>
             <a href="/delete-account.html">アカウント削除</a>
             <a href="#contact">お問い合わせ</a>

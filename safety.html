@@ -12,11 +12,11 @@
     <meta property="og:description" content="Kiniaの安否確認機能は、災害時に家族の無事を一斉に確認できます。普段のプライバシーを保ちながら、非常時だけ必要な確認ができる設計です。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kinia.io/safety.html">
-    <meta property="og:image" content="https://kinia.io/images/app_icon.png">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://kinia.io/images/ogp/og_default.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="安否確認機能について — Kinia">
     <meta name="twitter:description" content="Kiniaの安否確認機能は、災害時に家族の無事を一斉に確認できます。普段のプライバシーを保ちながら、非常時だけ必要な確認ができる設計です。">
-    <meta name="twitter:image" content="https://kinia.io/images/app_icon.png">
+    <meta name="twitter:image" content="https://kinia.io/images/ogp/og_default.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -133,8 +133,15 @@
         .step-text { flex: 1; }
         .step-text p { margin-bottom: 0; }
         .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+        .detail-links { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:32px 0; }
+        .detail-link { background:var(--card); border:1px solid var(--line); border-radius:14px; color:inherit; display:block; padding:20px; text-decoration:none; transition:border-color .2s,transform .2s; }
+        .detail-link:hover { border-color:var(--accent); transform:translateY(-2px); }
+        .detail-link strong { color:var(--accent2); display:block; margin-bottom:8px; }
+        .detail-link span { color:var(--sub); font-size:.93rem; line-height:1.75; }
         @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+        @media (max-width: 640px) { .detail-links { grid-template-columns:1fr; } }
     </style>
+    <link rel="canonical" href="https://kinia.io/safety.html">
 </head>
 <body>
 
@@ -284,6 +291,20 @@
         <p style="margin-top:12px; font-size:0.92rem;">座標はロングタップでコピーでき、Googleマップや他の地図アプリに貼り付けて場所を確認できます。</p>
     </div>
 
+    <section aria-labelledby="more-details">
+        <h2 id="more-details">もっと詳しく</h2>
+        <div class="detail-links">
+            <a class="detail-link" href="/safety-check.html">
+                <strong>安否確認のくわしい流れ →</strong>
+                <span>実行から回答の確認まで、アプリ内での手順をご案内します。</span>
+            </a>
+            <a class="detail-link" href="/emergency-query.html">
+                <strong>いまどこ確認のしくみ →</strong>
+                <span>非常時に位置の手がかりを確かめるための考え方をご説明します。</span>
+            </a>
+        </div>
+    </section>
+
     <!-- 9. CTA -->
     <div style="text-align:center; margin-top:48px; padding-top:32px; border-top:1px solid var(--line);">
         <p style="font-size:1.05rem; color:var(--ink); margin-bottom:16px;">安否確認機能を試してみませんか？</p>
@@ -302,10 +323,10 @@
     <div class="footer-inner">
         <div class="footer-brand"><img src="/images/app_icon.png" alt=""><span class="footer-brand-name">Kinia</span><span class="footer-brand-ruby">キニア</span></div>
         <div class="footer-links">
-            <a href="/setup.html">はじめかたガイド</a><a href="/faq.html">よくある質問</a><a href="/status.html">開発状況</a>
+            <a href="/setup.html">はじめかたガイド</a><a href="/faq.html">よくある質問</a><a href="/status.html">開発ロードマップ</a>
             <a href="/data-safety.html">データの安全性</a><a href="/compare.html">比較してみる</a>
             <a href="/for-kids.html">中高生の方へ</a>
-            <a href="/privacy.html">プライバシーポリシー</a><a href="/#contact">お問い合わせ</a>
+            <a href="/privacy.html">プライバシーポリシー</a><a href="/about.html">Kiniaについて</a><a href="https://note.com/kinia" target="_blank" rel="noopener">開発ノート（note）</a><a href="/#contact">お問い合わせ</a>
         </div>
         <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
     </div>

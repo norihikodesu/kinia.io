@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinia OGP template</title>
+    <style>
+        * { box-sizing: border-box; }
+        html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+        body {
+            align-items: center;
+            background: #fbf6ef;
+            color: #2a2218;
+            display: flex;
+            font-family: "Noto Sans JP", "Yu Gothic", sans-serif;
+            justify-content: center;
+        }
+        .canvas {
+            align-items: center;
+            border: 1px solid rgba(42, 34, 24, .08);
+            display: flex;
+            height: 630px;
+            isolation: isolate;
+            overflow: hidden;
+            padding: 78px 104px;
+            position: relative;
+            width: 1200px;
+        }
+        .orb { border-radius: 50%; filter: blur(1px); opacity: .55; position: absolute; z-index: -1; }
+        .orb-one { background: #f3d9c9; height: 480px; right: -130px; top: -165px; width: 480px; }
+        .orb-two { background: #dce7d6; bottom: -245px; height: 440px; left: -175px; width: 440px; }
+        .content { max-width: 785px; }
+        .eyebrow {
+            color: #b85a3e;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: .16em;
+            margin: 0 0 26px;
+        }
+        h1 {
+            font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+            font-size: 64px;
+            font-weight: 600;
+            letter-spacing: .04em;
+            line-height: 1.35;
+            margin: 0;
+        }
+        .accent { color: #b85a3e; }
+        .copy { color: rgba(42, 34, 24, .68); font-size: 27px; line-height: 1.7; margin: 26px 0 0; }
+        .brand {
+            align-items: center;
+            bottom: 70px;
+            display: flex;
+            gap: 16px;
+            position: absolute;
+            right: 88px;
+        }
+        .brand img { border-radius: 24px; height: 90px; width: 90px; }
+        .brand-name { font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; font-size: 38px; font-weight: 600; }
+        .brand-url { color: rgba(42, 34, 24, .55); font-size: 18px; letter-spacing: .08em; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <main class="canvas">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="content">
+            <p class="eyebrow">KINIA</p>
+            <h1>そっと見守る、<br><span class="accent">家族の見守りアプリ</span></h1>
+            <p class="copy">気になったときに、必要なことだけ。<br>お互いの日常を尊重する、ちょうどいいつながり。</p>
+        </div>
+        <div class="brand">
+            <img src="/images/app_icon.png" alt="">
+            <div>
+                <div class="brand-name">Kinia</div>
+                <div class="brand-url">kinia.io</div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

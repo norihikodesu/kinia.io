@@ -52,6 +52,8 @@ var html='\
 <hr class="nav-dd-sep">\
 <a href="/safety.html">安否確認機能</a>\
 <span class="nav-dd-sub">災害時に家族の無事を確認</span>\
+<a href="/safety-check.html">安否確認の使い方</a>\
+<a href="/emergency-query.html">「いまどこ確認」とは</a>\
 </div>\
 </div>\
 <a href="/faq.html">FAQ</a>\
@@ -101,4 +103,13 @@ for(var i=0;i<toggles.length;i++){
 
 var hb=document.querySelector('nav.nav .hamburger');
 if(hb) hb.addEventListener('click',function(){document.querySelector('nav.nav .nav-links').classList.toggle('open')});
+
+document.addEventListener('click',function(e){
+    var link=e.target.closest('a[href]');
+    if(!link||typeof gtag!=='function')return;
+    var href=link.href||'';
+    if(href.indexOf('play.google.com')!==-1){gtag('event','store_click',{store:'google_play',page_path:location.pathname});}
+    else if(href.indexOf('note.com')!==-1){gtag('event','note_click',{page_path:location.pathname});}
+    else if(href.indexOf('forms.gle')!==-1){gtag('event','contact_click',{page_path:location.pathname});}
+});
 })();
