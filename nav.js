@@ -57,6 +57,7 @@ var html='\
 </div>\
 </div>\
 <a href="/faq.html">FAQ</a>\
+<a href="https://note.com/kinia" target="_blank" rel="noopener">読みもの</a>\
 <div class="nav-dropdown">\
 <button class="nav-dropdown-toggle">ガイド ▾</button>\
 <div class="nav-dropdown-menu">\
