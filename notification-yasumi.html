@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>AtoShizu（あとしず） | 通知を静かにして、自分の時間を取り戻す</title>
+  <meta name="description" content="通知を静かにしたい時間を決めるだけ。届いた通知は端末内で一時的に預かり、あとから必要なものだけ確認できます。無料・広告なし。">
+  <style>
+    :root {
+      --ink: #162b33;
+      --ink-soft: #43616a;
+      --paper: #f8f5ed;
+      --paper-deep: #eee8dc;
+      --night: #102b37;
+      --night-soft: #173d49;
+      --sea: #2ca48a;
+      --sea-deep: #197761;
+      --sun: #e4a84b;
+      --line: rgba(22, 43, 51, .13);
+      --shadow: 0 24px 64px rgba(16, 43, 55, .13);
+      --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+      --serif: "Noto Serif JP", "Yu Mincho", serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); line-height: 1.75; }
+    a { color: inherit; }
+    .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar { border-bottom: 1px solid var(--line); background: rgba(248,245,237,.93); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 5; }
+    .topbar .shell { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; letter-spacing: .02em; }
+    .brand-mark { width: 28px; height: 28px; border-radius: 9px 9px 9px 3px; background: var(--sea); position: relative; box-shadow: inset 0 0 0 4px rgba(255,255,255,.18); }
+    .brand-mark::after { content: ""; position: absolute; width: 9px; height: 9px; border: 2px solid #fff; border-radius: 50%; right: 5px; top: 5px; }
+    .brand small { color: var(--ink-soft); font-size: 11px; font-weight: 700; letter-spacing: .12em; }
+    .header-link { color: var(--ink-soft); font-size: 13px; text-underline-offset: 4px; }
+    .hero { padding: 88px 0 68px; overflow: hidden; background: radial-gradient(circle at 88% 20%, rgba(44,164,138,.15), transparent 24rem), linear-gradient(160deg, #f8f5ed 0%, #f4efe4 100%); }
+    .hero-grid { display: grid; grid-template-columns: 1.06fr .94fr; align-items: center; gap: 64px; }
+    .eyebrow { margin: 0 0 16px; color: var(--sea-deep); font-size: 12px; font-weight: 800; letter-spacing: .14em; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 710px; margin-bottom: 24px; font-family: var(--serif); font-size: clamp(38px, 5.3vw, 68px); line-height: 1.25; letter-spacing: -.045em; }
+    .hero-copy { max-width: 600px; margin-bottom: 30px; color: var(--ink-soft); font-size: clamp(16px, 2vw, 19px); }
+    .hero-copy strong { color: var(--ink); }
+    .badges { display: flex; flex-wrap: wrap; gap: 9px; }
+    .badge { padding: 6px 12px; border: 1px solid rgba(25,119,97,.25); border-radius: 999px; color: var(--sea-deep); background: rgba(255,255,255,.5); font-size: 13px; font-weight: 700; }
+    .phone { width: min(100%, 370px); margin: 0 auto; padding: 15px; border: 7px solid #15313c; border-radius: 39px; background: var(--night); box-shadow: var(--shadow); transform: rotate(3deg); }
+    .phone-screen { min-height: 490px; padding: 22px 18px; border-radius: 25px; color: #ecf7f3; background: radial-gradient(circle at 80% 8%, rgba(44,164,138,.38), transparent 12rem), var(--night); }
+    .phone-status { display: flex; justify-content: space-between; color: #bad0cb; font-size: 11px; font-weight: 700; }
+    .moon { width: 46px; height: 46px; margin: 22px 0 12px; border-radius: 50%; background: var(--sun); box-shadow: 15px -5px 0 var(--night); }
+    .screen-title { margin: 0; font-size: 24px; line-height: 1.35; }
+    .screen-sub { margin: 7px 0 18px; color: #b4c6c3; font-size: 13px; }
+    .screen-card { margin-top: 12px; padding: 14px; border: 1px solid rgba(175,225,213,.22); border-radius: 15px; background: rgba(255,255,255,.07); }
+    .screen-label { margin: 0 0 4px; color: #9bdacb; font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+    .screen-card strong { display: block; font-size: 16px; }
+    .screen-card span { color: #bdd0cd; font-size: 12px; }
+    .screen-pill { display: inline-block; margin-top: 9px; padding: 3px 8px; border-radius: 999px; background: rgba(44,164,138,.2); color: #9be0d0; font-size: 11px; font-weight: 700; }
+    .intro { padding: 64px 0; background: var(--night); color: #eff7f4; }
+    .intro-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: start; }
+    .section-kicker { color: var(--sea); font-size: 12px; font-weight: 800; letter-spacing: .14em; }
+    h2 { font-family: var(--serif); font-size: clamp(29px, 3.6vw, 45px); line-height: 1.35; letter-spacing: -.035em; }
+    .intro p { color: #bed0cd; }
+    .quote { padding: 22px 24px; border-left: 3px solid var(--sun); border-radius: 0 16px 16px 0; background: rgba(255,255,255,.07); color: #f7f2e8; font-family: var(--serif); font-size: 20px; line-height: 1.65; }
+    .content { padding: 86px 0; }
+    .section-lead { max-width: 650px; color: var(--ink-soft); font-size: 17px; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+    .step { min-height: 270px; padding: 28px; border: 1px solid var(--line); border-radius: 20px; background: #fffdfa; box-shadow: 0 8px 24px rgba(16,43,55,.04); }
+    .step-no { color: var(--sea-deep); font-weight: 900; font-size: 13px; letter-spacing: .12em; }
+    .step h3 { margin: 17px 0 9px; font-size: 21px; line-height: 1.5; }
+    .step p { color: var(--ink-soft); font-size: 14px; }
+    .box-section { padding: 80px 0; background: var(--paper-deep); }
+    .box-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 52px; align-items: center; }
+    .inbox-demo { padding: 17px; border-radius: 22px; background: #fffdfa; box-shadow: var(--shadow); }
+    .inbox-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 8px 6px 13px; }
+    .inbox-head strong { font-size: 20px; }
+    .inbox-head span { color: var(--sea-deep); font-size: 12px; font-weight: 800; }
+    .inbox-filters { display: flex; gap: 8px; overflow-x: auto; padding: 0 6px 10px; scrollbar-width: thin; }
+    .inbox-filter { flex: 0 0 auto; min-height: 34px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-soft); background: #fffdfa; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .inbox-filter.is-active { border-color: rgba(44,164,138,.5); color: var(--sea-deep); background: rgba(44,164,138,.1); }
+    .inbox-group { margin-top: 11px; padding: 13px; border: 1px solid var(--line); border-radius: 15px; }
+    .inbox-group.is-work { border-color: rgba(44,164,138,.45); background: rgba(44,164,138,.07); }
+    .group-label { margin: 0 0 9px; font-size: 12px; font-weight: 900; }
+    .notice { padding: 10px 0; border-top: 1px solid var(--line); }
+    .notice:first-of-type { border-top: 0; }
+    .notice strong { display: block; font-size: 14px; }
+    .notice span { color: var(--ink-soft); font-size: 12px; }
+    .mini-chip { float: right; color: var(--sea-deep); font-size: 11px; font-weight: 800; }
+    .switches { margin-top: 21px; display: grid; gap: 10px; }
+    .switch { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.6); }
+    .switch-dot { width: 27px; height: 27px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: var(--sea); font-size: 13px; font-weight: 900; }
+    .switch strong { display: block; font-size: 15px; }
+    .switch span { color: var(--ink-soft); font-size: 13px; }
+    .privacy { padding: 86px 0; background: #fdfbf6; }
+    .privacy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .privacy-card { padding: 24px; border-radius: 18px; background: var(--night); color: #eff7f4; }
+    .privacy-card:nth-child(2) { background: var(--sea-deep); }
+    .privacy-card:nth-child(3) { color: var(--ink); background: #f2dfbc; }
+    .privacy-card h3 { font-size: 18px; }
+    .privacy-card p { margin-bottom: 0; color: inherit; opacity: .86; font-size: 14px; }
+    .cta { padding: 72px 0; text-align: center; color: #eff7f4; background: linear-gradient(135deg, var(--night), #174955); }
+    .cta h2 { margin-bottom: 13px; }
+    .cta p { max-width: 600px; margin: 0 auto 24px; color: #c1d4d0; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; background: rgba(255,255,255,.1); color: #fff; font-weight: 800; text-decoration: none; }
+    .button[aria-disabled="true"] { cursor: default; }
+    footer { padding: 28px 0; color: var(--ink-soft); background: var(--paper); font-size: 12px; }
+    .footer-row { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+    @media (max-width: 820px) {
+      .hero { padding-top: 58px; }
+      .hero-grid, .intro-grid, .box-grid { grid-template-columns: 1fr; gap: 36px; }
+      .phone { transform: none; }
+      .steps, .privacy-grid { grid-template-columns: 1fr; }
+      .step { min-height: 0; }
+    }
+    @media (max-width: 480px) {
+      .shell { width: min(100% - 28px, 1120px); }
+      .header-link { font-size: 12px; }
+      .hero, .content, .privacy { padding: 54px 0; }
+      .box-section { padding: 56px 0; }
+      h1 { font-size: 37px; }
+      h2 { font-size: 29px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell">
+      <a class="brand" href="/" aria-label="Kinia Labo トップへ"><span class="brand-mark" aria-hidden="true"></span><span>Kinia Labo<br><small>ATOSHIZU / あとしず</small></span></a>
+      <a class="header-link" href="/notification-yasumi-privacy.html">プライバシー</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">ATOSHIZU / あとしず</p>
+          <h1>通知を静かにして、<br>自分の時間を取り戻す。</h1>
+          <p class="hero-copy">勤務時間後の連絡に気持ちが引っ張られる夜も、眠る前まで続く通知も。<strong>今は見なくていい通知を、あとで見返せる形で預かる</strong>。AtoShizu（あとしず）は、通知と少し距離を置くためのアプリです。</p>
+          <div class="badges" aria-label="アプリの特徴"><span class="badge">無料</span><span class="badge">広告なし</span><span class="badge">アカウント不要</span><span class="badge">端末内だけで管理</span></div>
+        </div>
+        <div class="phone" aria-label="AtoShizu（あとしず）の画面イメージ">
+          <div class="phone-screen">
+            <div class="phone-status"><span>22:14</span><span>静かな時間</span></div>
+            <div class="moon" aria-hidden="true"></div>
+            <p class="screen-title">今夜は、<br>通知を預かっています。</p>
+            <p class="screen-sub">必要なときに、預かり箱から確認できます。</p>
+            <div class="screen-card"><p class="screen-label">いまの設定</p><strong>22:00 — 翌朝 07:00</strong><span>通知を端末内で一時的に預かります。</span></div>
+            <div class="screen-card"><p class="screen-label">今日の仕事通知</p><strong>今日は仕事を休む</strong><span class="screen-pill">翌朝に通常へ戻ります</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="shell intro-grid">
+        <div>
+          <p class="section-kicker">WHY</p>
+          <h2>「見ないようにする」を、ひとりで頑張らなくていい。</h2>
+          <p>通知を見ないと決めても、画面に現れるたびに気持ちは揺れます。AtoShizu（あとしず）は、大切な連絡を捨てるためではありません。今は受け取らず、落ち着いたときに自分で選んで確認するための、小さな余白をつくります。</p>
+        </div>
+        <div class="quote">「今は見ない。<br>あとで、必要なものだけ見る。」<br>そんな選択を、もっと簡単に。</div>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="shell">
+        <p class="section-kicker">HOW IT WORKS</p>
+        <h2>使い方は、時間を決めるだけ。</h2>
+        <p class="section-lead">複雑なルールは必要ありません。まずは、通知を静かにしてほしい時間を決めます。届いた通知はアプリが端末内で一時的に預かり、あとからまとめて確認できます。</p>
+        <div class="steps">
+          <article class="step"><p class="step-no">01 / SET</p><h3>静かにしたい時間を決める</h3><p>夜、集中したい時間、仕事が終わったあと。土日は仕事アプリだけを終日預かる設定も、初期状態でONです。自分の生活に合わせて、いつ通知と距離を置くかを設定します。</p></article>
+          <article class="step"><p class="step-no">02 / HOLD</p><h3>通知はいったん預かる</h3><p>その時間に届いた通知は、通知欄から消して、端末内の預かり箱へ。大切な情報を外部へ送ることはありません。</p></article>
+          <article class="step"><p class="step-no">03 / REVIEW</p><h3>落ち着いたときに見返す</h3><p>仕事後に預かった通知を先に、ほかの通知は必要なときに。アプリ名・時刻・内容を、保存範囲の設定に合わせて確認できます。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="box-section">
+      <div class="shell box-grid">
+        <div>
+          <p class="section-kicker">INBOX</p>
+          <h2>預かり箱は、<br>「あとで見る」ための場所です。</h2>
+          <p class="section-lead">預かり箱には、静かな時間に届いた通知だけが入ります。仕事時間外や土日に預かったものを先に表示し、ほかの時間帯に静かにした通知も、必要なときに分けて確認できます。</p>
+          <div class="switches">
+            <div class="switch"><span class="switch-dot">休</span><div><strong>今日は仕事を休む</strong><span>有給休暇や休日など、平日でも仕事通知をその日だけ預かります。</span></div></div>
+            <div class="switch"><span class="switch-dot">今</span><div><strong>今夜は仕事も受け取る</strong><span>夜も対応したい日は、その日だけ仕事通知を通常どおり受け取れます。</span></div></div>
+          </div>
+        </div>
+        <div class="inbox-demo" aria-label="預かり箱の表示例">
+          <div class="inbox-head"><strong>預かり箱</strong><span>端末内・最長7日</span></div>
+          <div class="inbox-filters" aria-label="預かり箱の絞り込み"><span class="inbox-filter is-active">すべて</span><span class="inbox-filter">指定時間</span><span class="inbox-filter">仕事時間外</span><span class="inbox-filter">いつも</span></div>
+          <div class="inbox-group is-work"><p class="group-label">仕事時間外に預かった通知</p><div class="notice"><span class="mini-chip">仕事時間外</span><strong>Teams　プロジェクトの更新</strong><span>21:12　必要なときに、ここから確認</span></div><div class="notice"><span class="mini-chip">仕事時間外</span><strong>Slack　メンションがありました</strong><span>20:48　通知は今すぐ見なくて大丈夫</span></div></div>
+          <div class="inbox-group"><p class="group-label">その他の静かにした通知</p><div class="notice"><span class="mini-chip">指定時間</span><strong>ニュース　今日のまとめ</strong><span>22:05　必要なら開いて確認</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="privacy">
+      <div class="shell">
+        <p class="section-kicker">PRIVACY</p>
+        <h2>通知のために、あなたの情報を外へ出さない。</h2>
+        <p class="section-lead">AtoShizu（あとしず）は、通知を端末内で扱うために通知へのアクセスを使います。アカウント登録、広告、分析のための外部送信は行いません。</p>
+        <div class="privacy-grid">
+          <article class="privacy-card"><h3>外部送信なし</h3><p>通知の情報をサーバーへ送信しません。アプリのためのアカウントも必要ありません。</p></article>
+          <article class="privacy-card"><h3>保存は最長7日</h3><p>預かった通知は端末内に保存し、24時間・3日・7日から保管期間を選べます。保存する範囲も自分で選べます。</p></article>
+          <article class="privacy-card"><h3>いつでも変えられる</h3><p>保存範囲を弱めると不要になった内容はすぐに削除できます。通知は個別または一括で削除でき、通知アクセスも端末設定からいつでも止められます。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="shell">
+        <p class="section-kicker">COMING SOON</p>
+        <h2>いま、少人数テストの準備中です。</h2>
+        <p>正式な配信は、実際の通知を使った確認とプライバシー表示の最終確認を終えてから始めます。</p>
+        <span class="button" aria-disabled="true">Google Play 公開準備中</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-row"><span>© 2026 Kinia Labo</span><span><a href="mailto:kinia.app@gmail.com">kinia.app@gmail.com</a> · <a href="/notification-yasumi-privacy.html">プライバシーポリシー</a></span></div>
+  </footer>
+</body>
+</html>
