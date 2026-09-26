@@ -175,15 +175,17 @@
         }
     </style>
     <link rel="canonical" href="https://kinia.io/emergency-query.html">
+<link rel="stylesheet" href="/site-common.css?v=20260926r12">
 </head>
 <body>
 
-<script src="/nav.js"></script>
+<script src="/nav.js?v=20260926r12"></script>
 
 <section class="hero">
     <div class="hero-label">— LOCATION CHECK —</div>
     <h1>いまどこ確認</h1>
-    <p>連絡がつかない、帰りが遅い——そんなとき、家族の居場所をすぐに確認できます。<br>確認された側にも必ず通知が届くので、こっそり見られる心配はありません。</p>
+<p class="lead" style="font-size:0.92rem; margin:16px 0;">現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
+    <p>連絡がつかない、帰りが遅いときに、家族の位置を確認するための機能です。通知や位置の取得は、通信・権限・端末の状態により遅れたり届かなかったりする場合があります。</p>
 </section>
 
 <main class="content">
@@ -192,9 +194,9 @@
         <div class="section-label">— OVERVIEW —</div>
         <h2>どんな機能？</h2>
         <div class="overview-box">
-            <p><ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>では、ふだんは家族の詳しい居場所を共有しない「通知エリアのみ」という設定を選ぶことができます。自宅や学校などに着いたときだけ通知が届く、ゆるやかな見守りです。</p>
+            <p>「通知エリアのみ」は、登録した場所の出入りを中心に知らせる設定です。選んだあとも相手の画面で表示を確認してください。設定が反映されない場合の<a href="/data-safety.html#current-limits">共有設定の注意点</a>もご覧ください。</p>
             <p>でも、<strong>本当に心配なとき</strong>はどうすればいいでしょうか？ 電話に出ない、LINEも既読にならない——そんな場面で使えるのがこの機能です。</p>
-            <p>「いまどこ確認」を送ると、相手の端末に通知が届きます。60秒以内に応答がなければ、居場所が自動的に共有されます。確認した側も自分の居場所を相手に開示するので、お互いさまの対等な仕組みです。</p>
+            <p>「いまどこ確認」を送ると、相手への確認通知と位置の共有処理が進みます。60秒以内に応答がない場合も共有処理の対象になりますが、位置の取得や通知の到達は通信・端末の状態によって変わります。確認する側の位置も相手に共有する仕組みです。</p>
         </div>
     </section>
 
@@ -219,8 +221,8 @@
                     <div class="flow-line"></div>
                 </div>
                 <div class="flow-body">
-                    <h3>相手のスマホに通知が届く</h3>
-                    <p>相手の画面に全画面の通知が表示されます。スマホがロック中でも画面の上に出るので、見落としにくい仕組みです。60秒のカウントダウンが始まります。</p>
+                    <h3>相手のスマホへ確認を送る</h3>
+                    <p>相手に確認通知を送り、60秒のカウントダウンが始まります。全画面表示や通知の受信は端末の権限・設定によって変わります。</p>
                 </div>
             </div>
             <div class="flow-step">
@@ -239,8 +241,8 @@
                     <div class="flow-line"></div>
                 </div>
                 <div class="flow-body">
-                    <h3>60秒たつと自動で居場所が届く</h3>
-                    <p>カウントダウンが0になっても何も操作されなければ、居場所は<strong>自動的にあなたに届きます</strong>。相手がスマホを見ていなくても、電波が届かない場所にいても、最後に記録された位置が返ってきます。</p>
+                    <h3>60秒後、応答がなければ共有処理へ</h3>
+                    <p>カウントダウン中に応答がない場合、位置の共有処理が進みます。最後に記録された位置が表示される場合もありますが、必ず取得できるとは限りません。表示された更新時刻を確認してください。</p>
                 </div>
             </div>
             <div class="flow-step">
@@ -248,8 +250,8 @@
                     <div class="flow-num">5</div>
                 </div>
                 <div class="flow-body">
-                    <h3>相手には「確認されたよ」と通知が残る</h3>
-                    <p>居場所が共有されたあと、相手のスマホに「パパがあなたの居場所を確認しました」という通知が残ります。この通知は消せないので、あとから必ず気づけます。知らないうちに居場所を見られ続ける、ということはありません。</p>
+                    <h3>確認されたことを相手へ知らせる</h3>
+                    <p>位置を確認したことを相手に知らせる通知を送ります。通知が遅れたり届かなかったりする場合もあるため、確認したことを伝える手段を家族で相談しておいてください。</p>
                 </div>
             </div>
         </div>
@@ -372,7 +374,7 @@
                     <div class="screen-dialog-overlay">
                         <div class="dialog-box">
                             <div class="dialog-title">📍 いまどこ確認</div>
-                            <div class="dialog-message">ママの居場所を確認します。<br><br>• 相手の端末に通知が届きます<br>• あなたの位置も相手に共有されます<br>• 60秒間応答がなければ自動で届きます<br><br>送信しますか？</div>
+                            <div class="dialog-message">ママの居場所を確認します。<br><br>• 相手の端末へ通知を送ります<br>• あなたの位置も相手に共有されます<br>• 60秒間応答がなければ共有処理に進みます<br><br>送信しますか？</div>
                             <div class="dialog-buttons">
                                 <button class="dialog-btn dialog-btn-cancel">キャンセル</button>
                                 <button class="dialog-btn dialog-btn-send">送信</button>
@@ -417,7 +419,7 @@
                             <div class="notif-card-body">
                                 パパがあなたの居場所を確認し、最新の位置情報が共有されました。
                             </div>
-                            <div class="notif-pin-badge">📌 この通知は消せません</div>
+                            <div class="notif-pin-badge">📌 確認されたことを知らせる通知</div>
                         </div>
                         <div class="notif-card" style="opacity:.5;margin-top:6px">
                             <div class="notif-card-header">
@@ -449,7 +451,7 @@
             <tbody>
                 <tr>
                     <td><strong>✅ 許可する</strong></td>
-                    <td>いまの居場所がすぐに相手に届きます。そのまま押すだけでOKです。</td>
+                    <td>位置の共有処理に進みます。取得や到達は通信・端末の状態によって変わります。</td>
                 </tr>
                 <tr>
                     <td><strong>❌ 許可しない</strong></td>
@@ -461,7 +463,7 @@
                 </tr>
                 <tr>
                     <td><strong>（何もしない）</strong></td>
-                    <td>60秒たつと、居場所が<strong>自動で届きます</strong>。</td>
+                    <td>60秒後に位置の共有処理が進みます。通信や端末の状態によって取得できない場合があります。</td>
                 </tr>
             </tbody>
         </table>
@@ -477,9 +479,9 @@
         <h2>相手のスマホがつながらないときは？</h2>
 
         <div class="overview-box">
-            <p>相手が電波の届かない場所にいたり、スマホの電源が切れていても大丈夫です。<strong>最後に記録された居場所</strong>が自動的にあなたに届きます。</p>
+            <p>相手の端末が通信できないときは、最後に記録された位置が表示される場合があります。記録や通信の状態によって、位置を取得できない場合もあります。</p>
             <p>届いた位置には「最終確認: 〇分前」と表示されるので、リアルタイムではないことがひと目で分かります。</p>
-            <p>相手のスマホが再びつながった時点で、「あなたの居場所が確認されました」という通知が届くため、知らないままになることはありません。</p>
+            <p>端末が再びつながると通知の受信が進む場合がありますが、到達や本人が読んだことは保証できません。必要なときは電話などでも連絡してください。</p>
         </div>
     </section>
 
@@ -546,25 +548,14 @@
 
         <div class="note-box sage">
             <strong>この機能は「監視」のためのものではありません。</strong><br><br>
-            確認された側には必ず通知が届きます。あとからも消せない通知で気づけます。確認する側も自分の居場所を開示するので、一方的に見ることはできません。誰がいつ使ったかも記録に残ります。<br><br>
+            確認された側へ通知を送り、確認する側の位置も相手に共有する仕組みです。通信・権限・端末の状態により通知が届かないこともあります。使う場面や、確認したことの伝え方を家族で相談してください。<br><br>
             家族の帰りが遅いとき、連絡がつかないとき、地震があったとき——本当に心配な瞬間に「いまどこにいるか」を知るための機能です。
         </div>
     </section>
 
 </main>
 
-<footer class="footer">
-    <div class="footer-inner">
-        <div class="footer-brand"><img src="/images/app_icon.png" alt=""><span class="footer-brand-name">Kinia</span><span class="footer-brand-ruby">キニア</span></div>
-        <div class="footer-links">
-            <a href="/setup.html">はじめかたガイド</a><a href="/faq.html">よくある質問</a><a href="/status.html">開発ロードマップ</a>
-            <a href="/data-safety.html">データの安全性</a><a href="/compare.html">比較してみる</a>
-            <a href="/for-kids.html">中高生の方へ</a>
-            <a href="/privacy.html">プライバシーポリシー</a><a href="/about.html">Kiniaについて</a><a href="https://note.com/kinia" target="_blank" rel="noopener">開発ノート（note）</a><a href="/#contact">お問い合わせ</a>
-        </div>
-        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
-    </div>
-</footer>
+<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">Kinia（キニア）<small>© 2026 Kinia</small></div><div class="sf-links"><a href="/setup.html">はじめかた</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></footer>
 
 <script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
 </body>

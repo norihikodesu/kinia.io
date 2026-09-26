@@ -224,10 +224,11 @@
         .print-btn:hover { background: var(--line); color: var(--ink); }
     </style>
     <link rel="canonical" href="https://kinia.io/senior.html">
+<link rel="stylesheet" href="/site-common.css?v=20260926r12">
 </head>
 <body>
 
-<script src="/nav.js"></script>
+<script src="/nav.js?v=20260926r12"></script>
 
 <!-- ════════════════════════════════════════
      ヒーロー
@@ -235,6 +236,7 @@
 <div class="hero">
     <img src="/images/app_icon.png" alt="Kinia" style="width:80px; height:80px; border-radius:18px; margin-bottom:16px;">
     <h1>離れていても、<br>「今日も元気かな」が分かる</h1>
+<p class="lead" style="font-size:0.92rem; margin:16px 0;">現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
     <p class="tagline">
         Kinia（キニア）は、離れて暮らすご家族が<br>
         お互いの生活を見守れる無料アプリです。<br>
@@ -242,7 +244,7 @@
     </p>
     <div class="action-banner" style="margin-top:24px;">
         <strong>スマートフォンの設定はご家族に任せられます。</strong><br>
-        最初の設定さえお願いすれば、あとは通知を見るだけです。
+        最初の設定を一緒に行い、通知や共有内容も家族で確認してください。
     </div>
     <div style="margin-top:20px; text-align:center;">
         <a href="https://play.google.com/store/apps/details?id=io.kinia" class="cta-btn" style="font-size:1rem; padding:14px 32px;">Google Playで入手</a>
@@ -265,8 +267,8 @@
         <li>
             <div class="icon">🏠</div>
             <div>
-                <h3>通知は「家に着いた」「家を出た」だけ</h3>
-                <p>「今どこにいるか」をリアルタイムで追いかけません。自宅やよく行く場所を登録しておくと、出入りだけをそっとお知らせします。</p>
+                <h3>「家に着いた」「家を出た」を通知</h3>
+                <p>自宅やよく行く場所を登録し、出入りを通知で確認できます。詳しい位置まで共有するかは、家族と相談して設定してください。</p>
             </div>
         </li>
         <li>
@@ -286,8 +288,8 @@
         <li>
             <div class="icon">🆓</div>
             <div>
-                <h3>完全無料・広告なし</h3>
-                <p>月額料金はかかりません。広告も一切表示されません。ご家族の位置情報を広告会社に渡すこともありません。Kiniaは開発者が自分の家族のために作ったアプリで、広告やデータ販売で利益を得る仕組みではありません。</p>
+                <h3>現在無料・広告なし</h3>
+                <p>現在は無料で利用でき、アプリ内広告もありません。通信料は別途かかります。</p>
             </div>
         </li>
     </ul>
@@ -299,7 +301,7 @@
      ════════════════════════════════════════ -->
 <div class="section">
     <p class="section-label">Notification</p>
-    <h2>届く通知は<span class="hl">これだけ</span>です</h2>
+    <h2>家族に届く<span class="hl">通知の例</span></h2>
     <p class="lead">
         複雑な画面を開く必要はありません。<br>
         スマートフォンに届く通知を見るだけで、ご家族の様子が分かります。
@@ -329,37 +331,37 @@
     <h2>個人情報は<span class="hl">どう守られるのか</span></h2>
 
     <div class="quote-block">
-        Kiniaは、あなたの位置情報を<strong>運営者にも読めない形</strong>で保存しています。<br>
-        万が一のデータ流出があっても、位置情報を復元することはできません。
+        位置情報などを家族に表示するため、サービス側でもデータを扱います。<br>
+        共有・保存・削除について、使い始める前に確認してください。
     </div>
 
     <ul class="point-list">
         <li>
             <div class="icon">🔒</div>
             <div>
-                <h3>位置情報は暗号化して保存</h3>
-                <p>あなたの位置情報は、スマートフォンの中で暗号化されてからサーバーに送られます。暗号を解く鍵（合言葉）はサーバーには送られないため、運営者を含め誰も中身を見ることができません。</p>
+                <h3>位置情報の扱いを確認する</h3>
+                <p>位置情報などの保存・同期には外部サービスも使います。保護方法や制約は<a href="/data-safety.html">データの取り扱い</a>で説明しています。</p>
             </div>
         </li>
         <li>
             <div class="icon">👤</div>
             <div>
-                <h3>名前はサーバーに保存されない</h3>
-                <p>サーバーに保存されるのはランダムな記号だけです。ご家族の名前（ニックネーム）はお使いのスマートフォンの中にだけ保存されます。</p>
+                <h3>表示名などもサービス側で扱う</h3>
+                <p>表示名やグループ情報なども、家族への表示と同期のためにサービス側で扱います。端末の中だけに保存するアプリではありません。</p>
             </div>
         </li>
         <li>
             <div class="icon">🛡️</div>
             <div>
-                <h3>Googleのセキュリティ基盤を利用</h3>
-                <p>データの通信と保管には、Googleが提供する安全な仕組みを使っています。ログインにはGoogleアカウントを使うため、ご家族以外の第三者がデータにアクセスすることはできません。</p>
+                <h3>Googleアカウントでログイン</h3>
+                <p>Android版ではGoogleアカウントでログインします。利用する外部サービスとデータの扱いは<a href="/data-safety.html">データの取り扱い</a>をご確認ください。</p>
             </div>
         </li>
         <li>
             <div class="icon">📵</div>
             <div>
-                <h3>広告会社に情報を渡しません</h3>
-                <p>Kiniaには広告が一切ありません。位置情報や個人情報を第三者に提供・販売することもありません。「持たない・渡さない」が基本方針です。</p>
+                <h3>現在、アプリ内広告なし</h3>
+                <p>現在は無料で利用でき、アプリ内広告もありません。通信料は別途かかります。</p>
             </div>
         </li>
     </ul>
@@ -374,7 +376,7 @@
     <h2>使い方は<span class="hl">かんたん</span>です</h2>
     <p class="lead">
         スマートフォンが苦手でも大丈夫です。<br>
-        最初の設定をご家族に手伝ってもらえば、あとは通知を見るだけです。
+        最初の設定をご家族と行い、通知や共有内容も一緒に確認してください。
     </p>
 
     <ol class="step-list">
@@ -383,8 +385,8 @@
             <p>Google Play ストアから「Kinia」で検索してインストールします。無料です。</p>
         </li>
         <li>
-            <h3>家族と「合言葉」を決める</h3>
-            <p>家族だけが知っている合言葉を決めます。この合言葉が、位置情報を暗号化する鍵になります。電話やLINEで共有してください。</p>
+            <h3>家族のグループをつなぐ</h3>
+            <p>グループを作成し、招待リンクやコードで家族を招待します。届いた案内は、参加する家族にだけ伝えてください。手順は<a href="/setup.html">はじめかたガイド</a>をご確認ください。</p>
         </li>
         <li>
             <h3>通知エリアを設定する</h3>
@@ -392,7 +394,7 @@
         </li>
         <li>
             <h3>あとは普段どおりに</h3>
-            <p>設定が終わったら、特に操作する必要はありません。スマートフォンを持ち歩くだけで、自動で情報が共有されます。</p>
+            <p>設定後は、家族の画面で共有内容と通知の受信を確認してください。通信・権限・省電力設定などで、位置更新や通知が遅れたり届かなかったりする場合があります。</p>
         </li>
     </ol>
 </div>
@@ -407,27 +409,27 @@
 
     <div class="faq-item">
         <h3>常に居場所を見られてしまうのですか？</h3>
-        <p>いいえ。初期設定では「通知エリアへの出入り」と「歩数」だけが共有されます。リアルタイムの現在地は共有されません。</p>
+        <p>共有する相手ごとに設定を確認し、保存後は相手の画面でも意図した表示になっているか確かめてください。詳しい位置や履歴を互いに見る場合は、双方が相手に「すべて共有」を選び、保存後に相手の画面でも表示を確認してください。設定が反映されない場合もあるため、<a href="/data-safety.html#current-limits">共有設定の注意点</a>をご確認ください。</p>
     </div>
     <div class="faq-item">
         <h3>スマートフォンの操作が苦手でも使えますか？</h3>
-        <p>はい。最初の設定をご家族に手伝ってもらえば、あとは通知を見るだけです。「簡単モード」を選ぶと、画面がさらにシンプルになります。</p>
+        <p>ご家族と一緒に<a href="/setup.html">はじめかたガイド</a>を確認しながら設定できます。設定後は、相手の画面で共有内容と通知が届くかを確かめてください。</p>
     </div>
     <div class="faq-item">
         <h3>電池の減りが早くなりませんか？</h3>
-        <p>Kiniaは省電力設計です。家の中で静止しているときはGPSの頻度を大幅に下げるため、電池への影響はごくわずかです。</p>
+        <p>電池の消費量は端末や移動時間、位置更新の設定によって変わります。端末の設定画面で使用状況を確認してください。</p>
     </div>
     <div class="faq-item">
         <h3>お金はかかりますか？ なぜ無料なのですか？</h3>
-        <p>完全無料です。有料プランや課金要素はありません。広告もありません。<ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>は、開発者自身が「自分の家族のために欲しかったアプリ」として作ったものです。広告を載せたり、位置情報を外部に売ったりして利益を得る仕組みではありません。家族のための道具を、同じ思いの方に使っていただきたいという考えで無償提供しています。</p>
+        <p>現在は無料で利用でき、アプリ内広告もありません。通信料は別途かかります。開発者自身も、離れて暮らす両親と使いながら改善しています。</p>
     </div>
     <div class="faq-item">
         <h3>家族全員が同じグループに入れますか？</h3>
-        <p>はい。ご夫婦、お子さん、お孫さん、離れて暮らすご家族——何人でも同じグループに入れます。ご夫婦のどちらか一方だけ使うことも可能です。全員がスマートフォンを持っている必要はありません。</p>
+        <p>離れて暮らす家族も同じグループに参加できます。利用する人それぞれにAndroid 8.0以上の端末とGoogleアカウントが必要です。現在の対象は13歳以上です。</p>
     </div>
     <div class="faq-item">
         <h3>やめたくなったらすぐやめられますか？</h3>
-        <p>はい。アプリを削除するだけです。アカウント削除の手続きも用意しています。保存されたデータもすべて消去されます。</p>
+        <p>アプリを削除するだけでは、サービス側のデータ削除は完了しません。アカウント削除の操作や依頼方法は<a href="/delete-account.html">削除手順</a>をご確認ください。通信状態によって保留・再試行が必要な場合があります。</p>
     </div>
     <div class="faq-item">
         <h3>iPhoneでも使えますか？</h3>
@@ -457,18 +459,7 @@
     </p>
 </div>
 
-<footer class="footer">
-    <div class="footer-inner">
-        <div class="footer-brand"><img src="/images/app_icon.png" alt=""><span class="footer-brand-name">Kinia</span><span class="footer-brand-ruby">キニア</span></div>
-        <div class="footer-links">
-            <a href="/setup.html">はじめかたガイド</a><a href="/faq.html">よくある質問</a><a href="/status.html">開発ロードマップ</a>
-            <a href="/data-safety.html">データの安全性</a><a href="/compare.html">比較してみる</a>
-            <a href="/for-kids.html">中高生の方へ</a>
-            <a href="/privacy.html">プライバシーポリシー</a><a href="/about.html">Kiniaについて</a><a href="https://note.com/kinia" target="_blank" rel="noopener">開発ノート（note）</a><a href="/#contact">お問い合わせ</a>
-        </div>
-        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
-    </div>
-</footer>
+<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">Kinia（キニア）<small>© 2026 Kinia</small></div><div class="sf-links"><a href="/setup.html">はじめかた</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></footer>
 
 <script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
 </body>

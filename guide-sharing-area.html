@@ -9,13 +9,13 @@
     <meta name="description" content="Kiniaの「通知エリアのみ」モードでの各タブの見方と操作方法を解説します。">
     <link rel="icon" href="/images/app_icon.png" type="image/png">
     <meta property="og:title" content="各タブの見方と操作（通知エリアのみ） — Kinia">
-    <meta property="og:description" content="通知エリアへの出入りだけで見守る、Kiniaの基本モードの使い方ガイド。">
+    <meta property="og:description" content="Kiniaの「通知エリアのみ」を選んだ場合の使い方。共有される情報と、家族で確認する設定を紹介します。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kinia.io/guide-sharing-area.html">
     <meta property="og:image" content="https://kinia.io/images/ogp/og_default.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="各タブの見方と操作（通知エリアのみ） — Kinia">
-    <meta name="twitter:description" content="通知エリアへの出入りだけで見守る、Kiniaの基本モードの使い方ガイド。">
+    <meta name="twitter:description" content="Kiniaの「通知エリアのみ」を選んだ場合の使い方。共有される情報と、家族で確認する設定を紹介します。">
     <meta name="twitter:image" content="https://kinia.io/images/ogp/og_default.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -103,13 +103,15 @@
         @media(max-width:768px){.footer{padding:32px 20px}.footer-inner{flex-direction:column;align-items:flex-start;gap:16px}.footer-links{flex-direction:column;gap:12px}}
     </style>
     <link rel="canonical" href="https://kinia.io/guide-sharing-area.html">
+<link rel="stylesheet" href="/site-common.css?v=20260926r12">
 </head>
 <body>
-<script src="/nav.js"></script>
+<script src="/nav.js?v=20260926r12"></script>
 
 <div class="guide-hero">
     <div class="pill"><span class="pill-dot"></span>使い方ガイド</div>
     <h1>各タブの見方と<span class="accent-text">操作</span></h1>
+<p class="lead" style="font-size:0.92rem; margin:16px 0;">現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
     <p>画面下部の5つのタブでできることを、<br>「通知エリアのみ」モードの場合で解説します。</p>
 </div>
 
@@ -121,10 +123,9 @@
 
     <div class="callout" style="margin-bottom:32px">
         <strong>通知エリアのみモードとは：</strong><br>
-        Kiniaの初期設定（デフォルト）です。<br>
-        登録したエリアへの出入りだけを通知し、<br>
-        リアルタイムの現在地は共有しません。<br>
-        お互いの日常を尊重しながら見守りたい家族向け。
+        登録した場所の出入りを中心に知らせ、詳しい位置の共有を抑えるための設定です。<br>
+        電池残量や更新時刻、利用する機能に応じた歩数・元気度なども共有されます。<br>
+        共有する相手ごとに設定を確認し、保存後は相手の画面でも意図した表示になっているか確かめてください。 <a href="/data-safety.html#current-limits">共有設定の注意点</a>もご覧ください。
     </div>
 
     <div class="toc">
@@ -141,7 +142,7 @@
     <div class="guide-section" id="map">
         <div class="section-label">— TAB 1 —</div>
         <h2 class="section-heading">現在地<span class="accent-text">タブ</span></h2>
-        <p class="lead">地図が表示されますが、<br>他の家族のマーカーは表示されません。<br>自分の位置と通知エリアの確認に使います。</p>
+        <p class="lead">この設定が反映されている場合の画面例です。地図では自分の位置と通知エリアを確認します。設定後の表示は相手の端末でも確認してください。</p>
         <div class="card">
             <h3>画面に表示されるもの</h3>
             <ul>
@@ -149,7 +150,7 @@
                 <li><strong>通知エリアの円</strong><br>登録したエリアが薄い円で表示されます</li>
             </ul>
         </div>
-        <div class="callout"><strong>ポイント：</strong>このモードでは<br>家族の居場所は地図に表示されません。<br>エリアへの出入り通知で見守る設計です。</div>
+        <div class="callout"><strong>ポイント：</strong>設定の保存に失敗した場合、意図より詳しい位置が表示されることがあります。相手の画面で確認できない場合は位置共有をいったん止め、<a href="/data-safety.html#current-limits">共有設定の注意点</a>をご確認ください。</div>
     </div>
 
     <div class="guide-section" id="history">
@@ -164,7 +165,7 @@
                 <li><strong>日付の切替</strong><br>過去の日付の履歴も確認できます</li>
             </ul>
         </div>
-        <div class="callout"><strong>ポイント：</strong>移動の軌跡は表示されません。<br>エリアへの出入りだけが記録されます。</div>
+        <div class="callout"><strong>ポイント：</strong>出入りの記録を中心に確認する画面です。設定が反映されているかは、相手の画面でも確かめてください。</div>
     </div>
 
     <div class="guide-section" id="area">
@@ -242,18 +243,7 @@
     </div>
 </div>
 
-<footer class="footer">
-    <div class="footer-inner">
-        <div class="footer-brand"><img src="/images/app_icon.png" alt=""><span class="footer-brand-name">Kinia</span><span class="footer-brand-ruby">キニア</span></div>
-        <div class="footer-links">
-            <a href="/setup.html">はじめかたガイド</a><a href="/faq.html">よくある質問</a><a href="/status.html">開発ロードマップ</a>
-            <a href="/data-safety.html">データの安全性</a><a href="/compare.html">比較してみる</a>
-            <a href="/for-kids.html">中高生の方へ</a>
-            <a href="/privacy.html">プライバシーポリシー</a><a href="/about.html">Kiniaについて</a><a href="https://note.com/kinia" target="_blank" rel="noopener">開発ノート（note）</a><a href="/#contact">お問い合わせ</a>
-        </div>
-        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
-    </div>
-</footer>
+<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">Kinia（キニア）<small>© 2026 Kinia</small></div><div class="sf-links"><a href="/setup.html">はじめかた</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></footer>
 <script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
 </body>
 </html>

@@ -215,17 +215,19 @@
         @media (max-width: 768px) { .footer { padding: 32px 20px; } .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; } .footer-links { flex-direction: column; gap: 12px; } }
     </style>
     <link rel="canonical" href="https://kinia.io/students.html">
+<link rel="stylesheet" href="/site-common.css?v=20260926r12">
 </head>
 <body>
 
 <!-- ナビ -->
-<script src="/nav.js"></script>
+<script src="/nav.js?v=20260926r12"></script>
 
 <!-- ════════════════════════════════════════
      ヒーロー
      ════════════════════════════════════════ -->
 <div class="hero">
     <h1>今使ってるアプリ、<br><span class="hl">監視アプリ</span>になってない？</h1>
+<p class="lead" style="font-size:0.92rem; margin:16px 0;">現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
     <p class="tagline">
         位置情報を親にずっと見られてる。行動を把握されてる気がする。<br>
         それ、「見守り」じゃなくて「監視」かも。<br>
@@ -287,22 +289,22 @@
         <li>
             <div class="icon">🏠</div>
             <div>
-                <h3>現在地じゃなく「エリア通知」だけ</h3>
-                <p>初期設定では、リアルタイムの現在地は誰にも見えない。「学校に着いた」「家に帰った」——それだけが通知される。どの道を通ったか、どこに寄り道したかは分からない。</p>
+                <h3>家族と共有する範囲を相談できる</h3>
+                <p>「通知エリアのみ」は、登録した場所の出入りを中心に知らせるための設定です。共有する相手ごとに設定を確認し、保存後は相手の画面でも意図した表示になっているか確かめてください。設定が反映されない場合の注意点は<a href="/data-safety.html#current-limits">共有設定の注意点</a>を読んでください。</p>
             </div>
         </li>
         <li>
             <div class="icon">⚖️</div>
             <div>
                 <h3>親も自分も同じ条件</h3>
-                <p><ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>は「見る側」「見られる側」を作らない。親の居場所も同じように通知される。知りたいなら、自分も開示する。それがフェア。</p>
+                <p>詳しい位置や履歴を互いに見る場合は、双方が相手に「すべて共有」を選び、保存後に相手の画面でも表示を確認してください。</p>
             </div>
         </li>
         <li>
             <div class="icon">🔒</div>
             <div>
-                <h3>運営にもデータが見えない設計</h3>
-                <p>位置情報はスマホの中で暗号化されてからサーバーに送られる。暗号を解く鍵はサーバーに送られないから、運営者にも、ハッカーにも、中身は読めない。</p>
+                <h3>データの扱いを確認できる</h3>
+                <p>位置や表示名などは、家族への表示・同期のためサービス側でも扱います。どこに保存し、何を共有するかは<a href="/data-safety.html">データの取り扱い</a>で確認できます。</p>
             </div>
         </li>
         <li>
@@ -315,15 +317,15 @@
         <li>
             <div class="icon">🆓</div>
             <div>
-                <h3>無料・広告なし・データ売却なし</h3>
-                <p>完全無料。広告もない。位置データを広告会社に売ったりもしない。「タダで使えるアプリは、あなたが商品」——<ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>はそうじゃない。</p>
+                <h3>現在無料・アプリ内広告なし</h3>
+                <p>現在は無料で利用でき、アプリ内広告もありません。通信料は別途かかります。</p>
             </div>
         </li>
         <li>
             <div class="icon">🔄</div>
             <div>
                 <h3>家族の状況に合わせて選べる</h3>
-                <p><ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>には「通知エリアのみ」と「すべて共有」の2段階がある。高校生・大学生なら通知エリアだけで十分。弟や妹がまだ小さくて安全上の理由でリアルタイム位置が必要なら、その子だけ「すべて共有」にすることもできる。家族の中で共有の仕方を柔軟に選べるのもポイント。</p>
+                <p>対象は13歳以上。家族で「通知エリアのみ」か「すべて共有」かを相談できます。詳しい位置や履歴を互いに見る場合は、双方が相手に「すべて共有」を選び、保存後に相手の画面でも表示を確認してください。</p>
             </div>
         </li>
     </ul>
@@ -343,87 +345,8 @@
     <p class="section-label">Compare</p>
     <h2>今のアプリと<span class="hl">比べてみる</span></h2>
 
-    <!-- PC: テーブル表示 -->
-    <div class="compare-desktop">
-    <table class="compare-table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>よくある位置共有アプリ</th>
-                <th>Kinia</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>現在地のリアルタイム表示</td>
-                <td class="bad">常時ON</td>
-                <td class="good">初期設定OFF</td>
-            </tr>
-            <tr>
-                <td>移動履歴・軌跡</td>
-                <td class="bad">親が見放題</td>
-                <td class="good">初期設定OFF</td>
-            </tr>
-            <tr>
-                <td>親と子の情報量</td>
-                <td class="bad">子だけ丸見え</td>
-                <td class="good">全員同じ</td>
-            </tr>
-            <tr>
-                <td>エリア出入り通知</td>
-                <td>あり</td>
-                <td class="good">あり（メイン機能）</td>
-            </tr>
-            <tr>
-                <td>位置データの暗号化</td>
-                <td class="bad">なし（多くの場合）</td>
-                <td class="good">あり（運営も読めない）</td>
-            </tr>
-            <tr>
-                <td>広告 / データ販売</td>
-                <td class="bad">あり（多くの場合）</td>
-                <td class="good">なし</td>
-            </tr>
-            <tr>
-                <td>料金</td>
-                <td>無料〜有料プラン</td>
-                <td class="good">完全無料</td>
-            </tr>
-        </tbody>
-    </table>
-    </div>
-
-    <!-- モバイル: カード表示 -->
-    <div class="compare-mobile">
-        <div class="compare-card">
-            <div class="compare-label">現在地のリアルタイム表示</div>
-            <div class="compare-row"><div class="col"><div class="col-label">他アプリ</div><span class="bad">常時ON</span></div><div class="col"><div class="col-label">Kinia</div><span class="good">初期設定OFF</span></div></div>
-        </div>
-        <div class="compare-card">
-            <div class="compare-label">移動履歴・軌跡</div>
-            <div class="compare-row"><div class="col"><div class="col-label">他アプリ</div><span class="bad">親が見放題</span></div><div class="col"><div class="col-label">Kinia</div><span class="good">初期設定OFF</span></div></div>
-        </div>
-        <div class="compare-card">
-            <div class="compare-label">親と子の情報量</div>
-            <div class="compare-row"><div class="col"><div class="col-label">他アプリ</div><span class="bad">子だけ丸見え</span></div><div class="col"><div class="col-label">Kinia</div><span class="good">全員同じ</span></div></div>
-        </div>
-        <div class="compare-card">
-            <div class="compare-label">エリア出入り通知</div>
-            <div class="compare-row"><div class="col"><div class="col-label">他アプリ</div><span>あり</span></div><div class="col"><div class="col-label">Kinia</div><span class="good">あり（メイン）</span></div></div>
-        </div>
-        <div class="compare-card">
-            <div class="compare-label">位置データの暗号化</div>
-            <div class="compare-row"><div class="col"><div class="col-label">他アプリ</div><span class="bad">なし（多い）</span></div><div class="col"><div class="col-label">Kinia</div><span class="good">運営も読めない</span></div></div>
-        </div>
-        <div class="compare-card">
-            <div class="compare-label">広告 / データ販売</div>
-            <div class="compare-row"><div class="col"><div class="col-label">他アプリ</div><span class="bad">あり（多い）</span></div><div class="col"><div class="col-label">Kinia</div><span class="good">なし</span></div></div>
-        </div>
-        <div class="compare-card">
-            <div class="compare-label">料金</div>
-            <div class="compare-row"><div class="col"><div class="col-label">他アプリ</div><span>無料〜有料</span></div><div class="col"><div class="col-label">Kinia</div><span class="good">完全無料</span></div></div>
-        </div>
-    </div>
+<div class="compare-desktop"><table class="compare-table"><thead><tr><th>項目</th><th>比べるときの確認点</th><th>Kinia</th></tr></thead><tbody><tr><td>現在地・移動履歴</td><td>誰にどこまで共有するか</td><td>双方が相手に「すべて共有」を選び、表示を確認</td></tr><tr><td>エリア出入り通知</td><td>受信条件と通知設定</td><td>登録した場所の出入りを通知。通信・権限などで届かない場合あり</td></tr><tr><td>データの扱い</td><td>保存先・共有先・削除方法</td><td><a href="/data-safety.html">データの取り扱い</a>で説明</td></tr><tr><td>料金・広告</td><td>家族で使う条件</td><td>現在無料・アプリ内広告なし。通信料別途</td></tr></tbody></table></div>
+<div class="compare-mobile"><div class="compare-card"><div class="compare-label">現在地・移動履歴</div><div class="compare-row"><div class="col"><div class="col-label">確認点</div><span>誰にどこまで共有するか</span></div><div class="col"><div class="col-label">Kinia</div><span>双方が相手に「すべて共有」を選び、表示を確認</span></div></div></div><div class="compare-card"><div class="compare-label">エリア出入り通知</div><div class="compare-row"><div class="col"><div class="col-label">確認点</div><span>受信条件と通知設定</span></div><div class="col"><div class="col-label">Kinia</div><span>登録した場所の出入りを通知。通信・権限などで届かない場合あり</span></div></div></div><div class="compare-card"><div class="compare-label">データの扱い</div><div class="compare-row"><div class="col"><div class="col-label">確認点</div><span>保存先・共有先・削除方法</span></div><div class="col"><div class="col-label">Kinia</div><span><a href="/data-safety.html">データの取り扱い</a>で説明</span></div></div></div><div class="compare-card"><div class="compare-label">料金・広告</div><div class="compare-row"><div class="col"><div class="col-label">確認点</div><span>家族で使う条件</span></div><div class="col"><div class="col-label">Kinia</div><span>現在無料・アプリ内広告なし。通信料別途</span></div></div></div></div>
 </div>
 </div>
 
@@ -446,7 +369,7 @@
     <div class="template-grid">
         <div class="template-card">
             <div class="template-type">やわらかめ</div>
-            <p>「今のアプリ、ちょっと窮屈に感じてて。Kiniaっていうアプリなら、家に着いたとかの通知は届くから安心はそのままで、お互いのプライバシーも守れるんだけど、どうかな？」</p>
+            <p>「家に着いたことは知らせたいけど、細かい居場所を共有する範囲は相談したい。Kiniaの設定を一緒に見てもらえる？」</p>
         </div>
         <div class="template-card">
             <div class="template-type">シンプル</div>
@@ -454,7 +377,7 @@
         </div>
         <div class="template-card">
             <div class="template-type">論理型</div>
-            <p>「今のアプリ、アプリによっては位置データが暗号化されてなかったり広告に使われてたりするらしい。Kiniaは端末側で暗号化されてて運営にも見えない設計だし、通知エリア機能もあるから安心は変わらないよ → kinia.io/parents」</p>
+            <p>「Kiniaは共有する範囲を選べるみたい。使い始める前に、設定とデータの扱いを一緒に確認したい → kinia.io/parents」</p>
         </div>
     </div>
 
@@ -503,7 +426,7 @@
     <h2>監視じゃない見守りを、<span class="hl">始めよう</span></h2>
     <p class="lead" style="margin-bottom:28px;">
         <ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>は現在Google Playで配信中。<br>
-        家族と一緒にすぐ始められます。完全無料です。
+        家族と一緒にすぐ始められます。現在無料です。
     </p>
     <a href="https://play.google.com/store/apps/details?id=io.kinia" class="cta-btn">Google Playで入手</a>
     <p style="margin-top:12px; color:var(--mute); font-size:0.9rem;">Google Play — Android対応</p>
@@ -516,22 +439,7 @@
 </div>
 
 <!-- フッター -->
-<footer class="footer">
-    <div class="footer-inner">
-        <div class="footer-brand"><img src="/images/app_icon.png" alt=""><span class="footer-brand-name">Kinia</span><span class="footer-brand-ruby">キニア</span></div>
-        <div class="footer-links">
-            <a href="/">トップページ</a>
-            <a href="/setup.html">はじめかたガイド</a>
-            <a href="/guide-join.html">招待された方へ</a>
-            <a href="/faq.html">よくある質問</a>
-            <a href="/compare.html">比較してみる</a>
-            <a href="/for-kids.html">中高生の方へ</a>
-            <a href="/privacy.html">プライバシーポリシー</a><a href="/about.html">Kiniaについて</a><a href="https://note.com/kinia" target="_blank" rel="noopener">開発ノート（note）</a>
-            <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせ</a>
-        </div>
-        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
-    </div>
-</footer>
+<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">Kinia（キニア）<small>© 2026 Kinia</small></div><div class="sf-links"><a href="/setup.html">はじめかた</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></footer>
 
 <script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
 </body>

@@ -409,28 +409,248 @@
     .guide-diagram{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:26px 0;padding:24px;border-radius:20px;background:#f5eee8}.guide-node{display:flex;flex-direction:column;gap:12px;align-items:flex-start;padding:18px;background:#fff;border:1px solid #e7ded8;border-radius:14px}.guide-node span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#eeebfa;color:#67619b;font-weight:700}.guide-node strong{font-size:15px;line-height:1.5}.guide-real-screen{margin:24px auto;text-align:center}.guide-real-screen img{display:block;width:min(280px,80vw);height:auto;margin:auto;border:5px solid #26304c;border-radius:26px}.guide-real-screen figcaption{font-size:12px;color:#665f68;margin-top:12px}@media(max-width:560px){.guide-diagram{grid-template-columns:1fr;padding:16px;gap:10px}.guide-node{flex-direction:row;align-items:center}.guide-node span{flex-shrink:0}}</style>
     <link rel="canonical" href="https://kinia.io/setup.html">
 <style id="r7-readable-type">:root{--sub:#525b6e;--text-sub:#525b6e;--text-dim:#657084;--font-body:"Yu Gothic",Meiryo,system-ui,sans-serif;--font-head:"Yu Gothic",Meiryo,system-ui,sans-serif}body{font-family:"Yu Gothic",Meiryo,system-ui,sans-serif}h1,h2,h3{font-family:inherit;font-weight:700}.body-text,.lead{color:#525b6e}</style>
+<style id="setup-page-styles">
+    .content {
+        width: 100%;
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 24px 72px;
+    }
+    .setup-intro {
+        padding: 34px 0 22px;
+        color: var(--ink);
+    }
+    .setup-eyebrow {
+        margin-bottom: 8px;
+        color: var(--accent);
+        font-size: .85rem;
+        font-weight: 700;
+        letter-spacing: .08em;
+    }
+    .setup-intro h1 {
+        margin: 0;
+        color: var(--ink);
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        line-height: 1.4;
+    }
+    .setup-intro-copy {
+        max-width: 760px;
+        margin-top: 10px;
+        color: var(--sub);
+        font-size: 1.05rem;
+        line-height: 1.8;
+    }
+    .setup-price {
+        margin: 18px 0 14px;
+    }
+    .setup-requirements {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--ink);
+        font-size: .9rem;
+        font-weight: 700;
+    }
+    .setup-requirements span {
+        max-width: 100%;
+        padding: 5px 11px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--card);
+        overflow-wrap: anywhere;
+    }
+    .progress-bar {
+        position: sticky;
+        top: var(--kinia-nav-height, 76px);
+        z-index: 90;
+        height: 4px;
+        background: var(--line);
+    }
+    .progress-fill { background: var(--accent); }
+    .step-nav {
+        position: sticky;
+        top: calc(var(--kinia-nav-height, 76px) + 4px);
+        z-index: 89;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        width: 100%;
+        padding: 10px 14px;
+        border: 1px solid var(--line);
+        border-radius: 0 0 14px 14px;
+        background: rgba(255, 253, 251, .98);
+        box-shadow: 0 8px 22px rgba(32, 41, 68, .07);
+        overflow: hidden;
+    }
+    .step-nav-label {
+        flex: 0 0 auto;
+        color: var(--ink);
+        font-size: .85rem;
+        font-weight: 700;
+    }
+    .step-nav-list {
+        display: flex;
+        min-width: 0;
+        align-items: center;
+        gap: 8px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .step-nav-list::-webkit-scrollbar { display: none; }
+    .step-nav-list button {
+        flex: 0 0 auto;
+        min-height: 40px;
+        padding: 7px 14px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--card);
+        color: var(--sub);
+        font-size: .9rem;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+    .step-nav-list button.active {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: #fff;
+    }
+    .step-nav-list button:hover:not(.active) {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+    .step {
+        margin-top: 22px;
+        padding: 30px 34px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: var(--card);
+        box-shadow: 0 8px 26px rgba(32, 41, 68, .045);
+        scroll-margin-top: calc(var(--kinia-nav-height, 76px) + 96px);
+    }
+    .step h2 {
+        margin-bottom: 8px;
+        color: var(--ink);
+        font-size: clamp(1.4rem, 2.5vw, 1.75rem);
+        line-height: 1.5;
+    }
+    .step .lead {
+        margin-bottom: 20px;
+        color: var(--sub);
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+    .step h3 { color: var(--ink) !important; }
+    .step-badge { font-size: .82rem; }
+    .guide-diagram { background: var(--bg-alt); }
+    .guide-node { min-width: 0; border-color: var(--line); }
+    .guide-node span { flex: 0 0 auto; background: var(--bg-alt); color: var(--accent); }
+    .steps-list li { overflow-wrap: anywhere; }
+    .steps-list li .sub { color: var(--sub); }
+    .hint { color: var(--sub); overflow-wrap: anywhere; }
+    .perm-table-wrap {
+        max-width: 100%;
+        margin: 16px 0;
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .perm-table {
+        min-width: 620px;
+        margin: 0;
+        background: var(--card);
+    }
+    .perm-table th { background: var(--bg-alt); color: var(--ink); }
+    .perm-table td { color: var(--sub); }
+    .perm-table td:first-child { color: var(--ink); }
+    .tab-group { flex-wrap: wrap; }
+    .tab-btn {
+        flex: 1 1 230px;
+        min-width: 0;
+        border-color: var(--line);
+        color: var(--ink);
+        font-weight: 700;
+        overflow-wrap: anywhere;
+    }
+    .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .nav-buttons { align-items: stretch; flex-wrap: wrap; }
+    .nav-buttons > span:empty { display: none; }
+    .nav-btn {
+        flex: 1 1 220px;
+        min-width: 0;
+        justify-content: center;
+        text-align: center;
+        overflow-wrap: anywhere;
+    }
+    .nav-btn.next { margin-left: 0; }
+    .mockup-frame { width: min(280px, 100%); }
+    .feature-card { min-width: 0; }
+    .feature-card p, code { overflow-wrap: anywhere; }
+    @media (max-width: 600px) {
+        .content { padding: 0 14px 52px; }
+        .setup-intro { padding: 26px 0 18px; }
+        .setup-intro-copy { font-size: 1rem; }
+        .step-nav { gap: 10px; padding: 8px 10px; }
+        .step-nav-list { gap: 6px; }
+        .step-nav-list button { min-height: 42px; padding: 7px 12px; }
+        .step { margin-top: 14px; padding: 23px 18px; border-radius: 16px; }
+        .step .lead { margin-bottom: 16px; }
+        .steps-list li { padding-left: 42px; }
+        .hint { padding: 14px 16px; }
+    }
+    @media (max-width: 360px) {
+        .content { padding-inline: 10px; }
+        .setup-intro h1 { font-size: 1.85rem; }
+        .setup-requirements { gap: 6px; font-size: .82rem; }
+        .setup-requirements span { padding: 5px 9px; }
+        .step { padding: 20px 14px; }
+        .step-nav-label { font-size: .8rem; }
+        .step-nav-list button { padding-inline: 10px; font-size: .85rem; }
+        .nav-btn { flex-basis: 100%; }
+    }
+</style>
+<link rel="stylesheet" href="/site-common.css?v=20260926r12">
 </head>
 <body>
 
 <!-- ナビゲーション -->
-<script src="/nav.js"></script>
-
-<!-- プログレスバー -->
-<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-
-<!-- ステップナビ -->
-<div class="step-nav" id="stepNav">
-    <button data-step="1" class="active">インストール</button>
-    <button data-step="2">ログイン</button>
-    <button data-step="3">グループ作成</button>
-    <button data-step="4">家族を招待</button>
-    <button data-step="5">権限設定</button>
-    <button data-step="6">通知エリア</button>
-    <button data-step="7">完了</button>
-    <button data-step="8">機種変更</button>
-</div>
+<script src="/nav.js?v=20260926r12"></script>
 
 <main class="content">
+    <header class="setup-intro">
+        <p class="setup-eyebrow">ANDROID版 セットアップガイド</p>
+        <h1>Kiniaのはじめかた</h1>
+        <p class="setup-intro-copy">インストールから家族の招待、共有や通知の設定まで、順番に進められます。</p>
+        <div class="price-callout setup-price" aria-label="料金と広告について">
+            <strong>現在、無料</strong>
+            <span>アプリ内広告なし</span>
+        </div>
+        <p class="setup-requirements" aria-label="利用条件">
+            <span>Android 8.0以上</span>
+            <span>Googleアカウントでのログイン必須</span>
+            <span>13歳以上</span>
+        </p>
+    </header>
+
+    <!-- プログレスバー -->
+    <div class="progress-bar" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+
+    <!-- このページの目次 -->
+    <nav class="step-nav" id="stepNav" aria-label="このガイドの目次">
+        <span class="step-nav-label">目次</span>
+        <div class="step-nav-list" id="stepNavList">
+            <button type="button" data-step="1" class="active" aria-current="step">インストール</button>
+            <button type="button" data-step="2">ログイン</button>
+            <button type="button" data-step="3">グループ作成</button>
+            <button type="button" data-step="4">家族を招待</button>
+            <button type="button" data-step="5">権限設定</button>
+            <button type="button" data-step="6">通知エリア</button>
+            <button type="button" data-step="7">完了</button>
+            <button type="button" data-step="8">機種変更</button>
+        </div>
+    </nav>
 
     <!-- ===== Step 1: インストール ===== -->
     <section class="step" id="step1">
@@ -443,7 +663,7 @@
         <div style="margin: 24px 0; text-align: center;">
             <a href="https://play.google.com/store/apps/details?id=io.kinia"
                style="display:inline-block; background:var(--accent); color:#fff; border-radius:12px; padding:14px 40px; font-size:1rem; font-weight:bold; transition:background 0.2s;">
-                Google Play で入手する
+                Google Playで無料で入手
             </a>
         </div>
 
@@ -586,25 +806,29 @@
         <div class="guide-diagram" aria-label="設定の流れ"><div class="guide-node"><span>1</span><strong>共有内容を確認</strong></div><div class="guide-node"><span>2</span><strong>位置情報の権限</strong></div><div class="guide-node"><span>3</span><strong>通知の権限</strong></div></div>
 
         <h3 style="color:var(--accent); font-size:1rem; margin: 20px 0 8px;">必ず設定してほしい権限</h3>
-        <table class="perm-table">
-            <tr><th>権限</th><th>なぜ必要？</th><th>操作</th></tr>
-            <tr><td>位置情報</td><td>家族に自分の位置を共有するため</td><td>「許可」をタップ</td></tr>
-            <tr><td>バックグラウンド位置情報</td><td>アプリを閉じていても位置が更新されるように</td><td>設定画面で「常に許可」を選択</td></tr>
-            <tr><td>活動認識</td><td>歩行・車の移動などの判定に使用</td><td>「許可」をタップ</td></tr>
-        </table>
+        <div class="perm-table-wrap" role="region" aria-label="必ず設定してほしい権限の一覧。横にスクロールできます" tabindex="0">
+            <table class="perm-table">
+                <tr><th>権限</th><th>なぜ必要？</th><th>操作</th></tr>
+                <tr><td>位置情報</td><td>家族に自分の位置を共有するため</td><td>「許可」をタップ</td></tr>
+                <tr><td>バックグラウンド位置情報</td><td>画面を閉じた後も位置共有を続ける際に使います</td><td>アプリ内ガイドに従って設定</td></tr>
+                <tr><td>活動認識</td><td>歩行・車の移動などの判定に使用</td><td>「許可」をタップ</td></tr>
+            </table>
+        </div>
 
         <h3 style="color:var(--sub); font-size:1rem; margin: 20px 0 8px;">あると便利な権限</h3>
-        <table class="perm-table">
-            <tr><th>権限</th><th>なぜ必要？</th><th>操作</th></tr>
-            <tr><td>通知</td><td>エリア出入り通知の受信（Android 13+）</td><td>「許可」をタップ</td></tr>
-            <tr><td>省電力の除外</td><td>スリープ中もGPSが止まらないように</td><td>「許可」をタップ</td></tr>
-            <tr><td>全画面通知</td><td>「元気？」リクエストの全画面表示（Android 14+）</td><td>設定画面で有効にする</td></tr>
-        </table>
+        <div class="perm-table-wrap" role="region" aria-label="あると便利な権限の一覧。横にスクロールできます" tabindex="0">
+            <table class="perm-table">
+                <tr><th>権限</th><th>なぜ必要？</th><th>操作</th></tr>
+                <tr><td>通知</td><td>エリア出入り通知の受信（Android 13+）</td><td>「許可」をタップ</td></tr>
+                <tr><td>省電力の除外</td><td>省電力設定の影響を受けにくくするため</td><td>必要な場合はアプリ内ガイドを確認</td></tr>
+                <tr><td>全画面通知</td><td>「元気？」リクエストの全画面表示（Android 14+）</td><td>設定画面で有効にする</td></tr>
+            </table>
+        </div>
 
         <div class="hint">
             <strong>「常に許可」って怖くない？</strong><br>
-            Kiniaは動いているときだけGPSを使い、止まっているときはほとんどバッテリーを消費しません。
-            「常に許可」にしないとアプリを閉じた瞬間に位置の更新が止まり、見守りとして機能しなくなります。
+            画面を閉じた後も位置共有を続けたい場合は、アプリ内の権限案内に沿ってバックグラウンドでの位置情報利用を許可してください。Androidのバージョンによっては「常に許可」の設定が必要です。
+            OSや端末メーカーの省電力設定、通信・位置情報の状態によって更新できる条件や間隔は変わり、電池消費も端末や利用状況で異なります。
         </div>
 
         <div class="hint">
@@ -743,35 +967,22 @@
 </main>
 
 <!-- フッター -->
-<footer class="footer">
-    <div class="footer-inner">
-        <div class="footer-brand">
-            <img src="/images/app_icon.png" alt="">
-            <span class="footer-brand-name">Kinia</span>
-            <span class="footer-brand-ruby">キニア</span>
-        </div>
-        <div class="footer-links">
-            <a href="/setup.html">はじめかたガイド</a>
-            <a href="/faq.html">よくある質問</a>
-            <a href="/status.html">開発ロードマップ</a>
-            <a href="/data-safety.html">データの安全性</a>
-            <a href="/compare.html">比較してみる</a>
-            <a href="/for-kids.html">中高生の方へ</a>
-            <a href="/privacy.html">プライバシーポリシー</a><a href="/about.html">Kiniaについて</a><a href="https://note.com/kinia" target="_blank" rel="noopener">開発ノート（note）</a>
-            <a href="/#contact">お問い合わせ</a>
-        </div>
-        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
-    </div>
-</footer>
+<section class="guide-directory"><h2>使い方をもっと詳しく</h2><div><a href="/guide-family-basic.html">家族での基本設定</a><a href="/guide-join.html">招待された方へ</a><a href="/guide-sharing-all.html">現在地を共有する</a><a href="/guide-sharing-area.html">通知エリアを使う</a><a href="/school-child-watch.html">親子での使い方</a><a href="/faq.html">困ったときのFAQ</a></div></section>
+<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">Kinia（キニア）<small>© 2026 Kinia</small></div><div class="sf-links"><a href="/setup.html">はじめかた</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></footer>
 
 <script>
 const TOTAL_STEPS = 8;
+const stepSections = Array.from(document.querySelectorAll('.step'));
 
 function goStep(n) {
     const el = document.getElementById('step' + n);
     if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        updateActiveNav(n);
+        const headerHeight = document.getElementById('kinia-nav')?.getBoundingClientRect().height || 0;
+        const progressHeight = document.querySelector('.progress-bar')?.getBoundingClientRect().height || 0;
+        const stepNavHeight = document.getElementById('stepNav')?.getBoundingClientRect().height || 0;
+        const offset = headerHeight + progressHeight + stepNavHeight + 16;
+        const top = window.scrollY + el.getBoundingClientRect().top - offset;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
     }
 }
 
@@ -783,30 +994,55 @@ function switchTab(tabId, btn) {
 }
 
 function updateActiveNav(stepNum) {
-    document.querySelectorAll('.step-nav button').forEach(btn => {
-        btn.classList.toggle('active', parseInt(btn.dataset.step) === stepNum);
+    const buttons = document.querySelectorAll('.step-nav-list button');
+    buttons.forEach(btn => {
+        const isActive = parseInt(btn.dataset.step, 10) === stepNum;
+        btn.classList.toggle('active', isActive);
+        if (isActive) btn.setAttribute('aria-current', 'step');
+        else btn.removeAttribute('aria-current');
     });
-    const activeBtn = document.querySelector('.step-nav button.active');
-    if (activeBtn) activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    const activeBtn = document.querySelector('.step-nav-list button.active');
+    const rail = document.getElementById('stepNavList');
+    if (activeBtn && rail) {
+        const railRect = rail.getBoundingClientRect();
+        const buttonRect = activeBtn.getBoundingClientRect();
+        if (buttonRect.left < railRect.left || buttonRect.right > railRect.right) {
+            const left = rail.scrollLeft + buttonRect.left - railRect.left - (rail.clientWidth - buttonRect.width) / 2;
+            rail.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+        }
+    }
     document.getElementById('progressFill').style.width = ((stepNum / TOTAL_STEPS) * 100) + '%';
 }
 
-document.querySelectorAll('.step-nav button').forEach(btn => {
+document.querySelectorAll('.step-nav-list button').forEach(btn => {
     btn.addEventListener('click', () => goStep(parseInt(btn.dataset.step)));
 });
 
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const stepNum = parseInt(entry.target.id.replace('step', ''));
-            updateActiveNav(stepNum);
-        }
+function updateActiveFromScroll() {
+    if (!stepSections.length) return;
+    const stepNav = document.getElementById('stepNav');
+    const activationLine = (stepNav?.getBoundingClientRect().bottom || 0) + 32;
+    let current = stepSections[0];
+    stepSections.forEach(section => {
+        if (section.getBoundingClientRect().top <= activationLine) current = section;
     });
-}, { rootMargin: '-30% 0px -60% 0px' });
+    updateActiveNav(parseInt(current.id.replace('step', ''), 10));
+}
 
-document.querySelectorAll('.step').forEach(s => observer.observe(s));
+let scrollUpdatePending = false;
+function scheduleActiveStepUpdate() {
+    if (scrollUpdatePending) return;
+    scrollUpdatePending = true;
+    window.requestAnimationFrame(() => {
+        updateActiveFromScroll();
+        scrollUpdatePending = false;
+    });
+}
 
-updateActiveNav(1);
+window.addEventListener('scroll', scheduleActiveStepUpdate, { passive: true });
+window.addEventListener('resize', scheduleActiveStepUpdate);
+window.addEventListener('load', scheduleActiveStepUpdate, { once: true });
+updateActiveFromScroll();
 </script>
 
 <script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>

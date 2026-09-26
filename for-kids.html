@@ -433,10 +433,11 @@
         }
     </style>
     <link rel="canonical" href="https://kinia.io/for-kids.html">
+<link rel="stylesheet" href="/site-common.css?v=20260926r12">
 </head>
 <body>
 
-<script src="/nav.js"></script>
+<script src="/nav.js?v=20260926r12"></script>
 
 <!-- ─── Section 1: Hero ─── -->
 <section class="hero">
@@ -444,6 +445,7 @@
     <div class="container-narrow">
         <div class="section-label">— FOR YOU —</div>
         <h1>これは、監視するためのアプリじゃない。</h1>
+<p class="lead" style="font-size:0.92rem; margin:16px 0;">現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
         <p class="hero-sub">
             Kiniaは、家族がお互いに「ちゃんと着いたよ」を<br>
             そっと伝え合うためのアプリ。<br>
@@ -460,8 +462,8 @@
         <div class="points-grid">
             <div class="point-card">
                 <div class="point-num">01</div>
-                <h3>居場所を、ずっと見られているわけじゃない</h3>
-                <p>初期設定では「着いた / 出た」だけが通知される。通学路のどこを歩いているか、途中の道のりは送られない。</p>
+                <h3>共有する範囲を、家族で確認しよう</h3>
+                <p>「通知エリアのみ」は、登録した場所の出入りを中心に知らせるための設定。選んだあと、相手の画面でも意図した表示になっているか確認しよう。<a href="/data-safety.html#current-limits">共有設定の注意点</a>も読んでね。</p>
             </div>
             <div class="point-card">
                 <div class="point-num">02</div>
@@ -471,7 +473,7 @@
             <div class="point-card">
                 <div class="point-num">03</div>
                 <h3>親も同じように共有している</h3>
-                <p>一方的にきみだけ見られる仕組みではない。親の居場所もきみに見える。おたがいさま。</p>
+                <p>詳しい位置や履歴を互いに見るには、双方が相手に「すべて共有」を選ぶ必要がある。保存後の画面も一緒に確かめよう。</p>
             </div>
         </div>
     </div>
@@ -481,7 +483,7 @@
 <section class="notify-section">
     <div class="container-narrow">
         <div class="section-label">— NOTIFICATION AREA —</div>
-        <h2 class="section-heading">「通知エリア」モードで<br>親に見えるのはこれだけ</h2>
+        <h2 class="section-heading">「通知エリアのみ」で<br>出入りを知らせる</h2>
 
         <div class="notify-map">
             <div class="notify-zone">
@@ -513,10 +515,7 @@
             </div>
         </div>
 
-        <p class="notify-note">
-            通学路のどこを歩いているか、放課後どこに寄ったかは送られない。<br>
-            届くのは「出た」と「着いた」、それだけ。
-        </p>
+        <p class="notify-note">登録した場所の出入りを中心に知らせる設定です。電池残量や更新時刻、利用する機能に応じた歩数・元気度なども共有されます。詳しい位置の表示は、設定後に相手の画面でも確認してください。</p>
     </div>
 </section>
 
@@ -535,16 +534,16 @@
 
         <div class="sharing-panel active" data-panel="0">
             <h4>送信を止める</h4>
-            <p>位置情報の送信を一時的に止めることもできる。止めている間は誰にも送られない。</p>
+            <p>位置の送信を止める操作をしても、最後に共有した位置などが相手の画面に残る場合があります。止めたあとの表示も相手と確認してください。</p>
             <div class="sharing-visible">
                 <div class="sharing-visible-label">PARENT SEES</div>
-                <div class="sharing-visible-item">何も見えない</div>
+                <div class="sharing-visible-item">最後に共有した情報が残る場合あり</div>
             </div>
         </div>
 
         <div class="sharing-panel" data-panel="1">
             <h4>通知エリアだけ</h4>
-            <p>設定したエリア（家・学校など）に「着いた / 出た」だけが届く。移動中の位置は送られない。</p>
+            <p>登録した場所への出入りを中心に知らせる設定です。電池残量や更新時刻なども共有されます。設定後の表示を相手の画面でも確認してください。</p>
             <div class="sharing-visible">
                 <div class="sharing-visible-label">PARENT SEES</div>
                 <div class="sharing-visible-item">7:48 家を出ました</div>
@@ -554,7 +553,7 @@
 
         <div class="sharing-panel" data-panel="2">
             <h4>いまの場所も共有</h4>
-            <p>現在地が地図上に表示される。遠征や夜遅くなるときなど、必要な場面だけONにする使い方もできる。</p>
+            <p>詳しい位置や履歴を互いに見る場合は、双方が相手に「すべて共有」を選び、保存後に相手の画面でも表示を確認してください。時間で自動終了する機能ではないため、使い方を変えるときは設定を見直してください。</p>
             <div class="sharing-visible">
                 <div class="sharing-visible-label">PARENT SEES</div>
                 <div class="sharing-visible-item">地図上のリアルタイム位置</div>
@@ -591,11 +590,7 @@
             </div>
         </div>
 
-        <p class="bidi-note">
-            おたがいに、おたがいの場所を見せ合う。<br>
-            片方だけONにはできない仕組み。<br>
-            一方的にどちらかだけが見られる関係にはならない。
-        </p>
+        <p class="bidi-note">詳しい位置や履歴を互いに見るには、双方が相手に「すべて共有」を選びます。選んだだけで完了と思わず、相手の画面でも表示を確かめてください。</p>
     </div>
 </section>
 
@@ -655,25 +650,7 @@
 </section>
 
 <!-- ─── Footer ─── -->
-<footer class="footer">
-    <div class="footer-inner">
-        <div class="footer-brand">
-            <img src="/images/app_icon.png" alt="">
-            <span class="footer-brand-name">Kinia</span>
-            <span class="footer-brand-ruby">キニア</span>
-        </div>
-        <div class="footer-links">
-            <a href="/setup.html">はじめかたガイド</a>
-            <a href="/faq.html">よくある質問</a>
-            <a href="/status.html">開発ロードマップ</a>
-            <a href="/safety.html">災害時の安否確認</a>
-            <a href="/data-safety.html">データの安全性</a>
-            <a href="/privacy.html">プライバシーポリシー</a><a href="/about.html">Kiniaについて</a><a href="https://note.com/kinia" target="_blank" rel="noopener">開発ノート（note）</a>
-            <a href="/delete-account.html">アカウント削除</a>
-        </div>
-        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
-    </div>
-</footer>
+<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">Kinia（キニア）<small>© 2026 Kinia</small></div><div class="sf-links"><a href="/setup.html">はじめかた</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></footer>
 
 <script>
 // Dropdown control

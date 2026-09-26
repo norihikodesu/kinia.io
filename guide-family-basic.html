@@ -822,11 +822,12 @@
         }
     </style>
     <link rel="canonical" href="https://kinia.io/guide-family-basic.html">
+<link rel="stylesheet" href="/site-common.css?v=20260926r12">
 </head>
 <body>
 
 <!-- ナビゲーション -->
-<script src="/nav.js"></script>
+<script src="/nav.js?v=20260926r12"></script>
 
 <!-- プログレスバー -->
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
@@ -850,6 +851,7 @@
     <div class="hero">
         <span class="hero-label">3人家族向けガイド</span>
         <h1>大人2人 + お子さん1人の<br>はじめてセットアップ</h1>
+<p class="lead" style="font-size:0.92rem; margin:16px 0;">現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
         <p>3人家族でKiniaを始める手順を、1つずつ解説します。<br>
         ご家族の代表がまとめて3台を設定するケースを想定しています。</p>
     </div>
@@ -900,10 +902,10 @@
                         <h3>タイプA: 通知エリアだけ</h3>
                         <p>「学校を出た」「家に着いた」などの通知だけ受け取る、もっともシンプルな使い方です。</p>
                         <ul>
-                            <li>地図に位置は表示されない</li>
+                            <li>詳しい位置の共有を抑える設定</li>
                             <li>歩数・元気度は共有される</li>
                             <li>お子さんのプライバシーを尊重しやすい</li>
-                            <li>初期設定のまま使える</li>
+                            <li>共有相手ごとの設定と表示を確認する</li>
                         </ul>
                     </div>
                 </div>
@@ -917,7 +919,7 @@
                             <li>地図にマーカーが表示される</li>
                             <li>移動ルート・軌跡が見られる</li>
                             <li>通知エリアの通知も届く</li>
-                            <li>各メンバーが共有レベルを変更する操作が必要</li>
+                            <li>詳しい位置は双方が相手に「すべて共有」を選ぶ</li>
                         </ul>
                     </div>
                 </div>
@@ -927,11 +929,11 @@
         <div class="hint success">
             <strong>あとから切り替えられます。</strong>
             まずはタイプA（通知エリアだけ）で始めて、必要になったらタイプBに切り替えるのがおすすめです。<br>
-            各メンバーが自分のスマホから「共有レベル」を変更するだけで、いつでも切り替えできます。
+            共有する相手ごとに設定を確認し、保存後は相手の画面でも意図した表示になっているか確かめてください。 詳しい位置や履歴を互いに見る場合は、双方が相手に「すべて共有」を選び、保存後に相手の画面でも表示を確認してください。
         </div>
 
         <!-- 比較テーブル -->
-        <h3 style="font-size:1rem; margin: 28px 0 12px;">タイプ比較表</h3>
+        <h3 style="font-size:1rem; margin: 28px 0 12px;">タイプ比較表</h3><p>設定が保存・反映されている場合の使い方です。相手の画面でも表示を確認してください。<a href="/data-safety.html#current-limits">共有設定の注意点</a>もご覧ください。</p>
         <table class="compare-table">
             <tr>
                 <th></th>
@@ -960,18 +962,18 @@
             </tr>
             <tr>
                 <td>プライバシー</td>
-                <td><span style="font-size:1.3em;color:var(--sage);">◎</span><br><span style="font-size:0.8em;">高い（居場所は非表示）</span></td>
-                <td><span style="font-size:1.3em;color:var(--accent);">△</span><br><span style="font-size:0.8em;">全員に位置が見える</span></td>
+                <td><span style="font-size:1.3em;color:var(--sage);">◎</span><br><span style="font-size:0.8em;">詳しい位置の共有を抑える</span></td>
+                <td><span style="font-size:1.3em;color:var(--accent);">△</span><br><span style="font-size:0.8em;">互いに選んだ相手と共有</span></td>
             </tr>
             <tr>
                 <td>追加設定</td>
-                <td><span style="font-size:1.3em;color:var(--sage);">◎</span><br><span style="font-size:0.8em;">不要（初期設定のまま）</span></td>
+                <td><span style="font-size:1.3em;color:var(--sage);">◎</span><br><span style="font-size:0.8em;">各端末で設定・表示を確認</span></td>
                 <td><span style="font-size:1.3em;color:var(--accent);">△</span><br><span style="font-size:0.8em;">各端末で共有レベル変更</span></td>
             </tr>
             <tr>
-                <td>おすすめ</td>
-                <td><span style="font-size:0.85em;">中高生以上のお子さん</span></td>
-                <td><span style="font-size:0.85em;">小学生のお子さん</span></td>
+                <td>使い方</td>
+                <td><span style="font-size:0.85em;">出入りを中心に確認したい家族</span></td>
+                <td><span style="font-size:0.85em;">詳しい位置も互いに確認したい家族</span></td>
             </tr>
         </table>
 
@@ -1044,7 +1046,7 @@
         <div class="hint">
             <strong>お子さんのスマホにGoogleアカウントがない場合</strong><br>
             事前にGoogleアカウントを作成しておいてください。Kiniaのログインに必要です。<br>
-            13歳未満のお子さんの場合は、Googleファミリーリンクで管理アカウントを作成できます。
+            現在の対象は13歳以上です。管理対象などアカウントに制限がある場合は、導入前にログインできるか確認してください。
         </div>
 
         <div class="nav-buttons">
@@ -1323,14 +1325,14 @@
         </div>
         <div class="hint" style="margin-top: 4px;">
             <strong>画面はアプリ内のガイドに従うだけ!</strong><br>
-            Kiniaが順番に権限の設定画面を案内します。ボタンをタップして進めるだけなので、迷うことはありません。
+            アプリ内の案内に沿って権限を確認します。端末によって設定画面が異なるため、見つからないときは<a href="/setup.html">はじめかたガイド</a>をご覧ください。
         </div>
 
         <div class="hint">
             <strong>「常に許可」って不安...</strong><br>
-            Kiniaは移動中だけGPSを使い、止まっているときはほとんどバッテリーを消費しません。<br>
-            位置データはグループ外に漏れない仕組み（座標暗号化・グループ内限定表示）で保護されています。<br>
-            詳しくは <a href="/safety.html">安全性について</a> をご覧ください。
+            電池の消費量は端末や移動時間、位置更新の設定によって変わります。端末の設定画面で使用状況を確認してください。<br>
+            位置や表示名などは、家族への表示・同期のためサービス側でも扱います。<br>
+            詳しくは <a href="/data-safety.html">データの取り扱い</a> をご覧ください。
         </div>
 
         <div class="nav-buttons">
@@ -1355,8 +1357,8 @@
         <div id="typeA" class="tab-content active">
 
             <div class="hint success">
-                <strong>共有レベルの変更は不要です。</strong>
-                Kiniaの初期設定は「通知エリアのみ」モードなので、そのまま通知エリアの設定に進めます。
+                <strong>共有する相手ごとに設定を確認してください。</strong>
+                「通知エリアのみ」を選んだあとも、保存結果と相手の画面を確認してから使ってください。設定が反映されない場合の<a href="/data-safety.html#current-limits">共有設定の注意点</a>をご覧ください。
             </div>
 
             <h3 style="font-size: 1rem; margin: 20px 0 12px; color: var(--accent);">通知エリアの設定（お母さんのスマホで操作）</h3>
@@ -1384,7 +1386,7 @@
                     </li>
                     <li>
                         <strong>通知を受け取りたいメンバーを選択</strong>
-                        <div class="sub">3人全員にチェックを入れると、誰が帰宅しても全員に通知が届きます</div>
+                        <div class="sub">通知を受け取りたいメンバーを選び、各端末で実際に通知が届くか確認します</div>
                     </li>
                 </ol>
             </div>
@@ -1430,7 +1432,7 @@
             <!-- 通知のON/OFF設定について -->
             <h3 style="font-size: 1rem; margin: 28px 0 12px; color: var(--accent);">通知のON/OFF設定について</h3>
             <p style="font-size:0.9rem; color:var(--sub); margin-bottom:16px;">
-                通知エリアの通知は<strong style="color:var(--ink);">初期設定でON</strong>になっています。<br>
+                通知を受け取りたい端末で、<strong style="color:var(--ink);">通知設定と権限</strong>を確認してください。<br>
                 通知の管理は2段階で行えます。
             </p>
 
@@ -1454,17 +1456,17 @@
                 <tr>
                     <th>設定レベル</th>
                     <th>場所</th>
-                    <th>デフォルト</th>
+                    <th>確認すること</th>
                 </tr>
                 <tr>
                     <td>全体</td>
                     <td>メニュー → 通知設定<br>「エリア通知」スイッチ</td>
-                    <td><span style="font-size:1.2em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">ON</span></td>
+                    <td>通知を受け取りたい端末でONを確認</td>
                 </tr>
                 <tr>
                     <td>エリア個別</td>
                     <td>通知エリアタブの一覧<br>各エリアのベルアイコン</td>
-                    <td><span style="font-size:1.2em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">ON（対象メンバーがいれば）</span></td>
+                    <td>対象メンバーとエリアごとのON/OFF</td>
                 </tr>
             </table>
 
@@ -1480,20 +1482,20 @@
 
             <div class="hint warn">
                 <strong>各メンバーの端末で共有レベルを変更する必要があります。</strong>
-                初期設定は「通知エリアのみ」なので、地図で位置を見るには「すべて共有」に切り替えます。
+                詳しい位置や履歴を互いに見る場合は、双方が相手に「すべて共有」を選び、保存後に相手の画面でも表示を確認してください。
             </div>
 
             <h3 style="font-size: 1rem; margin: 20px 0 12px; color: var(--accent);">共有レベルの変更（3台それぞれで操作）</h3>
 
             <p style="font-size:0.9rem; color:var(--sub); margin-bottom:16px;">
-                お母さんが3台を手元に集めて、1台ずつ操作します。
+                家族それぞれが自分の端末で、相手ごとの共有内容を確認して操作します。
             </p>
 
             <div class="device-section mama-section">
                 <h3>👩 お母さんのスマホ</h3>
                 <ol class="steps-list">
                     <li><strong>右上のメニュー（⋮）→「共有設定」</strong></li>
-                    <li><strong>「すべて共有」を選択して保存</strong></li>
+                    <li><strong>相手ごとに「すべて共有」を選択して保存</strong></li>
                 </ol>
             </div>
 
@@ -1501,7 +1503,7 @@
                 <h3>👨 お父さんのスマホ</h3>
                 <ol class="steps-list">
                     <li><strong>右上のメニュー（⋮）→「共有設定」</strong></li>
-                    <li><strong>「すべて共有」を選択して保存</strong></li>
+                    <li><strong>相手ごとに「すべて共有」を選択して保存</strong></li>
                 </ol>
             </div>
 
@@ -1509,7 +1511,7 @@
                 <h3>👧 お子さんのスマホ</h3>
                 <ol class="steps-list">
                     <li><strong>右上のメニュー（⋮）→「共有設定」</strong></li>
-                    <li><strong>「すべて共有」を選択して保存</strong></li>
+                    <li><strong>相手ごとに「すべて共有」を選択して保存</strong></li>
                 </ol>
             </div>
 
@@ -1551,7 +1553,7 @@
 
             <div class="hint">
                 <strong>通知のON/OFF設定について</strong><br>
-                エリア通知は初期設定でONです。<br>
+                エリア通知のON/OFFは各端末の設定で確認してください。<br>
                 全体のON/OFFはメニュー → 通知設定、<br>
                 エリア個別のON/OFFは通知エリア一覧のベルアイコンから変更できます。<br>
                 詳しくはタイプAの「通知のON/OFF設定について」をご覧ください。
@@ -1653,26 +1655,7 @@
 </main>
 
 <!-- フッター -->
-<footer class="footer">
-    <div class="footer-inner">
-        <div class="footer-brand">
-            <img src="/images/app_icon.png" alt="">
-            <span class="footer-brand-name">Kinia</span>
-            <span class="footer-brand-ruby">キニア</span>
-        </div>
-        <div class="footer-links">
-            <a href="/setup.html">はじめかたガイド</a>
-            <a href="/faq.html">よくある質問</a>
-            <a href="/status.html">開発ロードマップ</a>
-            <a href="/data-safety.html">データの安全性</a>
-            <a href="/compare.html">比較してみる</a>
-            <a href="/for-kids.html">中高生の方へ</a>
-            <a href="/privacy.html">プライバシーポリシー</a><a href="/about.html">Kiniaについて</a><a href="https://note.com/kinia" target="_blank" rel="noopener">開発ノート（note）</a>
-            <a href="/#contact">お問い合わせ</a>
-        </div>
-        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
-    </div>
-</footer>
+<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">Kinia（キニア）<small>© 2026 Kinia</small></div><div class="sf-links"><a href="/setup.html">はじめかた</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></footer>
 
 <script>
 const SECTIONS = ['flowchart', 'setup-overview', 'step1', 'step2', 'step3', 'step4', 'step5', 'step6', 'complete'];

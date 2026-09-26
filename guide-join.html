@@ -379,11 +379,12 @@
         }
     </style>
     <link rel="canonical" href="https://kinia.io/guide-join.html">
+<link rel="stylesheet" href="/site-common.css?v=20260926r12">
 </head>
 <body>
 
 <!-- ナビゲーション -->
-<script src="/nav.js"></script>
+<script src="/nav.js?v=20260926r12"></script>
 
 <!-- プログレスバー -->
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
@@ -394,6 +395,7 @@
     <div class="hero">
         <span class="hero-label">招待された方向けガイド</span>
         <h1>参加リンクで案内された方へ</h1>
+<p class="lead" style="font-size:0.92rem; margin:16px 0;">現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
         <p>ご家族からKiniaの招待リンクを受け取りましたか？<br>
         このページでは、あなたがやるべき設定だけをまとめています。<br>
         <strong style="color:var(--accent);">所要時間: 約5分</strong></p>
@@ -562,9 +564,9 @@
 
         <div class="hint">
             <strong>「常に許可」って不安...</strong><br>
-            Kiniaは移動中だけGPSを使い、止まっているときはほとんどバッテリーを消費しません。<br>
-            位置データはグループ内でのみ共有され、外部には公開されません。<br>
-            詳しくは <a href="/safety.html">安全性について</a> をご覧ください。
+            電池の消費量は端末や移動時間、位置更新の設定によって変わります。端末の設定画面で使用状況を確認してください。<br>
+            位置や表示名などは、家族への表示・同期のためサービス側でも扱います。<br>
+            詳しくは <a href="/data-safety.html">データの取り扱い</a> をご覧ください。
         </div>
     </section>
 
@@ -582,21 +584,21 @@
                 <div class="phone-frame">
                     <img src="screenshots/mock_10_sharing_gentle.png" alt="通知エリアのみ" loading="lazy">
                 </div>
-                <div class="screenshot-caption">通知エリアのみ（推奨・初期設定）<br>位置は非表示、通知だけ届く</div>
+                <div class="screenshot-caption">通知エリアのみ<br>出入りを中心に知らせる設定</div>
             </div>
             <div class="screenshot-arrow">or</div>
             <div class="screenshot-label">
                 <div class="phone-frame">
                     <img src="screenshots/mock_11_sharing_detailed.png" alt="すべて共有" loading="lazy">
                 </div>
-                <div class="screenshot-caption">すべて共有<br>地図に位置・軌跡を表示</div>
+                <div class="screenshot-caption">すべて共有<br>相手と互いに選び、表示を確認</div>
             </div>
         </div>
 
         <div class="hint">
-            <strong>迷ったら「通知エリアのみ」でOK。</strong><br>
-            あとからいつでも変更できます。<br>
-            メニュー → 共有設定 から切り替えられます。
+            <strong>家族と共有内容を確認してください。</strong><br>
+            共有する相手ごとに設定を確認し、保存後は相手の画面でも意図した表示になっているか確かめてください。<br>
+            詳しい位置や履歴を互いに見る場合は、双方が相手に「すべて共有」を選び、保存後に相手の画面でも表示を確認してください。 <a href="/data-safety.html#current-limits">共有設定の注意点</a>もご覧ください。
         </div>
     </section>
 
@@ -651,26 +653,7 @@
 </main>
 
 <!-- フッター -->
-<footer class="footer">
-    <div class="footer-inner">
-        <div class="footer-brand">
-            <img src="/images/app_icon.png" alt="">
-            <span class="footer-brand-name">Kinia</span>
-            <span class="footer-brand-ruby">キニア</span>
-        </div>
-        <div class="footer-links">
-            <a href="/setup.html">はじめかたガイド</a>
-            <a href="/faq.html">よくある質問</a>
-            <a href="/status.html">開発ロードマップ</a>
-            <a href="/data-safety.html">データの安全性</a>
-            <a href="/compare.html">比較してみる</a>
-            <a href="/for-kids.html">中高生の方へ</a>
-            <a href="/privacy.html">プライバシーポリシー</a><a href="/about.html">Kiniaについて</a><a href="https://note.com/kinia" target="_blank" rel="noopener">開発ノート（note）</a>
-            <a href="/#contact">お問い合わせ</a>
-        </div>
-        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
-    </div>
-</footer>
+<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">Kinia（キニア）<small>© 2026 Kinia</small></div><div class="sf-links"><a href="/setup.html">はじめかた</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></footer>
 
 <script>
 function updateProgress() {

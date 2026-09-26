@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>各タブの見方と操作（すべて共有） — Kinia</title>
-    <meta name="description" content="Kiniaの「すべてを共有」モードでの各タブの見方と操作方法を解説します。">
+    <meta name="description" content="Kiniaの「すべて共有」モードでの各タブの見方と操作方法を解説します。">
     <link rel="icon" href="/images/app_icon.png" type="image/png">
     <meta property="og:title" content="各タブの見方と操作（すべて共有） — Kinia">
     <meta property="og:description" content="現在地・履歴・通知エリア・メンバー・メッセージ、5つのタブの使い方ガイド。">
@@ -102,14 +102,15 @@
         @media(max-width:768px){.footer{padding:32px 20px}.footer-inner{flex-direction:column;align-items:flex-start;gap:16px}.footer-links{flex-direction:column;gap:12px}}
     </style>
     <link rel="canonical" href="https://kinia.io/guide-sharing-all.html">
+<link rel="stylesheet" href="/site-common.css?v=20260926r12">
 </head>
 <body>
-<script src="/nav.js"></script>
+<script src="/nav.js?v=20260926r12"></script>
 
 <div class="guide-hero">
     <div class="pill"><span class="pill-dot"></span>使い方ガイド</div>
-    <h1>各タブの見方と<span class="accent-text">操作</span></h1>
-    <p>画面下部の5つのタブでできることを、<br>「すべてを共有」モードの場合で解説します。</p>
+    <h1>各タブの見方と<span class="accent-text">操作</span></h1><p>現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
+    <p>画面下部の5つのタブでできることを、<br>「すべて共有」モードの場合で解説します。</p>
 </div>
 
 <div class="content">
@@ -122,7 +123,7 @@
         <strong>すべて共有モードとは：</strong><br>
         家族の現在地を地図で確認でき、<br>
         移動の履歴や速度も見られるモードです。<br>
-        お互いの位置をしっかり把握したい家族向け。
+        詳しい現在地や履歴を互いに見るには、双方が相手に「すべて共有」を選びます。保存後は、相手の画面でも意図した表示になっているか確認してください。更新時刻や通信・権限の状態にも注意が必要です。<a href="/data-safety.html">共有設定とデータの扱い</a>もご覧ください。
     </div>
 
     <div class="toc">
@@ -232,18 +233,7 @@
     </div>
 </div>
 
-<footer class="footer">
-    <div class="footer-inner">
-        <div class="footer-brand"><img src="/images/app_icon.png" alt=""><span class="footer-brand-name">Kinia</span><span class="footer-brand-ruby">キニア</span></div>
-        <div class="footer-links">
-            <a href="/setup.html">はじめかたガイド</a><a href="/faq.html">よくある質問</a><a href="/status.html">開発ロードマップ</a>
-            <a href="/data-safety.html">データの安全性</a><a href="/compare.html">比較してみる</a>
-            <a href="/for-kids.html">中高生の方へ</a>
-            <a href="/privacy.html">プライバシーポリシー</a><a href="/about.html">Kiniaについて</a><a href="https://note.com/kinia" target="_blank" rel="noopener">開発ノート（note）</a><a href="/#contact">お問い合わせ</a>
-        </div>
-        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
-    </div>
-</footer>
+<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">Kinia（キニア）<small>© 2026 Kinia</small></div><div class="sf-links"><a href="/setup.html">はじめかた</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></footer>
 <script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
 </body>
 </html>
