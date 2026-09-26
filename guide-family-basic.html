@@ -706,6 +706,7 @@
             width: 100%;
         }
         .phone-frame img {
+            height: auto;
             width: 100%;
             border-radius: 16px;
             display: block;
@@ -821,6 +822,12 @@
             .phone-frame { max-width: 180px; }
         }
     @media(max-width:380px){.hero h1{font-size:22px!important;line-height:1.5!important}}
+
+        .guide-diagram{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:26px 0;padding:24px;border-radius:20px;background:var(--bg-alt)}
+        .guide-node{min-width:0;display:flex;flex-direction:column;gap:12px;align-items:flex-start;padding:18px;background:#fff;border:1px solid var(--line);border-radius:14px}
+        .guide-node span{flex:0 0 auto;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--bg-alt);color:var(--accent);font-weight:700}
+        .guide-node strong{font-size:15px;line-height:1.5}
+        @media(max-width:560px){.guide-diagram{grid-template-columns:1fr;padding:16px;gap:10px}.guide-node{flex-direction:row;align-items:center}.guide-node span{flex-shrink:0}}
 </style>
     <link rel="canonical" href="https://kinia.io/guide-family-basic.html">
 <link rel="stylesheet" href="/site-common.css?v=20260926r14">
@@ -853,7 +860,7 @@
         <span class="hero-label">3人家族向けガイド</span>
         <h1>3人家族の<br>はじめてセットアップ</h1>
 <p class="lead" style="font-size:0.92rem; margin:16px 0;">現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
-<p class="lead" style="font-size:0.92rem;">画面は操作説明用のイメージです。実際の表示はアプリで確認してください。</p>
+<p class="lead" style="font-size:0.92rem;">操作図には以前の画面をもとにしたイメージが含まれます。共有内容はこのページの本文で確認し、実際の操作・表示はアプリで確かめてください。</p>
         <p>3人家族でKiniaを始める手順を、1つずつ解説します。<br>
         ご家族の代表がまとめて3台を設定するケースを想定しています。</p>
     </div>
@@ -1036,14 +1043,7 @@
         </ol>
 
         <!-- Play Store → ログイン画面のイメージ -->
-        <div class="screenshot-single">
-            <div class="screenshot-label">
-                <div class="phone-frame">
-                    <img src="screenshots/mock_01_login.png" alt="Kiniaログイン画面" loading="lazy">
-                </div>
-                <div class="screenshot-caption">インストール後、起動するとこの画面が表示されます</div>
-            </div>
-        </div>
+        <div class="guide-diagram" aria-label="Googleログインの流れ"><div class="guide-node"><span>1</span><strong>自分のAndroid</strong></div><div class="guide-node"><span>2</span><strong>Googleでログイン</strong></div><div class="guide-node"><span>3</span><strong>家族とつながる準備</strong></div></div>
 
         <div class="hint">
             <strong>お子さんのスマホにGoogleアカウントがない場合</strong><br>
@@ -1075,7 +1075,7 @@
                 </li>
                 <li>
                     <strong>グループ名（合言葉）を入力</strong>
-                    <div class="sub">例: 「yamada2026」「family123」など、半角英数で覚えやすい名前を入力します（8文字以上）。<br>
+                    <div class="sub">例: 「sakura2026」「family123」など、半角英数で覚えやすい名前を入力します（8文字以上）。<br>
                     ※ グループ名は最初の1回だけ使います。毎回入力する必要はありません。</div>
                 </li>
                 <li>
@@ -1089,26 +1089,14 @@
 
             <!-- スクリーンショット: ログイン → グループ選択 → グループ作成 -->
             <div class="screenshot-container">
-                <div class="screenshot-label">
-                    <div class="phone-frame">
-                        <img src="screenshots/mock_01_login.png" alt="ログイン画面" loading="lazy">
-                    </div>
-                    <div class="screenshot-caption">① ログイン画面</div>
-                </div>
-                <div class="screenshot-arrow">→</div>
+                
                 <div class="screenshot-label">
                     <div class="phone-frame">
                         <img src="screenshots/mock_02_group_select.png" alt="グループ選択画面" loading="lazy">
                     </div>
-                    <div class="screenshot-caption">② 「新規グループを作成する」</div>
+                    <div class="screenshot-caption">② 「新規グループを作成する」<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
                 </div>
-                <div class="screenshot-arrow">→</div>
-                <div class="screenshot-label">
-                    <div class="phone-frame">
-                        <img src="screenshots/mock_03_group_create.png" alt="グループ作成画面" loading="lazy">
-                    </div>
-                    <div class="screenshot-caption">③ グループ名と表示名を入力</div>
-                </div>
+                
             </div>
         </div>
 
@@ -1151,21 +1139,21 @@
                     <div class="phone-frame">
                         <img src="screenshots/mock_15_menu.png" alt="メニュー展開" loading="lazy">
                     </div>
-                    <div class="screenshot-caption">① メニューから「グループ管理」</div>
+                    <div class="screenshot-caption">① メニューから「グループ管理」<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
                 </div>
                 <div class="screenshot-arrow">→</div>
                 <div class="screenshot-label">
                     <div class="phone-frame">
                         <img src="screenshots/mock_04_group_mgmt.png" alt="グループ管理画面" loading="lazy">
                     </div>
-                    <div class="screenshot-caption">② 「招待コードを発行」をタップ</div>
+                    <div class="screenshot-caption">② 「招待コードを発行」をタップ<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
                 </div>
                 <div class="screenshot-arrow">→</div>
                 <div class="screenshot-label">
                     <div class="phone-frame">
                         <img src="screenshots/mock_05_invite_code.png" alt="招待コード表示" loading="lazy">
                     </div>
-                    <div class="screenshot-caption">③ コードが表示される</div>
+                    <div class="screenshot-caption">③ コードが表示される<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
                 </div>
             </div>
         </div>
@@ -1219,14 +1207,14 @@
                 <div class="phone-frame">
                     <img src="screenshots/mock_06_join.png" alt="招待コードで参加" loading="lazy">
                 </div>
-                <div class="screenshot-caption">お父さんの端末での参加画面</div>
+                <div class="screenshot-caption">お父さんの端末での参加画面<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
             </div>
             <div class="screenshot-arrow">→</div>
             <div class="screenshot-label">
                 <div class="phone-frame">
-                    <img src="screenshots/mock_07_members.png" alt="3人参加完了" loading="lazy">
+                    <img src="native-proof/final-member-mixed.png" width="1080" height="2400" alt="架空の家族データを表示したメンバー一覧" loading="lazy">
                 </div>
-                <div class="screenshot-caption">3人全員が参加した状態</div>
+                <div class="screenshot-caption">メンバー一覧の画面例。名前・家族データは架空です。</div>
             </div>
         </div>
 
@@ -1309,22 +1297,8 @@
         </table>
 
         <!-- 権限設定のスクリーンショット -->
-        <h3 style="font-size: 1rem; margin: 24px 0 12px; color: var(--accent);">実際の画面イメージ</h3>
-        <div class="screenshot-container">
-            <div class="screenshot-label">
-                <div class="phone-frame">
-                    <img src="screenshots/mock_08_perm_location.png" alt="位置情報の許可画面" loading="lazy">
-                </div>
-                <div class="screenshot-caption">① 位置情報の許可<br>「許可する」をタップ</div>
-            </div>
-            <div class="screenshot-arrow">→</div>
-            <div class="screenshot-label">
-                <div class="phone-frame">
-                    <img src="screenshots/mock_09_perm_bg.png" alt="バックグラウンド位置情報" loading="lazy">
-                </div>
-                <div class="screenshot-caption">② バックグラウンド位置情報<br>「設定を開く」→「常に許可」</div>
-            </div>
-        </div>
+        <h3 style="font-size: 1rem; margin: 24px 0 12px; color: var(--accent);">端末ごとに権限を確認</h3>
+        
         <div class="hint" style="margin-top: 4px;">
             <strong>画面はアプリ内のガイドに従うだけ!</strong><br>
             アプリ内の案内に沿って権限を確認します。端末によって設定画面が異なるため、見つからないときは<a href="/setup.html">はじめかたガイド</a>をご覧ください。
@@ -1399,7 +1373,7 @@
                     <div class="phone-frame" style="max-width: 240px;">
                         <img src="screenshots/mock_13_geofence.png" alt="通知エリア設定画面" loading="lazy">
                     </div>
-                    <div class="screenshot-caption">通知エリア設定画面</div>
+                    <div class="screenshot-caption">通知エリア設定画面<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
                 </div>
             </div>
 
@@ -1426,9 +1400,9 @@
             </div>
 
             <div class="hint">
-                <strong>まずは「自宅」だけでOK。</strong><br>
-                学校や職場は後からいつでも追加できます。<br>
-                最初からたくさん設定すると、通知が多くなりすぎることがあります。
+                <strong>自宅と、学校または塾を1か所から。</strong><br>
+                帰宅と出発を知りたい場所を登録し、到着・出発の通知を選びます。<br>
+                通知する日は「毎日・平日・土日」から選べます。通知が多いときは、場所や対象メンバーを見直してください。
             </div>
 
             <!-- 通知のON/OFF設定について -->
@@ -1441,16 +1415,16 @@
             <div class="screenshot-container">
                 <div class="screenshot-label">
                     <div class="phone-frame">
-                        <img src="screenshots/mock_16_notif_settings.png" alt="通知設定画面" loading="lazy">
+                        <img src="native-proof/final-notification-settings.png" width="1080" height="2400" alt="通知と位置取得間隔を設定する画面例" loading="lazy">
                     </div>
-                    <div class="screenshot-caption">① 通知設定（全体のON/OFF）<br>メニュー → 通知設定</div>
+                    <div class="screenshot-caption">通知設定の画面例。通知の全体設定と位置取得間隔を確認できます。</div>
                 </div>
                 <div class="screenshot-arrow">+</div>
                 <div class="screenshot-label">
                     <div class="phone-frame">
                         <img src="screenshots/mock_17_geofence_list.png" alt="エリア個別通知" loading="lazy">
                     </div>
-                    <div class="screenshot-caption">② エリアごとの個別ON/OFF<br>ベルアイコンで切り替え</div>
+                    <div class="screenshot-caption">② エリアごとの個別ON/OFF<br>ベルアイコンで切り替え<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
                 </div>
             </div>
 
@@ -1518,26 +1492,12 @@
             </div>
 
             <!-- 共有レベル変更のスクリーンショット -->
-            <div class="screenshot-container" style="margin-top: 20px;">
-                <div class="screenshot-label">
-                    <div class="phone-frame">
-                        <img src="screenshots/mock_11_sharing_detailed.png" alt="すべて共有を選択" loading="lazy">
-                    </div>
-                    <div class="screenshot-caption">ウィザードで「すべて共有」を選択</div>
-                </div>
-                <div class="screenshot-arrow">or</div>
-                <div class="screenshot-label">
-                    <div class="phone-frame">
-                        <img src="screenshots/mock_12_sharing_settings.png" alt="共有設定画面" loading="lazy">
-                    </div>
-                    <div class="screenshot-caption">設定画面からも変更可能</div>
-                </div>
-            </div>
+            
 
             <div class="hint">
                 <strong>共有レベルは各メンバーが自分で変更できます。</strong><br>
                 お子さんが大きくなったら、自分で「通知エリアのみ」に戻すこともできます。<br>
-                プライバシーのコントロールは、あくまで各自の手に委ねられます。
+                変更後は相手の画面でも表示を確認してください。保存失敗などの注意点は<a href="/data-safety.html#current-limits">共有設定の制約</a>をご覧ください。
             </div>
 
             <h3 style="font-size: 1rem; margin: 24px 0 12px; color: var(--accent);">通知エリアの設定</h3>
@@ -1578,9 +1538,9 @@
         <div class="screenshot-single" style="margin: 24px 0;">
             <div class="screenshot-label">
                 <div class="phone-frame" style="max-width: 260px;">
-                    <img src="screenshots/mock_14_map_complete.png" alt="完成後のマップ画面" loading="lazy">
+                    <img src="native-proof/final-current-map-r8.png" width="1080" height="2400" alt="架空の人物と位置を表示した現在地画面" loading="lazy">
                 </div>
-                <div class="screenshot-caption">セットアップ完了後のイメージ<br>（タイプB: すべて共有の場合）</div>
+                <div class="screenshot-caption">現在地の画面例。名前と人物の位置は架空です。詳しい位置は双方が相手に「すべて共有」を選び、表示を確認します。</div>
             </div>
         </div>
 

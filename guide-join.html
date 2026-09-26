@@ -250,6 +250,7 @@
             width: 100%;
         }
         .phone-frame img {
+            height: auto;
             width: 100%;
             border-radius: 16px;
             display: block;
@@ -377,7 +378,13 @@
         @media (max-width: 500px) {
             .phone-frame { max-width: 180px; }
         }
-    </style>
+    
+        .guide-diagram{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:26px 0;padding:24px;border-radius:20px;background:var(--bg-alt)}
+        .guide-node{min-width:0;display:flex;flex-direction:column;gap:12px;align-items:flex-start;padding:18px;background:#fff;border:1px solid var(--line);border-radius:14px}
+        .guide-node span{flex:0 0 auto;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--bg-alt);color:var(--accent);font-weight:700}
+        .guide-node strong{font-size:15px;line-height:1.5}
+        @media(max-width:560px){.guide-diagram{grid-template-columns:1fr;padding:16px;gap:10px}.guide-node{flex-direction:row;align-items:center}.guide-node span{flex-shrink:0}}
+</style>
     <link rel="canonical" href="https://kinia.io/guide-join.html">
 <link rel="stylesheet" href="/site-common.css?v=20260926r14">
 </head>
@@ -395,7 +402,7 @@
     <div class="hero">
         <span class="hero-label">招待された方向けガイド</span>
         <h1>参加リンクで案内された方へ</h1>
-        <p style="font-size:0.92rem;">画面は操作説明用のイメージです。実際の表示はアプリで確認してください。</p>
+        <p style="font-size:0.92rem;">操作図には以前の画面をもとにしたイメージが含まれます。共有内容はこのページの本文で確認し、実際の操作・表示はアプリで確かめてください。</p>
 <p class="lead" style="font-size:0.92rem; margin:16px 0;">現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
         <p>ご家族からKiniaの招待リンクを受け取りましたか？<br>
         このページでは、あなたがやるべき設定だけをまとめています。<br>
@@ -429,14 +436,7 @@
             <li><strong>「インストール」をタップ</strong></li>
         </ol>
 
-        <div class="screenshot-single">
-            <div class="screenshot-label">
-                <div class="phone-frame">
-                    <img src="screenshots/mock_01_login.png" alt="Kiniaログイン画面" loading="lazy">
-                </div>
-                <div class="screenshot-caption">インストール後に起動するとこの画面が表示されます</div>
-            </div>
-        </div>
+        <div class="guide-diagram" aria-label="Googleログインの流れ"><div class="guide-node"><span>1</span><strong>自分のAndroid</strong></div><div class="guide-node"><span>2</span><strong>Googleでログイン</strong></div><div class="guide-node"><span>3</span><strong>家族とつながる準備</strong></div></div>
 
         <div class="hint">
             <strong>Googleアカウントが必要です。</strong><br>
@@ -474,14 +474,14 @@
                 <div class="phone-frame">
                     <img src="screenshots/mock_06_join.png" alt="参加画面" loading="lazy">
                 </div>
-                <div class="screenshot-caption">ニックネームを入力して「参加する」</div>
+                <div class="screenshot-caption">ニックネームを入力して「参加する」<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
             </div>
             <div class="screenshot-arrow">→</div>
             <div class="screenshot-label">
                 <div class="phone-frame">
-                    <img src="screenshots/mock_07_members.png" alt="メンバー一覧" loading="lazy">
+                    <img src="native-proof/final-member-mixed.png" width="1080" height="2400" alt="架空の家族データを表示したメンバー一覧" loading="lazy">
                 </div>
-                <div class="screenshot-caption">参加完了!<br>メンバー一覧に名前が表示されます</div>
+                <div class="screenshot-caption">メンバー一覧の画面例。名前・家族データは架空です。</div>
             </div>
         </div>
 
@@ -547,21 +547,7 @@
             </tr>
         </table>
 
-        <div class="screenshot-container">
-            <div class="screenshot-label">
-                <div class="phone-frame">
-                    <img src="screenshots/mock_08_perm_location.png" alt="位置情報の許可" loading="lazy">
-                </div>
-                <div class="screenshot-caption">① 位置情報の許可</div>
-            </div>
-            <div class="screenshot-arrow">→</div>
-            <div class="screenshot-label">
-                <div class="phone-frame">
-                    <img src="screenshots/mock_09_perm_bg.png" alt="バックグラウンド位置情報" loading="lazy">
-                </div>
-                <div class="screenshot-caption">② バックグラウンド位置情報<br>「常に許可」を選択</div>
-            </div>
-        </div>
+        
 
         <div class="hint">
             <strong>「常に許可」って不安...</strong><br>
@@ -580,21 +566,7 @@
             あなたの情報をどこまで家族に見せるかを決める設定です。
         </p>
 
-        <div class="screenshot-container">
-            <div class="screenshot-label">
-                <div class="phone-frame">
-                    <img src="screenshots/mock_10_sharing_gentle.png" alt="通知エリアのみ" loading="lazy">
-                </div>
-                <div class="screenshot-caption">通知エリアのみ<br>出入りを中心に知らせる設定</div>
-            </div>
-            <div class="screenshot-arrow">or</div>
-            <div class="screenshot-label">
-                <div class="phone-frame">
-                    <img src="screenshots/mock_11_sharing_detailed.png" alt="すべて共有" loading="lazy">
-                </div>
-                <div class="screenshot-caption">すべて共有<br>相手と互いに選び、表示を確認</div>
-            </div>
-        </div>
+        
 
         <div class="hint">
             <strong>家族と共有内容を確認してください。</strong><br>
@@ -612,9 +584,9 @@
         <div class="screenshot-single">
             <div class="screenshot-label">
                 <div class="phone-frame" style="max-width: 240px;">
-                    <img src="screenshots/mock_14_map_complete.png" alt="完成後のマップ" loading="lazy">
+                    <img src="native-proof/final-current-map-r8.png" width="1080" height="2400" alt="架空の人物と位置を表示した現在地画面" loading="lazy">
                 </div>
-                <div class="screenshot-caption">家族の位置をマップで確認する例<br>（双方が相手に「すべて共有」を選んだ場合）</div>
+                <div class="screenshot-caption">現在地の画面例。名前と人物の位置は架空です。詳しい位置は双方が相手に「すべて共有」を選び、表示を確認します。</div>
             </div>
         </div>
 

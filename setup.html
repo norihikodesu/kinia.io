@@ -410,6 +410,8 @@
     <link rel="canonical" href="https://kinia.io/setup.html">
 <style id="r7-readable-type">:root{--sub:#525b6e;--text-sub:#525b6e;--text-dim:#657084;--font-body:"Yu Gothic",Meiryo,system-ui,sans-serif;--font-head:"Yu Gothic",Meiryo,system-ui,sans-serif}body{font-family:"Yu Gothic",Meiryo,system-ui,sans-serif}h1,h2,h3{font-family:inherit;font-weight:700}.body-text,.lead{color:#525b6e}</style>
 <style id="setup-page-styles">
+    /* The step margin already reserves both sticky navigation rows. */
+    html { scroll-padding-top: 0 !important; }
     .content {
         width: 100%;
         max-width: 1120px;
@@ -694,7 +696,7 @@
         <div class="hint">
             <strong>どのアカウントを選べばいい？</strong><br>
             ふだんスマホで使っているGoogleアカウントでOKです。
-            家族に見えるのは、あとで設定する「ニックネーム」だけなので、アカウント名が表示されることはありません。
+            家族にはアプリで設定した表示名が表示されます。参加前に表示名を確認し、必要なら変更してください。
         </div>
 
         <div class="nav-buttons">
@@ -718,7 +720,7 @@
             <li>
                 <strong>グループ名（合言葉）を入力</strong>（8文字以上・半角英数推奨）
                 <div class="sub">
-                    家族だけのグループを識別する合言葉です（例: 「yamada2026」「family123」）。<br>
+                    家族だけのグループを識別する合言葉です（例: 「sakura2026」「family123」）。<br>
                     「自動生成」ボタンでランダムな名前を作ることもできます。<br>
                     ※ グループ名は最初の1回だけ使います。毎回入力する必要はありません。
                 </div>
@@ -853,8 +855,8 @@
 
     <!-- ===== Step 6: 通知エリア ===== -->
     <section class="step" id="step6">
-        <span class="step-badge">STEP 6（オプション）</span>
-        <h2>通知エリアを設定する</h2>
+        <span class="step-badge">STEP 6</span>
+        <h2>到着・出発の通知を設定する</h2>
         <p class="lead">「自宅に着いたら通知」「学校を出たら通知」のように、特定のエリアの出入りを通知で受け取れます。</p>
 
         <div class="guide-diagram" aria-label="設定の流れ"><div class="guide-node"><span>1</span><strong>知らせたい場所</strong></div><div class="guide-node"><span>2</span><strong>通知エリアに登録</strong></div><div class="guide-node"><span>3</span><strong>到着・出発を選ぶ</strong></div></div>
@@ -864,11 +866,14 @@
             <li>地図が表示されたら、エリアを設定したい場所をタップ</li>
             <li>エリア名と半径を設定</li>
             <li>通知を受け取りたいメンバーを選択</li>
+            <li>到着・出発の通知を選び、通知する日を「毎日・平日・土日」から設定</li>
+            <li>設定を保存し、通知を受け取る端末の通知権限・通知設定も確認</li>
         </ol>
 
         <div class="hint">
             通知エリアは後からいつでも追加・編集・削除できます。<br>
-            まずは <strong>「自宅」だけ設定しておく</strong> のがおすすめです。
+            まずは <strong>自宅と、学校または塾を1か所</strong> 登録し、帰宅や出発の知らせを受け取る設定から始めてください。<br>
+            <a href="/guide-family-basic.html#step6">通知エリアの設定手順を見る →</a>
         </div>
 
         <div class="nav-buttons">
@@ -920,7 +925,8 @@
         <div class="hint">
             <strong>困ったときは</strong><br>
             <a href="/faq.html">よくある質問（FAQ）</a> を確認するか、
-            アプリ内の「問題を報告する」からお問い合わせください。
+            <a href="/#contact">お問い合わせフォーム</a>からご連絡ください。<br>
+            アプリ内の「問題を報告する」では、端末情報などを含むレポートを作成し、送信に使うアプリを選べます。
         </div>
 
         <div class="nav-buttons">
@@ -976,7 +982,7 @@
 const TOTAL_STEPS = 8;
 const stepSections = Array.from(document.querySelectorAll('.step'));
 
-function goStep(n) {
+function goStep(n, behavior = 'smooth') {
     const el = document.getElementById('step' + n);
     if (el) {
         const headerHeight = document.getElementById('kinia-nav')?.getBoundingClientRect().height || 0;
@@ -984,7 +990,7 @@ function goStep(n) {
         const stepNavHeight = document.getElementById('stepNav')?.getBoundingClientRect().height || 0;
         const offset = headerHeight + progressHeight + stepNavHeight + 16;
         const top = window.scrollY + el.getBoundingClientRect().top - offset;
-        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        window.scrollTo({ top: Math.max(0, top), behavior });
     }
 }
 
@@ -1043,7 +1049,13 @@ function scheduleActiveStepUpdate() {
 
 window.addEventListener('scroll', scheduleActiveStepUpdate, { passive: true });
 window.addEventListener('resize', scheduleActiveStepUpdate);
-window.addEventListener('load', scheduleActiveStepUpdate, { once: true });
+function alignHashStep() {
+    const match = /^#step([1-8])$/.exec(window.location.hash);
+    if (match) goStep(Number(match[1]), 'instant');
+    scheduleActiveStepUpdate();
+}
+window.addEventListener('load', alignHashStep, { once: true });
+window.addEventListener('hashchange', alignHashStep);
 updateActiveFromScroll();
 </script>
 
