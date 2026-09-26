@@ -1,6 +1,6 @@
 /* Kinia public website: shared identity and readable controls. */
 :root{--bg:#fffdfb!important;--bg-alt:#f4f1fa!important;--card:#fff!important;--ink:#202944!important;--sub:#536079!important;--mute:#657086!important;--muted:#536079!important;--text-sub:#536079!important;--text-dim:#657086!important;--accent:#655fc4!important;--accent2:#514ba8!important;--navy:#222c4b!important;--line:#e3e5ee!important;--font-body:Meiryo,"Hiragino Kaku Gothic ProN",system-ui,sans-serif!important;--font-head:Meiryo,"Hiragino Kaku Gothic ProN",system-ui,sans-serif!important;--kinia-nav-height:76px}
-body{font-family:var(--font-body)!important;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.85}h1,h2,h3,h4{font-family:var(--font-head)!important;font-weight:700}button,input,textarea{font:inherit}a,button{touch-action:manipulation}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #8078d9;outline-offset:4px}img{max-width:100%}html{scroll-padding-top:calc(var(--kinia-nav-height) + 20px)}
+*,*::before,*::after{box-sizing:border-box}body{margin:0;font-family:var(--font-body)!important;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.85}h1,h2,h3,h4{font-family:var(--font-head)!important;font-weight:700}button,input,textarea{font:inherit}a,button{touch-action:manipulation}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #8078d9;outline-offset:4px}img{max-width:100%}html{scroll-padding-top:calc(var(--kinia-nav-height) + 20px)}
 #kinia-nav{position:sticky;top:0;z-index:200;display:block;margin:0;padding:0;border:0;border-bottom:1px solid #e3e5ee;background:rgba(255,253,251,.98);backdrop-filter:blur(12px);font-family:var(--font-body);box-shadow:none}
 #kinia-nav .kn-inner{max-width:1160px;margin:auto;display:flex;align-items:center;gap:28px;min-height:76px;padding:12px 24px}
 #kinia-nav .kn-brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:#202944;font-size:23px;font-weight:800;letter-spacing:-.03em;white-space:nowrap}
@@ -21,3 +21,41 @@ body{font-family:var(--font-body)!important;color:var(--ink);background:var(--bg
 
 :root{--primary:#655fc4!important;--text:#202944!important;--border:#e3e5ee!important;--surface:#fff!important;--surface2:#f4f1fa!important}body>header.hero{background:linear-gradient(120deg,#fffaf6,#f4f1fa)!important}.setup-price strong{font-size:22px}.school-proof{margin:auto;text-align:center}.school-proof .phone-frame{width:270px;margin:auto}.school-proof figcaption{font-size:11px;color:#59647b;margin-top:15px}.hero-visual .notice-card.school{top:24px;left:-20px;width:220px}.hero-visual .notice-card.home{bottom:35px;right:-10px;width:225px}.hero-visual .notice-main{font-size:14px}.guide-directory{max-width:1120px;margin:0 auto 36px;padding:24px;border:1px solid var(--line);border-radius:18px;background:#fff}.guide-directory h2{font-size:20px;margin-bottom:12px}.guide-directory div{display:flex;flex-wrap:wrap;gap:12px 25px}.guide-directory a{color:#514ba8;font-size:14px}
 @media(max-width:700px){.hero-visual .notice-card.school,.hero-visual .notice-card.home{position:static;transform:none;width:100%}.school-proof .phone-frame{width:240px}.guide-directory{margin:0 14px 28px;padding:22px}}
+
+/* r14: shared page contracts. Document pages use one reading column;
+   the visual setup wizard intentionally keeps its wider two-column layout. */
+body.kinia-page :is(h1,h2,h3,h4){font-weight:700}
+body.kinia-document>.content{width:calc(100% - 48px);max-width:880px;margin-inline:auto;padding:48px 0 72px}
+body.kinia-document.kinia-onboarding>.content{padding-top:0}
+body.kinia-document>.page-head{background:#f4f1fa;padding:56px 24px 42px}
+body.kinia-document>.page-head .page-head-inner{max-width:880px;margin:auto}
+body.kinia-document :is(h1,.section-title){font-size:clamp(28px,3.4vw,38px);line-height:1.5;letter-spacing:-.025em}
+body.kinia-document :is(.card,.info-card,.feature-card){border-radius:18px}
+body.kinia-document :is(.hint,.callout){border-left-color:#948bd0;background:#fff}
+body.kinia-document>.progress-bar{top:var(--kinia-nav-height);z-index:90}
+body.kinia-document .content>section{scroll-margin-top:calc(var(--kinia-nav-height) + 24px)}
+body.kinia-document .side-nav{display:none}
+body.kinia-document .section-heading{font-size:clamp(23px,3vw,30px);line-height:1.5}
+.kinia-plan-note{font-size:13px;line-height:1.8;color:#536079;margin-top:10px}
+@media(max-width:800px){:root{--kinia-nav-height:68px}body.kinia-document>.content{width:calc(100% - 40px);padding:32px 0 52px}body.kinia-document.kinia-onboarding>.content{padding-top:0}body.kinia-document>.page-head{padding:36px 20px 28px}}
+@media(max-width:360px){body.kinia-document>.content{width:calc(100% - 32px)}body.kinia-document>.page-head{padding-inline:16px}}
+
+/* Link hub and old download URL fallback share the same public identity. */
+.kinia-link-hub{width:calc(100% - 40px);max-width:600px;margin:48px auto 72px;text-align:center}
+.kinia-link-icon{border-radius:18px;display:block;margin:0 auto 16px}
+.kinia-link-hub h1{font-size:34px;line-height:1.5;margin:0 0 14px}.kinia-link-hub h1 span{font-size:18px;font-weight:500}
+.kinia-link-intro{font-size:17px;line-height:1.9;color:#536079;margin-bottom:22px}.kinia-link-hub .price-callout{margin-inline:auto;text-align:left}
+.kinia-link-download{display:flex;align-items:center;justify-content:center;padding:17px 22px;border-radius:12px;background:#222c4b;color:#fff;text-decoration:none;font-weight:700;line-height:1.6}.kinia-link-download:hover{background:#354164;text-decoration:none}
+.kinia-link-requirements{font-size:13px;line-height:1.85;color:#536079;margin:16px 0 38px}.kinia-link-hub h2{font-size:19px;line-height:1.6;margin-bottom:18px;text-align:left}
+.kinia-link-list{display:grid;gap:12px;text-align:left}.kinia-link-card{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:19px 22px;border:1px solid #e3e5ee;border-radius:14px;background:white;color:#202944;text-decoration:none}.kinia-link-card:hover{border-color:#948bd0;background:#f7f5fc;text-decoration:none}.kinia-link-card strong{display:block;font-size:16px}.kinia-link-card small{display:block;color:#536079;font-size:13px;margin-top:4px}.kinia-link-contact{display:inline-block;color:#514ba8;margin-top:26px;font-size:14px}
+body.kinia-redirect{min-height:100vh;display:grid;place-items:center;padding:24px;box-sizing:border-box}.kinia-redirect-card{width:100%;max-width:560px;text-align:center;border:1px solid #e3e5ee;border-radius:22px;padding:36px;background:#fff;box-sizing:border-box}.kinia-redirect-card h1{font-size:26px;line-height:1.6;margin:14px 0}.kinia-redirect-card p{margin:14px 0;color:#536079}.kinia-redirect-label{font-size:17px;font-weight:700}.kinia-redirect-back{display:inline-block;margin-top:20px;font-size:14px;color:#514ba8}.kinia-redirect-card img{border-radius:16px}
+@media(max-width:390px){.kinia-link-hub{width:calc(100% - 32px);margin-top:32px}.kinia-link-card{padding:16px}.kinia-redirect-card{padding:28px 20px}.kinia-redirect-card h1{font-size:22px}}
+
+/* Approved price statement may wrap naturally without overflowing small phones. */
+.price-callout strong{white-space:normal;font-size:20px;line-height:1.55}.price-callout{column-gap:14px}@media(max-width:480px){.price-callout strong{font-size:17px}}
+
+/* Comparison labels follow each stacked cell on small screens. */
+body.kinia-page .compare-header .nm,body.kinia-page .row-topic .tname,body.kinia-page .row-cell .summary{font-weight:700}
+@media(max-width:768px){body.kinia-page .compare-header{display:none}body.kinia-page .compare-row{margin-bottom:26px;border:1px solid #e3e5ee;border-radius:16px;background:#fff;overflow:hidden}body.kinia-page .row-topic{padding:18px 20px;background:#f4f1fa}body.kinia-page .row-cell{padding:18px 20px;border:0}body.kinia-page .row-cell:nth-child(3){border-top:1px solid #e3e5ee}body.kinia-page .row-cell::before{display:block;font-size:12px;font-weight:700;color:#514ba8;margin-bottom:8px}body.kinia-page .row-cell:nth-child(2)::before{content:"比較するときの確認点"}body.kinia-page .row-cell:nth-child(3)::before{content:"Kiniaの案内"}}
+
+.cta-phrase{display:inline-block}.table-scroll-hint{display:none}@media(max-width:600px){.last-cta h2{font-size:clamp(28px,8vw,36px);line-height:1.5}.table-scroll-hint{display:block;font-size:12px;color:#536079;margin:12px 0 6px}}

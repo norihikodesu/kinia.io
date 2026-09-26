@@ -6,16 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>いまどこ確認 — Kinia</title>
-    <meta name="description" content="連絡がつかないとき、帰りが遅いとき。家族の居場所をすぐに確認できる「いまどこ確認」機能の使い方をご紹介します。">
+    <meta name="description" content="連絡がつかないとき、帰りが遅いとき。特定の家族へ位置の確認を依頼する「いまどこ確認」機能の使い方と条件を紹介します。">
     <link rel="icon" href="/images/app_icon.png" type="image/png">
     <meta property="og:title" content="いまどこ確認 — Kinia">
-    <meta property="og:description" content="連絡がつかないとき、帰りが遅いとき。家族の居場所をすぐに確認できる「いまどこ確認」機能の使い方をご紹介します。">
+    <meta property="og:description" content="連絡がつかないとき、帰りが遅いとき。特定の家族へ位置の確認を依頼する「いまどこ確認」機能の使い方と条件を紹介します。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kinia.io/emergency-query.html">
     <meta property="og:image" content="https://kinia.io/images/ogp/og_default.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="いまどこ確認 — Kinia">
-    <meta name="twitter:description" content="連絡がつかないとき、帰りが遅いとき。家族の居場所をすぐに確認できる「いまどこ確認」機能の使い方をご紹介します。">
+    <meta name="twitter:description" content="連絡がつかないとき、帰りが遅いとき。特定の家族へ位置の確認を依頼する「いまどこ確認」機能の使い方と条件を紹介します。">
     <meta name="twitter:image" content="https://kinia.io/images/ogp/og_default.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -175,9 +175,9 @@
         }
     </style>
     <link rel="canonical" href="https://kinia.io/emergency-query.html">
-<link rel="stylesheet" href="/site-common.css?v=20260926r12">
+<link rel="stylesheet" href="/site-common.css?v=20260926r14">
 </head>
-<body>
+<body class="kinia-page kinia-document">
 
 <script src="/nav.js?v=20260926r12"></script>
 
@@ -212,7 +212,7 @@
                 </div>
                 <div class="flow-body">
                     <h3>居場所を確認したい相手を選ぶ</h3>
-                    <p>メンバー一覧で相手の名前をタップして展開し、青い「📍 いまどこ確認」ボタンを押します。機能の説明と確認画面が表示されるので、「送信」を押してください。<strong>あなたの居場所も相手に伝わります</strong>（一方的に見るのではなく、お互いに開示する仕組みです）。</p>
+                    <p>メンバー一覧で相手の名前をタップして展開し、青い「📍 いまどこ確認」ボタンを押します。機能の説明と確認画面が表示されるので、「送信」を押してください。<strong>確認する側の位置も共有する処理が行われます</strong>。取得できる情報は通信や端末の状態によって変わります。</p>
                 </div>
             </div>
             <div class="flow-step">
@@ -259,7 +259,7 @@
 
     <section class="section">
         <div class="section-label">— APP SCREENS —</div>
-        <h2>画面イメージ</h2>
+        <h2>機能の説明図</h2>
 
         <div class="mockup-row">
             <div class="mockup-wrapper">
@@ -286,7 +286,7 @@
                                         <span>🔋72%</span>
                                     </div>
                                 </div>
-                                <div class="member-status">通知エリア外</div>
+                                <div class="member-status">自宅</div>
                             </div>
 
                             <div class="member-card" style="border-color:var(--accent);border-width:1.5px">
@@ -319,7 +319,7 @@
                                         <span>🔋56%</span>
                                     </div>
                                 </div>
-                                <div class="member-status">通知エリア外</div>
+                                <div class="member-status">学校</div>
                             </div>
 
                             <div class="member-card">
@@ -334,7 +334,7 @@
                                         <span>🔋41%</span>
                                     </div>
                                 </div>
-                                <div class="member-status">通知エリア外</div>
+                                <div class="member-status">塾</div>
                             </div>
                         </div>
                     </div>
@@ -496,7 +496,7 @@
                     <span class="arrow">▼</span>
                 </div>
                 <div class="mini-faq-a">
-                    <p>回数の制限はありません。ただし、相手が「1時間ブロック」を押した場合は、その間は送っても自動的に断られます。あなたの画面には「相手が確認を一時的にブロックしています」と表示されます。</p>
+                    <p>相手が「1時間ブロック」を選んだ場合、その間は確認が断られます。再送信できるかは、アプリ内の案内をご確認ください。</p>
                 </div>
             </div>
 
@@ -516,7 +516,7 @@
                     <span class="arrow">▼</span>
                 </div>
                 <div class="mini-faq-a">
-                    <p>「すべて共有」に設定している相手は、地図上にリアルタイムで位置が見えているので、通常はこの機能を使う必要はありません。ただし、最後の更新が古い場合に最新の位置を取りたいときには使えます。</p>
+                    <p>双方が相手に「すべて共有」を選んでいる場合は、まず地図上の位置と更新時刻を確認できます。位置の更新を依頼したいときは、アプリ内の案内に沿って操作してください。取得できるかは通信や端末の状態によって変わります。</p>
                 </div>
             </div>
 
@@ -536,7 +536,7 @@
                     <span class="arrow">▼</span>
                 </div>
                 <div class="mini-faq-a">
-                    <p>現在は完全にオフにする設定はありません。「1時間ブロック」で一時的に断ることはできます。完全オフの設定は、今後のアップデートで追加を検討しています。</p>
+                    <p>現在は完全にオフにする設定はありません。「1時間ブロック」で一時的に断ることはできます。利用前に、共有される内容と応答しなかった場合の動作を家族で確認してください。</p>
                 </div>
             </div>
         </div>
@@ -547,7 +547,7 @@
         <h2>プライバシーについて</h2>
 
         <div class="note-box sage">
-            <strong>この機能は「監視」のためのものではありません。</strong><br><br>
+            <strong>確認時に共有される内容を、家族で確認してください。</strong><br><br>
             確認された側へ通知を送り、確認する側の位置も相手に共有する仕組みです。通信・権限・端末の状態により通知が届かないこともあります。使う場面や、確認したことの伝え方を家族で相談してください。<br><br>
             家族の帰りが遅いとき、連絡がつかないとき、地震があったとき——本当に心配な瞬間に「いまどこにいるか」を知るための機能です。
         </div>

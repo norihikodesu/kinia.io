@@ -6,16 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>安否確認機能について — Kinia</title>
-    <meta name="description" content="Kiniaの安否確認機能は、災害時に家族の無事を一斉に確認できます。普段のプライバシーを保ちながら、非常時だけ必要な確認ができる設計です。">
+    <meta name="description" content="Kiniaの安否確認は、災害時などに家族へ状況の回答を依頼する機能です。通知・回答・取得できた位置の確認方法と利用条件を説明します。">
     <link rel="icon" href="/images/app_icon.png" type="image/png">
     <meta property="og:title" content="安否確認機能について — Kinia">
-    <meta property="og:description" content="Kiniaの安否確認機能は、災害時に家族の無事を一斉に確認できます。普段のプライバシーを保ちながら、非常時だけ必要な確認ができる設計です。">
+    <meta property="og:description" content="Kiniaの安否確認は、災害時などに家族へ状況の回答を依頼する機能です。通知・回答・取得できた位置の確認方法と利用条件を説明します。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kinia.io/safety.html">
     <meta property="og:image" content="https://kinia.io/images/ogp/og_default.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="安否確認機能について — Kinia">
-    <meta name="twitter:description" content="Kiniaの安否確認機能は、災害時に家族の無事を一斉に確認できます。普段のプライバシーを保ちながら、非常時だけ必要な確認ができる設計です。">
+    <meta name="twitter:description" content="Kiniaの安否確認は、災害時などに家族へ状況の回答を依頼する機能です。通知・回答・取得できた位置の確認方法と利用条件を説明します。">
     <meta name="twitter:image" content="https://kinia.io/images/ogp/og_default.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -142,18 +142,18 @@
         @media (max-width: 640px) { .detail-links { grid-template-columns:1fr; } }
     </style>
     <link rel="canonical" href="https://kinia.io/safety.html">
-<link rel="stylesheet" href="/site-common.css?v=20260926r12">
+<link rel="stylesheet" href="/site-common.css?v=20260926r14">
 </head>
-<body>
+<body class="kinia-page kinia-document">
 
 <script src="/nav.js?v=20260926r12"></script>
 
 <main class="content">
 
     <!-- 1. ヒーロー -->
-    <h1>家族の無事を、一斉に確認できる機能です</h1>
+    <h1>家族へ状況の回答を、一斉に依頼できます</h1>
 <p class="lead" style="font-size:0.92rem; margin:16px 0;">現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
-    <p class="subtitle">普段のプライバシーを保ちながら、<br>非常時だけ家族の状況確認を助けます。<br>緊急時の一斉確認を想定した機能です。<br>日常のやり取りは通常のメッセージ機能をご利用ください。</p>
+    <p class="subtitle">災害時など、家族の状況確認を助けます。<br>緊急時の一斉確認を想定した機能です。<br>日常のやり取りは通常のメッセージ機能をご利用ください。</p>
 
     <!-- 2. こんな時に -->
     <h2>こんな時に役立ちます</h2>
@@ -169,11 +169,11 @@
     <div class="steps">
         <div class="step">
             <div class="step-num">1</div>
-            <div class="step-text"><p><strong>誰かが安否確認を実行</strong><br>メンバー一覧画面の「🆘 安否確認を送る」ボタンから実行します。<br>2段階の確認を経て送信されます。</p></div>
+            <div class="step-text"><p><strong>誰かが安否確認を実行</strong><br>アプリのメニューから安否確認を開き、<br>表示される確認に沿って送信します。</p></div>
         </div>
         <div class="step">
             <div class="step-num">2</div>
-            <div class="step-text"><p><strong>全員に全画面通知が届くよう設計</strong><br>グループ内の全メンバーの端末に、<br>プッシュ通知と全画面表示で安否確認の依頼が届くよう設計されています。<br>（通知権限や通信状況により届かない場合があります）</p></div>
+            <div class="step-text"><p><strong>家族へ安否確認の通知を送信</strong><br>グループの家族へ回答を依頼します。<br>受信や全画面表示は、通信・権限・端末の状態によって変わります。</p></div>
         </div>
         <div class="step">
             <div class="step-num">3</div>
@@ -201,7 +201,7 @@
             <h3 style="color:var(--mute);">🚫 共有されないもの</h3>
             <p>・常時の詳細な位置情報（通常時の設定は変わりません）<br>
             ・安否確認による移動履歴や軌跡の追加共有</p>
-            <p style="margin-top:8px; font-size:0.92rem;">安否確認は実行から24時間後に自動で終了し、通常の共有設定に戻ります。</p>
+            <p style="margin-top:8px; font-size:0.92rem;">安否確認には有効期間があります。終了後は、その確認への回答はできません。通常の共有設定とは別の機能です。</p>
         </div>
     </div>
 
@@ -232,18 +232,14 @@
     <h2>透明性を保つ仕組み</h2>
 
     <p>
-        安否確認の実行や位置照会が全員に通知され、履歴にも記録されます。
+        安否確認の実行や位置照会を知らせる通知を送り、実行履歴を記録します。
     </p>
 
     <div class="card">
-        <p>・安否確認を実行すると、<br>
-        　<strong>全メンバーに「誰が実行したか」が通知</strong>されます<br>
-        ・位置が照会されたことも全員に通知されるため、<br>
-        　<strong>気づかないうちに位置を見られることはありません</strong><br>
-        ・全画面で表示されるため、<br>
-        　メンバー全員が「今、安否確認が実行された」と認識します<br>
-        ・実行履歴はメッセージタブに記録され、後から確認できます<br>
-        ・前回の実行から1時間は再実行できません</p>
+        <p>・誰が確認を実行したか、位置が照会されたことを知らせる通知を送ります<br>
+        ・通知が届いたことや、本人が読んだことまでは保証できません<br>
+        ・実行履歴はメッセージタブで確認できます<br>
+        ・新たに送信できる条件は、アプリ内の案内をご確認ください</p>
     </div>
 
     <p>本機能は、信頼関係のある家族や少人数グループでの利用を想定しています。</p>
@@ -254,7 +250,7 @@
     <div class="note-box">
         <p><strong>通信環境について</strong><br>
         インターネット接続がない場合、通知や回答の送受信が遅れたり届かないことがあります。<br>
-        ただし、端末内にキャッシュされた家族の最終位置は、オフラインでも確認できます。</p>
+        同じ利用者・グループの有効な情報が端末に保存されていれば、最後の記録を参照できる場合があります。記録がない場合や期限切れの場合は表示できません。</p>
 
         <p><strong>端末の状態について</strong><br>
         端末の電源が切れている、通知の権限がOFFになっている、<br>
@@ -272,17 +268,17 @@
     </div>
 
     <!-- 8. オフラインでも使える工夫 -->
-    <h2>通信が途絶えても、手がかりが残る設計</h2>
+    <h2>端末に保存された最終記録を確認する</h2>
 
     <p>
         災害時にはインターネットが使えなくなることがあります。<br>
-        <ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>では、家族の最終位置を端末内に常にキャッシュしており、<br>
-        通信が途絶えた後でも確認できるようにしています。
+        <ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>では、同じ利用者・グループの有効な記録が端末に残っていれば、<br>
+        通信できないときに最後の記録を確認できる場合があります。
     </p>
 
     <p>
-        位置情報は3つの形式で保持しています。<br>
-        いずれか1つでも表示できれば、場所の手がかりになります。
+        取得・保存できた情報に応じて、住所・通知エリア名・座標を確認できます。<br>
+        過去の記録のため、現在の位置や無事を示すものではありません。
     </p>
 
     <div class="card">

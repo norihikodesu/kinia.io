@@ -1,0 +1,278 @@
+/* Shared reading layout for Kinia's two sharing-mode guides. */
+body.kinia-guide-page *,
+body.kinia-guide-page *::before,
+body.kinia-guide-page *::after {
+  box-sizing: border-box;
+}
+
+body.kinia-guide-page {
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+body.kinia-guide-page .kinia-guide-shell {
+  width: 100%;
+  max-width: 880px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+body.kinia-guide-page .guide-hero {
+  padding: clamp(32px, 5vw, 52px) 0 28px;
+  text-align: center;
+}
+
+body.kinia-guide-page .guide-hero .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 6px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-alt);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+body.kinia-guide-page .guide-hero .pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+body.kinia-guide-page .guide-hero h1 {
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 700;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+body.kinia-guide-page .accent-text {
+  color: var(--accent);
+}
+
+body.kinia-guide-page .guide-eligibility {
+  max-width: 100%;
+  margin: 18px auto 14px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg-alt);
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+body.kinia-guide-page .guide-intro {
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--sub);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+body.kinia-guide-page .kinia-guide-content {
+  min-width: 0;
+  padding: 0 0 72px;
+}
+
+body.kinia-guide-page .mode-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0 0 28px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+}
+
+body.kinia-guide-page .mode-switch a {
+  display: flex;
+  min-width: 0;
+  min-height: 54px;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 10px;
+  color: var(--sub);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+body.kinia-guide-page .mode-switch a + a {
+  border-left: 1px solid var(--line);
+}
+
+body.kinia-guide-page .mode-switch a.active {
+  background: var(--navy, var(--accent));
+  color: #fff;
+}
+
+body.kinia-guide-page .mode-switch a:not(.active):hover {
+  background: var(--bg-alt);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+body.kinia-guide-page .mode-summary {
+  margin-bottom: 32px;
+}
+
+body.kinia-guide-page .callout {
+  margin: 16px 0;
+  padding: 16px 20px;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 14px 14px 0;
+  background: var(--card);
+  color: var(--sub);
+  font-size: 15px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+body.kinia-guide-page .callout strong {
+  color: var(--ink);
+}
+
+body.kinia-guide-page .callout.accent {
+  border-left-color: var(--navy, var(--accent));
+}
+
+body.kinia-guide-page .toc {
+  margin: 0 0 32px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+}
+
+body.kinia-guide-page .toc h3,
+body.kinia-guide-page .card h3 {
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+body.kinia-guide-page .toc ol {
+  margin: 0;
+  padding-left: 22px;
+}
+
+body.kinia-guide-page .toc li {
+  margin: 0 0 6px;
+  color: var(--sub);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+body.kinia-guide-page .toc li a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.kinia-guide-page .guide-section {
+  min-width: 0;
+  padding: 36px 0 12px;
+  scroll-margin-top: calc(var(--kinia-nav-height, 76px) + 20px);
+}
+
+body.kinia-guide-page .guide-section + .guide-section {
+  border-top: 1px solid var(--line);
+}
+
+body.kinia-guide-page .section-label {
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+body.kinia-guide-page .section-heading {
+  margin: 0 0 14px;
+  color: var(--ink);
+  font-size: clamp(24px, 3vw, 30px);
+  font-weight: 700;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+body.kinia-guide-page .lead {
+  margin: 0 0 20px;
+  color: var(--sub);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+body.kinia-guide-page .card {
+  margin: 0 0 20px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+}
+
+body.kinia-guide-page .card p,
+body.kinia-guide-page .card li {
+  color: var(--sub);
+  font-size: 16px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+body.kinia-guide-page .card ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+body.kinia-guide-page .card li {
+  margin-bottom: 6px;
+}
+
+body.kinia-guide-page .card strong {
+  color: var(--ink);
+}
+
+body.kinia-guide-page .guide-help {
+  padding-top: 32px;
+}
+
+body.kinia-guide-page .guide-help-compact {
+  padding-top: 8px;
+}
+
+@media (max-width: 600px) {
+  body.kinia-guide-page .guide-hero {
+    padding-top: 30px;
+    padding-bottom: 24px;
+  }
+
+  body.kinia-guide-page .mode-switch a {
+    padding-inline: 8px;
+    font-size: 14px;
+  }
+
+  body.kinia-guide-page .toc,
+  body.kinia-guide-page .card {
+    padding: 18px;
+  }
+
+  body.kinia-guide-page .guide-section {
+    padding-top: 30px;
+  }
+}

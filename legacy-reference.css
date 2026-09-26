@@ -1,0 +1,5 @@
+/* Archived design references are distinct from current user instructions. */
+.kinia-legacy-notice{box-sizing:border-box;position:relative;z-index:1;display:block;width:100%;padding:12px 16px;margin:0 0 18px;background:#f4f1fa;border:1px solid #ded9ed;border-radius:10px;color:#3a3655;font:13px/1.7 Meiryo,system-ui,sans-serif;text-align:left;overflow-wrap:anywhere;flex:0 0 auto}
+.kinia-legacy-notice a{color:#514ba8;text-decoration:underline;font-weight:700}
+
+@media(max-width:480px){body{padding:16px!important}.phone-wrap{width:360px;max-width:100%}.phone{max-width:100%;flex-shrink:0}.kinia-legacy-notice{font-size:12px;padding:10px 12px}}

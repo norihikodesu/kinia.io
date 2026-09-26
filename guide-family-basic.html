@@ -820,11 +820,12 @@
             .settings-grid { grid-template-columns: 1fr; }
             .phone-frame { max-width: 180px; }
         }
-    </style>
+    @media(max-width:380px){.hero h1{font-size:22px!important;line-height:1.5!important}}
+</style>
     <link rel="canonical" href="https://kinia.io/guide-family-basic.html">
-<link rel="stylesheet" href="/site-common.css?v=20260926r12">
+<link rel="stylesheet" href="/site-common.css?v=20260926r14">
 </head>
-<body>
+<body class="kinia-page kinia-document kinia-onboarding">
 
 <!-- ナビゲーション -->
 <script src="/nav.js?v=20260926r12"></script>
@@ -850,8 +851,9 @@
     <!-- ===== ヒーロー ===== -->
     <div class="hero">
         <span class="hero-label">3人家族向けガイド</span>
-        <h1>大人2人 + お子さん1人の<br>はじめてセットアップ</h1>
+        <h1>3人家族の<br>はじめてセットアップ</h1>
 <p class="lead" style="font-size:0.92rem; margin:16px 0;">現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
+<p class="lead" style="font-size:0.92rem;">画面は操作説明用のイメージです。実際の表示はアプリで確認してください。</p>
         <p>3人家族でKiniaを始める手順を、1つずつ解説します。<br>
         ご家族の代表がまとめて3台を設定するケースを想定しています。</p>
     </div>
@@ -885,12 +887,12 @@
     <section class="section" id="flowchart">
         <span class="section-badge flowchart">PART 0</span>
         <h2>まず確認 — あなたの家族に合う使い方は？</h2>
-        <p class="lead">Kiniaには2つの使い方があります。下の質問に答えて、最適な設定タイプを確認しましょう。</p>
+        <p class="lead">Kiniaには2つの使い方があります。家族で使いたい場面に合わせて、共有範囲を選びましょう。</p>
 
         <div class="flowchart">
             <!-- Q1 -->
             <div class="flow-node flow-question">
-                <p>お子さんの「今どこにいるか」を<br>地図でリアルタイムに確認したいですか？</p>
+                <p>お子さんの「今どこにいるか」を<br>地図で確認したいですか？</p>
                 <div class="sub">例: 塾の帰りが遅いとき、今どのあたりか見たい</div>
             </div>
 
@@ -900,11 +902,11 @@
                     <div class="flow-connector"><span class="arrow">▼</span></div>
                     <div class="flow-result type-a">
                         <h3>タイプA: 通知エリアだけ</h3>
-                        <p>「学校を出た」「家に着いた」などの通知だけ受け取る、もっともシンプルな使い方です。</p>
+                        <p>「学校を出た」「家に着いた」など、登録した場所への出入りを中心に確認する使い方です。</p>
                         <ul>
                             <li>詳しい位置の共有を抑える設定</li>
                             <li>歩数・元気度は共有される</li>
-                            <li>お子さんのプライバシーを尊重しやすい</li>
+                            <li>電池残量や更新時刻も確認できる</li>
                             <li>共有相手ごとの設定と表示を確認する</li>
                         </ul>
                     </div>
@@ -918,7 +920,7 @@
                         <ul>
                             <li>地図にマーカーが表示される</li>
                             <li>移動ルート・軌跡が見られる</li>
-                            <li>通知エリアの通知も届く</li>
+                            <li>登録した場所の出入りも通知で確認</li>
                             <li>詳しい位置は双方が相手に「すべて共有」を選ぶ</li>
                         </ul>
                     </div>
@@ -928,7 +930,7 @@
 
         <div class="hint success">
             <strong>あとから切り替えられます。</strong>
-            まずはタイプA（通知エリアだけ）で始めて、必要になったらタイプBに切り替えるのがおすすめです。<br>
+            詳しい場所や履歴を互いに確認したい場合は、タイプB（すべて共有）を双方で選びます。到着・出発を中心に知りたい場合は、タイプA（通知エリアのみ）を選べます。<br>
             共有する相手ごとに設定を確認し、保存後は相手の画面でも意図した表示になっているか確かめてください。 詳しい位置や履歴を互いに見る場合は、双方が相手に「すべて共有」を選び、保存後に相手の画面でも表示を確認してください。
         </div>
 
@@ -942,8 +944,8 @@
             </tr>
             <tr>
                 <td>地図上の位置表示</td>
-                <td><span style="font-size:1.3em;">✕</span><br><span style="font-size:0.8em;">なし</span></td>
-                <td><span style="font-size:1.3em;color:var(--sage);">◎</span><br><span style="font-size:0.8em;">リアルタイム表示</span></td>
+                <td><span style="font-size:1.3em;">—</span><br><span style="font-size:0.8em;">詳しい位置の共有を抑える設定</span></td>
+                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">取得できた位置と更新時刻</span></td>
             </tr>
             <tr>
                 <td>通知エリアの通知</td>
@@ -952,7 +954,7 @@
             </tr>
             <tr>
                 <td>移動履歴・軌跡</td>
-                <td><span style="font-size:1.3em;">✕</span><br><span style="font-size:0.8em;">なし</span></td>
+                <td><span style="font-size:1.3em;">—</span><br><span style="font-size:0.8em;">詳しい位置の共有を抑える設定</span></td>
                 <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
             </tr>
             <tr>
@@ -961,14 +963,14 @@
                 <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
             </tr>
             <tr>
-                <td>プライバシー</td>
-                <td><span style="font-size:1.3em;color:var(--sage);">◎</span><br><span style="font-size:0.8em;">詳しい位置の共有を抑える</span></td>
-                <td><span style="font-size:1.3em;color:var(--accent);">△</span><br><span style="font-size:0.8em;">互いに選んだ相手と共有</span></td>
+                <td>共有範囲</td>
+                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">詳しい位置の共有を抑える</span></td>
+                <td><span style="font-size:1.3em;color:var(--accent);">◯</span><br><span style="font-size:0.8em;">互いに選んだ相手と共有</span></td>
             </tr>
             <tr>
                 <td>追加設定</td>
-                <td><span style="font-size:1.3em;color:var(--sage);">◎</span><br><span style="font-size:0.8em;">各端末で設定・表示を確認</span></td>
-                <td><span style="font-size:1.3em;color:var(--accent);">△</span><br><span style="font-size:0.8em;">各端末で共有レベル変更</span></td>
+                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">各端末で設定・表示を確認</span></td>
+                <td><span style="font-size:1.3em;color:var(--accent);">◯</span><br><span style="font-size:0.8em;">各端末で共有レベル変更</span></td>
             </tr>
             <tr>
                 <td>使い方</td>
@@ -1267,8 +1269,8 @@
 
         <div class="hint warn">
             <strong>この設定が一番大事です。</strong><br>
-            特に「バックグラウンド位置情報」と「省電力の除外」を設定しないと、<br>
-            アプリを閉じた瞬間に位置の更新が止まります。
+            画面を閉じた後も更新を続けるため、アプリ内の権限案内に沿って設定してください。<br>
+            OSや端末の省電力設定によって動作が変わります。
         </div>
 
         <h3 style="font-size: 1rem; margin: 24px 0 12px; color: var(--accent);">3台すべてで設定する権限</h3>
@@ -1282,12 +1284,12 @@
             <tr>
                 <td>位置情報</td>
                 <td>「許可」をタップ</td>
-                <td>位置がまったく共有されない</td>
+                <td>新しい位置を取得できない</td>
             </tr>
             <tr>
                 <td>バックグラウンド<br>位置情報</td>
                 <td>設定画面で<br>「<strong>常に許可</strong>」を選択</td>
-                <td>アプリを閉じると位置が止まる</td>
+                <td>画面を閉じた後の更新が制限される場合がある</td>
             </tr>
             <tr>
                 <td>活動認識</td>
@@ -1595,7 +1597,7 @@
         <div class="hint success">
             <strong>位置の反映には少し時間がかかります。</strong>
             セットアップ直後はまだ位置情報が送信されていない場合があります。<br>
-            各端末でアプリを開いた状態で少し歩いてみると、1〜2分で位置が反映されます。
+            測位しやすい場所で、各端末の位置情報・通信・権限の設定と更新時刻を確認してください。反映までの時間は端末や通信状態によって変わります。
         </div>
 
         <h3 style="font-size: 1rem; margin: 28px 0 12px;">よくあるトラブル</h3>
