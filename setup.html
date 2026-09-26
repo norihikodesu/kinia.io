@@ -16,11 +16,11 @@
     <meta property="og:description" content="Kiniaのインストールから家族の招待まで、はじめかたを丁寧に解説します。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kinia.io/setup.html">
-    <meta property="og:image" content="https://kinia.io/images/ogp/og_default.jpg">
+    <meta property="og:image" content="https://kinia.io/images/ogp/kinia-daily-r7.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="はじめかたガイド — Kinia">
     <meta name="twitter:description" content="Kiniaのインストールから家族の招待まで、はじめかたを丁寧に解説します。">
-    <meta name="twitter:image" content="https://kinia.io/images/ogp/og_default.jpg">
+    <meta name="twitter:image" content="https://kinia.io/images/ogp/kinia-daily-r7.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -406,8 +406,9 @@
             .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
             .footer-links { flex-direction: column; gap: 12px; }
         }
-    </style>
+    .guide-diagram{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:26px 0;padding:24px;border-radius:20px;background:#f5eee8}.guide-node{display:flex;flex-direction:column;gap:12px;align-items:flex-start;padding:18px;background:#fff;border:1px solid #e7ded8;border-radius:14px}.guide-node span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#eeebfa;color:#67619b;font-weight:700}.guide-node strong{font-size:15px;line-height:1.5}.guide-real-screen{margin:24px auto;text-align:center}.guide-real-screen img{display:block;width:min(280px,80vw);height:auto;margin:auto;border:5px solid #26304c;border-radius:26px}.guide-real-screen figcaption{font-size:12px;color:#665f68;margin-top:12px}@media(max-width:560px){.guide-diagram{grid-template-columns:1fr;padding:16px;gap:10px}.guide-node{flex-direction:row;align-items:center}.guide-node span{flex-shrink:0}}</style>
     <link rel="canonical" href="https://kinia.io/setup.html">
+<style id="r7-readable-type">:root{--sub:#525b6e;--text-sub:#525b6e;--text-dim:#657084;--font-body:"Yu Gothic",Meiryo,system-ui,sans-serif;--font-head:"Yu Gothic",Meiryo,system-ui,sans-serif}body{font-family:"Yu Gothic",Meiryo,system-ui,sans-serif}h1,h2,h3{font-family:inherit;font-weight:700}.body-text,.lead{color:#525b6e}</style>
 </head>
 <body>
 
@@ -462,11 +463,7 @@
         <h2>Googleアカウントでログイン</h2>
         <p class="lead">アプリを起動すると、ログイン画面が表示されます。</p>
 
-        <div class="mockup-container">
-            <div class="mockup-frame">
-                <iframe src="mockups/01_login.html"></iframe>
-            </div>
-        </div>
+        <div class="guide-diagram" aria-label="設定の流れ"><div class="guide-node"><span>1</span><strong>自分のAndroid</strong></div><div class="guide-node"><span>2</span><strong>Googleでログイン</strong></div><div class="guide-node"><span>3</span><strong>家族とつながる準備</strong></div></div>
 
         <ol class="steps-list">
             <li><strong>「Googleでログイン」</strong> をタップ</li>
@@ -492,11 +489,7 @@
         <h2>グループをつくる</h2>
         <p class="lead">家族みんなで見守り合うための「グループ」をつくります。<br>（最初の1人目だけが行う操作です）</p>
 
-        <div class="mockup-container">
-            <div class="mockup-frame">
-                <iframe src="mockups/02b_main_create_group.html"></iframe>
-            </div>
-        </div>
+        <div class="guide-diagram" aria-label="設定の流れ"><div class="guide-node"><span>1</span><strong>最初の1人</strong></div><div class="guide-node"><span>2</span><strong>グループを作成</strong></div><div class="guide-node"><span>3</span><strong>家族を招待</strong></div></div>
 
         <ol class="steps-list">
             <li>
@@ -535,11 +528,7 @@
 
         <h3 style="color:var(--accent); font-size:1.1rem; margin: 24px 0 12px;">招待する側の操作</h3>
 
-        <div class="mockup-container">
-            <div class="mockup-frame">
-                <iframe src="mockups/07_group_invite.html"></iframe>
-            </div>
-        </div>
+        <div class="guide-diagram" aria-label="設定の流れ"><div class="guide-node"><span>1</span><strong>グループ管理</strong></div><div class="guide-node"><span>2</span><strong>招待リンク・コード</strong></div><div class="guide-node"><span>3</span><strong>家族へ渡す</strong></div></div>
 
         <ol class="steps-list">
             <li>画面右上の <strong>メニュー（⋮）</strong> をタップ</li>
@@ -564,11 +553,7 @@
         </div>
 
         <div id="linkTab" class="tab-content active">
-            <div class="mockup-container">
-                <div class="mockup-frame">
-                    <iframe src="mockups/03_invite_join.html"></iframe>
-                </div>
-            </div>
+            <div class="guide-diagram" aria-label="設定の流れ"><div class="guide-node"><span>1</span><strong>招待リンクを開く</strong></div><div class="guide-node"><span>2</span><strong>Googleでログイン</strong></div><div class="guide-node"><span>3</span><strong>グループへ参加</strong></div></div>
             <ol class="steps-list">
                 <li>送られてきたリンクをタップ</li>
                 <li>Kiniaがインストールされていなければ、Google Playに案内されます</li>
@@ -578,11 +563,7 @@
         </div>
 
         <div id="codeTab" class="tab-content">
-            <div class="mockup-container">
-                <div class="mockup-frame">
-                    <iframe src="mockups/02_main_initial.html"></iframe>
-                </div>
-            </div>
+            <div class="guide-diagram" aria-label="設定の流れ"><div class="guide-node"><span>1</span><strong>Googleでログイン</strong></div><div class="guide-node"><span>2</span><strong>招待コードを入力</strong></div><div class="guide-node"><span>3</span><strong>グループへ参加</strong></div></div>
             <ol class="steps-list">
                 <li>アプリを起動してGoogleアカウントでログイン</li>
                 <li><strong>ニックネーム</strong> と送られてきた <strong>5桁のコード</strong> を入力</li>
@@ -602,11 +583,7 @@
         <h2>権限を設定する</h2>
         <p class="lead">Kiniaが正しく動くために、いくつかの権限を許可する必要があります。<br>アプリ内のガイドに従って、1つずつ設定していきましょう。</p>
 
-        <div class="mockup-container">
-            <div class="mockup-frame">
-                <iframe src="mockups/04_setup_wizard.html"></iframe>
-            </div>
-        </div>
+        <div class="guide-diagram" aria-label="設定の流れ"><div class="guide-node"><span>1</span><strong>共有内容を確認</strong></div><div class="guide-node"><span>2</span><strong>位置情報の権限</strong></div><div class="guide-node"><span>3</span><strong>通知の権限</strong></div></div>
 
         <h3 style="color:var(--accent); font-size:1rem; margin: 20px 0 8px;">必ず設定してほしい権限</h3>
         <table class="perm-table">
@@ -632,10 +609,9 @@
 
         <div class="hint">
             <strong>位置データの安全性について</strong><br>
-            Kiniaでは、位置情報をそのままサーバーに保存しません。
-            グループ作成時の情報をもとに座標をずらして暗号化した状態で保存しています。
-            万が一サーバーのデータが漏洩しても、家族の正確な居場所は復元できない仕組みです。<br>
-            収集したデータは家族のグループ内だけで共有され、広告やデータ販売など外部への提供は一切行いません。
+            位置座標をずらして保存する経路がありますが、復元に関係する情報もサービス側で扱います。
+            家族への表示とは別にFirebaseやGoogle Mapsなどを利用し、Google Playには位置情報などの共有可能性を申告しています。
+            詳しくは<a href="/data-safety.html">データの安全性</a>をご覧ください。
         </div>
 
         <div class="hint">
@@ -655,11 +631,7 @@
         <h2>通知エリアを設定する</h2>
         <p class="lead">「自宅に着いたら通知」「学校を出たら通知」のように、特定のエリアの出入りを通知で受け取れます。</p>
 
-        <div class="mockup-container">
-            <div class="mockup-frame">
-                <iframe src="mockups/06_geofence.html"></iframe>
-            </div>
-        </div>
+        <div class="guide-diagram" aria-label="設定の流れ"><div class="guide-node"><span>1</span><strong>知らせたい場所</strong></div><div class="guide-node"><span>2</span><strong>通知エリアに登録</strong></div><div class="guide-node"><span>3</span><strong>到着・出発を選ぶ</strong></div></div>
 
         <ol class="steps-list">
             <li>画面下の <strong>「通知エリア」タブ</strong> をタップ</li>
@@ -685,17 +657,13 @@
         <h2>準備完了！</h2>
         <p class="lead">これで設定は完了です。メンバー一覧に家族が表示されているはずです。</p>
 
-        <div class="mockup-container">
-            <div class="mockup-frame">
-                <iframe src="mockups/05_map.html"></iframe>
-            </div>
-        </div>
+        <figure class="guide-real-screen"><img src="native-proof/final-member-mixed.png" width="1080" height="2400" alt="太郎・花子・葵・悠太の架空データを表示したメンバー一覧"><figcaption>メンバー一覧の画面例。家族データは架空です。</figcaption></figure>
 
         <div class="hint">
-            <strong>初期設定は「通知エリアのみ」モードです</strong><br>
-            Kiniaでは初期状態の共有レベルが「通知エリアのみ」に設定されています。
-            この状態では地図上に家族の現在地は表示されず、エリアレベルの出入り情報・歩数・元気度のみが共有されます。
-            地図で位置を確認したい場合は、各メンバーが自分の共有レベルを「すべて共有」に変更する必要があります。
+            <strong>共有設定を家族で確認してください</strong><br>
+            セットアップで共有範囲を確認してください。各自の選択が保存されたか、家族の画面でも意図した表示になっているか確認してください。
+            通常の詳しい現在地や履歴を互いに見たい場合は、両者が相手に「すべて共有」を選んで実画面で確認します。
+            設定が欠けた場合などの制約は<a href="/data-safety.html">データの安全性</a>をご覧ください。
         </div>
 
         <h3 style="color:var(--accent); font-size:1.1rem; margin: 24px 0 16px;">こんなことができます</h3>
@@ -709,7 +677,7 @@
             <div class="feature-card">
                 <div class="icon">📊</div>
                 <h4>移動履歴</h4>
-                <p>「すべて共有」に設定すると、1日の移動ルートを時系列で振り返れます</p>
+                <p>双方が「すべて共有」を選び、設定が反映されると移動履歴を振り返れます</p>
             </div>
             <div class="feature-card">
                 <div class="icon">👟</div>

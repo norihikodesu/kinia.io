@@ -1,1349 +1,378 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XCT32M2MZV');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinia — 気になった時にそっと見守る家族アプリ</title>
-    <meta name="description" content="Kiniaは、通知エリアへの出入りだけをそっと知らせる家族見守りアプリ。常時監視ではなく、気になった時だけ確認できる「ゆるいつながり」を提供します。">
-    <meta property="og:title" content="Kinia — 家族をそっと見守るアプリ">
-    <meta property="og:description" content="エリアへの出入りだけを通知。必要な機能は無料で使える、家族の見守りアプリです。">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kinia.io">
-    <meta property="og:image" content="https://kinia.io/images/ogp/og_default.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Kinia — 家族をそっと見守るアプリ">
-    <meta name="twitter:description" content="エリアへの出入りだけを通知。必要な機能は無料で使える、家族の見守りアプリです。">
-    <meta name="twitter:image" content="https://kinia.io/images/ogp/og_default.jpg">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Kiniaは、13歳以上の子どもと親が共有範囲を選んで使うAndroid向け見守りアプリ。設定した通知エリアの出入りを知らせ、詳しい位置と履歴は、お互いに「すべて共有」を選んだ相手と共有できます。">
+  <title>Kinia｜「いまどこ？」を、聞かなくても。</title>
+  <link rel="icon" href="assets/app_icon.png" type="image/png">
 
-    <link rel="icon" href="/images/app_icon.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #fbf6ef;
-            --bg-alt: #f4e8d8;
-            --card: #ffffff;
-            --ink: #2a2218;
-            --sub: rgba(42,34,24,0.62);
-            --mute: rgba(42,34,24,0.4);
-            --accent: #d97a5a;
-            --accent2: #b85a3e;
-            --sage: #a3b89a;
-            --navy: #2c3a5e;
-            --line: rgba(42,34,24,0.08);
-            --font-head: 'Shippori Mincho', 'Noto Serif JP', serif;
-            --font-body: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
-            --font-mono: 'DM Mono', monospace;
-        }
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: var(--font-body);
-            background: var(--bg);
-            color: var(--ink);
-            line-height: 1.85;
-            overflow-x: hidden;
-            font-size: 17px;
-            -webkit-font-smoothing: antialiased;
-        }
-        a { color: var(--accent2); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        img { max-width: 100%; height: auto; }
-
-        /* ── Nav ── */
-        .nav {
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(251,246,239,0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--line);
-            padding: 16px 56px;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .nav-brand {
-            display: flex; align-items: center; gap: 12px;
-            text-decoration: none; color: var(--ink);
-        }
-        .nav-brand img { width: 36px; height: 36px; border-radius: 8px; display: block; }
-        .nav-brand-name { font-family: var(--font-head); font-size: 20px; font-weight: 600; }
-        .nav-brand-ruby { font-family: var(--font-mono); font-size: 10px; color: var(--mute); letter-spacing: 1.5px; margin-left: 2px; }
-        .nav-links { display: flex; align-items: center; gap: 28px; font-size: 13.5px; color: var(--sub); }
-        .nav-links a { color: inherit; text-decoration: none; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--accent); text-decoration: none; }
-        .nav-cta {
-            background: var(--accent); color: #fff; border: none;
-            padding: 10px 20px; border-radius: 999px; font-size: 13.5px;
-            font-weight: 600; cursor: pointer; text-decoration: none;
-            display: inline-flex; align-items: center; gap: 8px;
-            box-shadow: 0 6px 16px -6px rgba(217,122,90,0.5);
-            transition: background 0.2s, transform 0.1s;
-        }
-        .nav-cta:hover { background: var(--accent2); text-decoration: none; transform: translateY(-1px); }
-        .nav-dropdown { position: relative; }
-        .nav-dropdown-toggle {
-            background: none; border: none; color: var(--sub); font-size: 13.5px;
-            cursor: pointer; padding: 0; font-family: inherit; transition: color 0.2s;
-        }
-        .nav-dropdown-toggle:hover { color: var(--accent); }
-        .nav-dropdown-menu {
-            display: none; position: absolute; top: calc(100% + 10px); right: 0;
-            background: var(--card); border: 1px solid var(--line);
-            border-radius: 14px; padding: 8px 0; min-width: 220px;
-            box-shadow: 0 12px 40px rgba(42,34,24,0.12); z-index: 200;
-        }
-        .nav-dropdown.open .nav-dropdown-menu { display: block; }
-        .nav-dropdown-menu a {
-            display: block; padding: 10px 20px; color: var(--sub);
-            font-size: 13px; transition: background 0.15s, color 0.15s; white-space: nowrap;
-        }
-        .nav-dropdown-menu a:hover { background: var(--bg-alt); color: var(--ink); text-decoration: none; }
-        .nav-dropdown-menu .nav-dd-primary { font-weight: 600; color: var(--accent); }
-        .hamburger { display: none; background: none; border: none; color: var(--ink); font-size: 1.5rem; cursor: pointer; padding: 10px; min-width: 44px; min-height: 44px; }
-        @media (max-width: 768px) {
-            .nav { padding: 14px 20px; }
-            .nav-links {
-                display: none; flex-direction: column; position: absolute;
-                top: 100%; left: 0; right: 0; background: rgba(251,246,239,0.98);
-                padding: 20px 24px; gap: 16px; border-bottom: 1px solid var(--line);
-                align-items: flex-start;
-            }
-            .nav-links.open { display: flex; }
-            .hamburger { display: block; }
-            .nav-dropdown-menu {
-                position: static; box-shadow: none; border: none; border-radius: 0;
-                background: transparent; padding: 0 0 0 16px; min-width: auto;
-            }
-            .nav-dropdown.open .nav-dropdown-menu { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-            .nav-dropdown-menu a { padding: 4px 0; }
-            .nav-dropdown-menu a:hover { background: transparent; }
-        }
-
-        /* ── Shared ── */
-        .section-label {
-            font-family: var(--font-mono); font-size: 12px; letter-spacing: 2px;
-            color: var(--accent); margin-bottom: 14px;
-        }
-        .container { max-width: 1180px; margin: 0 auto; }
-        .container-narrow { max-width: 880px; margin: 0 auto; }
-        .container-mid { max-width: 980px; margin: 0 auto; }
-        .section-heading {
-            font-family: var(--font-head); font-size: clamp(28px, 4.5vw, 40px);
-            font-weight: 500; line-height: 1.35; letter-spacing: -0.01em;
-            color: var(--ink); margin: 0 0 22px;
-        }
-        .accent-text { color: var(--accent); }
-        .body-text { font-size: 16.5px; line-height: 2.0; color: var(--sub); }
-        .icon-box {
-            width: 60px; height: 60px; border-radius: 20px;
-            background: rgba(217,122,90,0.13); display: flex;
-            align-items: center; justify-content: center; margin-bottom: 24px;
-        }
-        .pill {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 6px 14px; border-radius: 999px; background: var(--card);
-            border: 1px solid var(--line); font-size: 12px; color: var(--sub); font-weight: 500;
-        }
-        .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); }
-
-        /* ── Hero ── */
-        .hero {
-            position: relative; overflow: hidden;
-            padding: clamp(48px, 8vw, 72px) 56px clamp(60px, 10vw, 100px);
-        }
-        .hero-glow-r {
-            position: absolute; top: -120px; right: -100px; width: 520px; height: 520px;
-            border-radius: 50%; background: radial-gradient(circle, rgba(217,122,90,0.2), transparent 70%);
-            pointer-events: none;
-        }
-        .hero-glow-l {
-            position: absolute; bottom: -80px; left: -60px; width: 380px; height: 380px;
-            border-radius: 50%; background: radial-gradient(circle, rgba(163,184,154,0.26), transparent 70%);
-            pointer-events: none;
-        }
-        .hero-grid {
-            max-width: 1180px; margin: 0 auto; position: relative;
-            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center;
-        }
-        .hero h1 {
-            font-family: var(--font-head); font-size: clamp(36px, 5.5vw, 60px);
-            font-weight: 500; line-height: 1.25; letter-spacing: -0.01em;
-            color: var(--ink); margin: 24px 0;
-        }
-        .hero h1 .underline-accent {
-            position: relative; display: inline-block; z-index: 1;
-        }
-        .hero-main-line { display: inline-block; white-space: nowrap; }
-        .hero h1 .underline-accent::after {
-            content: ''; position: absolute; left: -2px; right: -2px; bottom: 4px;
-            height: 12px; background: rgba(217,122,90,0.33); border-radius: 4px; z-index: -1;
-        }
-        .hero-sub {
-            font-size: 17px; line-height: 2.0; color: var(--sub);
-            margin: 0 0 36px; max-width: 480px;
-        }
-        .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
-        .btn-primary {
-            background: var(--navy); color: #fff; border: none;
-            padding: 15px 26px; border-radius: 999px; font-size: 14.5px;
-            font-weight: 600; cursor: pointer; text-decoration: none;
-            display: inline-flex; align-items: center; gap: 10px;
-            box-shadow: 0 10px 24px -8px rgba(44,58,94,0.6);
-            transition: background 0.2s, transform 0.1s;
-        }
-        .btn-primary:hover { background: #1e2c4a; text-decoration: none; transform: translateY(-1px); }
-        .hero-note { font-size: 13px; color: var(--sub); }
-        .hero-badges {
-            display: flex; gap: 24px; margin-top: 48px; font-size: 12.5px;
-            color: var(--sub); flex-wrap: wrap;
-        }
-        .hero-badge { display: inline-flex; align-items: center; gap: 6px; }
-        .hero-badge svg { color: var(--sage); }
-        .hero-visual { display: flex; justify-content: center; position: relative; }
-
-        /* Phone frame */
-        .phone-frame {
-            width: 270px; padding: 7px; border-radius: 36px;
-            background: #0f1628; box-shadow: 0 30px 60px -20px rgba(20,30,55,0.3);
-        }
-        .phone-screen {
-            width: 100%; height: auto; aspect-ratio: 430 / 932; border-radius: 30px; background: #111827;
-            overflow: hidden; position: relative; display: flex; flex-direction: column;
-        }
-        .phone-screen img {
-            display: block; width: 100%; height: 100%;
-            object-fit: cover; object-position: center top;
-        }
-        .phone-notch {
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 90px; height: 20px; background: #0f1628;
-            border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 5;
-        }
-        .phone-content { padding-top: 32px; flex: 1; display: flex; flex-direction: column; background: var(--bg); }
-        .phone-header { padding: 12px 16px 6px; }
-        .phone-header-label { font-family: var(--font-mono); font-size: 10px; color: var(--mute); letter-spacing: 1px; }
-        .phone-header-title { font-family: var(--font-head); font-size: 18px; font-weight: 600; color: var(--ink); margin-top: 2px; }
-        .phone-members { margin: 4px 10px; background: var(--card); border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
-        .member-row {
-            display: flex; align-items: center; gap: 10px; padding: 11px 14px;
-            border-bottom: 1px solid var(--line);
-        }
-        .member-row:last-child { border-bottom: none; }
-        .member-avatar {
-            width: 34px; height: 34px; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; font-size: 12.5px;
-            font-weight: 600; position: relative; flex-shrink: 0;
-        }
-        .member-avatar .online-dot {
-            position: absolute; right: -1px; bottom: -1px; width: 9px; height: 9px;
-            border-radius: 50%; background: #7fb98a; border: 2px solid #fff;
-        }
-        .member-info { flex: 1; min-width: 0; }
-        .member-name { font-size: 12.5px; font-weight: 600; color: var(--ink); }
-        .member-detail { font-size: 10.5px; color: var(--sub); margin-top: 1px; }
-        .member-time { font-size: 9.5px; color: var(--mute); }
-        .phone-mood {
-            margin: 10px 10px; padding: 10px 12px; background: rgba(217,122,90,0.1);
-            border-radius: 12px; font-size: 11.5px; color: var(--ink); line-height: 1.5;
-        }
-        .phone-mood-title { font-weight: 600; margin-bottom: 1px; }
-        .phone-mood-sub { opacity: 0.6; font-size: 10.5px; }
-
-        /* Floating notify cards */
-        .float-notify {
-            position: absolute; width: 230px;
-            background: var(--card); border-radius: 16px; padding: 12px 14px;
-            display: flex; align-items: center; gap: 10px;
-            box-shadow: 0 1px 2px rgba(20,20,30,0.04), 0 12px 30px -16px rgba(20,20,30,0.15);
-            border: 1px solid var(--line); color: var(--ink);
-        }
-        .float-notify-top { top: 40px; left: -30px; transform: rotate(-3deg); }
-        .float-notify-bottom { bottom: 50px; right: -40px; transform: rotate(2deg); }
-        .notify-icon {
-            width: 32px; height: 32px; border-radius: 10px; display: flex;
-            align-items: center; justify-content: center; flex-shrink: 0;
-        }
-        .notify-text { font-size: 12.5px; font-weight: 600; line-height: 1.4; }
-        .notify-time { font-size: 10px; color: var(--mute); margin-top: 2px; }
-
-        @media (max-width: 768px) {
-            .hero { padding: 32px 20px 56px; }
-            .hero-grid { grid-template-columns: 1fr; gap: 30px; text-align: left; }
-            .hero h1 { font-size: clamp(34px, 9.4vw, 42px); line-height: 1.34; margin: 20px 0 18px; }
-            .hero-main-line { white-space: nowrap; font-size: 0.82em; }
-            .hero-sub { margin-left: 0; margin-right: 0; font-size: 16.5px; line-height: 1.9; }
-            .hero-actions { justify-content: flex-start; align-items: flex-start; flex-direction: column; gap: 10px; }
-            .btn-primary { width: 100%; max-width: 320px; justify-content: center; }
-            .hero-badges { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 30px; }
-            .hero-badge { align-items: flex-start; line-height: 1.45; }
-            .hero-visual { margin-top: 0; }
-            .float-notify { display: none; }
-            .phone-frame { width: min(252px, 76vw); }
-            .phone-screen { height: auto; aspect-ratio: 430 / 932; }
-        }
-
-        @media (min-width: 769px) and (max-width: 980px) {
-            .hero-main-line { font-size: 0.9em; }
-        }
-
-        /* ── Top Video ── */
-        .top-video {
-            padding: 86px 56px;
-            background: var(--card);
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
-            scroll-margin-top: 88px;
-        }
-        .top-video-layout {
-            max-width: 980px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
-            gap: 52px;
-            align-items: center;
-        }
-        .top-video-copy .body-text {
-            margin: 16px 0 24px;
-            max-width: 520px;
-        }
-        .top-video-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            align-items: center;
-        }
-        .top-video-secondary {
-            color: var(--navy);
-            border: 1px solid rgba(44,58,94,0.22);
-            background: rgba(255,255,255,0.72);
-            padding: 14px 22px;
-            border-radius: 999px;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .top-video-secondary:hover { background: #fff; text-decoration: none; }
-        .top-video-shell {
-            width: min(100%, 340px);
-            justify-self: center;
-        }
-        .top-video-trigger,
-        .top-video-player {
-            display: block;
-            width: 100%;
-            aspect-ratio: 9 / 16;
-            border: 0;
-            border-radius: 28px;
-            overflow: hidden;
-            background: #141827;
-            box-shadow: 0 22px 52px rgba(44,58,94,0.18);
-        }
-        .top-video-trigger {
-            position: relative;
-            cursor: pointer;
-            padding: 0;
-        }
-        .top-video-trigger img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .top-video-play {
-            position: absolute;
-            inset: 0;
-            display: grid;
-            place-items: center;
-            background: linear-gradient(180deg, rgba(17,24,39,0.04), rgba(17,24,39,0.18));
-        }
-        .top-video-play span {
-            width: 74px;
-            height: 74px;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.94);
-            color: var(--navy);
-            display: grid;
-            place-items: center;
-            box-shadow: 0 16px 32px rgba(17,24,39,0.18);
-        }
-        .top-video-caption {
-            margin-top: 12px;
-            color: var(--mute);
-            font-size: 12.5px;
-            line-height: 1.6;
-            text-align: center;
-        }
-        @media (max-width: 768px) {
-            .top-video { padding: 64px 20px; }
-            .top-video-layout { grid-template-columns: 1fr; gap: 32px; }
-            .top-video-actions { align-items: stretch; flex-direction: column; }
-            .top-video-actions .btn-primary,
-            .top-video-actions .top-video-secondary { width: 100%; max-width: 340px; justify-content: center; }
-            .top-video-shell { width: min(100%, 320px); }
-        }
-
-        /* ── Audience paths ── */
-        .audience { padding: 86px 56px; background: var(--bg); }
-        .audience-inner { max-width: 1060px; margin: 0 auto; }
-        .audience-head { max-width: 600px; margin-bottom: 32px; }
-        .audience-head .body-text { margin-top: 14px; }
-        .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-        .audience-card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; color: inherit; display: block; min-height: 220px; padding: 28px 24px; text-decoration: none; transition: border-color .2s, box-shadow .2s, transform .2s; }
-        .audience-card:hover { border-color: rgba(217,122,90,.55); box-shadow: 0 16px 32px rgba(42,34,24,.09); transform: translateY(-3px); }
-        .audience-card .audience-num { color: var(--accent); font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; }
-        .audience-card h3 { color: var(--accent2); font-family: var(--font-head); font-size: 20px; font-weight: 500; line-height: 1.5; margin: 18px 0 10px; }
-        .audience-card p { color: var(--sub); font-size: 14px; line-height: 1.8; margin: 0; }
-        .audience-card .audience-link { color: var(--accent2); display: block; font-size: 13px; margin-top: 18px; }
-        @media (max-width: 768px) { .audience { padding: 64px 20px; } .audience-grid { grid-template-columns: 1fr; } .audience-card { min-height: 0; } }
-
-        /* ── Concept ── */
-        .concept {
-            padding: 100px 56px; background: var(--card);
-            border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-        }
-        .concept-inner { max-width: 880px; margin: 0 auto; text-align: center; }
-        .concept h2 {
-            font-family: var(--font-head); font-size: clamp(26px, 4vw, 36px);
-            font-weight: 500; line-height: 1.6; margin: 0 0 28px;
-            letter-spacing: -0.01em; color: var(--ink);
-        }
-        .concept p { font-size: 16px; line-height: 2.1; color: var(--sub); max-width: 640px; margin: 0 auto; }
-        @media (max-width: 768px) { .concept { padding: 64px 20px; } }
-
-        /* ── Features (3-col) ── */
-        .features { padding: 100px 56px; }
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .feature-card {
-            background: var(--card); border-radius: 24px; padding: 36px 28px;
-            border: 1px solid var(--line); position: relative; overflow: hidden;
-        }
-        .feature-card-glow {
-            position: absolute; top: -40px; right: -40px; width: 140px; height: 140px;
-            border-radius: 50%; background: rgba(217,122,90,0.07); pointer-events: none;
-        }
-        .feature-tag {
-            font-family: var(--font-mono); font-size: 10.5px; color: var(--accent);
-            letter-spacing: 1.5px; font-weight: 600; margin-bottom: 10px; position: relative;
-        }
-        .feature-card h3 {
-            font-family: var(--font-head); font-size: 20px; font-weight: 500;
-            margin: 0 0 12px; line-height: 1.45; color: var(--ink); position: relative;
-        }
-        .feature-card p { font-size: 15px; color: var(--sub); line-height: 1.9; margin: 0; position: relative; }
-        @media (max-width: 768px) {
-            .features { padding: 64px 20px; }
-            .features-grid { grid-template-columns: 1fr; }
-        }
-
-        /* ── HowItWorks ── */
-        .how { padding: 100px 56px; background: var(--bg-alt); }
-        .how-header {
-            max-width: 780px; margin: 0 auto 48px; text-align: center;
-        }
-        .how-grid {
-            max-width: 1080px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
-        }
-        .how-column {
-            text-align: center;
-        }
-        .how-column-label {
-            font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px;
-            margin-bottom: 16px; font-weight: 500;
-        }
-        .how-column-label.old { color: #b06860; }
-        .how-column-label.new { color: var(--sage); }
-        .how-phone-frame {
-            background: var(--card); border-radius: 24px;
-            border: 1px solid var(--line); padding: 16px;
-            box-shadow: 0 4px 24px rgba(42,34,24,0.08);
-            display: inline-block; max-width: 340px; width: 100%;
-        }
-        .how-phone-frame img {
-            width: 100%; border-radius: 16px; display: block;
-        }
-        .how-phone-frame .how-cards {
-            text-align: left;
-        }
-        .how-cards { display: flex; flex-direction: column; gap: 10px; }
-        .member-card {
-            background: var(--bg); border-radius: 14px; padding: 14px 16px;
-            border: 1px solid var(--line); color: var(--ink);
-        }
-        .member-card-header {
-            display: flex; align-items: center; gap: 10px; margin-bottom: 4px;
-        }
-        .member-card-dot {
-            width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
-        }
-        .member-card-name { font-size: 14px; font-weight: 700; }
-        .member-card-status {
-            font-size: 12.5px; color: var(--accent2); font-weight: 600;
-            margin-left: auto; white-space: nowrap;
-        }
-        .member-card-history {
-            margin: 4px 0 0 20px; padding-left: 12px;
-            border-left: 2px solid var(--line);
-        }
-        .member-card-history-item {
-            font-size: 11px; color: var(--mute); line-height: 1.5; padding: 2px 0;
-        }
-        .member-card-history-item .hist-area { color: var(--sub); font-weight: 500; }
-        /* legacy notify-card (hero section) */
-        .notify-card {
-            background: var(--card); border-radius: 16px; padding: 13px 15px;
-            display: flex; align-items: center; gap: 11px;
-            box-shadow: 0 1px 2px rgba(20,20,30,0.04), 0 10px 26px -14px rgba(20,20,30,0.14);
-            border: 1px solid var(--line); color: var(--ink);
-        }
-        .notify-card-icon {
-            width: 34px; height: 34px; border-radius: 11px; display: flex;
-            align-items: center; justify-content: center; flex-shrink: 0;
-        }
-        .notify-card-text { font-size: 14px; font-weight: 600; line-height: 1.4; }
-        .notify-card-arrow { color: var(--accent); margin: 0 3px; }
-        .notify-card-time { font-size: 10.5px; color: var(--mute); margin-top: 2px; }
-        @media (max-width: 768px) {
-            .how { padding: 64px 20px; }
-            .how-grid { grid-template-columns: 1fr; gap: 40px; }
-            .how-phone-frame { max-width: 260px; padding: 12px; border-radius: 22px; }
-        }
-
-        /* ── Fair Principle ── */
-        .fair { padding: 100px 56px; }
-        .fair-grid {
-            max-width: 1080px; margin: 0 auto;
-            display: flex; align-items: flex-start; gap: 48px; margin-top: 28px;
-        }
-        .fair-text { flex: 1; }
-        .fair-text .body-text { margin-bottom: 20px; }
-        .fair-visual { flex: 0 0 280px; text-align: center; }
-        .fair-visual img { border-radius: 16px; width: 100%; }
-        .quote-block {
-            font-size: 16px; font-style: italic; color: var(--accent2);
-            line-height: 2.0; padding: 20px 24px; background: var(--card);
-            border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0;
-            margin: 24px 0;
-        }
-        @media (max-width: 768px) {
-            .fair { padding: 64px 20px; }
-            .fair-grid { flex-direction: column; }
-            .fair-visual { flex: none; width: 100%; max-width: 320px; margin: 0 auto; }
-        }
-
-        /* ── UseCases ── */
-        .usecases { padding: 100px 56px; background: var(--bg-alt); }
-        .usecases-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .usecase-card {
-            padding: 36px 28px; border-radius: 22px; background: var(--card);
-            border: 1px solid var(--line); display: flex; flex-direction: column; gap: 16px;
-        }
-        .usecase-card img {
-            width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
-            border-radius: 18px;
-            box-shadow: 0 14px 34px rgba(42,34,24,.08);
-        }
-        .usecase-tag {
-            display: inline-flex; align-self: flex-start; align-items: center; gap: 6px;
-            padding: 5px 13px; border-radius: 999px; background: rgba(217,122,90,0.1);
-            color: var(--accent2); font-size: 11.5px; font-weight: 600;
-        }
-        .usecase-card p { font-size: 15.5px; line-height: 1.95; color: var(--sub); margin: 0; }
-        .usecase-link {
-            margin-top: auto;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--accent2);
-        }
-        .usecase-link:hover { color: var(--accent); text-decoration: none; }
-        @media (max-width: 980px) {
-            .usecases-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 768px) {
-            .usecases { padding: 64px 20px; }
-            .usecases-grid { grid-template-columns: 1fr; }
-            .usecase-card img { max-width: 240px; margin: 0 auto; }
-        }
-
-        /* ── Security ── */
-        .security { padding: 100px 56px; position: relative; overflow: hidden; }
-        .security-glow {
-            position: absolute; top: -100px; left: 40%; width: 520px; height: 520px;
-            border-radius: 50%; background: radial-gradient(circle, rgba(163,184,154,0.18), transparent 70%);
-            pointer-events: none;
-        }
-        .security-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; text-align: left; }
-        .security-card {
-            background: var(--card); border-radius: 20px; padding: 28px 24px;
-            border: 1px solid var(--line);
-        }
-        .security-card h3 {
-            font-family: var(--font-head); font-size: 17px; font-weight: 500;
-            margin: 0 0 8px; color: var(--ink);
-        }
-        .security-card p { font-size: 14.5px; color: var(--sub); line-height: 1.85; margin: 0; }
-        @media (max-width: 768px) {
-            .security { padding: 64px 20px; }
-            .security-grid { grid-template-columns: 1fr; }
-        }
-
-        /* ── Sharing Levels ── */
-        .sharing { padding: 100px 56px; background: var(--bg-alt); }
-        .sharing-table { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 15px; }
-        .sharing-table th, .sharing-table td { padding: 13px 16px; border: 1px solid var(--line); text-align: center; }
-        .sharing-table th { background: var(--card); color: var(--accent2); font-weight: 600; font-size: 13px; }
-        .sharing-table td { background: var(--card); color: var(--sub); }
-        .sharing-table td:first-child { text-align: left; color: var(--ink); }
-        .default-badge {
-            background: var(--accent); color: #fff; font-size: 10px;
-            padding: 2px 8px; border-radius: 4px; margin-left: 6px; font-weight: 500;
-        }
-        @media (max-width: 640px) { .sharing-table-wrap { display: none; } }
-        .sharing-mobile { display: none; }
-        @media (max-width: 640px) { .sharing-mobile { display: block; } }
-        .sharing-compare { display: flex; gap: 16px; margin-top: 20px; }
-        .sharing-col {
-            flex: 1; background: var(--card); border: 1px solid var(--line);
-            border-radius: 16px; padding: 22px 20px;
-        }
-        .sharing-col h3 { font-size: 15px; margin-bottom: 14px; text-align: center; font-weight: 600; }
-        .sharing-col ul { list-style: none; font-size: 14px; color: var(--sub); }
-        .sharing-col ul li { padding: 5px 0; }
-        .sharing-col .yes { color: var(--sage); margin-right: 6px; }
-        .sharing-col .no { color: var(--mute); margin-right: 6px; }
-        @media (max-width: 480px) { .sharing-compare { flex-direction: column; } }
-        @media (max-width: 768px) { .sharing { padding: 64px 20px; } }
-
-        /* ── Story ── */
-        .story { padding: 100px 56px; }
-        .story-body { border-left: 3px solid var(--accent); padding-left: 24px; max-width: 780px; }
-        .story-body p { margin-bottom: 20px; font-size: 16px; color: var(--sub); line-height: 2.0; }
-        .story-body strong { color: var(--ink); }
-        @media (max-width: 768px) { .story { padding: 64px 20px; } }
-
-        /* ── Vision ── */
-        .vision { padding: 100px 56px; background: var(--bg-alt); }
-        .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; }
-        .vision-card {
-            background: linear-gradient(135deg, var(--card), var(--bg));
-            border: 1px solid var(--line); border-radius: 22px;
-            padding: 36px 28px; text-align: center;
-        }
-        .vision-card img { width: 110px; height: 110px; border-radius: 24px; margin-bottom: 16px; box-shadow: 0 4px 20px -4px rgba(217,122,90,0.25); }
-        .vision-card h3 {
-            font-family: var(--font-head); font-size: 18px; font-weight: 500;
-            margin-bottom: 10px; color: var(--accent2);
-        }
-        .vision-card p { font-size: 15px; color: var(--sub); line-height: 1.9; }
-        .vision-card .vision-link { font-size: 13px; margin-top: 10px; display: inline-block; }
-        @media (max-width: 768px) {
-            .vision { padding: 64px 20px; }
-            .vision-grid { grid-template-columns: 1fr; }
-        }
-
-        /* ── FAQ ── */
-        .faq { padding: 100px 56px; }
-        .faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 880px; margin: 0 auto; }
-        .faq-item {
-            background: var(--card); border-radius: 18px; padding: 22px 26px;
-            border: 1px solid var(--line); cursor: pointer;
-        }
-        .faq-question {
-            display: flex; align-items: center; justify-content: space-between; gap: 16px;
-        }
-        .faq-question h3 {
-            font-family: var(--font-head); font-size: 15.5px; font-weight: 600;
-            color: var(--ink); margin: 0; line-height: 1.5;
-        }
-        .faq-toggle {
-            width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-            background: rgba(217,122,90,0.13); color: var(--accent2);
-            display: flex; align-items: center; justify-content: center;
-            transition: transform 0.2s;
-        }
-        .faq-item.open .faq-toggle { transform: rotate(45deg); }
-        .faq-answer {
-            display: none; font-size: 15px; color: var(--sub); line-height: 1.95;
-            margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line);
-        }
-        .faq-item.open .faq-answer { display: block; }
-        @media (max-width: 768px) { .faq { padding: 64px 20px; } }
-
-        /* ── CTA ── */
-        .cta-section { padding: 100px 56px; background: var(--bg-alt); position: relative; overflow: hidden; }
-        .cta-glow-l {
-            position: absolute; top: -30%; left: -10%; width: 500px; height: 500px;
-            border-radius: 50%; background: radial-gradient(circle, rgba(217,122,90,0.2), transparent 70%);
-            pointer-events: none;
-        }
-        .cta-glow-r {
-            position: absolute; bottom: -30%; right: -10%; width: 420px; height: 420px;
-            border-radius: 50%; background: radial-gradient(circle, rgba(163,184,154,0.26), transparent 70%);
-            pointer-events: none;
-        }
-        .cta-inner { max-width: 760px; margin: 0 auto; text-align: center; position: relative; }
-        .cta-inner h2 {
-            font-family: var(--font-head); font-size: clamp(30px, 5vw, 46px);
-            font-weight: 500; line-height: 1.35; letter-spacing: -0.01em;
-            color: var(--ink); margin: 0 0 24px;
-        }
-        .cta-inner .body-text { margin-bottom: 36px; }
-        .cta-buttons { display: inline-flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: center; }
-        .btn-secondary {
-            background: transparent; color: var(--ink);
-            border: 1.5px solid var(--line); padding: 15px 24px; border-radius: 999px;
-            font-size: 14.5px; font-weight: 600; cursor: pointer; text-decoration: none;
-            transition: border-color 0.2s;
-        }
-        .btn-secondary:hover { border-color: var(--accent); text-decoration: none; }
-        @media (max-width: 768px) { .cta-section { padding: 64px 20px; } }
-
-        /* ── Contact ── */
-        .contact { padding: 80px 56px; text-align: center; }
-        .btn-contact {
-            background: var(--accent); color: #fff; border: none;
-            padding: 14px 28px; border-radius: 999px; font-size: 15px;
-            font-weight: 600; cursor: pointer; text-decoration: none;
-            display: inline-flex; align-items: center; gap: 8px;
-            box-shadow: 0 6px 16px -6px rgba(217,122,90,0.5);
-            transition: background 0.2s, transform 0.1s;
-        }
-        .btn-contact:hover { background: var(--accent2); text-decoration: none; transform: translateY(-1px); }
-        @media (max-width: 768px) { .contact { padding: 48px 20px; } }
-
-        /* ── Footer ── */
-        .footer {
-            padding: 48px 56px; border-top: 1px solid var(--line); background: var(--card);
-        }
-        .footer-inner {
-            max-width: 1180px; margin: 0 auto;
-            display: flex; justify-content: space-between; align-items: center;
-            flex-wrap: wrap; gap: 24px;
-        }
-        .footer-brand { display: flex; align-items: center; gap: 10px; }
-        .footer-brand img { width: 30px; height: 30px; border-radius: 7px; }
-        .footer-brand-name { font-family: var(--font-head); font-size: 17px; font-weight: 600; color: var(--ink); }
-        .footer-brand-ruby { font-family: var(--font-mono); font-size: 10px; color: var(--mute); letter-spacing: 1.5px; }
-        .footer-links {
-            display: flex; gap: 24px; font-size: 12.5px; color: var(--sub); flex-wrap: wrap;
-        }
-        .footer-links a { color: inherit; text-decoration: none; }
-        .footer-links a:hover { color: var(--accent); }
-        .footer-copy { font-size: 11px; color: var(--mute); font-family: var(--font-mono); letter-spacing: 1px; }
-        @media (max-width: 768px) {
-            .footer { padding: 32px 20px; }
-            .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
-            .footer-links { flex-direction: column; gap: 12px; }
-        }
-
-        /* ── SVG icons (inline) ── */
-        .icon-svg { display: inline-block; vertical-align: middle; }
-    </style>
-    <link rel="canonical" href="https://kinia.io/">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "MobileApplication",
-      "name": "Kinia（キニア）",
-      "operatingSystem": "Android",
-      "applicationCategory": "LifestyleApplication",
-      "description": "通知エリアへの出入りだけをそっと知らせる家族見守りアプリ。監視ではなく、そっと見守る。",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
-      "url": "https://kinia.io/",
-      "installUrl": "https://play.google.com/store/apps/details?id=io.kinia"
+  <link rel="canonical" href="https://kinia.io/">
+  <meta property="og:title" content="Kinia｜「いまどこ？」を、聞かなくても。">
+  <meta property="og:description" content="到着・出発は通知で。気になるときは位置や履歴で。家族の毎日の「いまどこ？」を少なく。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kinia.io/">
+  <meta property="og:image" content="https://kinia.io/images/ogp/kinia-daily-r7.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XCT32M2MZV');</script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #202944;
+      --muted: #59647b;
+      --line: #e7e9f0;
+      --peach: #fff0e7;
+      --peach-strong: #f7d5c6;
+      --lilac: #f1effb;
+      --lilac-strong: #7471c6;
+      --navy: #222c4b;
+      --white: #fff;
+      --shell: min(1160px, calc(100% - 48px));
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
+      font-synthesis: none;
     }
-    </script>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #fffdfb; color: var(--ink); line-height: 1.7; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid #7976dc; outline-offset: 4px; }
+    .shell { width: var(--shell); margin-inline: auto; }
+    .preview-banner {
+      padding: 7px 18px;
+      text-align: center;
+      background: #f5f3fb;
+      border-bottom: 1px solid #e8e4f1;
+      color: #6b6985;
+      font-size: 12px;
+      letter-spacing: .04em;
+    }
+    .site-header { background: rgba(255,253,251,.96); border-bottom: 1px solid var(--line); }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; min-height: 76px; }
+    .brand { display: inline-flex; gap: 10px; align-items: center; text-decoration: none; font-size: 25px; font-weight: 800; letter-spacing: -.055em; white-space: nowrap; }
+    .brand img { width: 36px; height: 36px; border-radius: 9px; }
+    .header-nav { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 9px 22px; font-size: 14px; font-weight: 700; }
+    .header-nav a { text-decoration: none; }
+    .header-nav a:not(.nav-cta):hover { color: #615db3; }
+    .nav-cta { background: var(--navy); color: white; border-radius: 99px; padding: 9px 16px; }
+    .nav-cta:hover { background: #343f64; }
+    .hero { overflow: hidden; background: radial-gradient(circle at 89% 15%, #eeeafa 0, transparent 34%), linear-gradient(148deg, #fffaf7 7%, #ffefe6 78%, #f5ebec); }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(315px, .88fr); gap: 42px; align-items: center; padding-block: 72px 64px; }
+    .eyebrow { margin: 0 0 15px; color: #655fa8; font-size: 13px; font-weight: 800; letter-spacing: .12em; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 780px; margin-bottom: 26px; font-size: clamp(38px, 4.5vw, 64px); line-height: 1.32; letter-spacing: -.075em; font-weight: 800; }
+    h1 .accent { color: #6661ad; }
+    .hero-lead { max-width: 620px; font-size: clamp(17px, 1.7vw, 20px); line-height: 1.95; font-weight: 650; }
+    .hero-detail { max-width: 620px; margin-bottom: 29px; color: #4c5570; font-size: 15px; }
+    .hero-mobile-preview { display: none; }
+    .action-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .button { min-height: 51px; padding: 13px 22px; border: 1px solid transparent; border-radius: 13px; display: inline-flex; justify-content: center; align-items: center; gap: 8px; text-align: center; text-decoration: none; font-size: 15px; font-weight: 800; line-height: 1.3; transition: transform .15s ease, background .15s ease, box-shadow .15s ease; }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(32,41,68,.15); }
+    .button-primary { background: var(--navy); color: white; }
+    .button-primary:hover { background: #354164; }
+    .button-secondary { background: rgba(255,255,255,.82); color: var(--navy); border-color: #d6d3e4; }
+    .button-secondary:hover { background: white; }
+    .hero-meta { margin-top: 15px; color: #5c637a; font-size: 13px; }
+    .trust-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+    .trust-row span { padding: 6px 11px; border: 1px solid rgba(83,79,126,.14); border-radius: 99px; background: rgba(255,255,255,.66); color: #424e6c; font-size: 12px; font-weight: 700; }
+    .hero-stage { display: flex; align-items: center; justify-content: center; position: relative; min-height: 560px; }
+    .hero-halo { position: absolute; width: min(93%, 460px); aspect-ratio: 1; border-radius: 50%; background: #f9dad0; filter: blur(2px); opacity: .63; }
+    .hero-phone { position: relative; z-index: 1; width: min(295px, 76%); box-shadow: 0 24px 52px rgba(37,43,78,.22); }
+    .phone { overflow: hidden; border: 7px solid #252c43; border-radius: 34px; background: #f7efe6; }
+    .phone img { width: 100%; height: auto; }
+    .hero-notice { position: absolute; z-index: 2; right: -7px; top: 13%; width: min(290px, 58%); padding: 16px 17px; background: white; border: 1px solid #eeeaf0; border-radius: 17px; box-shadow: 0 15px 35px rgba(37,43,78,.16); }
+    .hero-notice small { display: block; color: #747a8a; font-size: 11px; }
+    .hero-notice strong { display: block; margin-top: 3px; font-size: 14px; line-height: 1.45; }
+    .hero-figure-label { position: absolute; bottom: 9px; right: 7%; z-index: 2; padding: 5px 10px; border-radius: 99px; background: rgba(255,255,255,.92); color: #535b70; font-size: 11px; }
+    .intro-strip { border-block: 1px solid var(--line); background: white; }
+    .intro-inner { display: grid; grid-template-columns: auto 1fr; gap: 30px; align-items: center; padding-block: 27px; }
+    .intro-inner strong { font-size: 19px; line-height: 1.5; }
+    .intro-inner p { margin: 0; color: var(--muted); font-size: 14px; }
+    .section { padding-block: 88px; }
+    .section-header { max-width: 760px; margin-bottom: 37px; }
+    .section-kicker { margin-bottom: 9px; color: #6f68ba; font-size: 12px; letter-spacing: .16em; font-weight: 800; }
+    h2 { margin-bottom: 15px; font-size: clamp(29px, 3.1vw, 42px); line-height: 1.45; letter-spacing: -.05em; }
+    .section-header > p:last-child { margin-bottom: 0; color: var(--muted); font-size: 16px; }
+    .steps { background: #fff; }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .step-card { min-width: 0; overflow: hidden; padding: 26px 24px 0; border: 1px solid #e8e8ee; border-radius: 25px; background: linear-gradient(180deg, #fff, #faf8fb); }
+    .step-top { min-height: 150px; }
+    .step-num { display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center; margin-bottom: 14px; border-radius: 50%; color: #5952a1; background: #eeebfb; font-weight: 800; }
+    .step-card h3 { margin-bottom: 9px; font-size: 22px; letter-spacing: -.04em; }
+    .step-card p { margin-bottom: 0; color: #59647b; font-size: 14px; }
+    .step-phone { width: min(226px, 85%); margin: 19px auto -83px; border-radius: 25px 25px 0 0; border: 5px solid #262e47; border-bottom: none; box-shadow: 0 10px 25px rgba(33,41,72,.12); overflow: hidden; background: #f3e9df; }
+    .step-phone img { width: 100%; height: auto; }
+    .step-caption { margin: 24px 0 0; color: #6d7282; font-size: 12px; }
+    .choice { background: linear-gradient(145deg, #f9f7ff, #fdf8f7); }
+    .choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .choice-card { padding: 30px; border: 1px solid #e5e1f2; border-radius: 24px; background: white; box-shadow: 0 12px 24px rgba(41,43,83,.045); }
+    .choice-card.primary { border-color: #bdb7e6; box-shadow: 0 15px 30px rgba(111,104,186,.10); }
+    .choice-tag { display: inline-block; margin-bottom: 14px; padding: 5px 10px; border-radius: 99px; background: #efecfc; color: #5e58aa; font-size: 12px; font-weight: 800; }
+    .choice-card h3 { margin-bottom: 11px; font-size: 26px; }
+    .choice-card p { color: #58627a; }
+    .choice-list { margin: 18px 0 0; padding: 0; list-style: none; }
+    .choice-list li { position: relative; padding: 8px 0 8px 29px; border-top: 1px solid #eef0f3; font-size: 14px; }
+    .choice-list li::before { content: "✓"; position: absolute; left: 0; color: #706abb; font-weight: 800; }
+    .choice-note { margin: 24px 0 0; padding: 16px 20px; border-left: 4px solid #a8a2df; border-radius: 0 11px 11px 0; background: white; font-size: 14px; }
+    .story { background: white; }
+    .story-grid { display: grid; grid-template-columns: .6fr 1fr; gap: 65px; align-items: start; }
+    .story-quote { padding: 32px; border-radius: 25px; background: #fff0e6; font-size: clamp(24px, 2.4vw, 31px); font-weight: 800; line-height: 1.65; letter-spacing: -.04em; }
+    .story-body { max-width: 650px; color: #4d5870; font-size: 16px; line-height: 2; }
+    .story-body p:last-child { margin-bottom: 0; }
+    .story-body strong { color: var(--ink); }
+    .story-contact { display: inline-flex; margin-top: 4px; color: #5f59aa; font-size: 14px; font-weight: 800; text-underline-offset: 4px; }
+    .faq { background: #f9f8fc; }
+    .faq-layout { display: grid; grid-template-columns: .62fr 1fr; gap: 56px; }
+    .faq-list { display: grid; gap: 11px; }
+    details { border: 1px solid #e4e4ed; border-radius: 15px; background: white; }
+    summary { position: relative; padding: 19px 46px 19px 20px; cursor: pointer; font-size: 15px; font-weight: 800; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; position: absolute; right: 19px; top: 14px; color: #6962b6; font-size: 23px; }
+    details[open] summary::after { content: "−"; }
+    details p { margin: 0; padding: 0 20px 20px; color: #535d74; font-size: 14px; }
+    .learn-links { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 21px; font-size: 14px; font-weight: 700; }
+    .learn-links a { color: #5f59aa; text-underline-offset: 4px; }
+    .last-cta { padding-block: 76px; background: var(--navy); color: white; text-align: center; }
+    .last-cta h2 { max-width: 760px; margin: 0 auto 16px; }
+    .last-cta p { max-width: 710px; margin: 0 auto 28px; color: #e0e2ef; }
+    .last-cta .action-row { justify-content: center; }
+    .last-cta .button-primary { background: white; color: var(--navy); }
+    .last-cta .button-primary:hover { background: #f0ecff; }
+    .last-cta .button-secondary { background: transparent; color: white; border-color: #777f9d; }
+    .last-cta .button-secondary:hover { background: #3a4667; }
+    footer { padding-block: 31px; background: #17213d; color: #d5daea; font-size: 12px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .footer-links { display: flex; gap: 10px 19px; flex-wrap: wrap; }
+    .footer-links a { text-underline-offset: 3px; }
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr 360px; gap: 10px; }
+      .hero-stage { min-height: 490px; }
+      .hero-phone { width: 245px; }
+      .hero-notice { right: 0; width: 214px; }
+      .steps-grid { gap: 12px; }
+      .step-card { padding-inline: 17px; }
+      .story-grid, .faq-layout { gap: 30px; }
+    }
+    @media (max-width: 760px) {
+      :root { --shell: min(100% - 34px, 620px); }
+      .header-inner { min-height: 66px; }
+      .header-nav { gap: 10px 13px; font-size: 12px; }
+      .header-nav a[href="#story"] { display: none; }
+      .hero-grid { grid-template-columns: 1fr; padding-block: 30px 44px; }
+      h1 { max-width: 640px; }
+      .hero h1 { margin-bottom: 13px; line-height: 1.25; }
+      .hero .eyebrow { margin-bottom: 9px; }
+      .hero-mobile-preview { display: grid; grid-template-columns: 110px minmax(0, 1fr); align-items: center; overflow: hidden; margin: 0 0 14px; border: 1px solid #e9e3e6; border-radius: 17px; background: white; box-shadow: 0 12px 23px rgba(35,41,72,.09); }
+      .hero-mobile-preview img { width: 110px; height: auto; }
+      .hero-mobile-preview figcaption { padding: 16px; color: #526078; font-size: 13px; }
+      .hero-stage { display: none; }
+      .hero-lead { line-height: 1.65; margin-bottom: 10px; }
+      .hero-detail { line-height: 1.65; margin-bottom: 16px; }
+      .hero-meta { margin-top: 9px; }
+      .trust-row { margin-top: 18px; }
+      .intro-inner { grid-template-columns: 1fr; gap: 8px; }
+      .section { padding-block: 65px; }
+      .steps-grid { grid-template-columns: 1fr; gap: 17px; }
+      .step-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(125px, 38%); gap: 12px; align-items: end; min-height: 274px; padding: 22px 20px 0; }
+      .step-top { align-self: start; min-height: unset; padding-bottom: 24px; }
+      .step-phone { width: 100%; margin: 0 auto -54px; }
+      .choice-grid, .story-grid, .faq-layout { grid-template-columns: 1fr; }
+      .story-quote { max-width: 500px; }
+      .faq-layout { gap: 15px; }
+    }
+    @media (max-width: 470px) {
+      .header-inner { padding-block: 10px; align-items: flex-start; }
+      .brand { font-size: 22px; }
+      .brand img { width: 32px; height: 32px; }
+      .header-nav { max-width: 62%; }
+      .header-nav a[href="#how"] { display: none; }
+      .nav-cta { padding: 6px 11px; }
+      h1 { font-size: clamp(35px, 10vw, 47px); }
+      .hero-lead { font-size: 15px; }
+      .hero-detail { font-size: 13px; }
+      .action-row { align-items: stretch; }
+      .hero .action-row .button { width: 100%; }
+      .hero-mobile-preview img { height: auto; }
+      .step-card { grid-template-columns: 1fr 38%; gap: 6px; }
+      .step-card h3 { font-size: 19px; }
+      .step-card p { font-size: 13px; }
+      .step-phone { margin-bottom: -37px; border-width: 4px; border-radius: 18px 18px 0 0; }
+      .choice-card { padding: 23px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .button { transition: none; }
+      .button:hover { transform: none; }
+    }
+    .asset-pending { margin:24px 0 0;padding:24px;border:2px dashed #c9c5e1;border-radius:18px;background:#f7f6fc;color:#4c4962;font-size:14px;min-height:250px; }
+    @media (max-width:760px) { .pending-card { display:block; padding-bottom:20px; } .pending-card .step-top { padding-bottom:0; } .asset-pending { min-height:0; padding:18px; } }
+
+    .moments{background:#fffaf6}.pickup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.pickup-card{position:relative;padding:34px;border:1px solid #e1ddf2;border-radius:26px;background:#f1eefb;min-width:0}.pickup-card.waiting{background:#fff0e5;border-color:#efd9c9}.scene-label{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.06em;color:#5d5885;margin-bottom:15px}.pickup-card h3{font-size:clamp(25px,2.6vw,35px);line-height:1.5;letter-spacing:-.045em;max-width:92%}.pickup-card p{margin-bottom:0;color:#4c5570;max-width:520px}.scene-symbol{position:absolute;right:25px;top:25px;font-size:44px;color:#8278b5;opacity:.45;line-height:1}.scene-note{font-size:12px;color:#657080;margin:20px 0 0}.daily-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}.daily-grid article{padding:28px;border-radius:20px;background:white;border:1px solid var(--line)}.daily-grid h3{font-size:24px;line-height:1.55}.daily-grid p{margin-bottom:0;color:var(--muted)}.onboarding-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.onboarding-grid article{border:1px solid var(--line);border-radius:20px;padding:25px;background:#fff}.onboarding-grid h3{font-size:20px}.onboarding-grid p{font-size:14px;color:var(--muted);margin:0}.real-screen-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:850px;margin:32px auto 0}.real-screen-grid figure{margin:0;padding:28px;border-radius:24px;background:#f7f5fa;border:1px solid var(--line);text-align:center}.real-phone{width:min(210px,100%);margin:0 auto 22px;border:5px solid #252c43;border-radius:24px;overflow:hidden}.real-phone img{width:100%;height:auto}.real-screen-grid figcaption{font-size:12px;color:var(--muted)}.real-screen-grid figcaption strong{font-size:16px;color:var(--ink)}
+    @media(max-width:760px){.pickup-grid,.daily-grid,.onboarding-grid{grid-template-columns:1fr}.pickup-card{padding:25px}.pickup-card h3{max-width:100%;font-size:27px}.real-screen-grid{gap:10px}.real-screen-grid figure{padding:14px 9px}.real-phone{border-width:3px;border-radius:16px}.real-screen-grid figcaption strong{font-size:14px}.scene-symbol{font-size:30px}.hero-grid{padding-top:38px}.hero-stage{min-height:0}}
+      .daily-use-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.daily-use-grid .pickup-card{min-width:0;padding:30px 24px}.daily-use-grid h3{font-size:26px}.example-detail{margin-top:24px;padding:20px 24px;border:1px solid var(--line);border-radius:18px;background:#fff}.example-detail summary{cursor:pointer;font-weight:700}.example-detail .pickup-grid{margin-top:20px}.example-detail h3{font-size:22px}.example-detail p{color:var(--muted)}@media(max-width:850px){.daily-use-grid{grid-template-columns:1fr}.daily-use-grid h3{font-size:25px}.example-detail .pickup-grid{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-
-<!-- ─── Nav ─── -->
-<script src="/nav.js"></script>
-
-<!-- ─── Hero ─── -->
-<section class="hero">
-    <div class="hero-glow-r" aria-hidden="true"></div>
-    <div class="hero-glow-l" aria-hidden="true"></div>
-    <div class="hero-grid">
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="Kinia ページの先頭へ"><img src="assets/app_icon.png" alt="">Kinia</a>
+      <nav class="header-nav" aria-label="ページ内ナビゲーション">
+        <a href="#how">使い方</a>
+        <a href="#choice">共有の選び方</a>
+        <a href="#story">作った理由</a>
+        <a href="#questions">よくある質問</a>
+        <a class="nav-cta" href="https://play.google.com/store/apps/details?id=io.kinia">Google Playへ</a>
+      </nav>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="shell hero-grid">
         <div>
-            <span class="pill"><span class="pill-dot"></span>家族の居場所がわかる、見守りアプリ</span>
-            <h1>
-                <span class="hero-main-line">ちょうどいい距離で、</span><br>
-                <span class="underline-accent">そっとつながる</span>
-            </h1>
-            <p class="hero-sub">
-                居場所を追いかけるのではなく、<br>
-                今いるエリアと出入りの時刻だけが、そっと届く。<br>
-                見る人にも、見られる人にも<br>
-                息のしやすい見守りアプリです。
-            </p>
-            <div class="hero-actions">
-                <a href="https://play.google.com/store/apps/details?id=io.kinia" class="btn-primary">
-                    Google Playで入手
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-                <span class="hero-note">Android配信中 ・ iOS版は準備中</span>
-            </div>
-            <div class="hero-badges">
-                <span class="hero-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L20 7" stroke="#a3b89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    必要な機能は無料
-                </span>
-                <span class="hero-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L20 7" stroke="#a3b89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    広告なし
-                </span>
-                <span class="hero-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L20 7" stroke="#a3b89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    位置情報は端末内で暗号化
-                </span>
-                <span class="hero-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L20 7" stroke="#a3b89a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    日本人が開発
-                </span>
-            </div>
+          <p class="eyebrow">13歳以上の子どもと親へ。家族で決める見守り方。</p>
+          <h1 id="hero-title">「いまどこ？」を、<br><span class="accent">聞かなくても。</span></h1>
+          <figure class="hero-mobile-preview">
+            <img src="native-proof/final-member-mixed.png" width="1080" height="2400" alt="架空の4人を実アプリに表示したメンバー一覧">
+            <figcaption>家族の状態と更新時刻を、ひとつの画面で。<br><small>架空の家族による画面例</small></figcaption>
+          </figure>
+          <p class="hero-lead">学校も、部活も、休日のお出かけも。<br>家族の毎日が、聞かなくても少しわかる。</p>
+          <p class="hero-detail">登録した場所への到着・出発を通知でお知らせ。必要なときは、家族の位置や履歴を確認できます。家族で相談して共有し、毎回の連絡を少なく。</p>
+          <div class="action-row">
+            <a class="button button-primary" href="https://play.google.com/store/apps/details?id=io.kinia">Google Playで入手 <span aria-hidden="true">↗</span></a>
+            <a class="button button-secondary" href="https://kinia.io/setup.html">始め方を見る <span aria-hidden="true">→</span></a>
+          </div>
+          <p class="hero-meta">対象は13歳以上。Android 8.0以上とGoogleアカウントが必要です。iOS版は準備中。</p>
+          <div class="trust-row" aria-label="利用前のポイント">
+            <span>共有範囲は本人が選択</span>
+            <span>家族で相談して始める</span>
+            <span>広告なし</span>
+          </div>
         </div>
-
-        <div class="hero-visual">
-            <div class="phone-frame">
-                <div class="phone-screen">
-                    <img src="/screenshots/website/top-member-list-light.png" alt="Kiniaのメンバー一覧画面">
-                </div>
-            </div>
-            <!-- Floating notification cards -->
-            <div class="float-notify float-notify-top">
-                <div class="notify-icon" style="background:rgba(217,122,90,0.13);">
-                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#d97a5a" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                </div>
-                <div>
-                    <div class="notify-text">ゆうた <span class="notify-card-arrow">→</span>「学校」に到着</div>
-                    <div class="notify-time">たった今</div>
-                </div>
-            </div>
-            <div class="float-notify float-notify-bottom">
-                <div class="notify-icon" style="background:rgba(163,184,154,0.13);">
-                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path d="M5 14L16 6l11 8v11.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V14Z" stroke="#a3b89a" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                </div>
-                <div>
-                    <div class="notify-text">みか <span class="notify-card-arrow">→</span>「習い事」に到着</div>
-                    <div class="notify-time">3分前</div>
-                </div>
-            </div>
+        <div class="hero-stage" aria-label="Kiniaの説明用画面">
+          <div class="hero-halo" aria-hidden="true"></div>
+          <div class="phone hero-phone"><img src="native-proof/final-member-mixed.png" width="1080" height="2400" alt="架空の家族が通知エリアの状態を確認しているKiniaのメンバー画面"></div>
+          <span class="hero-figure-label">架空の家族によるメンバー画面の例</span>
         </div>
+      </div>
+    </section>
+    <div class="intro-strip">
+      <div class="shell intro-inner">
+        <strong>毎日の連絡を、<br>少し、少なく。</strong>
+        <p>学校に着いた、家に帰った、今日は外出している。家族の動きがわかると、いちいち聞かずに済むことがあります。Kiniaは、そんな毎日のためのアプリです。</p>
+      </div>
     </div>
-</section>
 
-<!-- ─── Top Video ─── -->
-<section class="top-video" id="top-video">
-    <div class="top-video-layout">
-        <div class="top-video-copy">
-            <div class="section-label">— SHORT VIDEO —</div>
-            <h2 class="section-heading">たとえば、子どもに<br>スマホを持たせたら、<br><span class="accent-text">気になることが増えた。</span></h2>
-            <p class="body-text">
-                Kiniaの見守りが、短い動画でわかります。<br>
-                通知でそっと安心を受け取れます。
-            </p>
-            <div class="top-video-actions">
-                <a href="https://play.google.com/store/apps/details?id=io.kinia" class="btn-primary">
-                    Google Playで入手
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-                <a href="/school-child-watch.html" class="top-video-secondary">
-                    詳しい使い方を見る
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#2c3a5e" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-            </div>
+    <section class="section moments" id="moments" aria-labelledby="moments-title">
+      <div class="shell">
+        <div class="section-header"><p class="section-kicker">EVERYDAY WITH KINIA</p><h2 id="moments-title">家族の毎日を、<br>さりげなく知る。</h2><p>学校、部活、塾、帰宅、休日のお出かけ。特別な日だけでなく、いつもの暮らしに。</p></div>
+        <div class="daily-use-grid">
+          <article class="pickup-card"><span class="scene-label">いつもは通知で</span><div class="scene-symbol" aria-hidden="true">↗</div><h3>着いた・出たを、<br>聞かなくても。</h3><p>自宅や学校などを通知エリアに登録。到着や出発の知らせで、地図を開き続けなくても家族の動きがわかります。</p></article>
+          <article class="pickup-card waiting"><span class="scene-label">必要なときに場所を確認</span><div class="scene-symbol" aria-hidden="true">⌖</div><h3>いまどのあたりか、<br>ひと目で確認。</h3><p>帰り道や外出先、家族との待ち合わせに。地図の位置と更新時刻を見て、相手の状況を知る手がかりにできます。</p></article>
+          <article class="pickup-card"><span class="scene-label">家族の暮らしに合わせて</span><div class="scene-symbol" aria-hidden="true">◷</div><h3>知りたい場所と、<br>知らせ方を選ぶ。</h3><p>通知する場所や曜日を設定。詳しい位置まで共有するかも本人が選び、家族の予定や考え方に合わせて使えます。</p></article>
         </div>
-        <div class="top-video-shell" data-video-shell>
-            <button class="top-video-trigger" type="button" data-video-src="/videos/kinia-top-watch-35s-720p.mp4" aria-label="Kiniaの紹介動画を再生">
-                <img src="/images/kinia-top-watch-video-poster.webp" alt="Kiniaの紹介動画">
-                <span class="top-video-play" aria-hidden="true">
-                    <span>
-                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M9 7.5v9l7-4.5-7-4.5Z" fill="#2c3a5e"/></svg>
-                    </span>
-                </span>
-            </button>
-            <div class="top-video-caption">音声ありの短い紹介動画です。</div>
+        <p class="scene-note">通知や位置更新は、通信・権限・端末の設定などで遅れる場合があります。場所を見るときは、表示された更新時刻も確認してください。</p>
+        <details class="example-detail"><summary>たとえば、駅への迎えなら</summary><div class="pickup-grid"><article><h3>迎えに行く人</h3><p>家族が駅に近づいたのを見て、出発のタイミングを合わせる。その都度「いまどこ？」と聞かなくても。</p></article><article><h3>迎えを待つ人</h3><p>迎えの車がどのあたりにいるかを確認。運転中の家族に、詳しい場所を返信してもらわずに状況をつかめます。</p></article></div><p class="step-caption">これは使い方の一例です。地図の位置だけで、遅れの原因や正確な到着時刻がわかるとは限りません。</p></details>
+      </div>
+    </section>
+    <section class="section steps" id="how" aria-labelledby="how-title">
+      <div class="shell">
+        <div class="section-header"><p class="section-kicker">GET STARTED</p><h2 id="how-title"><span style="display:inline-block">家族でつないで、</span><span style="display:inline-block">使い始める。</span></h2><p>使う人それぞれのAndroid端末とGoogleアカウントが必要です。</p></div>
+        <div class="onboarding-grid">
+          <article><span class="step-num">1</span><h3>Googleでログイン</h3><p>各自のAndroid端末にKiniaを入れ、自分のGoogleアカウントでログインします。</p></article>
+          <article><span class="step-num">2</span><h3>家族を招待</h3><p>1人がグループを作成。ほかの家族は招待リンクかコードで参加します。</p></article>
+          <article><span class="step-num">3</span><h3>共有と権限を確認</h3><p>家族それぞれが共有内容を確認。詳しい場所を見る場合は「すべて共有」を選び、位置情報・通知の権限を設定します。</p></article>
         </div>
-    </div>
-</section>
+        <div class="real-screen-grid">
+          <figure><div class="real-phone"><img src="native-proof/final-member-mixed.png" width="1080" height="2400" loading="lazy" alt="架空の親子4人の状態と更新時刻が並ぶメンバー画面"></div><figcaption><strong>家族の状態をまとめて確認</strong><br>メンバー一覧の画面例。家族データは架空です。</figcaption></figure>
+          <figure><div class="real-phone"><img src="native-proof/final-notification-settings.png" width="1080" height="2400" loading="lazy" alt="エリア通知や更新間隔を確認できる通知設定画面"></div><figcaption><strong>通知の使い方を設定</strong><br>通知設定の画面例。通知の到着を示す画像ではありません。</figcaption></figure>
+        </div>
+        <p class="step-caption">詳しい位置を互いに確認したい場合は、双方が相手に「すべて共有」を選び、家族の画面でも共有状態を確認してください。通知や位置更新は、権限・通信・省電力設定などに影響されます。<a href="https://kinia.io/setup.html">詳しい設定手順を見る</a></p>
+      </div>
+    </section>
 
-<!-- ─── Audience paths ─── -->
-<section class="audience" aria-labelledby="audience-title">
-    <div class="audience-inner">
-        <div class="audience-head">
-            <div class="section-label">— FOR YOUR FAMILY —</div>
-            <h2 class="section-heading" id="audience-title">あなたの家族には、<br><span class="accent-text">どの見守りが合いますか？</span></h2>
-            <p class="body-text">ご家族の状況に合う使い方から、Kiniaの考え方をご覧ください。</p>
+    <section class="section choice" id="choice" aria-labelledby="choice-title">
+      <div class="shell">
+        <div class="section-header">
+          <p class="section-kicker">YOUR CHOICE</p>
+          <h2 id="choice-title">家族に見せる範囲を、自分で選ぶ。</h2>
+          <p>何が家族に見えるかを確認して始めましょう。共有範囲は、あとから本人が変更できます。</p>
         </div>
-        <div class="audience-grid">
-            <a class="audience-card" href="/school-child-watch.html"><span class="audience-num">01 / SCHOOL</span><h3>通学・習い事を<br>見守りたい</h3><p>帰宅や到着の気配を、必要なときに受け取る使い方です。</p><span class="audience-link">通学・習い事の見守りを見る →</span></a>
-            <a class="audience-card" href="/senior.html"><span class="audience-num">02 / SENIOR</span><h3>離れて暮らす親が<br>気になる</h3><p>見守られる人の気持ちも大切にした、ゆるいつながりです。</p><span class="audience-link">高齢のご家族がいる方へ →</span></a>
-            <a class="audience-card" href="/for-kids.html"><span class="audience-num">03 / FAIR</span><h3>「見守られる側」の<br>あなたへ</h3><p>親だけが見るのではなく、みんなが対等につながる考え方です。</p><span class="audience-link">中高生の方へ →</span></a>
+        <div class="choice-grid">
+          <article class="choice-card primary"><span class="choice-tag">帰り道や外出先、待ち合わせに</span><h3>すべて共有</h3><p>現在地の地図や移動履歴を家族と共有して使います。</p><ul class="choice-list"><li>詳しい現在地と更新時刻を確認</li><li>移動履歴を振り返る</li><li>あとから「通知エリアのみ」に変更可能</li></ul></article>
+          <article class="choice-card"><span class="choice-tag">詳しい位置までは見せたくないときに</span><h3>通知エリアのみ</h3><p>登録した場所の出入りを中心に知らせます。</p><ul class="choice-list"><li>詳しい位置の共有を抑えるための設定です</li><li>電池残量・更新時刻などのメンバー情報は共有します</li><li>利用する機能に応じて歩数・元気度なども共有します</li></ul></article>
         </div>
-    </div>
-</section>
+        <p class="choice-note">共有範囲は自動で切り替わりません。家族で相談し、それぞれが納得した設定で使ってください。詳しい位置共有を一時的に自動解除する機能は、現在ありません。</p>
+      </div>
+    </section>
 
-<!-- ─── Concept ─── -->
-<section class="concept">
-    <div class="concept-inner">
-        <div class="section-label">— CONCEPT —</div>
-        <h2>
-            知りたいのは、<br>
-            <span class="accent-text">「今いるエリア」だけ</span>
-        </h2>
-        <p>
-            細かな移動経路までは、いらない。<br>
-            でも「塾、学校、家のどこにいるのか」と<br>
-            「いつそこを出たのか」は知っておきたい。<br><br>
-            Kiniaは、追いかけすぎない<br>
-            「ちょうどいい」家族の見守りです。
-        </p>
-    </div>
-</section>
+    <section class="section story" id="story" aria-labelledby="story-title">
+      <div class="shell story-grid">
+        <div>
+          <p class="section-kicker">MADE FOR FAMILY</p>
+          <div class="story-quote">家族のことは気になる。<br>でも、いつも見ていたいわけではない。</div>
+        </div>
+        <div>
+          <h2 id="story-title">家族との、心地よい距離から。</h2>
+          <div class="story-body">
+            <p>Kiniaは、会社員として働きながら個人で開発しているアプリです。</p>
+            <p>私自身、離れて暮らす両親とKiniaを使っています。普段は到着や出発の通知で近況を知り、必要なときは、互いに選んだ共有範囲の中で現在地や履歴を確認しています。</p>
+            <p>両親が家に来るとき、近づいたのを見てマンションの下へ迎えに行く。移動の途中だとわかれば、何度も連絡せず待てる。<strong>聞かなくても状況がわかる便利さ</strong>が、作り続けている理由です。</p>
+            <p>スマホを持つ13歳以上の子どもと親が使うときも、共有する範囲を一緒に決めるところから始めてほしいと思っています。</p>
+          </div>
+          <a class="story-contact" href="#contact">開発者へのお問い合わせ ↗</a>
+        </div>
+      </div>
+    </section>
 
-<!-- ─── Features ─── -->
-<section class="features" id="features">
-    <div class="container">
-        <div style="text-align:center;margin-bottom:60px;">
-            <div class="section-label">— DIFFERENCE —</div>
-            <h2 class="section-heading">ふつうの位置共有と、<br>ちょっと違うところ</h2>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-card-glow" aria-hidden="true"></div>
-                <div class="icon-box">
-                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M8 22h16l-2-3v-5a6 6 0 0 0-12 0v5l-2 3Z" stroke="#b85a3e" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 25a2 2 0 0 0 4 0" stroke="#b85a3e" stroke-width="1.6" stroke-linecap="round"/></svg>
-                </div>
-                <div class="feature-tag">01 ・ AMBIENT</div>
-                <h3>気配だけが、そっと届く</h3>
-                <p>「通知エリアのみ」では、地図上の詳細な現在地は共有しません。<br>「自宅に着いた」「学校を出た」——<br>エリアの出入りだけで十分な安心が伝わります。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-card-glow" aria-hidden="true"></div>
-                <div class="icon-box">
-                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="12" cy="12" r="4" stroke="#b85a3e" stroke-width="1.6"/><circle cx="22" cy="13" r="3" stroke="#b85a3e" stroke-width="1.6"/><path d="M4 25c0-3.5 3.5-6 8-6s8 2.5 8 6" stroke="#b85a3e" stroke-width="1.6" stroke-linecap="round"/></svg>
-                </div>
-                <div class="feature-tag">02 ・ FAIR</div>
-                <h3>みんな対等な関係</h3>
-                <p>共有する情報は全員フェア。<br>一方的な監視ではなく、お互いを気にかけ合う関係だから誰もストレスを感じません。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-card-glow" aria-hidden="true"></div>
-                <div class="icon-box">
-                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect x="7" y="14" width="18" height="13" rx="2.5" stroke="#b85a3e" stroke-width="1.6"/><path d="M11 14v-4a5 5 0 0 1 10 0v4" stroke="#b85a3e" stroke-width="1.6" stroke-linecap="round"/></svg>
-                </div>
-                <div class="feature-tag">03 ・ PRIVATE</div>
-                <h3>運営にも、見えない</h3>
-                <p>位置情報は端末側で暗号化。<br>合言葉はサーバーに送られず、<br>私たちですら実際の座標を復元できません。</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ─── How It Works ─── -->
-<section class="how" id="how">
-    <div class="how-header">
-        <div class="section-label">— HOW IT WORKS —</div>
-        <h2 class="section-heading">わかるのは、これだけ</h2>
-        <p class="body-text">
-            交差点レベルの移動経路ではなく、「誰が、いつ、どのエリアにいるか」だけ。<br>
-            家族一人ひとりの今の状況と直近の動きが、ひと目で見渡せます。
-        </p>
-    </div>
-    <div class="how-grid">
-        <!-- 左: 従来のアプリ -->
-        <div class="how-column">
-            <div class="how-column-label old">従来のアプリ</div>
-            <div class="how-phone-frame">
-                <img src="/images/how_traditional_app.png" alt="従来の位置追跡アプリ">
-            </div>
-        </div>
-        <!-- 右: Kinia -->
-        <div class="how-column">
-            <div class="how-column-label new">KINIA</div>
-            <div class="how-phone-frame">
-                <img src="/screenshots/website/top-member-list-light.png" alt="Kiniaの家族見守り画面">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ─── Fair Principle ─── -->
-<section class="fair" id="principle">
-    <div class="container-mid">
-        <div class="section-label">— PRINCIPLE —</div>
-        <h2 class="section-heading">Kiniaの原則：<span class="accent-text">全員がフェアであること</span></h2>
-        <div class="fair-grid">
-            <div class="fair-text">
-                <p class="body-text">
-                    従来の見守りアプリには「見る側」と「見られる側」の上下関係がありました。<br><br>もし自分がその立場だったら？<br>居場所を常に見られているのに、相手の居場所は分からない。
-                </p>
-                <div class="quote-block">
-                    知りたいなら、自分も開示する。大人でも子どもでも、全員が同じ条件で情報を共有する。——それがKiniaの「フェア」です。
-                </div>
-                <p class="body-text">
-                    対等な関係だからこそ、子どもが大人になっても使い続けられます。「監視される側」のままなら、自立した時点でアンインストールされてしまう。フェアであることが、長く続く理由になります。
-                </p>
-            </div>
-            <div class="fair-visual">
-                <img src="/images/problem_contrast_v3.png" alt="監視と見守りの対比">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ─── Use Cases ─── -->
-<section class="usecases">
-    <div class="container">
-        <div style="text-align:center;margin-bottom:60px;">
-            <div class="section-label">— USE CASES —</div>
-            <h2 class="section-heading">こんな家族に、ちょうどいい</h2>
-        </div>
-        <div class="usecases-grid">
-            <div class="usecase-card">
-                <img src="/images/icon_child_watch_generated.png" alt="">
-                <span class="usecase-tag">子どもを見守る</span>
-                <p>「ちゃんと学校に着いたかな」「塾から出たかな」。心配な時間帯だけ、そっと知りたい。見張る感じになりすぎず、子どもの自立も尊重できます。</p>
-                <a href="/school-child-watch.html" class="usecase-link">通学・習い事の見守りページへ →</a>
-            </div>
-            <div class="usecase-card">
-                <img src="/images/icon_distant_parent_generated.png" alt="">
-                <span class="usecase-tag">離れた親を見守る</span>
-                <p>毎日電話するほどでもないけれど、無事に過ごしているか気になる。「自宅にいる」「散歩から帰った」だけが分かれば、安心できます。</p>
-            </div>
-            <div class="usecase-card">
-                <img src="/images/icon_meetup_generated.png" alt="">
-                <span class="usecase-tag">待ち合わせ・共有レベル切替</span>
-                <p>詳しい位置が必要なときは、相手と相談して「すべて共有」に切り替えられます。不要になったら「通知エリアのみ」に戻せます。</p>
-            </div>
-            <div class="usecase-card">
-                <img src="/images/icon_share_all_generated.png" alt="">
-                <span class="usecase-tag">夫婦・パートナー</span>
-                <p>お互いの帰宅時間がふんわり分かるだけ。「今、家にいる？」を聞かなくていい。詮索しすぎず、思いやれる距離感。</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ─── Security ─── -->
-<section class="security" id="security">
-    <div class="security-glow" aria-hidden="true"></div>
-    <div class="container-mid" style="position:relative;text-align:center;">
-        <div class="section-label">— SAFETY —</div>
-        <h2 class="section-heading">
-            私たちは、<br>
-            <span class="accent-text">「持たない」</span>ことを選びました
-        </h2>
-        <p class="body-text" style="max-width:600px;margin:0 auto 56px;">
-            位置情報は送信前に端末内で暗号化され、<br>
-            サーバーには暗号化された値だけが保存されます。<br><br>
-            保存データを読み取っても、<br>
-            実際の位置は特定できません。
-        </p>
-        <div class="security-grid">
-            <div class="security-card">
-                <div class="icon-box">
-                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="7" y="14" width="18" height="13" rx="2.5" stroke="#b85a3e" stroke-width="1.6"/><path d="M11 14v-4a5 5 0 0 1 10 0v4" stroke="#b85a3e" stroke-width="1.6" stroke-linecap="round"/></svg>
-                </div>
-                <h3>端末側で暗号化</h3>
-                <p>位置情報は送信前に端末で暗号化。サーバーには暗号化された値しか届きません。</p>
-            </div>
-            <div class="security-card">
-                <div class="icon-box">
-                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M16 4 6 7v9c0 6 4.5 10 10 12 5.5-2 10-6 10-12V7l-10-3Z" stroke="#b85a3e" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                </div>
-                <h3>合言葉はローカル保存</h3>
-                <p>家族で決めた合言葉は端末にだけ保存。サーバーには送信されないため、運営も復号できません。</p>
-            </div>
-            <div class="security-card">
-                <div class="icon-box">
-                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M16 26s-9-5.5-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-9 12-9 12Z" stroke="#b85a3e" stroke-width="1.6" stroke-linejoin="round"/></svg>
-                </div>
-                <h3>必要な機能は無料・広告なし</h3>
-                <p>通常利用に必要な機能は無料で使えます。広告を表示したり、データを売って収益化したりしません。</p>
-            </div>
-        </div>
-        <p style="margin-top:32px;">
-            <a href="/data-safety.html" style="font-size:13px;">データの安全性について詳しく見る →</a>
-        </p>
-    </div>
-</section>
-
-<!-- ─── Sharing Levels ─── -->
-<section class="sharing" id="sharing">
-    <div class="container-narrow">
-        <div class="section-label">— PRIVACY —</div>
-        <h2 class="section-heading">自分で選べる、<span class="accent-text">2つの共有レベル</span></h2>
-        <p class="body-text">共有する情報は自分でコントロール。家族の形に合わせて選べます。</p>
-
-        <!-- Desktop table -->
-        <div class="sharing-table-wrap">
-        <table class="sharing-table">
-            <thead>
-                <tr>
-                    <th style="text-align:left;">機能</th>
-                    <th>通知エリアのみ<span class="default-badge">初期設定</span></th>
-                    <th>すべて共有</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>通知エリアのIN/OUT通知</td><td>✅</td><td>✅</td></tr>
-                <tr><td>歩数・元気度</td><td>✅</td><td>✅</td></tr>
-                <tr><td>体調チェック</td><td>✅</td><td>✅</td></tr>
-                <tr><td>地図上の現在地表示</td><td>—</td><td>✅</td></tr>
-                <tr><td>移動履歴・軌跡</td><td>—</td><td>✅</td></tr>
-                <tr><td>速度・活動状態</td><td>—</td><td>✅</td></tr>
-            </tbody>
-        </table>
-        </div>
-
-        <!-- Mobile cards -->
-        <div class="sharing-mobile">
-        <div class="sharing-compare">
-            <div class="sharing-col">
-                <h3>通知エリアのみ<br><span style="font-size:11px;color:var(--accent);">初期設定</span></h3>
-                <ul>
-                    <li><span class="yes">✅</span> エリア出入り通知</li>
-                    <li><span class="yes">✅</span> 歩数・元気度</li>
-                    <li><span class="yes">✅</span> 体調チェック</li>
-                    <li><span class="yes">✅</span> 一時位置共有</li>
-                    <li><span class="no">—</span> 現在地表示</li>
-                    <li><span class="no">—</span> 移動履歴</li>
-                    <li><span class="no">—</span> 速度・活動</li>
-                </ul>
-            </div>
-            <div class="sharing-col">
-                <h3>すべて共有</h3>
-                <ul>
-                    <li><span class="yes">✅</span> エリア出入り通知</li>
-                    <li><span class="yes">✅</span> 歩数・元気度</li>
-                    <li><span class="yes">✅</span> 体調チェック</li>
-                    <li><span class="yes">✅</span> 一時位置共有</li>
-                    <li><span class="yes">✅</span> 現在地表示</li>
-                    <li><span class="yes">✅</span> 移動履歴</li>
-                    <li><span class="yes">✅</span> 速度・活動</li>
-                </ul>
-            </div>
-        </div>
-        </div>
-
-        <p class="body-text" style="margin-top:24px;">
-            歩数と「元気度」で、エリアの出入り通知と合わせて<br>
-            日々の活動量もひと目で分かります。<br>
-            ステータスコメントや体調チェック、緊急時のSOSアラートも備えています。<br>
-            <strong style="color:var(--ink);">見守りに必要な機能は無料で十分使えて、広告なし</strong>です。
-        </p>
-    </div>
-</section>
-
-<!-- ─── Story ─── -->
-<section class="story" id="story">
-    <div class="container-narrow">
-        <div class="section-label">— STORY —</div>
-        <h2 class="section-heading">なぜKiniaを<span class="accent-text">作ったのか</span></h2>
-        <div class="story-body">
-            <p>
-                家族みんなで位置共有アプリを使っていました。でも使い続けるうちに、<strong>距離感が近すぎる</strong>こと、<strong>共有される情報が多すぎる</strong>ことに違和感を覚えるようになりました。知りたいのは「今どのエリアにいるか」と「いつそこを出たか」であって、「今どの道を何キロで走っているか」ではない。
-            </p>
-            <p>
-                一方で、離れた実家の両親の様子はもっと気にかけたい。でも「位置を常に共有して」とは言い出しにくい。両親からも「監視されるのは嫌だ」と言われている。つながりたいのに、つながる手段がハードルになっている。
-            </p>
-            <div class="quote-block">
-                「今、家にいるかどうか」——そのくらいの情報を、もっと気軽に共有できたら。お互いの日常を尊重しながら、ちゃんとつながれる方法はないだろうか。
-            </div>
-            <p>
-                「子どもを管理する」のではなく「家族としてつながる」ことを考えたとき、お互いを尊重できる<strong>ゆるい新しいつながりの形</strong>があってもいい。Kiniaは、そんな考えから生まれました。
-            </p>
-            <p><a href="/about.html">Kiniaについて、もう少し →</a></p>
-        </div>
-    </div>
-</section>
-
-<!-- ─── Vision ─── -->
-<section class="vision">
-    <div class="container-mid">
-        <div class="section-label">— VISION —</div>
-        <h2 class="section-heading">Kiniaが<span class="accent-text">目指す未来</span></h2>
-        <div class="vision-grid">
-            <div class="vision-card">
-                <img src="/images/vision_lifestage_v2.png" alt="">
-                <h3>ライフステージを超えて</h3>
-                <p>学生時代だけで終わらない。対等な関係だから、子どもが大人になっても使い続けられます。</p>
-            </div>
-            <div class="vision-card">
-                <img src="/images/vision_safety_v4.png" alt="">
-                <h3>災害時の安否確認</h3>
-                <p>普段は「ゆるいつながり」、いざという時は「確実につながる」。全メンバーへの全画面安否確認と、最終位置の照会機能を搭載しています。オフライン時でも端末内キャッシュから家族の最終位置を確認できます。</p>
-                <a href="/safety.html" class="vision-link">詳しくはこちら →</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ─── FAQ ─── -->
-<section class="faq" id="faq">
-    <div class="container-narrow">
-        <div style="text-align:center;margin-bottom:48px;">
-            <div class="section-label">— FAQ —</div>
-            <h2 class="section-heading">よくある質問</h2>
+    <section class="section faq" id="questions" aria-labelledby="faq-title">
+      <div class="shell faq-layout">
+        <div>
+          <p class="section-kicker">GOOD TO KNOW</p>
+          <h2 id="faq-title">使い始める前に。</h2>
+          <p>導入に必要なことと、共有範囲について確認できます。</p>
+          <div class="learn-links">
+            <a href="https://kinia.io/setup.html">始め方ガイド ↗</a>
+            <a href="https://kinia.io/faq.html">すべてのよくある質問 ↗</a>
+          </div>
         </div>
         <div class="faq-list">
-            <div class="faq-item" onclick="this.classList.toggle('open')">
-                <div class="faq-question">
-                    <h3>リアルタイムで現在地が見えますか？</h3>
-                    <div class="faq-toggle">
-                        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    </div>
-                </div>
-                <div class="faq-answer">共有レベルによります。「通知エリアのみ」では地図上の現在地は見えず、エリアの出入りだけが通知されます。「すべて共有」に切り替えると、地図上の現在地や移動履歴も確認できます。</div>
-            </div>
-            <div class="faq-item" onclick="this.classList.toggle('open')">
-                <div class="faq-question">
-                    <h3>本当に運営は中身を見られないの？</h3>
-                    <div class="faq-toggle">
-                        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    </div>
-                </div>
-                <div class="faq-answer">はい。位置情報は端末側で暗号化され、家族の合言葉はサーバーに送信されません。私たち運営者が、ある家族の実際の座標を復元することは技術的にできません。</div>
-            </div>
-            <div class="faq-item" onclick="this.classList.toggle('open')">
-                <div class="faq-question">
-                    <h3>子どもが嫌がっています</h3>
-                    <div class="faq-toggle">
-                        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    </div>
-                </div>
-                <div class="faq-answer">共有する情報は全員同じ（フェア）です。親だけが子どもを見るのではなく、子どもも親の気配を感じられます。「監視されている」感覚を最小化できる設計です。</div>
-            </div>
-            <div class="faq-item" onclick="this.classList.toggle('open')">
-                <div class="faq-question">
-                    <h3>iOS版はありますか？</h3>
-                    <div class="faq-toggle">
-                        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    </div>
-                </div>
-                <div class="faq-answer">Android版はGoogle Playで配信中です。iOS版は現在準備中です。公開が決まりましたら、本サイトでお知らせします。</div>
-            </div>
-            <div class="faq-item" onclick="this.classList.toggle('open')">
-                <div class="faq-question">
-                    <h3>安否確認機能はありますか？</h3>
-                    <div class="faq-toggle">
-                        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    </div>
-                </div>
-                <div class="faq-answer">はい。全メンバーへの全画面安否確認と、最終位置の照会機能を搭載しています。オフライン時でも端末内キャッシュから家族の最終位置を確認できます。詳しくは<a href="/safety.html">災害時の安否確認</a>をご覧ください。</div>
-            </div>
-            <div class="faq-item" onclick="this.classList.toggle('open')">
-                <div class="faq-question">
-                    <h3>ずっと無料で使えますか？</h3>
-                    <div class="faq-toggle">
-                        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    </div>
-                </div>
-                <div class="faq-answer">現在、必要な機能はすべて無料でご利用いただけます。広告もありません。将来、追加機能の一部を有料で提供する可能性は検討していますが、変更がある場合は必ず事前に本サイトとアプリ内でお知らせします。</div>
-            </div>
+          <details><summary>何歳から使うことを想定していますか？</summary><p>現在は13歳以上の子どもと大人を対象にしています。12歳以下は対象に含めていません。13歳以上でも、端末やアカウントの設定によって利用できない場合があります。</p></details>
+          <details><summary>どのスマホで使えますか？</summary><p>現在はAndroid 8.0以上の端末向けに配信中で、Googleアカウントでログインします。iOS版は準備中です。端末やアカウントに利用制限がある場合は、導入前に設定をご確認ください。</p></details>
+          <details><summary>アプリを入れると、すぐに現在地が見えますか？</summary><p>インストールだけでは共有は始まりません。各自のGoogleアカウントでログインし、同じ家族グループへ参加して、共有内容と権限を確認します。詳しい位置を互いに確認したい場合は、双方が相手に「すべて共有」を選び、家族の画面でも共有状態を確認してください。<a href="data-safety.html">共有設定とデータの取り扱い</a>もご覧ください。</p></details>
+          <details><summary>地図の共有は自動で終わりますか？</summary><p>いいえ。時間制限つきの一時共有は現在提供していません。詳しい共有をやめるときは、本人が「通知エリアのみ」に手動で戻します。</p></details>
+          <details><summary>到着の通知は必ず届きますか？</summary><p>位置情報と通知の権限、通信状態、端末の省電力設定などにより、通知や位置更新が遅れたり届かなかったりする場合があります。見守りの代わりに緊急連絡手段も決めておくと安心です。</p></details>
         </div>
-        <p style="text-align:center;margin-top:28px;">
-            <a href="/faq.html" style="font-size:13px;">すべてのFAQを見る →</a>
-        </p>
+      </div>
+    </section>
+
+    <section class="last-cta" aria-labelledby="cta-title">
+      <div class="shell">
+        <p class="section-kicker" style="color:#cac8ee">START WITH YOUR FAMILY</p>
+        <h2 id="cta-title">家族の毎日に、<br>「聞かなくてもわかる」を。</h2>
+        <p>家族で共有内容を確認して、Kiniaを試してみてください。<br>Android 8.0以上・Googleアカウント必須。現在の対象は13歳以上です。</p>
+        <div class="action-row">
+          <a class="button button-primary" href="https://play.google.com/store/apps/details?id=io.kinia">Google Playで入手 <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary" href="https://kinia.io/setup.html">設定手順を見る <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="contact" aria-labelledby="contact-title"><div class="shell"><p class="section-kicker">CONTACT</p><h2 id="contact-title">使ってみて、気づいたことを。</h2><p>設定で困ったことや、ご意見を開発者へお知らせください。</p><a class="button button-secondary" href="mailto:kinia.app@gmail.com">メールで問い合わせる ↗</a><p class="step-caption">kinia.app@gmail.com</p></div></section>
+  </main>
+  <footer>
+    <div class="shell footer-inner">
+      <span>Kinia — 家族の距離を、家族で決める。</span>
+      <div class="footer-links">
+        <a href="https://kinia.io/faq.html">よくある質問</a>
+        <a href="https://kinia.io/privacy.html">プライバシーポリシー</a>
+        <a href="https://kinia.io/data-safety.html">データの安全性</a>
+        <a href="#contact">お問い合わせ</a>
+      </div>
     </div>
-</section>
-
-<!-- ─── CTA ─── -->
-<section class="cta-section">
-    <div class="cta-glow-l" aria-hidden="true"></div>
-    <div class="cta-glow-r" aria-hidden="true"></div>
-    <div class="cta-inner">
-        <h2>家族と、<br>ちょうどいい距離で</h2>
-        <p class="body-text">
-            Kiniaは必要な機能を無料で使えます。<br>
-            まずはご家族でインストールして、<br>
-            心地よい距離感を見つけてください。
-        </p>
-        <div class="cta-buttons">
-            <a href="https://play.google.com/store/apps/details?id=io.kinia" class="btn-primary">
-                Google Playで入手
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <span class="btn-secondary" style="opacity:0.6;cursor:default">iOS版 — 準備中</span>
-        </div>
-    </div>
-</section>
-
-<!-- ─── Contact ─── -->
-<section class="contact" id="contact">
-    <div class="section-label">— CONTACT —</div>
-    <h2 class="section-heading">お問い合わせ</h2>
-    <p class="body-text" style="margin-bottom:24px;">ご質問・ご要望・バグ報告など、お気軽にご連絡ください。</p>
-    <a href="https://forms.gle/qTc8UjzWVMFpx76o8" class="btn-contact">お問い合わせフォーム</a>
-    <p style="margin-top:14px;color:var(--sub);font-size:13px;">端末名・Androidバージョン・症状を添えていただくとスムーズです。</p>
-</section>
-
-<!-- ─── Footer ─── -->
-<footer class="footer">
-    <div class="footer-inner">
-        <div class="footer-brand">
-            <img src="/images/app_icon.png" alt="">
-            <span class="footer-brand-name">Kinia</span>
-            <span class="footer-brand-ruby">キニア</span>
-        </div>
-        <div class="footer-links">
-            <a href="/setup.html">はじめかたガイド</a>
-            <a href="/school-child-watch.html">通学・習い事の見守り</a>
-            <a href="/faq.html">よくある質問</a>
-            <a href="/status.html">開発ロードマップ</a>
-            <a href="/safety.html">災害時の安否確認</a>
-            <a href="/emergency-query.html">いまどこ確認</a>
-            <a href="/data-safety.html">データの安全性</a>
-            <a href="/compare.html">比較してみる</a>
-            <a href="/for-kids.html">中高生の方へ</a>
-            <a href="/about.html">Kiniaについて</a>
-            <a href="https://note.com/kinia" target="_blank" rel="noopener">開発ノート（note）</a>
-            <a href="/privacy.html">プライバシーポリシー</a>
-            <a href="/delete-account.html">アカウント削除</a>
-            <a href="#contact">お問い合わせ</a>
-        </div>
-        <div class="footer-copy">&copy; 2026 Kinia &middot; Made with care in Japan</div>
-    </div>
-</footer>
-
-<script>
-document.querySelectorAll('[data-video-src]').forEach(function(trigger) {
-    trigger.addEventListener('click', function() {
-        var shell = trigger.closest('[data-video-shell]');
-        if (!shell) return;
-        var video = document.createElement('video');
-        video.className = 'top-video-player';
-        video.src = trigger.dataset.videoSrc;
-        video.poster = '/images/kinia-top-watch-video-poster.webp';
-        video.controls = true;
-        video.autoplay = true;
-        video.playsInline = true;
-        video.preload = 'metadata';
-        shell.replaceChild(video, trigger);
-        video.focus();
-        video.play().catch(function() {});
-    }, { once: true });
-});
-
-document.addEventListener('click', function(e) {
-    document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
-        if (!d.contains(e.target)) d.classList.remove('open');
-    });
-});
-</script>
+  </footer>
 </body>
 </html>
+
+
+

@@ -12,11 +12,11 @@
     <meta property="og:description" content="Kiniaが位置情報やプライバシーをどのように保護しているか。技術的な仕組みと運営方針をわかりやすく説明します。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kinia.io/data-safety.html">
-    <meta property="og:image" content="https://kinia.io/images/ogp/og_default.jpg">
+    <meta property="og:image" content="https://kinia.io/images/ogp/kinia-daily-r7.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="データの安全性 — Kinia">
     <meta name="twitter:description" content="Kiniaが位置情報やプライバシーをどのように保護しているか。技術的な仕組みと運営方針をわかりやすく説明します。">
-    <meta name="twitter:image" content="https://kinia.io/images/ogp/og_default.jpg">
+    <meta name="twitter:image" content="https://kinia.io/images/ogp/kinia-daily-r7.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -240,307 +240,30 @@
         }
     </style>
     <link rel="canonical" href="https://kinia.io/data-safety.html">
+<style id="r7-readable-type">:root{--sub:#525b6e;--text-sub:#525b6e;--text-dim:#657084;--font-body:"Yu Gothic",Meiryo,system-ui,sans-serif;--font-head:"Yu Gothic",Meiryo,system-ui,sans-serif}body{font-family:"Yu Gothic",Meiryo,system-ui,sans-serif}h1,h2,h3{font-family:inherit;font-weight:700}.body-text,.lead{color:#525b6e}</style>
 </head>
 <body>
 
 <script src="/nav.js"></script>
 
 <main class="content">
-
-    <h1>データの安全性について</h1>
-    <p class="subtitle">「位置情報を預けて大丈夫？」という疑問に、<ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>がどう向き合っているかを説明します。技術的な対策、運営方針、そして正直にお伝えすべき限界について、できるだけ分かりやすくまとめました。</p>
-
-    <!-- ═══════════════════════════════════════
-         セクション1: よくある懸念と対応
-         ═══════════════════════════════════════ -->
-    <h2>よくある懸念と、Kiniaの対応</h2>
-
-    <div class="qa-section">
-
-        <!-- Q1 -->
-        <div class="qa-card">
-            <div class="concern">
-                <div class="concern-icon">😟</div>
-                <div class="concern-text">サーバーに位置情報がそのまま保存されて、運営に見られるのでは？</div>
-            </div>
-            <div class="response">
-                <p><strong>Kiniaでは、位置情報はサーバーに送信される前に暗号化されます。</strong>暗号化の鍵は、グループ作成時に設定した「合言葉」から生成されます。この合言葉はサーバーに送信・保存されないため、運営を含め誰もサーバー上の位置データを復元することができません。</p>
-                <div class="tech-detail">
-                    <strong>技術的な仕組み:</strong> 合言葉からHMAC-SHA256で座標オフセットを導出し、すべての緯度・経度をシフトして保存します。サーバー上のデータは実際の位置から数百km離れた座標になっており、合言葉を知らなければ元の位置を復元できません。
-                </div>
-                <p>万が一データベースが流出しても、そこにあるのは意味のない数値の羅列です。</p>
-            </div>
-        </div>
-
-        <!-- Q2 -->
-        <div class="qa-card">
-            <div class="concern">
-                <div class="concern-icon">😟</div>
-                <div class="concern-text">名前やアカウント情報と位置データが紐づいているのでは？</div>
-            </div>
-            <div class="response">
-                <p><strong>サーバー上に個人名は保存されていません。</strong>各ユーザーにはランダムなID（UUID）が割り当てられ、サーバーにはこのIDだけが記録されます。「お母さん」「パパ」といった表示名は、家族それぞれの端末にだけ保存されます。</p>
-                <p>グループの識別にも、合言葉そのものではなく一方向ハッシュ（SHA-256）を使用しているため、サーバー上のデータからグループの合言葉を逆算することもできません。</p>
-                <div class="tech-detail">
-                    <strong>つまり:</strong> サーバーに保存されているのは「ランダムID＋暗号化された座標＋ハッシュ化されたグループID」だけです。これらを組み合わせても、誰がどこにいるかは分かりません。
-                </div>
-            </div>
-        </div>
-
-        <!-- Q3 -->
-        <div class="qa-card">
-            <div class="concern">
-                <div class="concern-icon">😟</div>
-                <div class="concern-text">家族に常時監視されるのが嫌。自分でコントロールできる？</div>
-            </div>
-            <div class="response">
-                <p><strong>共有する情報は自分で選べます。</strong>Kiniaには2段階の共有レベルがあり、初期設定では「通知エリアのみ」になっています。</p>
-                <table class="compare-table">
-                    <thead>
-                        <tr>
-                            <th>情報</th>
-                            <th>通知エリアのみ（初期設定）</th>
-                            <th>すべて共有</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>通知エリアのIN/OUT</td><td class="yes">共有</td><td class="yes">共有</td></tr>
-                        <tr><td>歩数・元気度</td><td class="yes">共有</td><td class="yes">共有</td></tr>
-                        <tr><td>バッテリー残量</td><td class="yes">共有</td><td class="yes">共有</td></tr>
-                        <tr><td>地図上の現在地</td><td class="no">非共有</td><td class="yes">共有</td></tr>
-                        <tr><td>移動の軌跡</td><td class="no">非共有</td><td class="yes">共有</td></tr>
-                        <tr><td>活動状態・速度</td><td class="no">非共有</td><td class="yes">共有</td></tr>
-                    </tbody>
-                </table>
-                <p>さらに、メンバーごとに共有レベルを個別に設定できます。「お母さんにはすべて共有、子どもには通知エリアだけ」といった使い分けが可能です。</p>
-            </div>
-        </div>
-
-        <!-- Q4 -->
-        <div class="qa-card">
-            <div class="concern">
-                <div class="concern-icon">😟</div>
-                <div class="concern-text">位置データがいつまでもサーバーに残り続けるのでは？</div>
-            </div>
-            <div class="response">
-                <p><strong>位置履歴は最大7日間で自動削除されます。</strong>古いデータを保持し続けることはありません。サーバー側で自動的に処理されます。</p>
-                <p>また、アプリ内の「アカウント削除」機能を使えば、サーバー上のすべてのデータ（位置履歴・グループ情報・認証情報）と端末上のデータを即座に完全削除できます。</p>
-            </div>
-        </div>
-
-        <!-- Q5 -->
-        <div class="qa-card">
-            <div class="concern">
-                <div class="concern-icon">😟</div>
-                <div class="concern-text">第三者が勝手にデータを見られるのでは？</div>
-            </div>
-            <div class="response">
-                <p><strong>Google認証で保護されています。</strong>データへのアクセスにはGoogleアカウントによるログインが必要です。ログインしていない第三者はデータベースにアクセスできません。</p>
-                <p>アプリの通常の参加手順では、既存メンバーが発行する<strong>招待コード</strong>を入力します。コードの有効期間は72時間です。</p>
-                <p>通信はすべてTLS/SSLで暗号化されており、途中で傍受されることもありません。</p>
-            </div>
-        </div>
-
-        <!-- Q6 -->
-        <div class="qa-card">
-            <div class="concern">
-                <div class="concern-icon">😟</div>
-                <div class="concern-text">位置データが広告や第三者に売られるのでは？</div>
-            </div>
-            <div class="response">
-                <p><strong>データの販売や、広告目的での利用は行いません。</strong>アプリの品質改善のため、Google Analytics for Firebaseで利用状況、アプリ・端末情報、おおまかな地域情報を集計します。アプリが取得するGPS座標、グループ情報、氏名は利用状況の分析目的で送信しません。</p>
-                <p>そもそも、前述のとおり位置データは暗号化されているため、仮に提供しようとしても運営側に復元する手段がありません。</p>
-            </div>
-        </div>
-
-        <!-- Q7 -->
-        <div class="qa-card">
-            <div class="concern">
-                <div class="concern-icon">😟</div>
-                <div class="concern-text">アプリをやめたくなった時、データはちゃんと消せる？</div>
-            </div>
-            <div class="response">
-                <p><strong>アプリ内からワンタップで完全削除できます。</strong>「グループ管理」画面の「アカウントを削除」から実行すると、以下がすべて削除されます:</p>
-                <ul style="padding-left: 24px; margin: 8px 0 16px;">
-                    <li style="color: var(--sub); margin-bottom: 4px;">サーバー上の位置履歴</li>
-                    <li style="color: var(--sub); margin-bottom: 4px;">グループ内のユーザー情報</li>
-                    <li style="color: var(--sub); margin-bottom: 4px;">Firebase認証情報</li>
-                    <li style="color: var(--sub); margin-bottom: 4px;">端末上のローカルデータ</li>
-                </ul>
-                <p>アプリにログインできなくなった場合など、アプリ内から削除操作ができない場合は、<a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a>からの削除依頼にも対応しています。</p>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- ═══════════════════════════════════════
-         セクション2: セキュリティ対策の一覧
-         ═══════════════════════════════════════ -->
-    <h2>Kiniaのセキュリティ対策</h2>
-
-    <div class="summary-grid">
-        <div class="summary-item">
-            <span class="icon">🔐</span>
-            <div class="label"><strong>座標の暗号化</strong><br>合言葉ベースの暗号化で、サーバー上に実座標を保存しない</div>
-        </div>
-        <div class="summary-item">
-            <span class="icon">🔑</span>
-            <div class="label"><strong>鍵の端末保持</strong><br>暗号化の鍵（合言葉）はサーバーに送信されず、端末内にのみ保持</div>
-        </div>
-        <div class="summary-item">
-            <span class="icon">👤</span>
-            <div class="label"><strong>UUID匿名化</strong><br>サーバー上に個人名は保存されない。ランダムIDのみで識別</div>
-        </div>
-        <div class="summary-item">
-            <span class="icon">#️⃣</span>
-            <div class="label"><strong>グループIDハッシュ化</strong><br>合言葉はSHA-256で一方向変換。逆算は不可能</div>
-        </div>
-        <div class="summary-item">
-            <span class="icon">🔒</span>
-            <div class="label"><strong>Google認証</strong><br>Firebase Authenticationによるアクセス制御。未認証者はデータに触れられない</div>
-        </div>
-        <div class="summary-item">
-            <span class="icon">📡</span>
-            <div class="label"><strong>通信の暗号化</strong><br>すべてのデータ送受信はTLS/SSLで保護</div>
-        </div>
-        <div class="summary-item">
-            <span class="icon">🗑️</span>
-            <div class="label"><strong>自動削除</strong><br>位置履歴は7日間で自動消去。不要なデータを持ち続けない</div>
-        </div>
-        <div class="summary-item">
-            <span class="icon">🎟️</span>
-            <div class="label"><strong>招待コード制</strong><br>アプリの通常の参加手順で使用。有効期間は72時間</div>
-        </div>
-        <div class="summary-item">
-            <span class="icon">📱</span>
-            <div class="label"><strong>デバイス排他制御</strong><br>1アカウント1端末。別の端末でログインすると、旧端末は自動的にサインアウトされ位置送信も停止</div>
-        </div>
-        <div class="summary-item">
-            <span class="icon">✅</span>
-            <div class="label"><strong>アプリの正当性検証</strong><br>Google Play Integrityにより、改ざんされていない正規のアプリからのアクセスのみを許可</div>
-        </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════
-         セクション3: 正直にお伝えすること
-         ═══════════════════════════════════════ -->
-    <h2>正直にお伝えしたいこと</h2>
-
-    <p>Kiniaは安全性に真剣に取り組んでいますが、すべてのリスクをゼロにできるわけではありません。以下の点について、私たちの方針を明記します。</p>
-
-    <div class="policy-box">
-        <h3>Google / Firebaseへの依存</h3>
-        <p>Kiniaのデータは、Googleが運営するFirebase（Cloud Firestore）に保存されています。Googleのインフラは高いセキュリティ水準を備えていますが、データの物理的な保管場所やインフラレベルのセキュリティはGoogleのセキュリティポリシーに準拠します。</p>
-        <p>ただし、前述のとおり<strong>サーバー上の位置データは暗号化されている</strong>ため、仮にインフラレベルでの侵害が発生しても、実際の座標を復元するには各グループの合言葉が必要です。</p>
-    </div>
-
-    <div class="policy-box">
-        <h3>法令に基づく情報開示</h3>
-        <p>法令に基づく開示請求（裁判所の命令等）があった場合、保有するデータを開示する義務があります。ただし、開示できるデータは暗号化された座標とランダムIDのみであり、<strong>個人の特定や実際の位置の復元は運営側にはできません。</strong></p>
-    </div>
-
-    <div class="policy-box">
-        <h3>端末側のセキュリティ</h3>
-        <p>端末がマルウェアに感染している場合や、端末のロックが解除された状態で第三者に操作された場合、アプリ内の情報が閲覧される可能性があります。これはすべてのアプリに共通するリスクです。</p>
-        <p><strong>推奨:</strong> 端末のロック設定（指紋認証・PIN等）を有効にしてご利用ください。</p>
-    </div>
-
-    <div class="policy-box">
-        <h3>合言葉の管理</h3>
-        <p>合言葉は暗号化の鍵を兼ねています。合言葉が第三者に知られた場合、そのグループの位置データが復元可能になるリスクがあります。</p>
-        <p><strong>推奨:</strong> 推測されにくいフレーズを合言葉に設定し、家族以外には共有しないでください。</p>
-    </div>
-
-    <div class="policy-box">
-        <h3>個人開発であること</h3>
-        <p>Kiniaは個人開発のアプリです。大企業のような専任のセキュリティチームや第三者監査は現時点では受けていません。その代わり、「<strong>そもそも個人情報を持たない</strong>」設計を徹底することで、万が一のリスクを最小化しています。</p>
-        <ul>
-            <li>個人名を保存しない → 名前の漏洩がありえない</li>
-            <li>座標を暗号化 → 位置の漏洩が実質不可能</li>
-            <li>合言葉をサーバーに送らない → 鍵の漏洩がありえない</li>
-        </ul>
-        <p>「持たない」ことが、最も誠実なセキュリティだと考えています。</p>
-    </div>
-
-    <div class="policy-box">
-        <h3>免責事項</h3>
-        <p>Kiniaは、本ページに記載した技術的・運用的対策を通じてデータの安全性に最大限努めていますが、インターネットを介したデータ通信・保存において、完全な安全性を保証することはできません。</p>
-        <p>第三者による不正アクセス、利用しているインフラサービスの障害、その他予期しない事象によってデータの漏洩・消失・改ざん等が発生した場合、開発者は合理的な範囲で対応いたしますが、<strong>それによって生じた損害について、法令上許容される最大限の範囲で責任を負いかねます。</strong></p>
-        <p>本アプリのご利用は、ユーザーご自身の判断と責任のもとで行っていただきますようお願いいたします。</p>
-    </div>
-
-    <!-- ═══════════════════════════════════════
-         セクション4: 他のアプリとの比較
-         ═══════════════════════════════════════ -->
-    <h2>一般的な位置共有アプリとの違い</h2>
-
-    <table class="compare-table">
-        <thead>
-            <tr>
-                <th>項目</th>
-                <th>一般的なアプリ</th>
-                <th>Kinia</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>サーバー上の位置データ</td>
-                <td>平文（そのまま保存）</td>
-                <td class="yes">暗号化して保存</td>
-            </tr>
-            <tr>
-                <td>運営が位置を見られるか</td>
-                <td>見られる</td>
-                <td class="yes">見られない</td>
-            </tr>
-            <tr>
-                <td>個人名のサーバー保存</td>
-                <td>保存される</td>
-                <td class="yes">保存しない（端末のみ）</td>
-            </tr>
-            <tr>
-                <td>初期の共有レベル</td>
-                <td>全情報を共有</td>
-                <td class="yes">通知エリアのみ（最小限）</td>
-            </tr>
-            <tr>
-                <td>位置データの保持期間</td>
-                <td>無期限〜数ヶ月</td>
-                <td class="yes">7日間で自動削除</td>
-            </tr>
-            <tr>
-                <td>広告・データ販売</td>
-                <td>あり（一部アプリ）</td>
-                <td class="yes">なし</td>
-            </tr>
-        </tbody>
-    </table>
-    <p style="font-size: 0.85rem; color: var(--mute);">※「一般的なアプリ」は、位置共有アプリ全般の傾向を示しています。個別のアプリについて断言するものではありません。</p>
-
-    <!-- ═══════════════════════════════════════
-         関連ページ
-         ═══════════════════════════════════════ -->
-    <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line);">
-        <h2 style="border: none; margin-top: 0; padding-bottom: 0;">関連ページ</h2>
-        <ul class="related-links">
-            <li><a href="/compare.html">比較してみる</a>
-            <a href="/for-kids.html">中高生の方へ</a>
-            <a href="/privacy.html">プライバシーポリシー</a> <span>— 収集するデータの詳細と利用目的</span></li>
-            <li><a href="/delete-account.html">アカウント削除</a> <span>— データの完全削除の手順</span></li>
-            <li><a href="/safety.html">安否確認機能について</a> <span>— 非常時の安否確認と位置情報の扱い</span></li>
-            <li><a href="/faq.html">よくある質問</a></li>
-        </ul>
-    </div>
-
-    <!-- CTA -->
-    <div style="text-align: center; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line);">
-        <p style="font-size: 1rem; color: var(--ink); margin-bottom: 16px;">ご質問やご不明点があればお気軽にどうぞ</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
-            <a href="https://forms.gle/qTc8UjzWVMFpx76o8" style="display: inline-block; background: var(--accent); color: #fff; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none;">お問い合わせフォーム</a>
-            <a href="/faq.html" style="display: inline-block; background: var(--card); color: var(--sub); padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--line);">よくある質問を見る</a>
-        </div>
-    </div>
-
+<h1>家族と共有する情報と、データの取り扱い</h1>
+<p class="lead">Kiniaは位置情報を扱うアプリです。家族に見える情報、サービスに保存する情報、設定するときの注意点を説明します。</p>
+<h2>家族に見せる範囲を選ぶ</h2>
+<div class="policy-box"><h3>すべて共有</h3><p>詳しい現在地、移動履歴、活動状態などを家族と共有して使う設定です。互いの詳しい位置を見たい場合は、双方が相手に「すべて共有」を選びます。</p><h3>通知エリアのみ</h3><p>登録した場所の出入りを中心に知らせ、詳しい位置の共有を抑えるための設定です。電池残量や更新時刻、利用する機能に応じた歩数・元気度などは共有されます。</p><p>家族で共有内容を相談し、設定後は相手の画面でも意図した表示になっているか確認してください。時間で自動終了する位置共有機能は現在ありません。</p></div>
+<h2 id="current-limits">共有設定で気をつけてほしいこと</h2>
+<div class="policy-box"><p><strong>設定が保存されていない場合や保存に失敗した場合、選択した共有範囲が相手側に反映されず、意図より詳しい位置が表示される可能性があります。</strong>「通知エリアのみ」を選んだだけで、詳しい位置が必ず非表示になったとは判断しないでください。相手の画面で確認できない場合は、位置共有の利用をいったん止め、<a href="https://forms.gle/qTc8UjzWVMFpx76o8">開発者へお問い合わせください</a>。</p><p>この案内は設定処理で確認された制約についての説明です。実利用者の情報流出を確認したというお知らせではありません。</p></div>
+<h2>サーバーに保存する情報</h2>
+<div class="policy-box"><p>家族への表示や同期のため、位置に関するデータ、利用者ID、表示名、グループ情報などをサーバーで扱います。端末内だけに保存するアプリではありません。</p><p>主要な位置の保存処理では、座標をずらす「難読化」を使用しています。元に戻すための情報もサービス側で扱うため、運営者にも復元できない仕組みとは異なります。</p><p>保存・同期・認証などにはGoogle Firebase、地図表示にはGoogle Mapsを利用します。利用目的と項目は<a href="/privacy.html">プライバシーポリシー</a>をご確認ください。</p></div>
+<h2>認証と家族への参加</h2>
+<div class="policy-box"><p>Android版はGoogleアカウントでログインし、家族グループに参加して使います。通常の参加手順では、既存メンバーが発行した招待リンクや招待コードを使用します。招待コードの有効期間は72時間です。コードは招待したい相手にだけ伝えてください。</p><p>通信・認証・アクセス制御を利用してデータを保護します。Google Playの「データ セーフティ」でも、収集・共有する情報と送信中の暗号化について確認できます。</p></div>
+<h2>保存期間とアカウントの削除</h2>
+<div class="policy-box"><p>位置履歴を含むデータの保存期間や削除の対象は、保存先によって異なります。すべての情報が一律7日で消えるものではありません。</p><p>アプリの「グループ管理」からアカウント削除を開始できます。本人確認後、現在のグループに関連するデータ、認証情報、端末内データを段階的に処理します。通信障害などで保留・再試行となる場合があります。</p><p>アプリにログインできないときや、削除対象・完了状況を確認したいときは、<a href="/delete-account.html">削除手順とお問い合わせ方法</a>をご確認ください。</p></div>
+<h2>外部サービスとGoogle Playの表示</h2>
+<div class="policy-box"><p>家族への情報共有に加え、FirebaseやGoogle Mapsなどの外部サービスを利用するためのデータ処理があります。Google Playのデータセーフティには、位置情報・フィットネス情報が他の企業や組織と共有される可能性を掲載しています。</p><p>このページは第三者によるセキュリティ監査の結果を示すものではありません。個人開発のアプリとして、データの取り扱いと設定上の制約を見直し、案内を更新していきます。</p></div>
+<p>現在の対象は13歳以上です。Android 8.0以上とGoogleアカウントが必要です。</p>
+<p><a href="/setup.html">始め方を見る</a> ／ <a href="/privacy.html">プライバシーポリシー</a> ／ <a href="/">Kiniaの紹介に戻る</a></p>
+<p>最終更新日：2026年9月26日</p>
 </main>
 
 <footer class="footer">
