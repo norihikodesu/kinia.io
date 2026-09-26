@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>AtoShizu（あとしず） | 通知を静かにして、自分の時間を取り戻す</title>
-  <meta name="description" content="通知を静かにしたい時間を決めるだけ。届いた通知は端末内で一時的に預かり、あとから必要なものだけ確認できます。無料・広告なし。">
+  <title>あとしず｜仕事の通知を、あとで見る。Android内部テスター募集中</title>
+  <meta name="description" content="仕事後や土日の通知を、あとで見る預かり箱へ。Android 8以降向け・無料・広告なし。あとしずの内部テスト参加を受け付けています。">
   <style>
     :root {
       --ink: #162b33;
@@ -118,6 +118,22 @@
       h1 { font-size: 37px; }
       h2 { font-size: 29px; }
     }
+  
+    .hero-action { margin-top: 24px; }
+    .hero-action .button { color:#fff; background:var(--sea-deep); border-color:var(--sea-deep); }
+    .caption { color:var(--ink-soft); font-size:12px; line-height:1.7; margin:12px 0 0; }
+    .actual-screen { margin:0 auto; max-width:320px; }
+    .actual-screen img { display:block; width:100%; height:auto; border:6px solid var(--night); border-radius:26px; box-shadow:var(--shadow); }
+    .actual-screen figcaption { font-size:12px; line-height:1.7; color:var(--ink-soft); margin-top:12px; }
+    .important { margin-top:24px; padding:20px 22px; border:1px solid var(--line); border-radius:16px; background:#fffdfa; color:var(--ink-soft); font-size:14px; }
+    .important strong { color:var(--ink); }
+    .recruit-steps { list-style:none; text-align:left; padding:0; margin:30px auto; max-width:740px; display:grid; gap:12px; counter-reset:flow; }
+    .recruit-steps li { padding:18px 20px; border:1px solid rgba(255,255,255,.22); border-radius:14px; background:rgba(255,255,255,.05); }
+    .recruit-steps strong { display:block; color:#fff; }
+    .recruit-steps span { font-size:14px; color:#c1d4d0; }
+    .cta .small { font-size:13px; margin-top:18px; }
+    a:focus-visible { outline:3px solid var(--sun); outline-offset:4px; }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
   </style>
 </head>
 <body>
@@ -133,20 +149,15 @@
       <div class="shell hero-grid">
         <div>
           <p class="eyebrow">ATOSHIZU / あとしず</p>
-          <h1>通知を静かにして、<br>自分の時間を取り戻す。</h1>
-          <p class="hero-copy">勤務時間後の連絡に気持ちが引っ張られる夜も、眠る前まで続く通知も。<strong>今は見なくていい通知を、あとで見返せる形で預かる</strong>。AtoShizu（あとしず）は、通知と少し距離を置くためのアプリです。</p>
-          <div class="badges" aria-label="アプリの特徴"><span class="badge">無料</span><span class="badge">広告なし</span><span class="badge">アカウント不要</span><span class="badge">端末内だけで管理</span></div>
+          <h1>仕事の通知は、<br>あとで見る。</h1>
+          <p class="hero-copy">休日なのに、仕事アプリの通知が気になってしまう。<strong>今は見なくていい通知を、通知欄から預かり箱へ。</strong>あとしずは、受け取るアプリと時間を自分で選び、落ち着いたときに見返すためのアプリです。</p>
+          <div class="badges" aria-label="アプリの特徴"><span class="badge">無料</span><span class="badge">広告なし</span><span class="badge">アカウント不要</span><span class="badge">通知は端末内で管理</span></div>
+          <div class="hero-action"><a class="button" href="#join">内部テストの参加方法を見る</a><p class="caption">Android 8以降。現在は招待制の内部テストです。<br>応募後すぐにインストールできる一般公開版ではありません。</p></div>
         </div>
-        <div class="phone" aria-label="AtoShizu（あとしず）の画面イメージ">
-          <div class="phone-screen">
-            <div class="phone-status"><span>22:14</span><span>静かな時間</span></div>
-            <div class="moon" aria-hidden="true"></div>
-            <p class="screen-title">今夜は、<br>通知を預かっています。</p>
-            <p class="screen-sub">必要なときに、預かり箱から確認できます。</p>
-            <div class="screen-card"><p class="screen-label">いまの設定</p><strong>22:00 — 翌朝 07:00</strong><span>通知を端末内で一時的に預かります。</span></div>
-            <div class="screen-card"><p class="screen-label">今日の仕事通知</p><strong>今日は仕事を休む</strong><span class="screen-pill">翌朝に通常へ戻ります</span></div>
-          </div>
-        </div>
+        <figure class="actual-screen">
+          <img src="/images/atoshizu/phone-home.png" width="1080" height="2160" alt="あとしずのホーム。通知を預かる状態と、静かに過ごせた記録を示す実装画面。">
+          <figcaption>version 1.0.4の実装画面。隔離した検証端末の初期状態を撮影しています。個人の通知は含みません。</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -164,13 +175,14 @@
     <section class="content">
       <div class="shell">
         <p class="section-kicker">HOW IT WORKS</p>
-        <h2>使い方は、時間を決めるだけ。</h2>
-        <p class="section-lead">複雑なルールは必要ありません。まずは、通知を静かにしてほしい時間を決めます。届いた通知はアプリが端末内で一時的に預かり、あとからまとめて確認できます。</p>
+        <h2>受け取るものを残して、<br>あとで見るものを選ぶ。</h2>
+        <p class="section-lead">通知へのアクセスを許可し、対象アプリと時間を設定します。仕分けはアプリ単位。同じアプリ内の仕事相手と家族を分ける機能ではありません。</p>
         <div class="steps">
-          <article class="step"><p class="step-no">01 / SET</p><h3>静かにしたい時間を決める</h3><p>夜、集中したい時間、仕事が終わったあと。土日は仕事アプリだけを終日預かる設定も、初期状態でONです。自分の生活に合わせて、いつ通知と距離を置くかを設定します。</p></article>
-          <article class="step"><p class="step-no">02 / HOLD</p><h3>通知はいったん預かる</h3><p>その時間に届いた通知は、通知欄から消して、端末内の預かり箱へ。大切な情報を外部へ送ることはありません。</p></article>
-          <article class="step"><p class="step-no">03 / REVIEW</p><h3>落ち着いたときに見返す</h3><p>仕事後に預かった通知を先に、ほかの通知は必要なときに。アプリ名・時刻・内容を、保存範囲の設定に合わせて確認できます。</p></article>
+          <article class="step"><p class="step-no">01 / CHOOSE</p><h3>アプリを仕分ける</h3><p>仕事のアプリは「仕事後は預かる」へ。大切な連絡に使うアプリは「そのまま届く」に。まずは重要でない通知で試せます。</p></article>
+          <article class="step"><p class="step-no">02 / SET</p><h3>預かる時間を決める</h3><p>仕事後、指定した時間、土日。生活に合わせて設定します。「今日は仕事を休む」「今夜は仕事も受け取る」の一日だけの変更もできます。</p></article>
+          <article class="step"><p class="step-no">03 / REVIEW</p><h3>預かり箱で見返す</h3><p>対象の通知を通知欄から外し、端末内で保存します。あとで検索や絞り込みで確認。必要なくなった通知は削除できます。</p></article>
         </div>
+        <div class="important"><strong>通知の音まで、完全に止める仕組みではありません。</strong><br>届いた通知を処理するため、音・バイブレーション・一瞬の表示が残る場合があります。端末や通知元アプリの設定にも影響されます。通常動作では端末のサイレントモードやメディア音量を変更しません。</div>
       </div>
     </section>
 
@@ -179,40 +191,44 @@
         <div>
           <p class="section-kicker">INBOX</p>
           <h2>預かり箱は、<br>「あとで見る」ための場所です。</h2>
-          <p class="section-lead">預かり箱には、静かな時間に届いた通知だけが入ります。仕事時間外や土日に預かったものを先に表示し、ほかの時間帯に静かにした通知も、必要なときに分けて確認できます。</p>
+          <p class="section-lead">預かり箱には、対象として設定したアプリの通知が入ります。仕事時間外に預かったものを先に表示し、ほかの通知も確認できます。保存する内容と期間は、自分で選びます。</p>
           <div class="switches">
             <div class="switch"><span class="switch-dot">休</span><div><strong>今日は仕事を休む</strong><span>有給休暇や休日など、平日でも仕事通知をその日だけ預かります。</span></div></div>
             <div class="switch"><span class="switch-dot">今</span><div><strong>今夜は仕事も受け取る</strong><span>夜も対応したい日は、その日だけ仕事通知を通常どおり受け取れます。</span></div></div>
           </div>
         </div>
-        <div class="inbox-demo" aria-label="預かり箱の表示例">
-          <div class="inbox-head"><strong>預かり箱</strong><span>端末内・最長7日</span></div>
-          <div class="inbox-filters" aria-label="預かり箱の絞り込み"><span class="inbox-filter is-active">すべて</span><span class="inbox-filter">指定時間</span><span class="inbox-filter">仕事時間外</span><span class="inbox-filter">いつも</span></div>
-          <div class="inbox-group is-work"><p class="group-label">仕事時間外に預かった通知</p><div class="notice"><span class="mini-chip">仕事時間外</span><strong>Teams　プロジェクトの更新</strong><span>21:12　必要なときに、ここから確認</span></div><div class="notice"><span class="mini-chip">仕事時間外</span><strong>Slack　メンションがありました</strong><span>20:48　通知は今すぐ見なくて大丈夫</span></div></div>
-          <div class="inbox-group"><p class="group-label">その他の静かにした通知</p><div class="notice"><span class="mini-chip">指定時間</span><strong>ニュース　今日のまとめ</strong><span>22:05　必要なら開いて確認</span></div></div>
-        </div>
+        <figure class="actual-screen">
+          <img src="/images/atoshizu/phone-settings.png" width="1080" height="2160" loading="lazy" alt="あとしずの設定。通知を預かる時間、土日の設定、有効・停止中の状態を選ぶ実装画面。">
+          <figcaption>version 1.0.4の設定画面。画像では対象アプリが未設定です。実際に使う際は、預かるアプリを仕分けます。</figcaption>
+        </figure>
       </div>
     </section>
 
     <section class="privacy">
       <div class="shell">
         <p class="section-kicker">PRIVACY</p>
-        <h2>通知のために、あなたの情報を外へ出さない。</h2>
-        <p class="section-lead">AtoShizu（あとしず）は、通知を端末内で扱うために通知へのアクセスを使います。アカウント登録、広告、分析のための外部送信は行いません。</p>
+        <h2>通知は、端末内で扱います。</h2>
+        <p class="section-lead">あとしずは、通知の見出しや本文を読み取り、設定に応じて端末内に保存します。通知情報をサーバーへ送信する機能、クラウド同期、広告・分析SDKはありません。テスト応募フォームやメールへの入力は、アプリ内の通知データとは別に扱われます。</p>
         <div class="privacy-grid">
           <article class="privacy-card"><h3>外部送信なし</h3><p>通知の情報をサーバーへ送信しません。アプリのためのアカウントも必要ありません。</p></article>
-          <article class="privacy-card"><h3>保存は最長7日</h3><p>預かった通知は端末内に保存し、24時間・3日・7日から保管期間を選べます。保存する範囲も自分で選べます。</p></article>
-          <article class="privacy-card"><h3>いつでも変えられる</h3><p>保存範囲を弱めると不要になった内容はすぐに削除できます。通知は個別または一括で削除でき、通知アクセスも端末設定からいつでも止められます。</p></article>
+          <article class="privacy-card"><h3>保存範囲と期間を選べる</h3><p>預かり箱の保管期間は24時間・3日・7日。期限後は保存・表示などの処理時に削除します。件数や本文の長さには上限があり、長期保管用ではありません。</p></article>
+          <article class="privacy-card"><h3>いつでも変えられる</h3><p>保存範囲を少なくすると不要な見出し・本文を削除します。通知は個別または一括で削除でき、通知アクセスも端末設定からいつでも止められます。</p></article>
         </div>
       </div>
     </section>
 
-    <section class="cta">
+    <section class="cta" id="join">
       <div class="shell">
-        <p class="section-kicker">COMING SOON</p>
-        <h2>いま、少人数テストの準備中です。</h2>
-        <p>正式な配信は、実際の通知を使った確認とプライバシー表示の最終確認を終えてから始めます。</p>
-        <span class="button" aria-disabled="true">Google Play 公開準備中</span>
+        <p class="section-kicker">ANDROID INTERNAL TEST</p>
+        <h2>内部テスターを募集しています。</h2>
+        <p>仕事と休みの通知を分けたい方へ。Android 8以降の端末で、使い方や表示を一緒に確かめる段階です。無料・広告なし。一般公開前のため、不具合が残る可能性があります。</p>
+        <ol class="recruit-steps">
+          <li><strong>1. フォームから参加を希望する</strong><span>対応するAndroid端末をご用意ください。アプリ独自のアカウントは不要ですが、Google Playのテスト参加にはGoogleアカウントを使用します。</span></li>
+          <li><strong>2. 招待の案内をメールで受け取る</strong><span>参加対象を確認後、Google Playの参加リンクを案内します。応募だけではインストールは始まりません。</span></li>
+          <li><strong>3. まずは重要でない通知で試す</strong><span>預かるアプリを一つ選び、通知欄と預かり箱を確認します。困った点は通知本文を送らずにお知らせください。途中で参加をやめられます。</span></li>
+        </ol>
+        <a class="button" href="https://forms.gle/NBYgc13G2eKgnScU9" target="_blank" rel="noopener noreferrer">内部テストに応募する</a>
+        <p class="small">Googleフォームが開きます。応募・招待の連絡先は、テスト案内のために使用します。<br><a href="https://note.com/kinia/n/nd8d91bbb07e9">開発者の募集記事を読む</a> · <a href="/notification-yasumi-privacy.html">プライバシーポリシー</a></p>
       </div>
     </section>
   </main>

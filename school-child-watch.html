@@ -61,8 +61,8 @@
         a:hover { text-decoration: underline; }
         img { max-width: 100%; height: auto; }
         h1, h2, h3, .btn-primary, .hero-pill, .trust-row span, .notice-main, .shot-caption {
-            word-break: keep-all;
-            overflow-wrap: normal;
+            word-break: normal;
+            overflow-wrap: anywhere;
         }
         .keep { display: inline-block; white-space: nowrap; }
         .hero-title-line {
@@ -232,6 +232,7 @@
             margin-top: 42px;
         }
         .empathy-card {
+            min-width: 0;
             background: var(--bg);
             border: 1px solid var(--line);
             border-radius: 22px;
@@ -288,12 +289,14 @@
             align-items: center;
         }
         .screenshot-stack {
+            min-width: 0;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 18px;
             align-items: start;
         }
         .shot-card {
+            min-width: 0;
             background: var(--card);
             border: 1px solid var(--line);
             border-radius: 24px;
@@ -614,9 +617,11 @@
             .footer-inner { flex-direction: column; align-items: flex-start; }
             .footer-links { flex-direction: column; gap: 12px; }
         }
-    </style>
+    .guide-film{margin:0}.guide-film video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;border-radius:22px;background:#f6f2ed;box-shadow:0 18px 55px #222c4b12}.guide-film figcaption{margin-top:14px;color:#59647b;font-size:13px;line-height:1.7}.film-transcript{margin-top:20px;max-width:850px}.film-transcript summary{cursor:pointer;font-weight:700}.film-transcript p{font-size:14px;color:#59647b;line-height:1.9}.film-section{background:#f6f3ed}.film-section .section-header{max-width:850px}
+</style>
     <link rel="canonical" href="https://kinia.io/school-child-watch.html">
-<style id="r7-readable-type">:root{--sub:#525b6e;--text-sub:#525b6e;--text-dim:#657084;--font-body:"Yu Gothic",Meiryo,system-ui,sans-serif;--font-head:"Yu Gothic",Meiryo,system-ui,sans-serif}body{font-family:"Yu Gothic",Meiryo,system-ui,sans-serif}h1,h2,h3{font-family:inherit;font-weight:700}.body-text,.lead{color:#525b6e}</style>
+<style id="r7-readable-type">:root{--sub:#525b6e;--text-sub:#525b6e;--text-dim:#657084;--font-body:"Yu Gothic",Meiryo,system-ui,sans-serif;--font-head:"Yu Gothic",Meiryo,system-ui,sans-serif}body{font-family:"Yu Gothic",Meiryo,system-ui,sans-serif}h1,h2,h3{font-family:inherit;font-weight:700}.body-text,.lead{color:#525b6e}.guide-film{margin:0}.guide-film video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;border-radius:22px;background:#f6f2ed;box-shadow:0 18px 55px #222c4b12}.guide-film figcaption{margin-top:14px;color:#59647b;font-size:13px;line-height:1.7}.film-transcript{margin-top:20px;max-width:850px}.film-transcript summary{cursor:pointer;font-weight:700}.film-transcript p{font-size:14px;color:#59647b;line-height:1.9}.film-section{background:#f6f3ed}.film-section .section-header{max-width:850px}
+</style>
 </head>
 <body>
 
@@ -699,7 +704,7 @@
             出入りがあったときに通知で知らせる設定ができます。
             通知の到達は端末の権限や通信状態にも左右されるため、家族で実際の受信を確かめてください。
         </p>
-        <div class="timeline">
+        <p class="body-text">以下は設定した通知を受け取る場面の例です。時刻は架空のもので、受信時刻や到着を保証するものではありません。</p><div class="timeline">
             <div class="timeline-row">
                 <div class="timeline-time">08:12</div>
                 <div class="timeline-main">
@@ -742,7 +747,7 @@
             <div class="section-label">通知と共有の設定（13歳以上）</div>
             <h2 class="section-heading">監視ではなく、<br><span class="accent-text">ちょうどいい見守りに。</span></h2>
             <p class="body-text">
-                知りたいのは、細かい移動ルートではなく「いつもの場所に着いたか」「そこを出たか」。
+                ふだんは「いつもの場所に着いたか」「そこを出たか」を通知で。必要なときは、共有した家族の位置や履歴も確認できます。
                 監視したいわけではないけれど、必要な時には安心したい。
                 Kiniaでは共有範囲を家族で選べます。設定後は、相手側の画面でも意図した表示か確認してください。
             </p>
@@ -785,7 +790,7 @@
         <div class="safety-grid">
             <div class="safety-card">
                 <h3>見守りに必要な機能は無料</h3>
-                <p>学校・自宅・習い事などの通知エリア見守りは無料で使えます。毎日の確認で不自由なく使える設計です。</p>
+                <p>学校・自宅・習い事などの通知エリア見守りは無料で使えます。家族の端末で、通知が届くかを確認してから使い始めてください。</p>
             </div>
             <div class="safety-card">
                 <h3>家族で共有範囲を選ぶ</h3>
@@ -802,27 +807,14 @@
     </div>
 </section>
 
-<section class="voice">
-    <div class="container-mid">
-        <div class="section-label">利用イメージ</div>
-        <h2 class="section-heading">通知がひとつ届くだけで、<br><span class="accent-text">日常のそわそわが減る。</span></h2>
-        <div class="voice-grid">
-            <div class="voice-card">
-                <p>「学校に着いた通知を見て、安心して仕事に集中できる。毎朝『着いたかな？』と送らなくてよくなりました。」</p>
-            </div>
-            <div class="voice-card">
-                <p>「習い事を出た時間が分かるので、帰ってくる時間の見当がつきます。落ち着いて夕飯の支度ができるようになりました。」</p>
-            </div>
-        </div>
-    </div>
-</section>
+<section class="video-section"><div class="container-mid"><div class="section-label">動画で見る</div><h2 class="section-heading">家族の毎日の、<br>使い方を知る。</h2><figure class="guide-film"><video controls playsinline preload="none" width="1280" height="720" poster="media/kinia-family-guide-poster.jpg" aria-label="Kiniaの使う場面を紹介する字幕動画"><source src="media/kinia-family-guide.mp4" type="video/mp4">動画を再生できない場合は、下の説明をご覧ください。</video><figcaption>字幕付き・音声なし。画面内の名前や場所は説明用の架空データです。</figcaption></figure><details class="film-transcript"><summary>動画の内容を文章で読む</summary><p>学校・部活・塾・帰宅・休日のお出かけ。登録した場所への到着・出発を通知で知り、気になるときは家族の位置や履歴を確認できます。共有する範囲は家族で決めて、設定後の表示も確かめてください。</p><p>詳しい位置を互いに見る場合は、双方が相手に「すべて共有」を選びます。Android 8.0以上、Googleアカウント必須、現在の対象は13歳以上。位置更新や通知は通信・権限・省電力設定などに左右されます。</p></details></div></section>
 
 <section class="cta-section">
     <div class="container-narrow">
         <div class="section-label" style="color:rgba(255,255,255,0.58);">無料でできる</div>
         <h2 class="section-heading">通知で届ける、<br>安心のかたち。</h2>
         <p class="body-text">
-            アプリを開き続けなくても、欲しい通知だけが届く。<br>
+            登録した場所の出入りを、通知で知るきっかけに。<br>
             Kiniaは、そっと寄り添う見守りの基本機能を無料で使えます。
         </p>
         <a href="https://play.google.com/store/apps/details?id=io.kinia" class="btn-primary">
