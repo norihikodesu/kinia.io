@@ -229,6 +229,19 @@
 .video-notes .video-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 .guide-film figcaption{margin-top:10px;font-size:12px;line-height:1.75}
 </style>
+<style id="kinia-introduction-video-20261002">
+.hero-video-link{margin:16px 0 0;font-size:15px}
+.introduction-film-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,340px);gap:64px;align-items:center}
+.introduction-film-copy h2{font-size:clamp(28px,3.3vw,42px);line-height:1.5;margin:14px 0 22px}
+.introduction-film-copy>p{font-size:17px;line-height:1.9}
+.introduction-film-length{margin-top:18px;color:var(--muted);font-size:14px!important}
+.introduction-film video{width:100%;height:auto;aspect-ratio:9/16;background:#fbf7f0}
+.introduction-film-copy details{margin-top:18px;background:transparent;border:0;padding:0;box-shadow:none}
+.introduction-film-copy summary{cursor:pointer;font-size:14px;padding:10px 0;color:var(--lilac-strong)}
+.introduction-film-copy .video-text{font-size:14px;line-height:1.8;margin-top:12px}
+.introduction-film-copy .video-text p{margin:0 0 12px}
+@media(max-width:760px){.introduction-film-layout{grid-template-columns:1fr;gap:24px}.introduction-film{width:min(100%,340px);margin:0 auto}.introduction-film-copy>p{font-size:16px}}
+</style>
 </head>
 <body class="kinia-home">
   <script src="/nav.js?v=20260926r12"></script>
@@ -250,6 +263,7 @@
             <a class="button button-secondary" href="https://kinia.io/setup.html">始め方を見る <span aria-hidden="true">→</span></a>
           </div>
           
+          <p class="hero-video-link"><a href="#video">55秒の紹介動画を見る ↓</a></p>
           <p class="hero-meta">対象は13歳以上。Android 8.0以上とGoogleアカウントが必要です。iOS版は準備中。</p>
           <div class="trust-row" aria-label="利用前のポイント">
             <span>到着・出発を通知</span>
@@ -262,6 +276,18 @@
           <div class="phone hero-phone"><img src="native-proof/final-member-mixed.png" width="1080" height="2400" alt="架空の家族が通知エリアの状態を確認しているKiniaのメンバー画面"></div>
           <span class="hero-figure-label">架空の家族によるメンバー画面の例</span>
         </div>
+      </div>
+    </section>
+    <section class="section film-section" id="video" aria-labelledby="video-title">
+      <div class="shell introduction-film-layout">
+        <div class="introduction-film-copy">
+          <p class="section-kicker">KINIA（キニア）のご紹介</p>
+          <h2 id="video-title">気にかける毎日に、<br>小さな安心を。</h2>
+          <p>学校への到着は通知で。<br>必要なときは、いまの場所を確認。<br>家族で共有する情報も、相手ごとに選べます。</p>
+          <p class="introduction-film-length">55秒・音声と字幕でご紹介</p>
+          <details class="video-transcript"><summary>動画の内容を読む</summary><div class="video-text"><p>学校や自宅を登録しておけば、出入りを通知でお知らせ。アプリを開かなくても、通知で到着がわかります。必要なときは、現在地を確認できます。</p><p>お子さんの成長や状況に合わせて、詳しい場所まで共有するか、詳しい場所は見せず通知エリアの出入りを知らせるかを、相手ごとに設定できます。基本的な機能はすべて無料で使えます。</p><p>通知や位置更新は通信・権限・端末の設定などで遅れる場合があります。<a href="/setup.html">はじめかたを見る</a></p></div></details>
+        </div>
+        <figure class="guide-film introduction-film"><video controls playsinline preload="none" width="720" height="1280" poster="media/kinia-introduction-20261002-poster.jpg" aria-label="KINIA（キニア）の通知と位置共有、共有モードを紹介する55秒動画"><source src="media/kinia-introduction-20261002.mp4" type="video/mp4">動画を再生できない場合は、動画の内容をお読みください。</video><figcaption>人物・画面の名前・位置は架空の例です。</figcaption></figure>
       </div>
     </section>
     <div class="intro-strip">
@@ -282,7 +308,6 @@
         <p class="scene-note">通知や位置更新は、通信・権限・端末の設定などで遅れる場合があります。場所を見るときは、表示された更新時刻も確認してください。</p>
       </div>
     </section>
-    <section class="section film-section" id="video" aria-labelledby="video-title"><div class="shell"><div class="section-header"><p class="section-kicker">KINIA IN EVERYDAY LIFE</p><h2 id="video-title">使う場面を、動画で。</h2><p>帰宅の確認や、迎えの待ち合わせに。家族での使い方を紹介します。</p></div><figure class="guide-film"><video controls playsinline preload="none" width="1280" height="720" poster="media/kinia-family-guide-r11-poster.jpg" aria-label="Kiniaの使う場面を紹介する字幕動画"><source src="media/kinia-family-guide-r11.mp4" type="video/mp4">動画を再生できない場合は、下の説明をご覧ください。</video><figcaption>音声なしでも字幕でご覧いただけます。画面の名前・位置は架空の例です。</figcaption></figure><div class="video-notes"><details class="video-transcript"><summary>動画の説明を読む</summary><div class="video-text"><p>学校や塾への到着、家からの出発を通知で確認。毎回「着いた？」と聞いたり、返事を待ったりする手間を減らせます。迎えや待ち合わせでは、親も子どもも相手のいまの場所を確認できます。</p><p>詳しい位置や履歴を見るには、双方が相手に「すべて共有」を選びます。通知や位置更新は、通信・権限・端末の設定によって遅れる場合があります。<a href="/setup.html">はじめかたを見る</a></p></div></details><p class="video-credit">音楽：<a href="https://www.incompetech.com/music/royalty-free/index.html?isrc=USUAN1200077">Kevin MacLeod「Easy Lemon (60 second)」</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>（抜粋・音量調整・フェード）</p></div></div></section>
 <section class="section steps" id="how" aria-labelledby="how-title">
       <div class="shell">
         <div class="section-header"><p class="section-kicker">GET STARTED</p><h2 id="how-title"><span style="display:inline-block">家族でつないで、</span><span style="display:inline-block">使い始める。</span></h2><p>使う人それぞれのAndroid端末とGoogleアカウントが必要です。</p></div>
