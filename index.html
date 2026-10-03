@@ -265,6 +265,14 @@
 .introduction-film .youtube-player{max-width:none}
 @media(max-width:540px){.short-card .youtube-player{max-width:270px}}
 </style>
+<style id="parent-focus-20261003">
+.onboarding-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:760px){.onboarding-grid{grid-template-columns:1fr}}
+.hero-condition{max-width:620px;margin:-12px 0 18px;color:#59647b;font-size:13px;line-height:1.7}
+.parent-benefits{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.parent-benefits .pickup-card{padding:25px}.parent-benefits h3{font-size:23px;max-width:none}.parent-benefits p{font-size:15px}.parent-benefits a{display:inline-block;margin-top:18px;font-size:14px;color:#514ba8;text-underline-offset:4px}.story{padding-block:30px}.short-card{scroll-margin-top:25px}
+@media(max-width:760px){.parent-benefits{grid-template-columns:1fr;gap:12px}.parent-benefits .pickup-card{padding:22px}.section-header{margin-bottom:24px}.section{padding-block:45px}.story{padding-block:22px}}
+@media(max-width:540px){.short-card{display:grid;grid-template-columns:96px minmax(0,1fr);grid-template-rows:auto auto auto auto;gap:8px 15px;padding:16px;align-items:start}.short-card .youtube-player{grid-column:1;grid-row:1/4;width:96px;max-width:96px;margin:0}.short-card .youtube-play{width:40px;height:40px;font-size:16px}.short-card .youtube-caption{font-size:11px;padding:18px 4px 8px}.short-card>h3{grid-column:2;grid-row:1;margin:0;font-size:17px;line-height:1.5}.short-card>p{grid-column:2;grid-row:2;font-size:14px;line-height:1.65}.short-card>.youtube-fallback{grid-column:2;grid-row:3;text-align:left;margin:0;font-size:12px}.short-card>.short-detail{grid-column:1/-1;grid-row:4;margin:6px 0 0}.short-detail>summary{font-size:14px;min-height:46px;padding:10px 12px}.short-card.is-playing .youtube-player{grid-column:1/-1;grid-row:1;width:min(100%,270px);max-width:270px;margin-inline:auto}.short-card.is-playing>h3{grid-column:1/-1;grid-row:2}.short-card.is-playing>p{grid-column:1/-1;grid-row:3}.short-card.is-playing>.youtube-fallback{grid-column:1/-1;grid-row:4}.short-card.is-playing>.short-detail{grid-row:5}.short-actions{flex-direction:column}.short-actions .refined-cta-secondary{justify-content:center}}
+</style>
 </head>
 <body class="kinia-home">
   <script src="/nav.js?v=20260926r12"></script>
@@ -273,13 +281,14 @@
       <div class="shell hero-grid">
         <div>
           <p class="eyebrow">スマホを持つ13歳以上の子どもと親へ</p>
-          <h1 id="hero-title">「いまどこ？」を、<br><span class="accent">聞かなくても。</span></h1>
+          <h1 id="hero-title">「帰ったかな？」を、<br><span class="accent">通知で確認。</span></h1>
           <figure class="hero-mobile-preview">
             <img src="native-proof/final-member-mixed.png" width="1080" height="2400" alt="架空の4人を実アプリに表示したメンバー一覧">
             <figcaption>家族の状態と更新時刻を、ひとつの画面で。<br><small>架空の家族による画面例</small></figcaption>
           </figure>
-          <p class="hero-lead">仕事中の帰宅確認も、部活帰りの迎えも。<br>親の確認と、子どもの連絡をもっと手軽に。</p>
-          <p class="hero-detail">自宅や学校への到着・出発は通知で。帰りがいつもと違う日は、地図でいまの場所を確認。家族の動きがわかると、食事や迎えのタイミングも考えやすくなります。</p>
+          <p class="hero-lead">仕事の合間に、子どもの帰宅が気になるとき。<br>アプリを開かなくても、到着を通知でお知らせ。</p>
+          <p class="hero-detail">家族の位置共有アプリ、KINIA（キニア）。自宅や学校などを事前に登録して使います。双方が「すべて共有」を選ぶと、必要なときに地図で現在地も確認できます。</p>
+          <p class="hero-condition">通信・権限・端末設定により、通知や位置更新が遅れたり、通知が届かなかったりする場合があります。</p>
           <div class="refined-cta">
             <p class="refined-cta-price"><strong>基本機能は無料で使えます。</strong><span>アプリ内広告なし</span></p>
             <div class="refined-cta-actions"><a class="refined-cta-primary" href="https://play.google.com/store/apps/details?id=io.kinia">Google Playで入手する <span aria-hidden="true">↗</span></a><a class="refined-cta-secondary" href="https://kinia.io/setup.html">始め方を見る <span aria-hidden="true">→</span></a></div>
@@ -299,6 +308,18 @@
         </div>
       </div>
     </section>
+
+    <section class="section moments" id="moments" aria-labelledby="moments-title">
+      <div class="shell">
+        <div class="section-header"><p class="section-kicker">毎日のこんな場面に</p><h2 id="moments-title">確認の手間が減ると、<br>次の用事に移れます。</h2></div>
+        <div class="pickup-grid parent-benefits">
+          <article class="pickup-card"><span class="scene-label">仕事の合間に</span><h3>学校から帰ったかな？</h3><p>登録した自宅への到着を通知で確認。連絡を待ちながら、何度もアプリを開く手間を減らせます。</p><a href="#story-return">帰宅確認の場面を見る →</a></article>
+          <article class="pickup-card waiting"><span class="scene-label">夕飯の支度の前に</span><h3>そろそろ、作り始めようかな。</h3><p>登録した学校を出た通知が、支度を始める目安に。到着時刻を予測する機能ではありません。</p><a href="#story-dinner">夕飯の支度の場面を見る →</a></article>
+          <article class="pickup-card"><span class="scene-label">待ち合わせで見当たらないとき</span><h3>別の入口にいるのかな？</h3><p>共有した現在地を手がかりに、電話で場所を確認。どちらが移動するか決めて合流できます。詳しい場所は双方が「すべて共有」を選んで使います。</p><a href="#story-meeting">待ち合わせの場面を見る →</a></article>
+        </div>
+      </div>
+    </section>
+
     <section class="section film-section" id="video" aria-labelledby="video-title">
       <div class="shell introduction-film-layout">
         <div class="introduction-film-copy">
@@ -311,41 +332,6 @@
         <figure class="guide-film introduction-film"><div class="youtube-player" data-video-id="7LhKVLE57J0" data-title="KINIA（キニア）の通知と位置共有、共有モードを紹介する55秒動画"><button class="youtube-start" type="button" aria-label="KINIA（キニア）の通知と位置共有、共有モードを紹介する55秒動画を再生（YouTube）"><img src="media/kinia-introduction-20261002-poster.jpg" width="540" height="960" loading="lazy" alt=""><span class="youtube-play" aria-hidden="true">▶</span><span class="youtube-caption">動画を再生</span></button></div><a class="youtube-fallback" href="https://www.youtube.com/watch?v=7LhKVLE57J0" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a><figcaption>人物・画面の名前・位置は架空の例です。</figcaption></figure>
       </div>
     </section>
-    <div class="intro-strip">
-      <div class="shell intro-inner">
-        <strong>毎日の連絡を、<br>少し、少なく。</strong>
-        <p>学校に着いた、家に帰った、今日は外出している。家族の動きがわかると、いちいち聞かずに済むことがあります。Kiniaは、そんな毎日のためのアプリです。</p>
-      </div>
-    </div>
-
-    <section class="section moments" id="moments" aria-labelledby="moments-title">
-      <div class="shell">
-        <div class="section-header"><p class="section-kicker">EVERYDAY WITH KINIA</p><h2 id="moments-title">連絡を待つ時間を、<br>毎日の用事に使える。</h2><p>学校・部活・塾・休日のお出かけ。親にも子どもにも、こんな使い方ができます。</p></div>
-        <div class="daily-use-grid r12-benefits">
-          <article class="pickup-card"><span class="scene-label">親がまだ仕事中の日</span><h3>子どもの帰宅を、<br>通知で確認。</h3><p>自宅への到着を通知で知れるので、地図を何度も開かずに済みます。親から「着いた？」と聞く回数も、子どもが到着を知らせる手間も減らせます。</p><span class="benefit-result">親の確認と、子どもの連絡を少なく。</span></article>
-          <article class="pickup-card waiting"><span class="scene-label">部活や塾で、帰りが違う日</span><h3>帰りの動きが、<br>食事の支度の目安に。</h3><p>塾を出た通知や、家族のいまの場所を確認。「まだ外出中」「近くまで帰ってきた」がわかると、夕食を温めるタイミングも考えやすくなります。</p><span class="benefit-result">いつ帰るかを、何度も聞かずに。</span></article>
-          <article class="pickup-card"><span class="scene-label">親子の待ち合わせ・迎え</span><h3>待つ側も、迎える側も、<br>いまの場所がわかる。</h3><p>親は子どもの移動を見て迎えに出る目安に。子どもは迎えの車がどのあたりかを確認できます。運転中の親に、細かな返信を頼まずに済みます。</p><span class="benefit-result">「あとどのくらい？」のやり取りを少なく。</span></article>
-        </div>
-        <p class="scene-note">通知や位置更新は、通信・権限・端末の設定などで遅れる場合があります。場所を見るときは、表示された更新時刻も確認してください。</p>
-      </div>
-    </section>
-<section class="section short-stories" id="short-videos" aria-labelledby="short-videos-title"><div class="shell"><div class="section-header"><p class="section-kicker">暮らしの中のKINIA</p><h2 id="short-videos-title">こんなとき、<br>家族のつながりが役に立つ。</h2><p>小鳥の親子が紹介する、通知と位置共有の使い方。気になる場面からご覧ください。</p></div><div class="short-grid"><article class="short-card"><div class="youtube-player" data-video-id="-ZLQ7CMuQoM" data-title="仕事中も、帰宅がわかる"><button class="youtube-start" type="button" aria-label="仕事中も、帰宅がわかるを再生（YouTube）"><img src="/media/shorts/kinia-01-poster-v2.jpg" width="540" height="960" loading="lazy" alt=""><span class="youtube-play" aria-hidden="true">▶</span><span class="youtube-caption">動画を再生</span></button></div><a class="youtube-fallback" href="https://www.youtube.com/watch?v=-ZLQ7CMuQoM" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a><h3>仕事中も、帰宅がわかる</h3><p>仕事の合間に、自宅への到着通知で帰宅を確認。</p><details class="short-detail"><summary>どんな場面で役立つ？</summary><div><h4>仕事中の帰宅確認</h4><dl><dt>こんな場面</dt><dd>仕事の合間に「学校から帰ったかな」と気になる。すぐに連絡したり、アプリを開いて確認する時間は取りにくい。</dd><dt>KINIAでわかること</dt><dd>事前に登録した自宅のエリアに入ったことが、通知で届きます。</dd><dt>その後、どうできる？</dt><dd>帰宅したことを知って、仕事に戻れます。帰宅後の様子は、必要に応じていつもの連絡で確認できます。</dd></dl></div></details></article><article class="short-card"><div class="youtube-player" data-video-id="oi7-GT16oas" data-title="入口に着いたけど、どこにいる？"><button class="youtube-start" type="button" aria-label="入口に着いたけど、どこにいる？を再生（YouTube）"><img src="/media/shorts/kinia-03-poster-v2.jpg" width="540" height="960" loading="lazy" alt=""><span class="youtube-play" aria-hidden="true">▶</span><span class="youtube-caption">動画を再生</span></button></div><a class="youtube-fallback" href="https://www.youtube.com/watch?v=oi7-GT16oas" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a><h3>入口に着いたけど、どこにいる？</h3><p>待ち合わせですれ違ったら、現在地を手がかりに電話で確認。</p><details class="short-detail"><summary>どんな場面で役立つ？</summary><div><h4>待ち合わせで入口が違ったとき</h4><dl><dt>こんな場面</dt><dd>約束した公園の入口に着いたのに、子どもが見当たらない。大きな公園には入口がいくつもある。</dd><dt>KINIAでわかること</dt><dd>現在地を手がかりに、反対側の入口にいるのではと見当をつけられます。</dd><dt>その後、どうできる？</dt><dd>電話で入口を確かめ、どちらが移動するか決めて合流します。位置情報には誤差や遅れがあるため、表示だけで断定しません。</dd></dl></div></details></article><article class="short-card"><div class="youtube-player" data-video-id="e4tFzu3g9dQ" data-title="夕飯の支度"><button class="youtube-start" type="button" aria-label="夕飯の支度を再生（YouTube）"><img src="/media/shorts/kinia-02-poster-v2.jpg" width="540" height="960" loading="lazy" alt=""><span class="youtube-play" aria-hidden="true">▶</span><span class="youtube-caption">動画を再生</span></button></div><a class="youtube-fallback" href="https://www.youtube.com/watch?v=e4tFzu3g9dQ" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a><h3>夕飯の支度</h3><p>学校を出た通知を、夕飯の支度を始める目安に。</p><details class="short-detail"><summary>どんな場面で役立つ？</summary><div><h4>夕飯の支度を始める目安が欲しいとき</h4><dl><dt>こんな場面</dt><dd>学校から帰る時間が日によって違い、夕飯の支度をいつ始めるか迷う。</dd><dt>KINIAでわかること</dt><dd>事前に登録した学校のエリアを出たことが、通知で届きます。</dd><dt>その後、どうできる？</dt><dd>「そろそろ支度を始めよう」と段取りの目安にできます。寄り道や通知の遅れがあるため、到着時刻の予測ではありません。</dd></dl></div></details></article><article class="short-card"><div class="youtube-player" data-video-id="C308CsIkRFs" data-title="登録した駅への到着が、通知でわかる"><button class="youtube-start" type="button" aria-label="登録した駅への到着が、通知でわかるを再生（YouTube）"><img src="/media/shorts/kinia-04-poster-v2.jpg" width="540" height="960" loading="lazy" alt=""><span class="youtube-play" aria-hidden="true">▶</span><span class="youtube-caption">動画を再生</span></button></div><a class="youtube-fallback" href="https://www.youtube.com/watch?v=C308CsIkRFs" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a><h3>登録した駅への到着が、通知でわかる</h3><p>事前に登録した駅に着いたことを、通知で確認。</p><details class="short-detail"><summary>どんな場面で役立つ？</summary><div><h4>電車で出かけた子どもの途中経過が気になるとき</h4><dl><dt>こんな場面</dt><dd>子どもが電車で祖母の家へ向かう日。家にいる親は、目的地の駅まで着いたか気になる。</dd><dt>KINIAでわかること</dt><dd>事前に登録した目的地の駅のエリアに入ったことが、通知で届きます。</dd><dt>その後、どうできる？</dt><dd>駅まで着いたことを知って、家の用事に戻れます。祖母の家への到着までわかる通知ではありません。駅のエリアは出かける前に登録しておきます。</dd></dl></div></details></article><article class="short-card"><div class="youtube-player" data-video-id="hcA1TVjVgx8" data-title="高校生になったら、共有も見直そう"><button class="youtube-start" type="button" aria-label="高校生になったら、共有も見直そうを再生（YouTube）"><img src="/media/shorts/kinia-101-poster-v2.jpg" width="540" height="960" loading="lazy" alt=""><span class="youtube-play" aria-hidden="true">▶</span><span class="youtube-caption">動画を再生</span></button></div><a class="youtube-fallback" href="https://www.youtube.com/watch?v=hcA1TVjVgx8" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a><h3>高校生になったら、共有も見直そう</h3><p>進学をきっかけに、親子で共有のしかたを相談。</p><details class="short-detail"><summary>どんな場面で役立つ？</summary><div><h4>進学などを機に、共有内容を見直したいとき</h4><dl><dt>こんな場面</dt><dd>高校生になった子どもの自立を尊重したい。毎日の詳しい場所を共有し続けるか、親子で相談したい。</dd><dt>KINIAでわかること</dt><dd>詳しい場所まで共有するか、通知エリアのみの共有にするかを、相手ごとに設定できます。双方の設定のうち、控えめな共有が適用されます。</dd><dt>その後、どうできる？</dt><dd>学校や自宅への出入りを知りながら、詳しい場所の共有を控える選択ができます。動画では母が職場で帰宅を知り、家で「学校どうだった？」と話します。通知エリアのみでも電池残量や更新時刻などは共有されます。</dd></dl></div></details></article><article class="short-card"><div class="youtube-player" data-video-id="tMMPLYDrbj0" data-title="今日は、そっとおかえり"><button class="youtube-start" type="button" aria-label="今日は、そっとおかえりを再生（YouTube）"><img src="/media/shorts/kinia-040-poster-v2.jpg" width="540" height="960" loading="lazy" alt=""><span class="youtube-play" aria-hidden="true">▶</span><span class="youtube-caption">動画を再生</span></button></div><a class="youtube-fallback" href="https://www.youtube.com/watch?v=tMMPLYDrbj0" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a><h3>今日は、そっとおかえり</h3><p>いつもより早い帰りに気づいて、「静かに入ってね」。</p><details class="short-detail"><summary>どんな場面で役立つ？</summary><div><h4>寝かしつけた日に、帰ってくる家族へひと言伝えたいとき</h4><dl><dt>こんな場面</dt><dd>子どもをいつもより早く寝かしつけた夜。夫もいつもより早く帰宅しそうだが、まだ連絡していない。</dd><dt>KINIAでわかること</dt><dd>事前に登録した最寄り駅のエリアに入ったことが、妻に通知で届きます。</dd><dt>その後、どうできる？</dt><dd>いつものメッセージアプリで「静かに入ってね」と伝えられます。この場面でKINIAを使うのは夫婦2人です。</dd></dl></div></details></article></div><p class="short-note">通知や位置情報は、通信・権限・端末の設定によって遅れることがあります。動画の人物・名前・位置は架空の例です。</p><div class="short-actions"><a class="button button-primary" href="https://play.google.com/store/apps/details?id=io.kinia">Google Playで無料で入手 ↗</a><a class="button button-secondary" href="/setup.html">はじめかたを見る</a></div><p class="short-note">基本機能は無料。13歳以上・Android 8.0以上・Googleアカウントが必要です。iOS版は準備中です。</p></div></section>
-<section class="section steps" id="how" aria-labelledby="how-title">
-      <div class="shell">
-        <div class="section-header"><p class="section-kicker">GET STARTED</p><h2 id="how-title"><span style="display:inline-block">家族でつないで、</span><span style="display:inline-block">使い始める。</span></h2><p>使う人それぞれのAndroid端末とGoogleアカウントが必要です。</p></div>
-        <div class="onboarding-grid">
-          <article><span class="step-num">1</span><h3>Googleでログイン</h3><p>各自のAndroid端末にKiniaを入れ、自分のGoogleアカウントでログインします。</p></article>
-          <article><span class="step-num">2</span><h3>家族を招待</h3><p>1人がグループを作成。ほかの家族は招待リンクかコードで参加します。</p></article>
-          <article><span class="step-num">3</span><h3>共有と権限を確認</h3><p>家族それぞれが共有内容を確認。詳しい場所を見る場合は「すべて共有」を選び、位置情報・通知の権限を設定します。</p></article>
-        </div>
-        <div class="real-screen-grid">
-          <figure><div class="real-phone"><img src="native-proof/final-member-mixed.png" width="1080" height="2400" loading="lazy" alt="架空の親子4人の状態と更新時刻が並ぶメンバー画面"></div><figcaption><strong>家族の状態をまとめて確認</strong><br>メンバー一覧の画面例。家族データは架空です。</figcaption></figure>
-          <figure><div class="real-phone"><img src="native-proof/final-current-map-r8.png" width="1080" height="2400" loading="lazy" alt="架空の家族の位置を実地図に表示した現在地画面"></div><figcaption><strong>必要なときは、地図で確認</strong><br>現在地の画面例。名前と位置は架空です。</figcaption></figure>
-          <figure><div class="real-phone"><img src="native-proof/final-notification-settings.png" width="1080" height="2400" loading="lazy" alt="エリア通知や更新間隔を確認できる通知設定画面"></div><figcaption><strong>通知の使い方を設定</strong><br>通知設定の画面例。通知の到着を示す画像ではありません。</figcaption></figure>
-        </div>
-        <p class="step-caption">詳しい位置を互いに確認したい場合は、双方が相手に「すべて共有」を選び、家族の画面でも共有状態を確認してください。通知や位置更新は、権限・通信・省電力設定などに影響されます。<a href="https://kinia.io/setup.html">詳しい設定手順を見る</a></p>
-      </div>
-    </section>
 
     <section class="section choice" id="choice" aria-labelledby="choice-title">
       <div class="shell">
@@ -356,13 +342,32 @@
         </div>
         <div class="choice-grid">
           <article class="choice-card primary"><span class="choice-tag">帰り道や外出先、待ち合わせに</span><h3>すべて共有</h3><p>現在地の地図や移動履歴を家族と共有して使います。</p><ul class="choice-list"><li>詳しい現在地と更新時刻を確認</li><li>移動履歴を振り返る</li><li>あとから「通知エリアのみ」に変更可能</li></ul></article>
-          <article class="choice-card"><span class="choice-tag">詳しい位置までは見せたくないときに</span><h3>通知エリアのみ</h3><p>登録した場所の出入りを中心に知らせます。</p><ul class="choice-list"><li>詳しい位置の共有を抑えるための設定です</li><li>電池残量・更新時刻などのメンバー情報は共有します</li><li>利用する機能に応じて歩数・元気度なども共有します</li></ul></article>
+          <article class="choice-card"><span class="choice-tag">詳しい位置までは見せたくないときに</span><h3>通知エリアのみ</h3><p>登録した場所の出入りを中心に知らせます。</p><ul class="choice-list"><li>詳しい位置の共有を抑えるための設定です</li><li>電池残量・更新時刻などのメンバー情報は共有します</li><li>利用する機能に応じて歩数なども共有します</li></ul></article>
         </div>
-        <p class="choice-note">共有範囲は自動で切り替わりません。家族で相談し、それぞれが納得した設定で使ってください。詳しい位置共有を一時的に自動解除する機能は、現在ありません。</p>
+        <p class="choice-note">共有する相手ごとに設定できます。双方の設定のうち、控えめな共有が適用されます。家族で相談し、それぞれが納得した設定で使ってください。共有範囲は自動で切り替わりません。</p>
       </div>
     </section>
 
-    <section class="section story" id="story" aria-labelledby="story-title"><div class="shell founder-panel"><div class="founder-facts"><p class="section-kicker">ABOUT THE DEVELOPER</p><strong>家族と使いながら、<br>開発しています。</strong><span>会社員として働きながら開発。<br>自分の家族との利用を通して改善しています。</span></div><div><h2 id="story-title">使い方で困ったら、<br>開発者へ。</h2><p>Kinia（キニア）は、家族の到着や出発、いまの場所を、毎回連絡せずに確認するためのアプリです。開発者自身は、離れて暮らす両親と使っています。</p><p>設定で迷ったことや、使っていて気づいたことはフォームからお知らせください。ご質問・ご要望・不具合のご連絡を受け付けています。</p><a href="/about.html">開発者とアプリについて →</a>　<a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></section>
+    <section class="section steps" id="how" aria-labelledby="how-title">
+      <div class="shell">
+        <div class="section-header"><p class="section-kicker">GET STARTED</p><h2 id="how-title"><span style="display:inline-block">家族でつないで、</span><span style="display:inline-block">使い始める。</span></h2><p>使う人それぞれのAndroid端末とGoogleアカウントが必要です。</p></div>
+        <div class="onboarding-grid">
+          <article><span class="step-num">1</span><h3>Googleでログイン</h3><p>各自のAndroid端末にKiniaを入れ、自分のGoogleアカウントでログインします。</p></article>
+          <article><span class="step-num">2</span><h3>家族を招待</h3><p>1人がグループを作成。ほかの家族は招待リンクかコードで参加します。</p></article>
+          <article><span class="step-num">3</span><h3>共有と権限を確認</h3><p>家族それぞれが共有内容を確認し、位置情報・通知の権限を設定します。詳しい場所を互いに見たい場合だけ、双方が「すべて共有」を選びます。</p></article>
+          <article><span class="step-num">4</span><h3>通知エリアを登録</h3><p>自宅や学校を登録すると、出入りが通知で届きます。</p></article>
+        </div>
+        <div class="real-screen-grid">
+          <figure><div class="real-phone"><img src="native-proof/final-member-mixed.png" width="1080" height="2400" loading="lazy" alt="架空の親子4人の状態と更新時刻が並ぶメンバー画面"></div><figcaption><strong>家族の状態をまとめて確認</strong><br>メンバー一覧の画面例。家族データは架空です。</figcaption></figure>
+          <figure><div class="real-phone"><img src="native-proof/final-current-map-r8.png" width="1080" height="2400" loading="lazy" alt="架空の家族の位置を実地図に表示した現在地画面"></div><figcaption><strong>必要なときは、地図で確認</strong><br>現在地の画面例。名前と位置は架空です。</figcaption></figure>
+          <figure><div class="real-phone"><img src="native-proof/final-notification-settings.png" width="1080" height="2400" loading="lazy" alt="エリア通知や更新間隔を確認できる通知設定画面"></div><figcaption><strong>通知の使い方を設定</strong><br>通知設定の画面例。通知の到着を示す画像ではありません。</figcaption></figure>
+        </div>
+        <p class="step-caption">詳しい位置を互いに確認したい場合は、双方が相手に「すべて共有」を選び、家族の画面でも共有状態を確認してください。通知や位置更新は、権限・通信・省電力設定などに影響されます。<a href="https://kinia.io/setup.html">詳しい設定手順を見る</a></p>
+      </div>
+    </section>
+
+    <section class="section short-stories" id="short-videos" aria-labelledby="short-videos-title"><div class="shell"><div class="section-header"><p class="section-kicker">暮らしの中のKINIA</p><h2 id="short-videos-title">暮らしの中の使い方を、<br>短い動画で。</h2><p>再生しなくても「どんな場面で役立つ？」を開くと、使い方がわかります。</p></div><div class="short-grid"><article class="short-card" id="story-return"><div class="youtube-player" data-video-id="-ZLQ7CMuQoM" data-title="仕事中も、帰宅がわかる"><button class="youtube-start" type="button" aria-label="仕事中も、帰宅がわかるを再生（YouTube）"><img src="/media/shorts/kinia-01-poster-v2.jpg" width="540" height="960" loading="lazy" alt=""><span class="youtube-play" aria-hidden="true">▶</span><span class="youtube-caption">動画を再生</span></button></div><a class="youtube-fallback" href="https://www.youtube.com/watch?v=-ZLQ7CMuQoM" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a><h3>仕事中も、帰宅がわかる</h3><p>仕事の合間に、自宅への到着通知で帰宅を確認。</p><details class="short-detail"><summary>どんな場面で役立つ？</summary><div><h4>仕事中の帰宅確認</h4><dl><dt>こんな場面</dt><dd>仕事の合間に「学校から帰ったかな」と気になる。すぐに連絡したり、アプリを開いて確認する時間は取りにくい。</dd><dt>KINIAでわかること</dt><dd>事前に登録した自宅のエリアに入ったことが、通知で届きます。</dd><dt>その後、どうできる？</dt><dd>帰宅したことを知って、仕事に戻れます。帰宅後の様子は、必要に応じていつもの連絡で確認できます。</dd></dl></div></details></article><article class="short-card" id="story-dinner"><div class="youtube-player" data-video-id="e4tFzu3g9dQ" data-title="夕飯の支度"><button class="youtube-start" type="button" aria-label="夕飯の支度を再生（YouTube）"><img src="/media/shorts/kinia-02-poster-v2.jpg" width="540" height="960" loading="lazy" alt=""><span class="youtube-play" aria-hidden="true">▶</span><span class="youtube-caption">動画を再生</span></button></div><a class="youtube-fallback" href="https://www.youtube.com/watch?v=e4tFzu3g9dQ" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a><h3>夕飯の支度</h3><p>学校を出た通知を、夕飯の支度を始める目安に。</p><details class="short-detail"><summary>どんな場面で役立つ？</summary><div><h4>夕飯の支度を始める目安が欲しいとき</h4><dl><dt>こんな場面</dt><dd>学校から帰る時間が日によって違い、夕飯の支度をいつ始めるか迷う。</dd><dt>KINIAでわかること</dt><dd>事前に登録した学校のエリアを出たことが、通知で届きます。</dd><dt>その後、どうできる？</dt><dd>「そろそろ支度を始めよう」と段取りの目安にできます。寄り道や通知の遅れがあるため、到着時刻の予測ではありません。</dd></dl></div></details></article><article class="short-card" id="story-meeting"><div class="youtube-player" data-video-id="oi7-GT16oas" data-title="入口に着いたけど、どこにいる？"><button class="youtube-start" type="button" aria-label="入口に着いたけど、どこにいる？を再生（YouTube）"><img src="/media/shorts/kinia-03-poster-v2.jpg" width="540" height="960" loading="lazy" alt=""><span class="youtube-play" aria-hidden="true">▶</span><span class="youtube-caption">動画を再生</span></button></div><a class="youtube-fallback" href="https://www.youtube.com/watch?v=oi7-GT16oas" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a><h3>入口に着いたけど、どこにいる？</h3><p>待ち合わせですれ違ったら、現在地を手がかりに電話で確認。</p><details class="short-detail"><summary>どんな場面で役立つ？</summary><div><h4>待ち合わせで入口が違ったとき</h4><dl><dt>こんな場面</dt><dd>約束した公園の入口に着いたのに、子どもが見当たらない。大きな公園には入口がいくつもある。</dd><dt>KINIAでわかること</dt><dd>現在地を手がかりに、反対側の入口にいるのではと見当をつけられます。</dd><dt>その後、どうできる？</dt><dd>電話で入口を確かめ、どちらが移動するか決めて合流します。位置情報には誤差や遅れがあるため、表示だけで断定しません。</dd></dl></div></details></article><article class="short-card" id="story-station"><div class="youtube-player" data-video-id="C308CsIkRFs" data-title="登録した駅への到着が、通知でわかる"><button class="youtube-start" type="button" aria-label="登録した駅への到着が、通知でわかるを再生（YouTube）"><img src="/media/shorts/kinia-04-poster-v2.jpg" width="540" height="960" loading="lazy" alt=""><span class="youtube-play" aria-hidden="true">▶</span><span class="youtube-caption">動画を再生</span></button></div><a class="youtube-fallback" href="https://www.youtube.com/watch?v=C308CsIkRFs" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a><h3>登録した駅への到着が、通知でわかる</h3><p>事前に登録した駅に着いたことを、通知で確認。</p><details class="short-detail"><summary>どんな場面で役立つ？</summary><div><h4>電車で出かけた子どもの途中経過が気になるとき</h4><dl><dt>こんな場面</dt><dd>子どもが電車で祖母の家へ向かう日。家にいる親は、目的地の駅まで着いたか気になる。</dd><dt>KINIAでわかること</dt><dd>事前に登録した目的地の駅のエリアに入ったことが、通知で届きます。</dd><dt>その後、どうできる？</dt><dd>駅まで着いたことを知って、家の用事に戻れます。祖母の家への到着までわかる通知ではありません。駅のエリアは出かける前に登録しておきます。</dd></dl></div></details></article><article class="short-card" id="story-growth"><div class="youtube-player" data-video-id="hcA1TVjVgx8" data-title="高校生になったら、共有も見直そう"><button class="youtube-start" type="button" aria-label="高校生になったら、共有も見直そうを再生（YouTube）"><img src="/media/shorts/kinia-101-poster-v2.jpg" width="540" height="960" loading="lazy" alt=""><span class="youtube-play" aria-hidden="true">▶</span><span class="youtube-caption">動画を再生</span></button></div><a class="youtube-fallback" href="https://www.youtube.com/watch?v=hcA1TVjVgx8" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a><h3>高校生になったら、共有も見直そう</h3><p>進学をきっかけに、親子で共有のしかたを相談。</p><details class="short-detail"><summary>どんな場面で役立つ？</summary><div><h4>進学などを機に、共有内容を見直したいとき</h4><dl><dt>こんな場面</dt><dd>高校生になった子どもの自立を尊重したい。毎日の詳しい場所を共有し続けるか、親子で相談したい。</dd><dt>KINIAでわかること</dt><dd>詳しい場所まで共有するか、通知エリアのみの共有にするかを、相手ごとに設定できます。双方の設定のうち、控えめな共有が適用されます。</dd><dt>その後、どうできる？</dt><dd>学校や自宅への出入りを知りながら、詳しい場所の共有を控える選択ができます。動画では母が職場で帰宅を知り、家で「学校どうだった？」と話します。通知エリアのみでも電池残量や更新時刻などは共有されます。</dd></dl></div></details></article><article class="short-card" id="story-couple"><div class="youtube-player" data-video-id="tMMPLYDrbj0" data-title="今日は、そっとおかえり"><button class="youtube-start" type="button" aria-label="今日は、そっとおかえりを再生（YouTube）"><img src="/media/shorts/kinia-040-poster-v2.jpg" width="540" height="960" loading="lazy" alt=""><span class="youtube-play" aria-hidden="true">▶</span><span class="youtube-caption">動画を再生</span></button></div><a class="youtube-fallback" href="https://www.youtube.com/watch?v=tMMPLYDrbj0" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a><h3>今日は、そっとおかえり</h3><p>いつもより早い帰りに気づいて、「静かに入ってね」。</p><details class="short-detail"><summary>どんな場面で役立つ？</summary><div><h4>寝かしつけた日に、帰ってくる家族へひと言伝えたいとき</h4><dl><dt>こんな場面</dt><dd>子どもをいつもより早く寝かしつけた夜。夫もいつもより早く帰宅しそうだが、まだ連絡していない。</dd><dt>KINIAでわかること</dt><dd>事前に登録した最寄り駅のエリアに入ったことが、妻に通知で届きます。</dd><dt>その後、どうできる？</dt><dd>いつものメッセージアプリで「静かに入ってね」と伝えられます。この場面でKINIAを使うのは夫婦2人です。</dd></dl></div></details></article></div><p class="short-note">通知や位置情報は、通信・権限・端末の設定によって遅れることがあります。動画の人物・名前・位置は架空の例です。</p><div class="short-actions"><a class="button button-primary" href="https://play.google.com/store/apps/details?id=io.kinia">Google Playで入手する ↗</a><a class="refined-cta-secondary" href="/setup.html">始め方を見る →</a></div><p class="short-note">基本機能は無料。13歳以上・Android 8.0以上・Googleアカウントが必要です。iOS版は準備中です。</p></div></section>
+
     <section class="section faq" id="questions" aria-labelledby="faq-title">
       <div class="shell faq-layout">
         <div>
@@ -379,10 +384,12 @@
           <details><summary>どのスマホで使えますか？</summary><p>現在はAndroid 8.0以上の端末向けに配信中で、Googleアカウントでログインします。iOS版は準備中です。端末やアカウントに利用制限がある場合は、導入前に設定をご確認ください。</p></details>
           <details><summary>アプリを入れると、すぐに現在地が見えますか？</summary><p>インストールだけでは共有は始まりません。各自のGoogleアカウントでログインし、同じ家族グループへ参加して、共有内容と権限を確認します。詳しい位置を互いに確認したい場合は、双方が相手に「すべて共有」を選び、家族の画面でも共有状態を確認してください。<a href="data-safety.html">共有設定とデータの取り扱い</a>もご覧ください。</p></details>
           <details><summary>地図の共有は自動で終わりますか？</summary><p>いいえ。時間制限つきの一時共有は現在提供していません。詳しい共有をやめるときは、本人が「通知エリアのみ」に手動で戻します。</p></details>
-          <details><summary>到着の通知は必ず届きますか？</summary><p>位置情報と通知の権限、通信状態、端末の省電力設定などにより、通知や位置更新が遅れたり届かなかったりする場合があります。見守りの代わりに緊急連絡手段も決めておくと安心です。</p></details>
+          <details><summary>到着の通知は必ず届きますか？</summary><p>位置情報と通知の権限、通信状態、端末の省電力設定などにより、通知や位置更新が遅れたり届かなかったりする場合があります。通知だけに頼らず、緊急時の連絡手段も家族で決めておくと安心です。</p></details>
         </div>
       </div>
     </section>
+
+    <section class="section story" id="story" aria-label="開発者について"><div class="shell"><details><summary>家族と使いながら、開発しています。</summary><p>会社員として働きながら、離れて暮らす両親との利用を通して改善しています。<a href="/about.html">開発者とアプリについて →</a></p></details></div></section>
 
     <section class="last-cta" aria-labelledby="cta-title">
       <div class="shell">
@@ -396,6 +403,7 @@
           </div>
       </div>
     </section>
+
     <section class="section" id="contact" aria-labelledby="contact-title"><div class="shell"><p class="section-kicker">CONTACT</p><h2 id="contact-title">ご質問・ご意見はこちら。</h2><p>設定で困ったことや、ご意見を開発者へお知らせください。</p><a class="button button-primary" href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォームを開く ↗</a><p class="step-caption">Googleフォームが開きます。返信先のメールアドレスと、ご相談内容をご記入ください。</p></div></section>
   </main>
   <footer class="site-footer"><div class="sf-inner"><div class="sf-brand">Kinia（キニア）<small>© 2026 Kinia</small></div><div class="sf-links"><a href="/setup.html">はじめかた</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></footer>
@@ -408,7 +416,7 @@ document.addEventListener('click',function(event){
  frame.title=box.dataset.title;frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&playsinline=1&rel=0';
  frame.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';frame.allowFullscreen=true;
  frame.referrerPolicy='strict-origin-when-cross-origin';
- box.replaceChildren(frame);frame.focus();
+ box.replaceChildren(frame);box.closest(".short-card")?.classList.add("is-playing");frame.focus();
 });
 </script>
 </body>
