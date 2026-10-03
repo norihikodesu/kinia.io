@@ -1,27 +1,24 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XCT32M2MZV');</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>安否確認機能について — Kinia</title>
-    <meta name="description" content="Kiniaの安否確認は、災害時などに家族へ状況の回答を依頼する機能です。通知・回答・取得できた位置の確認方法と利用条件を説明します。">
-    <link rel="icon" href="/images/app_icon.png" type="image/png">
-    <meta property="og:title" content="安否確認機能について — Kinia">
-    <meta property="og:description" content="Kiniaの安否確認は、災害時などに家族へ状況の回答を依頼する機能です。通知・回答・取得できた位置の確認方法と利用条件を説明します。">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kinia.io/safety.html">
-    <meta property="og:image" content="https://kinia.io/images/ogp/og_default.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="安否確認機能について — Kinia">
-    <meta name="twitter:description" content="Kiniaの安否確認は、災害時などに家族へ状況の回答を依頼する機能です。通知・回答・取得できた位置の確認方法と利用条件を説明します。">
-    <meta name="twitter:image" content="https://kinia.io/images/ogp/og_default.jpg">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XCT32M2MZV');</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>安否確認のしくみと注意点 | KINIA（キニア）</title>
+<meta content="KINIA（キニア）の安否確認は、災害時などに家族へ状況の回答を一斉に依頼する機能です。共有される情報、通知が届かない場合の注意点、公的な緊急通報との違いを説明します。" name="description"/>
+<link href="/images/app_icon.png" rel="icon" type="image/png"/>
+<meta content="安否確認のしくみと注意点 | KINIA（キニア）" property="og:title"/>
+<meta content="KINIA（キニア）の安否確認は、災害時などに家族へ状況の回答を一斉に依頼する機能です。共有される情報、通知が届かない場合の注意点、公的な緊急通報との違いを説明します。" property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://kinia.io/safety.html" property="og:url"/>
+<meta content="https://kinia.io/images/ogp/og_default.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="安否確認のしくみと注意点 | KINIA（キニア）" name="twitter:title"/>
+<meta content="KINIA（キニア）の安否確認は、災害時などに家族へ状況の回答を一斉に依頼する機能です。共有される情報、通知が届かない場合の注意点、公的な緊急通報との違いを説明します。" name="twitter:description"/>
+<meta content="https://kinia.io/images/ogp/og_default.jpg" name="twitter:image"/>
+<style>
         ruby rt { font-size: 0.55em; }
         :root {
             --bg: #fbf6ef; --bg-alt: #f4e8d8; --card: #ffffff; --ink: #2a2218;
@@ -141,183 +138,145 @@
         @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
         @media (max-width: 640px) { .detail-links { grid-template-columns:1fr; } }
     </style>
-    <link rel="canonical" href="https://kinia.io/safety.html">
-<link rel="stylesheet" href="/site-common.css?v=20260926r14">
+<link href="https://kinia.io/safety.html" rel="canonical"/>
+<link href="/site-common.css?v=20261004r15" rel="stylesheet"/>
 </head>
 <body class="kinia-page kinia-document">
-
-<script src="/nav.js?v=20260926r12"></script>
-
+<script src="/nav.js?v=20261004r15"></script>
 <main class="content">
-
-    <!-- 1. ヒーロー -->
-    <h1>家族へ状況の回答を、一斉に依頼できます</h1>
-<p class="lead" style="font-size:0.92rem; margin:16px 0;">現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
-    <p class="subtitle">災害時など、家族の状況確認を助けます。<br>緊急時の一斉確認を想定した機能です。<br>日常のやり取りは通常のメッセージ機能をご利用ください。</p>
-
-    <!-- 2. こんな時に -->
-    <h2>こんな時に役立ちます</h2>
-    <div class="two-col">
-        <div class="card"><p style="text-align:center; margin:0; font-size:1.05rem;">🌊 <strong>地震</strong>のあと<br>家族に連絡がつかない</p></div>
-        <div class="card"><p style="text-align:center; margin:0; font-size:1.05rem;">🌀 <strong>台風・大雪</strong>で<br>帰宅が心配</p></div>
-        <div class="card"><p style="text-align:center; margin:0; font-size:1.05rem;">⚡ <strong>停電・通信障害</strong>の<br>直後に安否を知りたい</p></div>
-        <div class="card"><p style="text-align:center; margin:0; font-size:1.05rem;">📵 電話がつながらず<br><strong>返事がない</strong>とき</p></div>
-    </div>
-
-    <!-- 3. 安否確認の流れ -->
-    <h2>安否確認の流れ</h2>
-    <div class="steps">
-        <div class="step">
-            <div class="step-num">1</div>
-            <div class="step-text"><p><strong>誰かが安否確認を実行</strong><br>アプリのメニューから安否確認を開き、<br>表示される確認に沿って送信します。</p></div>
-        </div>
-        <div class="step">
-            <div class="step-num">2</div>
-            <div class="step-text"><p><strong>家族へ安否確認の通知を送信</strong><br>グループの家族へ回答を依頼します。<br>受信や全画面表示は、通信・権限・端末の状態によって変わります。</p></div>
-        </div>
-        <div class="step">
-            <div class="step-num">3</div>
-            <div class="step-text"><p><strong>各メンバーが状況を回答</strong><br>「😊 無事です」「🏥 けがをしています」「🆘 助けが必要です」の3択と、<br>一言メッセージで回答します。</p></div>
-        </div>
-        <div class="step">
-            <div class="step-num">4</div>
-            <div class="step-text"><p><strong>結果一覧で全員の状況を確認</strong><br>各メンバーの回答、最後に取得できた位置（住所・エリア名・座標）、<br>一言メッセージが一覧で表示されます。</p></div>
-        </div>
-    </div>
-
-    <!-- 4. 共有される情報 / 共有されない情報 -->
-    <h2>共有される情報・共有されない情報</h2>
-
-    <div class="two-col">
-        <div class="card">
-            <h3 style="color:var(--accent2);">✅ 安否確認時に共有されるもの</h3>
-            <p>・各メンバーの回答（無事/けが/助けが必要）<br>
-            ・一言メッセージ<br>
-            ・最後に取得できた位置（住所・エリア名・座標）<br>
-            ・誰が安否確認を実行したか<br>
+<!-- 1. ヒーロー -->
+<h1>安否確認のしくみと注意点</h1>
+<p class="lead" style="font-size:0.92rem; margin:16px 0;">利用できるのは13歳以上の方です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
+<p class="subtitle">災害時などに、家族へ状況の回答を一斉に依頼する機能です。緊急時の確認を想定しているため、日常のやり取りは通常のメッセージ機能をご利用ください。</p>
+<!-- 2. こんな時に -->
+<h2>こんなときに使います</h2>
+<div class="two-col">
+<div class="card"><p style="text-align:center; margin:0; font-size:1.05rem;">🌊 <strong>地震</strong>のあと家族に連絡がつかない</p></div>
+<div class="card"><p style="text-align:center; margin:0; font-size:1.05rem;">🌀 <strong>台風・大雪</strong>で帰宅が心配</p></div>
+<div class="card"><p style="text-align:center; margin:0; font-size:1.05rem;">⚡ <strong>停電・通信障害</strong>の直後に安否を知りたい</p></div>
+<div class="card"><p style="text-align:center; margin:0; font-size:1.05rem;">📵 電話がつながらず<strong>返事がない</strong>とき</p></div>
+</div>
+<!-- 3. 安否確認の流れ -->
+<h2>安否確認の流れ</h2>
+<div class="steps">
+<div class="step">
+<div class="step-num">1</div>
+<div class="step-text"><p><strong>誰かが安否確認を実行</strong>アプリのメニューから安否確認を開き、表示される確認に沿って送信します。</p></div>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<div class="step-text"><p><strong>家族へ安否確認の通知を送信</strong>グループの家族へ回答を依頼します。受信や全画面表示は、通信・権限・端末の状態によって変わります。</p></div>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<div class="step-text"><p><strong>各メンバーが状況を回答</strong>「😊 無事です」「🏥 けがをしています」「🆘 助けが必要です」の3択と、一言メッセージで回答します。</p></div>
+</div>
+<div class="step">
+<div class="step-num">4</div>
+<div class="step-text"><p><strong>結果一覧で全員の状況を確認</strong>各メンバーの回答、最後に取得できた位置（住所・エリア名・座標）、一言メッセージが一覧で表示されます。</p></div>
+</div>
+</div>
+<!-- 4. 共有される情報 / 共有されない情報 -->
+<h2>共有される情報・共有されない情報</h2>
+<div class="two-col">
+<div class="card">
+<h3 style="color:var(--accent2);">✅ 安否確認時に共有されるもの</h3>
+<p>・各メンバーの回答（無事/けが/助けが必要）
+            ・一言メッセージ
+            ・最後に取得できた位置（住所・エリア名・座標）
+            ・誰が安否確認を実行したか
             ・位置が照会されたという事実</p>
-        </div>
-        <div class="card">
-            <h3 style="color:var(--mute);">🚫 共有されないもの</h3>
-            <p>・常時の詳細な位置情報（通常時の設定は変わりません）<br>
+</div>
+<div class="card">
+<h3 style="color:var(--mute);">🚫 共有されないもの</h3>
+<p>・常時の詳細な位置情報（通常時の設定は変わりません）
             ・安否確認による移動履歴や軌跡の追加共有</p>
-            <p style="margin-top:8px; font-size:0.92rem;">安否確認には有効期間があります。終了後は、その確認への回答はできません。通常の共有設定とは別の機能です。</p>
-        </div>
-    </div>
-
-    <!-- 5. プライバシーとの両立 -->
-    <h2>普段のプライバシーとの両立</h2>
-
-    <p>
-        <ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>は、普段のプライバシーを大切にしながら、非常時には必要な確認ができる設計を目指しています。
-    </p>
-
-    <div class="card">
-        <h3>通常時</h3>
-        <p>「通知エリアのみ」は、登録した場所の出入りを中心に知らせ、詳しい位置の共有を抑えるための設定です。共有する相手ごとに設定を確認し、保存後は相手の画面でも意図した表示になっているか確かめてください。注意点は<a href="/data-safety.html#current-limits">共有設定の注意点</a>をご覧ください。</p>
-    </div>
-
-    <div class="card">
-        <h3>安否確認時</h3>
-        <p>安否確認では、回答や最後に取得できた位置などをグループ内で確認します。表示された位置の更新時刻も確かめてください。通信や端末の状態によって、依頼や回答が届かない場合があります。</p>
-    </div>
-
-    <div class="card">
-        <h3>サーバー側の扱い</h3>
-        <p>家族への表示や同期のため、位置や表示名などをサービス側でも扱います。保存・共有・削除の方法は専用ページで説明しています。</p>
-        <p style="margin-top:8px; font-size:0.92rem;"><a href="/data-safety.html">データの取り扱いと制約を確認する →</a></p>
-    </div>
-
-    <!-- 6. 透明性の確保 -->
-    <h2>透明性を保つ仕組み</h2>
-
-    <p>
+<p style="margin-top:8px; font-size:0.92rem;">安否確認には有効期間があります。終了後は、その確認への回答はできません。通常の共有設定とは別の機能です。</p>
+</div>
+</div>
+<!-- 5. プライバシーとの両立 -->
+<h2>普段の共有設定との関係</h2>
+<p>普段は共有を控えめにしていても、非常時には家族の状況を確認できるようにしています。安否確認を使っても、通常時の共有設定は変わりません。</p>
+<div class="card">
+<h3>通常時</h3>
+<p>「通知エリアのみ」は、登録した場所の出入りを中心に知らせ、詳しい位置の共有を抑えるための設定です。共有する相手ごとに設定を確認し、保存後は相手の画面でも意図した表示になっているか確かめてください。注意点は<a href="/data-safety.html#current-limits">共有設定の注意点</a>をご覧ください。</p>
+</div>
+<div class="card">
+<h3>安否確認時</h3>
+<p>安否確認では、回答や最後に取得できた位置などをグループ内で確認します。表示された位置の更新時刻も確かめてください。通信や端末の状態によって、依頼や回答が届かない場合があります。</p>
+</div>
+<div class="card">
+<h3>サーバー側の扱い</h3>
+<p>家族への表示や同期のため、位置や表示名などをサービス側でも扱います。保存・共有・削除の方法は専用ページで説明しています。</p>
+<p style="margin-top:8px; font-size:0.92rem;"><a href="/data-safety.html">データの取り扱いと制約を確認する →</a></p>
+</div>
+<!-- 6. 透明性の確保 -->
+<h2>実行の通知と記録</h2>
+<p>
         安否確認の実行や位置照会を知らせる通知を送り、実行履歴を記録します。
     </p>
-
-    <div class="card">
-        <p>・誰が確認を実行したか、位置が照会されたことを知らせる通知を送ります<br>
-        ・通知が届いたことや、本人が読んだことまでは保証できません<br>
-        ・実行履歴はメッセージタブで確認できます<br>
+<div class="card">
+<p>・誰が確認を実行したか、位置が照会されたことを知らせる通知を送ります
+        ・通知が届いたことや、本人が読んだことまでは保証できません
+        ・実行履歴はメッセージタブで確認できます
         ・新たに送信できる条件は、アプリ内の案内をご確認ください</p>
-    </div>
-
-    <p>本機能は、信頼関係のある家族や少人数グループでの利用を想定しています。</p>
-
-    <!-- 7. 利用前に知っておいてほしいこと -->
-    <h2>ご利用にあたっての注意点</h2>
-
-    <div class="note-box">
-        <p><strong>通信環境について</strong><br>
-        インターネット接続がない場合、通知や回答の送受信が遅れたり届かないことがあります。<br>
+</div>
+<p>本機能は、信頼関係のある家族や少人数グループでの利用を想定しています。</p>
+<!-- 7. 利用前に知っておいてほしいこと -->
+<h2>利用前に知っておきたいこと</h2>
+<div class="note-box">
+<p><strong>通信環境について</strong>
+        インターネット接続がない場合、通知や回答の送受信が遅れたり届かないことがあります。
         同じ利用者・グループの有効な情報が端末に保存されていれば、最後の記録を参照できる場合があります。記録がない場合や期限切れの場合は表示できません。</p>
-
-        <p><strong>端末の状態について</strong><br>
-        端末の電源が切れている、通知の権限がOFFになっている、<br>
+<p><strong>端末の状態について</strong>
+        端末の電源が切れている、通知の権限がOFFになっている、
         位置情報の権限が不足している場合は、安否確認が期待通りに届かない可能性があります。</p>
-
-        <p><strong>表示される位置について</strong><br>
-        共有されるのは「最後に取得できた位置」です。<br>
-        端末がオフラインだった場合など、現在の位置とは異なる可能性があります。<br>
+<p><strong>表示される位置について</strong>
+        共有されるのは「最後に取得できた位置」です。
+        端末がオフラインだった場合など、現在の位置とは異なる可能性があります。
         取得時刻が併記されますので、参考にしてください。</p>
-
-        <p><strong>公的な緊急手段の代替ではありません</strong><br>
-        本機能は家族内の安否確認を助けるものです。<br>
-        警察（110）・消防（119）・自治体の防災サービスなど、<br>
+<p><strong>公的な緊急手段の代替ではありません</strong>
+        本機能は家族内の安否確認を助けるものです。
+        警察（110）・消防（119）・自治体の防災サービスなど、
         公的な緊急通報や安否確認の代わりにはなりません。</p>
-    </div>
-
-    <!-- 8. オフラインでも使える工夫 -->
-    <h2>端末に保存された最終記録を確認する</h2>
-
-    <p>
-        災害時にはインターネットが使えなくなることがあります。<br>
-        <ruby>Kinia<rp>（</rp><rt>キニア</rt><rp>）</rp></ruby>では、同じ利用者・グループの有効な記録が端末に残っていれば、<br>
-        通信できないときに最後の記録を確認できる場合があります。
-    </p>
-
-    <p>
-        取得・保存できた情報に応じて、住所・通知エリア名・座標を確認できます。<br>
+</div>
+<!-- 8. オフラインでも使える工夫 -->
+<h2>通信できないときの最終記録</h2>
+<p>災害時にはインターネットが使えなくなることがあります。同じ利用者・グループの有効な記録が端末に残っていれば、通信できないときも最後の記録を確認できる場合があります。</p>
+<p>
+        取得・保存できた情報に応じて、住所・通知エリア名・座標を確認できます。
         過去の記録のため、現在の位置や無事を示すものではありません。
     </p>
-
-    <div class="card">
-        <p>📍 <strong>住所</strong>（例: ○○市△△町1-2-3）<br>
-        🏠 <strong>通知エリア名</strong>（例: 自宅、会社）<br>
+<div class="card">
+<p>📍 <strong>住所</strong>（例: ○○市△△町1-2-3）
+        🏠 <strong>通知エリア名</strong>（例: 自宅、会社）
         📌 <strong>座標</strong>（例: 35.9250, 139.4856）</p>
-        <p style="margin-top:12px; font-size:0.92rem;">座標はロングタップでコピーでき、Googleマップや他の地図アプリに貼り付けて場所を確認できます。</p>
-    </div>
-
-    <section aria-labelledby="more-details">
-        <h2 id="more-details">もっと詳しく</h2>
-        <div class="detail-links">
-            <a class="detail-link" href="/safety-check.html">
-                <strong>安否確認のくわしい流れ →</strong>
-                <span>実行から回答の確認まで、アプリ内での手順をご案内します。</span>
-            </a>
-            <a class="detail-link" href="/emergency-query.html">
-                <strong>いまどこ確認のしくみ →</strong>
-                <span>非常時に位置の手がかりを確かめるための考え方をご説明します。</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- 9. CTA -->
-    <div style="text-align:center; margin-top:48px; padding-top:32px; border-top:1px solid var(--line);">
-        <p style="font-size:1.05rem; color:var(--ink); margin-bottom:16px;">安否確認機能を試してみませんか？</p>
-        <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
-            <a href="https://play.google.com/store/apps/details?id=io.kinia" style="display:inline-block; background:var(--accent); color:#fff; padding:12px 28px; border-radius:8px; font-weight:600; text-decoration:none;">Google Playで入手</a>
-            <a href="/faq.html" style="display:inline-block; background:var(--card); color:var(--sub); padding:12px 28px; border-radius:8px; font-weight:600; text-decoration:none; border:1px solid var(--line);">よくある質問を見る</a>
-        </div>
-        <p style="margin-top:12px; font-size:0.9rem; color:var(--mute);">
-            ご質問は <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a> からお気軽にどうぞ
-        </p>
-    </div>
-
+<p style="margin-top:12px; font-size:0.92rem;">座標はロングタップでコピーでき、Googleマップや他の地図アプリに貼り付けて場所を確認できます。</p>
+</div>
+<section aria-labelledby="more-details">
+<h2 id="more-details">もっと詳しく</h2>
+<div class="detail-links">
+<a class="detail-link" href="/safety-check.html">
+<strong>安否確認のくわしい流れ →</strong>
+<span>実行から回答の確認まで、アプリ内での手順をご案内します。</span>
+</a>
+<a class="detail-link" href="/emergency-query.html">
+<strong>いまどこ確認のしくみ →</strong>
+<span>非常時に位置の手がかりを確かめるための考え方をご説明します。</span>
+</a>
+</div>
+</section>
+<!-- 9. CTA -->
+<div style="text-align:center; margin-top:48px; padding-top:32px; border-top:1px solid var(--line);">
+<p style="font-size:1.05rem; color:var(--ink); margin-bottom:16px;">いざというときに迷わないよう、使い方を家族で確認しておいてください。</p>
+<div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+<a href="https://play.google.com/store/apps/details?id=io.kinia" style="display:inline-block; background:var(--accent); color:#fff; padding:12px 28px; border-radius:8px; font-weight:600; text-decoration:none;">Google Playで入手</a>
+<a href="/faq.html" style="display:inline-block; background:var(--card); color:var(--sub); padding:12px 28px; border-radius:8px; font-weight:600; text-decoration:none; border:1px solid var(--line);">よくある質問を見る</a>
+</div>
+<p style="margin-top:12px; font-size:0.9rem; color:var(--mute);">ご質問は <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a> からどうぞ</p>
+</div>
 </main>
-
-<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">Kinia（キニア）<small>© 2026 Kinia</small></div><div class="sf-links"><a href="/setup.html">はじめかた</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></footer>
-
+<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">KINIA（キニア）<small>© 2026 KINIA</small></div><div class="sf-links"><a href="/setup.html">始め方</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" rel="noopener noreferrer" target="_blank">お問い合わせフォーム ↗</a></div></div></footer>
 <script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
 </body>
 </html>

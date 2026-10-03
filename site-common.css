@@ -56,6 +56,36 @@ body.kinia-redirect{min-height:100vh;display:grid;place-items:center;padding:24p
 
 /* Comparison labels follow each stacked cell on small screens. */
 body.kinia-page .compare-header .nm,body.kinia-page .row-topic .tname,body.kinia-page .row-cell .summary{font-weight:700}
-@media(max-width:768px){body.kinia-page .compare-header{display:none}body.kinia-page .compare-row{margin-bottom:26px;border:1px solid #e3e5ee;border-radius:16px;background:#fff;overflow:hidden}body.kinia-page .row-topic{padding:18px 20px;background:#f4f1fa}body.kinia-page .row-cell{padding:18px 20px;border:0}body.kinia-page .row-cell:nth-child(3){border-top:1px solid #e3e5ee}body.kinia-page .row-cell::before{display:block;font-size:12px;font-weight:700;color:#514ba8;margin-bottom:8px}body.kinia-page .row-cell:nth-child(2)::before{content:"比較するときの確認点"}body.kinia-page .row-cell:nth-child(3)::before{content:"Kiniaの案内"}}
+@media(max-width:768px){body.kinia-page .compare-header{display:none}body.kinia-page .compare-row{margin-bottom:26px;border:1px solid #e3e5ee;border-radius:16px;background:#fff;overflow:hidden}body.kinia-page .row-topic{padding:18px 20px;background:#f4f1fa}body.kinia-page .row-cell{padding:18px 20px;border:0}body.kinia-page .row-cell:nth-child(3){border-top:1px solid #e3e5ee}body.kinia-page .row-cell::before{display:block;font-size:12px;font-weight:700;color:#514ba8;margin-bottom:8px}body.kinia-page .row-cell:nth-child(2)::before{content:"比較するときの確認点"}body.kinia-page .row-cell:nth-child(3)::before{content:"KINIAの案内"}}
 
 .cta-phrase{display:inline-block}.table-scroll-hint{display:none}@media(max-width:600px){.last-cta h2{font-size:clamp(28px,8vw,36px);line-height:1.5}.table-scroll-hint{display:block;font-size:12px;color:#536079;margin:12px 0 6px}}
+
+/* r15: one family-facing reading style across public KINIA pages.
+   Exclude simulated app/phone interiors from editorial typography. */
+body:is(.kinia-page,.kinia-guide-page) :is(h1,h2,h3,h4,.hero-title,.section-heading,.section-title):not(:where([class*="phone"] *,[class*="screen"] *,[class*="mock"] *,[class*="notice"] *)){
+  max-width:100%;line-break:strict;word-break:auto-phrase;overflow-wrap:normal;text-wrap:balance;letter-spacing:-.025em
+}
+body.kinia-page :is(h1,.hero-title):not(:where([class*="phone"] *,[class*="screen"] *,[class*="mock"] *)){
+  font-size:clamp(28px,7.2vw,42px);line-height:1.45
+}
+body.kinia-page :is(h2,.section-heading,.section-title):not(:where([class*="phone"] *,[class*="screen"] *,[class*="mock"] *)){
+  font-size:clamp(23px,5.8vw,34px);line-height:1.55
+}
+body:is(.kinia-page,.kinia-guide-page) :is(p,li,dd,.lead,.hero-sub,.body-text):not(:where([class*="phone"] *,[class*="screen"] *,[class*="mock"] *,[class*="notice"] *,nav *,footer *,.price-callout *,[class*="note"],[class*="caption"],[class*="credit"],[class*="label"],.eyebrow,.section-kicker,.section-label,.pill,.badge,.guide-eligibility)){
+  font-size:16px;line-height:1.85;text-wrap:pretty;line-break:strict;word-break:auto-phrase;overflow-wrap:normal
+}
+body:is(.kinia-page,.kinia-guide-page) :is(.content,.card,.info-card,.feature-card,.row-cell,.hero-content,.hero-copy,.section-header){min-width:0}
+body:is(.kinia-page,.kinia-guide-page) :is(.lead,.hero-sub,.body-text,.page-head p){max-width:36em}
+body:is(.kinia-page,.kinia-guide-page) :is(.title-clause,.cta-phrase){display:inline-block;max-width:100%}
+body.kinia-page .hero-title-line{display:inline-block;white-space:normal!important}
+.kinia-home .hero-title-line{white-space:nowrap!important}
+.price-callout{padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;gap:3px 14px}
+.price-callout strong,.setup-price strong{font-size:16px;line-height:1.7;font-weight:700;color:var(--navy)}
+.price-callout span{font-size:14px;font-weight:400}.price-callout small{font-size:13px;line-height:1.7}
+.price-callout.on-dark,.price-callout.on-dark strong{color:#fff}.price-callout.on-dark small{color:#dce0ed}
+body.kinia-page :is(.btn-primary,.cta-btn,.kinia-link-download){min-height:50px;border-radius:13px;font-size:16px;line-height:1.5;text-align:center;white-space:normal}
+body.kinia-page :is(.btn-secondary,.secondary-link){color:var(--navy);text-underline-offset:4px}
+#kinia-nav .kn-brand,#kinia-nav .kn-actions{flex-shrink:0}#kinia-nav .kn-cta-short{display:none}
+@media(max-width:800px){#kinia-nav .kn-cta-full{display:none}#kinia-nav .kn-cta-short{display:inline}#kinia-nav .kn-inner{gap:10px}}
+@media(max-width:600px){body.kinia-page :is(.hero-content,.hero-copy,.page-head-inner,.card,.info-card,.feature-card){min-width:0}body.kinia-page :is(.cta-buttons,.hero-actions,.action-row){flex-wrap:wrap;gap:10px}body.kinia-page :is(.cta-buttons,.hero-actions)>.btn-primary{width:100%}body.kinia-document :is(.card,.info-card,.feature-card){padding-inline:20px}}
+@media(max-width:390px){#kinia-nav .kn-inner{gap:7px}.price-callout strong{font-size:16px}}

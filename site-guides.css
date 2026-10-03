@@ -47,10 +47,13 @@ body.kinia-guide-page .guide-hero .pill-dot {
 body.kinia-guide-page .guide-hero h1 {
   margin: 0 0 12px;
   color: var(--ink);
-  font-size: clamp(28px, 4vw, 38px);
+  font-size: clamp(28px, 7.2vw, 42px);
   font-weight: 700;
   line-height: 1.4;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  line-break: strict;
+  word-break: auto-phrase;
+  text-wrap: balance;
 }
 
 body.kinia-guide-page .accent-text {
@@ -68,7 +71,7 @@ body.kinia-guide-page .guide-eligibility {
   font-size: 16px;
   font-weight: 700;
   line-height: 1.7;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 body.kinia-guide-page .guide-intro {
@@ -107,7 +110,7 @@ body.kinia-guide-page .mode-switch a {
   line-height: 1.5;
   text-align: center;
   text-decoration: none;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 body.kinia-guide-page .mode-switch a + a {
@@ -136,9 +139,9 @@ body.kinia-guide-page .callout {
   border-radius: 0 14px 14px 0;
   background: var(--card);
   color: var(--sub);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.85;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 body.kinia-guide-page .callout strong {
@@ -174,7 +177,7 @@ body.kinia-guide-page .toc ol {
 body.kinia-guide-page .toc li {
   margin: 0 0 6px;
   color: var(--sub);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.75;
 }
 
@@ -206,10 +209,10 @@ body.kinia-guide-page .section-label {
 body.kinia-guide-page .section-heading {
   margin: 0 0 14px;
   color: var(--ink);
-  font-size: clamp(24px, 3vw, 30px);
+  font-size: clamp(23px, 5.8vw, 34px);
   font-weight: 700;
   line-height: 1.45;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 body.kinia-guide-page .lead {
@@ -232,7 +235,7 @@ body.kinia-guide-page .card li {
   color: var(--sub);
   font-size: 16px;
   line-height: 1.85;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 body.kinia-guide-page .card ul {
@@ -276,3 +279,9 @@ body.kinia-guide-page .guide-help-compact {
     padding-top: 30px;
   }
 }
+
+/* Match shared Japanese headings and prose without changing native screens. */
+body.kinia-guide-page :is(.guide-hero h1,.section-heading,.toc h3,.card h3){line-break:strict;word-break:auto-phrase;text-wrap:balance}
+body.kinia-guide-page :is(.guide-intro,.lead,.callout,.card p,.card li,.toc li){line-break:strict;word-break:auto-phrase;text-wrap:pretty}
+body.kinia-guide-page .guide-eligibility{font-size:14px;line-height:1.8;font-weight:400}
+body.kinia-guide-page .title-clause{display:inline-block;max-width:100%}

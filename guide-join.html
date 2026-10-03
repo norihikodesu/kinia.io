@@ -1,32 +1,29 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
-    <script>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
+<script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-XCT32M2MZV');
     </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>参加リンクで案内された方へ — Kinia</title>
-    <meta name="description" content="家族から招待リンクを受け取った方向け。Kiniaアプリのインストールからグループ参加、権限設定までの手順をわかりやすく解説します。">
-    <meta property="og:title" content="招待された方へ — Kinia">
-    <meta property="og:description" content="家族からKiniaに招待された方向けのガイドです。">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kinia.io/guide-join.html">
-    <meta property="og:image" content="https://kinia.io/images/ogp/og_default.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="招待された方へ — Kinia">
-    <meta name="twitter:description" content="家族からKiniaに招待された方向けのガイドです。">
-    <meta name="twitter:image" content="https://kinia.io/images/ogp/og_default.jpg">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>招待リンクを受け取った方へ — KINIA（キニア）</title>
+<meta content="家族からKINIA（キニア）の招待リンクを受け取った方向けのガイドです。インストール、グループへの参加、権限の許可、共有レベルの選択まで、あなたの端末で行う設定をまとめています。" name="description"/>
+<meta content="招待リンクを受け取った方へ — KINIA（キニア）" property="og:title"/>
+<meta content="家族からKINIA（キニア）の招待リンクを受け取った方向けのガイドです。インストール、グループへの参加、権限の許可、共有レベルの選択まで、あなたの端末で行う設定をまとめています。" property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://kinia.io/guide-join.html" property="og:url"/>
+<meta content="https://kinia.io/images/ogp/og_default.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="招待リンクを受け取った方へ — KINIA（キニア）" name="twitter:title"/>
+<meta content="家族からKINIA（キニア）の招待リンクを受け取った方向けのガイドです。インストール、グループへの参加、権限の許可、共有レベルの選択まで、あなたの端末で行う設定をまとめています。" name="twitter:description"/>
+<meta content="https://kinia.io/images/ogp/og_default.jpg" name="twitter:image"/>
+<style>
         :root {
             --bg: #fbf6ef;
             --bg-alt: #f4e8d8;
@@ -378,256 +375,211 @@
         @media (max-width: 500px) {
             .phone-frame { max-width: 180px; }
         }
-    
+
         .guide-diagram{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:26px 0;padding:24px;border-radius:20px;background:var(--bg-alt)}
         .guide-node{min-width:0;display:flex;flex-direction:column;gap:12px;align-items:flex-start;padding:18px;background:#fff;border:1px solid var(--line);border-radius:14px}
         .guide-node span{flex:0 0 auto;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--bg-alt);color:var(--accent);font-weight:700}
         .guide-node strong{font-size:15px;line-height:1.5}
         @media(max-width:560px){.guide-diagram{grid-template-columns:1fr;padding:16px;gap:10px}.guide-node{flex-direction:row;align-items:center}.guide-node span{flex-shrink:0}}
 </style>
-    <link rel="canonical" href="https://kinia.io/guide-join.html">
-<link rel="stylesheet" href="/site-common.css?v=20260926r14">
+<link href="https://kinia.io/guide-join.html" rel="canonical"/>
+<link href="/site-common.css?v=20261004r15" rel="stylesheet"/>
 </head>
 <body class="kinia-page kinia-document kinia-onboarding">
-
 <!-- ナビゲーション -->
-<script src="/nav.js?v=20260926r12"></script>
-
+<script src="/nav.js?v=20261004r15"></script>
 <!-- プログレスバー -->
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-
 <main class="content">
-
-    <!-- ===== ヒーロー ===== -->
-    <div class="hero">
-        <span class="hero-label">招待された方向けガイド</span>
-        <h1>参加リンクで案内された方へ</h1>
-        <p style="font-size:0.92rem;">操作図には以前の画面をもとにしたイメージが含まれます。共有内容はこのページの本文で確認し、実際の操作・表示はアプリで確かめてください。</p>
-<p class="lead" style="font-size:0.92rem; margin:16px 0;">現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
-        <p>ご家族からKiniaの招待リンクを受け取りましたか？<br>
-        このページでは、あなたがやるべき設定だけをまとめています。<br>
-        <strong style="color:var(--accent);">所要時間: 約5分</strong></p>
-    </div>
-
-    <!-- ===== 全体像 ===== -->
-    <section class="section" id="overview">
-        <h2>やることは3つだけ</h2>
-        <div class="overview-flow">
-            <div class="overview-step"><span class="num">STEP 1</span>アプリをインストール</div>
-            <span class="overview-arrow">↓</span>
-            <div class="overview-step"><span class="num">STEP 2</span>招待リンクから参加</div>
-            <span class="overview-arrow">↓</span>
-            <div class="overview-step"><span class="num">STEP 3</span>権限を許可</div>
-            <span class="overview-arrow">↓</span>
-            <div class="overview-step" style="border-color:var(--sage);"><span class="num" style="color:var(--sage);">DONE</span>完了!</div>
-        </div>
-    </section>
-
-    <!-- ===== STEP 1: インストール ===== -->
-    <section class="section" id="step1">
-        <span class="step-badge">STEP 1</span>
-        <h2>Kiniaをインストール <span class="time-badge">約1分</span></h2>
-
-        <ol class="steps-list">
-            <li>
-                <strong>Google Play で「Kinia」を検索</strong>
-                <div class="sub">または <a href="https://play.google.com/store/apps/details?id=io.kinia">こちらのリンク</a> から直接アクセス</div>
-            </li>
-            <li><strong>「インストール」をタップ</strong></li>
-        </ol>
-
-        <div class="guide-diagram" aria-label="Googleログインの流れ"><div class="guide-node"><span>1</span><strong>自分のAndroid</strong></div><div class="guide-node"><span>2</span><strong>Googleでログイン</strong></div><div class="guide-node"><span>3</span><strong>家族とつながる準備</strong></div></div>
-
-        <div class="hint">
-            <strong>Googleアカウントが必要です。</strong><br>
-            ふだんスマホで使っているGoogleアカウントでOKです。<br>
+<!-- ===== ヒーロー ===== -->
+<div class="hero">
+<span class="hero-label">招待された方向けガイド</span>
+<h1>招待リンクを受け取った方へ</h1>
+<p style="font-size:0.92rem;">操作図には、以前の画面をもとにしたイメージが含まれます。共有される内容はこのページの本文で、実際の操作と表示はアプリで確認してください。</p>
+<p class="lead" style="font-size:0.92rem; margin:16px 0;">13歳以上の方が対象です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
+<p>ご家族からKINIAの招待リンクが届いた方へ。 あなたの端末で行う設定だけをまとめました。 <strong style="color:var(--accent);">所要時間: 約5分</strong></p>
+</div>
+<!-- ===== 全体像 ===== -->
+<section class="section" id="overview">
+<h2>やることは3つです</h2>
+<div class="overview-flow">
+<div class="overview-step"><span class="num">STEP 1</span>アプリをインストール</div>
+<span class="overview-arrow">↓</span>
+<div class="overview-step"><span class="num">STEP 2</span>招待リンクから参加</div>
+<span class="overview-arrow">↓</span>
+<div class="overview-step"><span class="num">STEP 3</span>権限を許可</div>
+<span class="overview-arrow">↓</span>
+<div class="overview-step" style="border-color:var(--sage);"><span class="num" style="color:var(--sage);">DONE</span>完了!</div>
+</div>
+</section>
+<!-- ===== STEP 1: インストール ===== -->
+<section class="section" id="step1">
+<span class="step-badge">STEP 1</span>
+<h2>KINIAをインストール <span class="time-badge">約1分</span></h2>
+<ol class="steps-list">
+<li>
+<strong>Google Play で「KINIA」を検索</strong>
+<div class="sub">または <a href="https://play.google.com/store/apps/details?id=io.kinia">こちらのリンク</a> から直接アクセス</div>
+</li>
+<li><strong>「インストール」をタップ</strong></li>
+</ol>
+<div aria-label="Googleログインの流れ" class="guide-diagram"><div class="guide-node"><span>1</span><strong>自分のAndroid</strong></div><div class="guide-node"><span>2</span><strong>Googleでログイン</strong></div><div class="guide-node"><span>3</span><strong>家族とつながる準備</strong></div></div>
+<div class="hint">
+<strong>Googleアカウントが必要です。</strong><br/>
+            ふだんスマホで使っているGoogleアカウントでOKです。<br/>
             新たにアカウントを作成する必要はありません。
         </div>
-    </section>
-
-    <!-- ===== STEP 2: 招待リンクから参加 ===== -->
-    <section class="section" id="step2">
-        <span class="step-badge">STEP 2</span>
-        <h2>招待リンクから参加 <span class="time-badge">約2分</span></h2>
-
-        <ol class="steps-list">
-            <li>
-                <strong>受け取った招待リンクをタップ</strong>
-                <div class="sub">LINEやメールで届いた <code style="background:var(--bg-alt);padding:2px 6px;border-radius:4px;font-size:0.85em;">https://kinia.io/invite/xxxxx</code> のリンクです</div>
-            </li>
-            <li>
-                <strong>Kiniaアプリが自動で開きます</strong>
-                <div class="sub">まだログインしていない場合は「Googleでログイン」が表示されます</div>
-            </li>
-            <li>
-                <strong>ニックネームを入力</strong>
-                <div class="sub">家族の地図上に表示される名前です。<br>
+</section>
+<!-- ===== STEP 2: 招待リンクから参加 ===== -->
+<section class="section" id="step2">
+<span class="step-badge">STEP 2</span>
+<h2>招待リンクから参加 <span class="time-badge">約2分</span></h2>
+<ol class="steps-list">
+<li>
+<strong>受け取った招待リンクをタップ</strong>
+<div class="sub">LINEやメールで届いた <code style="background:var(--bg-alt);padding:2px 6px;border-radius:4px;font-size:0.85em;">https://kinia.io/invite/xxxxx</code> のリンクです</div>
+</li>
+<li>KINIAアプリが自動で開きます まだログインしていない場合は「Googleでログイン」が表示されます</li>
+<li>
+<strong>ニックネームを入力</strong>
+<div class="sub">家族の地図上に表示される名前です。<br/>
                 例: 「パパ」「名前」「ニックネーム」など</div>
-            </li>
-            <li>
-                <strong>「参加する」をタップ</strong>
-            </li>
-        </ol>
-
-        <div class="screenshot-container">
-            <div class="screenshot-label">
-                <div class="phone-frame">
-                    <img src="screenshots/mock_06_join.png" alt="参加画面" loading="lazy">
-                </div>
-                <div class="screenshot-caption">ニックネームを入力して「参加する」<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
-            </div>
-            <div class="screenshot-arrow">→</div>
-            <div class="screenshot-label">
-                <div class="phone-frame">
-                    <img src="native-proof/final-member-mixed.png" width="1080" height="2400" alt="架空の家族データを表示したメンバー一覧" loading="lazy">
-                </div>
-                <div class="screenshot-caption">メンバー一覧の画面例。名前・家族データは架空です。</div>
-            </div>
-        </div>
-
-        <div class="hint success">
-            <strong>参加完了!</strong><br>
-            これでご家族のグループに参加できました。<br>
+</li>
+<li>
+<strong>「参加する」をタップ</strong>
+</li>
+</ol>
+<div class="screenshot-container">
+<div class="screenshot-label">
+<div class="phone-frame">
+<img alt="参加画面" loading="lazy" src="screenshots/mock_06_join.png"/>
+</div>
+<div class="screenshot-caption">ニックネームを入力して「参加する」<br/>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
+</div>
+<div class="screenshot-arrow">→</div>
+<div class="screenshot-label">
+<div class="phone-frame">
+<img alt="架空の家族データを表示したメンバー一覧" height="2400" loading="lazy" src="native-proof/final-member-mixed.png" width="1080"/>
+</div>
+<div class="screenshot-caption">メンバー一覧の画面例。名前・家族データは架空です。</div>
+</div>
+</div>
+<div class="hint success">
+<strong>参加完了!</strong><br/>
+            これでご家族のグループに参加できました。<br/>
             続いて、アプリが正しく動作するための権限を設定します。
         </div>
-
-        <div class="hint warn">
-            <strong>リンクが開けない場合</strong><br>
-            Kiniaアプリがインストールされていることを確認してください。<br>
-            それでも開けない場合は、アプリを起動して「招待コードで参加する」を選び、<br>
+<div class="hint warn">
+<strong>リンクが開けない場合</strong><br/>
+            KINIAアプリがインストールされていることを確認してください。<br/>
+            それでも開けない場合は、アプリを起動して「招待コードで参加する」を選び、<br/>
             リンク末尾の5桁のコード（例: A3K7P）を手入力してください。
         </div>
-    </section>
-
-    <!-- ===== STEP 3: 権限設定 ===== -->
-    <section class="section" id="step3">
-        <span class="step-badge">STEP 3</span>
-        <h2>権限を許可する <span class="time-badge">約2分</span></h2>
-        <p class="lead">
-            参加後、アプリが順番に権限の許可を案内します。<br>
-            表示されるボタンをタップして進めるだけでOKです。
-        </p>
-
-        <div class="hint warn">
-            <strong>この設定が一番大事です。</strong><br>
-            画面を閉じた後も更新を続けるため、アプリ内の権限案内に沿って設定してください。<br>
+</section>
+<!-- ===== STEP 3: 権限設定 ===== -->
+<section class="section" id="step3">
+<span class="step-badge">STEP 3</span>
+<h2>権限を許可する <span class="time-badge">約2分</span></h2>
+<p class="lead">参加すると、アプリが必要な権限を順番に案内します。 表示されるボタンをタップして進めてください。</p>
+<div class="hint warn">
+<strong>この設定が一番大事です。</strong><br/>
+            画面を閉じた後も更新を続けるため、アプリ内の権限案内に沿って設定してください。<br/>
             OSや端末の省電力設定によって動作が変わります。
         </div>
-
-        <table class="perm-table">
-            <tr>
-                <th>権限</th>
-                <th>操作</th>
-                <th>なぜ必要？</th>
-            </tr>
-            <tr>
-                <td>位置情報</td>
-                <td>「許可する」をタップ</td>
-                <td>位置を共有するため</td>
-            </tr>
-            <tr>
-                <td>バックグラウンド<br>位置情報</td>
-                <td>設定画面で「<strong>常に許可</strong>」</td>
-                <td>アプリを閉じても動作</td>
-            </tr>
-            <tr>
-                <td>活動認識</td>
-                <td>「許可」をタップ</td>
-                <td>歩行/車の判別</td>
-            </tr>
-            <tr>
-                <td>通知</td>
-                <td>「許可」をタップ</td>
-                <td>通知エリアの通知受信</td>
-            </tr>
-            <tr>
-                <td>省電力の除外</td>
-                <td>「許可」をタップ</td>
-                <td>スリープ中も動作</td>
-            </tr>
-        </table>
-
-        
-
-        <div class="hint">
-            <strong>「常に許可」って不安...</strong><br>
-            電池の消費量は端末や移動時間、位置更新の設定によって変わります。端末の設定画面で使用状況を確認してください。<br>
-            位置や表示名などは、家族への表示・同期のためサービス側でも扱います。<br>
+<table class="perm-table">
+<tr>
+<th>権限</th>
+<th>操作</th>
+<th>なぜ必要？</th>
+</tr>
+<tr>
+<td>位置情報</td>
+<td>「許可する」をタップ</td>
+<td>位置を共有するため</td>
+</tr>
+<tr>
+<td>バックグラウンド<br/>位置情報</td>
+<td>設定画面で「<strong>常に許可</strong>」</td>
+<td>画面を閉じた後も位置の更新を続けるため</td>
+</tr>
+<tr>
+<td>活動認識</td>
+<td>「許可」をタップ</td>
+<td>歩行/車の判別</td>
+</tr>
+<tr>
+<td>通知</td>
+<td>「許可」をタップ</td>
+<td>通知エリアの通知受信</td>
+</tr>
+<tr>
+<td>省電力の除外</td>
+<td>「許可」をタップ</td>
+<td>省電力設定の影響を受けにくくするため</td>
+</tr>
+</table>
+<div class="hint">
+<strong>「常に許可」って不安...</strong><br/>
+            電池の消費量は端末や移動時間、位置更新の設定によって変わります。端末の設定画面で使用状況を確認してください。<br/>
+            位置や表示名などは、家族への表示・同期のためサービス側でも扱います。<br/>
             詳しくは <a href="/data-safety.html">データの取り扱い</a> をご覧ください。
         </div>
-    </section>
-
-    <!-- ===== 共有レベルについて ===== -->
-    <section class="section" id="sharing">
-        <span class="step-badge" style="background: var(--bg-alt); color: var(--accent2);">参考</span>
-        <h2>共有レベルについて</h2>
-        <p class="lead">
-            権限設定の最後に「共有レベル」を選ぶ画面が表示されます。<br>
-            あなたの情報をどこまで家族に見せるかを決める設定です。
-        </p>
-
-        
-
-        <div class="hint">
-            <strong>家族と共有内容を確認してください。</strong><br>
-            共有する相手ごとに設定を確認し、保存後は相手の画面でも意図した表示になっているか確かめてください。<br>
+</section>
+<!-- ===== 共有レベルについて ===== -->
+<section class="section" id="sharing">
+<span class="step-badge" style="background: var(--bg-alt); color: var(--accent2);">参考</span>
+<h2>共有レベルを選ぶ</h2>
+<p class="lead">権限設定の最後に「共有レベル」を選ぶ画面が表示されます。 あなたの情報をどこまで家族に見せるかを決める設定です。「すべて共有」「通知エリアのみ」から選べ、あとから自分で変更できます。詳しい現在地や履歴を互いに見られるのは、双方が相手に「すべて共有」を選んだときです。</p>
+<div class="hint">
+<strong>家族と共有内容を確認してください。</strong><br/>
+            共有する相手ごとに設定を確認し、保存後は相手の画面でも意図した表示になっているか確かめてください。<br/>
             詳しい位置や履歴を互いに見る場合は、双方が相手に「すべて共有」を選び、保存後に相手の画面でも表示を確認してください。 <a href="/data-safety.html#current-limits">共有設定の注意点</a>もご覧ください。
         </div>
-    </section>
-
-    <!-- ===== 完了 ===== -->
-    <section class="section" id="complete">
-        <span class="step-badge" style="background: var(--sage);">COMPLETE</span>
-        <h2>セットアップ完了!</h2>
-        <p class="lead">お疲れさまでした。これであなたのセットアップは完了です。</p>
-
-        <div class="screenshot-single">
-            <div class="screenshot-label">
-                <div class="phone-frame" style="max-width: 240px;">
-                    <img src="native-proof/final-current-map-r8.png" width="1080" height="2400" alt="架空の人物と位置を表示した現在地画面" loading="lazy">
-                </div>
-                <div class="screenshot-caption">現在地の画面例。名前と人物の位置は架空です。詳しい位置は双方が相手に「すべて共有」を選び、表示を確認します。</div>
-            </div>
-        </div>
-
-        <div class="hint success">
-            <strong>位置の反映には少し時間がかかります。</strong><br>
-            セットアップ直後はまだ位置情報が送信されていない場合があります。<br>
+</section>
+<!-- ===== 完了 ===== -->
+<section class="section" id="complete">
+<span class="step-badge" style="background: var(--sage);">COMPLETE</span>
+<h2>これで設定完了です</h2>
+<p class="lead">お疲れさまでした。あなたの端末の設定はこれで完了です。</p>
+<div class="screenshot-single">
+<div class="screenshot-label">
+<div class="phone-frame" style="max-width: 240px;">
+<img alt="架空の人物と位置を表示した現在地画面" height="2400" loading="lazy" src="native-proof/final-current-map-r8.png" width="1080"/>
+</div>
+<div class="screenshot-caption">現在地の画面例。名前と人物の位置は架空です。詳しい位置は双方が相手に「すべて共有」を選び、表示を確認します。</div>
+</div>
+</div>
+<div class="hint success">
+<strong>位置の反映には少し時間がかかります。</strong><br/>
+            セットアップ直後はまだ位置情報が送信されていない場合があります。<br/>
             測位しやすい場所で、位置情報・通信・権限の設定と更新時刻を確認してください。反映までの時間は端末や通信状態によって変わります。
         </div>
-
-        <h3 style="font-family: var(--font-head); font-size: 1rem; margin: 28px 0 12px;">うまくいかないとき</h3>
-
-        <div style="padding: 20px; background: var(--card); border-radius: 12px; border: 1px solid var(--line); margin-bottom: 16px;">
-            <p style="font-weight:600; margin-bottom:8px;">位置が更新されない</p>
-            <p style="color: var(--sub); font-size: 0.9rem;">
-                Androidの設定 → アプリ → Kinia → 位置情報 で<br>
+<h3 style="font-family: var(--font-head); font-size: 1rem; margin: 28px 0 12px;">うまくいかないとき</h3>
+<div style="padding: 20px; background: var(--card); border-radius: 12px; border: 1px solid var(--line); margin-bottom: 16px;">
+<p style="font-weight:600; margin-bottom:8px;">位置が更新されない</p>
+<p style="color: var(--sub); font-size: 0.9rem;">
+                Androidの設定 → アプリ → KINIA → 位置情報 で
                 「常に許可」になっているか確認してください。
             </p>
-        </div>
-
-        <div style="padding: 20px; background: var(--card); border-radius: 12px; border: 1px solid var(--line); margin-bottom: 16px;">
-            <p style="font-weight:600; margin-bottom:8px;">通知が届かない</p>
-            <p style="color: var(--sub); font-size: 0.9rem;">
-                Androidの設定 → アプリ → Kinia → 通知 で<br>
+</div>
+<div style="padding: 20px; background: var(--card); border-radius: 12px; border: 1px solid var(--line); margin-bottom: 16px;">
+<p style="font-weight:600; margin-bottom:8px;">通知が届かない</p>
+<p style="color: var(--sub); font-size: 0.9rem;">
+                Androidの設定 → アプリ → KINIA → 通知 で
                 通知が許可されているか確認してください。
             </p>
-        </div>
-
-        <div style="margin-top: 24px; padding: 20px; background: var(--card); border-radius: 12px; border: 1px solid var(--line);">
-            <h3 style="font-family: var(--font-head); font-size: 1rem; margin-bottom: 8px;">解決しない場合</h3>
-            <p style="color: var(--sub); font-size: 0.9rem;">
-                <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a> からご連絡ください。<br>
+</div>
+<div style="margin-top: 24px; padding: 20px; background: var(--card); border-radius: 12px; border: 1px solid var(--line);">
+<h3 style="font-family: var(--font-head); font-size: 1rem; margin-bottom: 8px;">解決しない場合</h3>
+<p style="color: var(--sub); font-size: 0.9rem;">
+<a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a> からご連絡ください。
                 端末名・Androidバージョン・症状を添えていただくとスムーズです。
             </p>
-        </div>
-    </section>
-
+</div>
+</section>
 </main>
-
 <!-- フッター -->
-<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">Kinia（キニア）<small>© 2026 Kinia</small></div><div class="sf-links"><a href="/setup.html">はじめかた</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></footer>
-
+<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">KINIA（キニア）<small>© 2026 KINIA</small></div><div class="sf-links"><a href="/setup.html">始め方</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" rel="noopener noreferrer" target="_blank">お問い合わせフォーム ↗</a></div></div></footer>
 <script>
 function updateProgress() {
     const scrollTop = window.scrollY;
@@ -643,6 +595,5 @@ document.addEventListener('click', function(e) {
     });
 });
 </script>
-
 </body>
 </html>

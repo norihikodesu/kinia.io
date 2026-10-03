@@ -1,32 +1,29 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
-    <script>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
+<script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-XCT32M2MZV');
     </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3人家族セットアップガイド — Kinia</title>
-    <meta name="description" content="大人2人＋お子さん1人の3人家族向け。Kiniaの導入から通知エリア設定まで、ご家族の代表がまとめてセットアップする手順をわかりやすく解説します。">
-    <meta property="og:title" content="3人家族セットアップガイド — Kinia">
-    <meta property="og:description" content="3人家族でKiniaを使いはじめる手順をわかりやすく解説。">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kinia.io/guide-family-basic.html">
-    <meta property="og:image" content="https://kinia.io/images/ogp/og_default.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="3人家族セットアップガイド — Kinia">
-    <meta name="twitter:description" content="3人家族でKiniaを使いはじめる手順をわかりやすく解説。">
-    <meta name="twitter:image" content="https://kinia.io/images/ogp/og_default.jpg">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>3人家族の設定ガイド — KINIA（キニア）</title>
+<meta content="大人2人とお子さん1人の3人家族を例に、KINIA（キニア）のインストールから通知エリア・共有レベルの設定までを順番に説明します。ご家族の代表が3台をまとめて設定する手順です。" name="description"/>
+<meta content="3人家族の設定ガイド — KINIA（キニア）" property="og:title"/>
+<meta content="大人2人とお子さん1人の3人家族を例に、KINIA（キニア）のインストールから通知エリア・共有レベルの設定までを順番に説明します。ご家族の代表が3台をまとめて設定する手順です。" property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://kinia.io/guide-family-basic.html" property="og:url"/>
+<meta content="https://kinia.io/images/ogp/og_default.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="3人家族の設定ガイド — KINIA（キニア）" name="twitter:title"/>
+<meta content="大人2人とお子さん1人の3人家族を例に、KINIA（キニア）のインストールから通知エリア・共有レベルの設定までを順番に説明します。ご家族の代表が3台をまとめて設定する手順です。" name="twitter:description"/>
+<meta content="https://kinia.io/images/ogp/og_default.jpg" name="twitter:image"/>
+<style>
         :root {
             --bg: #fbf6ef;
             --bg-alt: #f4e8d8;
@@ -829,796 +826,687 @@
         .guide-node strong{font-size:15px;line-height:1.5}
         @media(max-width:560px){.guide-diagram{grid-template-columns:1fr;padding:16px;gap:10px}.guide-node{flex-direction:row;align-items:center}.guide-node span{flex-shrink:0}}
 </style>
-    <link rel="canonical" href="https://kinia.io/guide-family-basic.html">
-<link rel="stylesheet" href="/site-common.css?v=20260926r14">
+<link href="https://kinia.io/guide-family-basic.html" rel="canonical"/>
+<link href="/site-common.css?v=20261004r15" rel="stylesheet"/>
 </head>
 <body class="kinia-page kinia-document kinia-onboarding">
-
 <!-- ナビゲーション -->
-<script src="/nav.js?v=20260926r12"></script>
-
+<script src="/nav.js?v=20261004r15"></script>
 <!-- プログレスバー -->
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-
 <!-- サイドナビ（進捗メニュー） -->
 <div class="side-nav" id="sideNav">
-    <a href="#flowchart" data-section="flowchart"><span class="nav-dot"></span><span class="nav-label">タイプ診断</span></a>
-    <a href="#setup-overview" data-section="setup-overview"><span class="nav-dot"></span><span class="nav-label">全体像</span></a>
-    <a href="#step1" data-section="step1"><span class="nav-dot"></span><span class="nav-label">1. インストール</span></a>
-    <a href="#step2" data-section="step2"><span class="nav-dot"></span><span class="nav-label">2. グループ作成</span></a>
-    <a href="#step3" data-section="step3"><span class="nav-dot"></span><span class="nav-label">3. 招待コード</span></a>
-    <a href="#step4" data-section="step4"><span class="nav-dot"></span><span class="nav-label">4. 参加</span></a>
-    <a href="#step5" data-section="step5"><span class="nav-dot"></span><span class="nav-label">5. 権限設定</span></a>
-    <a href="#step6" data-section="step6"><span class="nav-dot"></span><span class="nav-label">6. 通知・共有</span></a>
-    <a href="#complete" data-section="complete"><span class="nav-dot"></span><span class="nav-label">完了!</span></a>
+<a data-section="flowchart" href="#flowchart"><span class="nav-dot"></span><span class="nav-label">タイプ診断</span></a>
+<a data-section="setup-overview" href="#setup-overview"><span class="nav-dot"></span><span class="nav-label">全体像</span></a>
+<a data-section="step1" href="#step1"><span class="nav-dot"></span><span class="nav-label">1. インストール</span></a>
+<a data-section="step2" href="#step2"><span class="nav-dot"></span><span class="nav-label">2. グループ作成</span></a>
+<a data-section="step3" href="#step3"><span class="nav-dot"></span><span class="nav-label">3. 招待コード</span></a>
+<a data-section="step4" href="#step4"><span class="nav-dot"></span><span class="nav-label">4. 参加</span></a>
+<a data-section="step5" href="#step5"><span class="nav-dot"></span><span class="nav-label">5. 権限設定</span></a>
+<a data-section="step6" href="#step6"><span class="nav-dot"></span><span class="nav-label">6. 通知・共有</span></a>
+<a data-section="complete" href="#complete"><span class="nav-dot"></span><span class="nav-label">完了!</span></a>
 </div>
-
 <main class="content">
-
-    <!-- ===== ヒーロー ===== -->
-    <div class="hero">
-        <span class="hero-label">3人家族向けガイド</span>
-        <h1>3人家族の<br>はじめてセットアップ</h1><p class="lead">夫婦や親子の2人から利用できます。このガイドは3人家族の設定例です。参加する人それぞれの端末で、共有内容を相談しながら設定してください。</p>
-<p class="lead" style="font-size:0.92rem; margin:16px 0;">現在の対象は13歳以上です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
-<p class="lead" style="font-size:0.92rem;">操作図には以前の画面をもとにしたイメージが含まれます。共有内容はこのページの本文で確認し、実際の操作・表示はアプリで確かめてください。</p>
-        <p>3人家族でKiniaを始める手順を、1つずつ解説します。<br>
-        ご家族の代表がまとめて3台を設定するケースを想定しています。</p>
-    </div>
-
-    <div class="hint" style="margin-top: 20px; border-left-color: var(--accent);">
-        <strong>このガイドでの呼び方について</strong><br>
-        手順をわかりやすくするため「お母さん」「お父さん」「お子さん」と表記していますが、ご家族の構成にあわせて読み替えてください。<br>
+<!-- ===== ヒーロー ===== -->
+<div class="hero">
+<span class="hero-label">3人家族向けガイド</span>
+<h1>3人家族のはじめての設定</h1><p class="lead">KINIAは夫婦や親子の2人から使えます。ここでは3人家族を例に説明します。参加する人それぞれの端末で、共有する内容を本人と相談しながら設定してください。</p>
+<p class="lead" style="font-size:0.92rem; margin:16px 0;">13歳以上の方が対象です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
+<p class="lead" style="font-size:0.92rem;">操作図には、以前の画面をもとにしたイメージが含まれます。共有される内容はこのページの本文で、実際の操作と表示はアプリで確認してください。</p>
+<p>ご家族の代表が3台をまとめて設定する場合の手順です。 1つずつ進めれば、通知エリアの設定まで終わります。</p>
+</div>
+<div class="hint" style="margin-top: 20px; border-left-color: var(--accent);">
+<strong>このガイドでの呼び方について</strong><br/>
+        手順をわかりやすくするため「お母さん」「お父さん」「お子さん」と表記していますが、ご家族の構成にあわせて読み替えてください。<br/>
         セットアップ担当はどなたでもOKです。
     </div>
-
-    <!-- 家族構成 -->
-    <div class="family-card">
-        <div class="family-member papa">
-            <div class="avatar">👨</div>
-            <div class="role">おとな①</div>
-            <div class="detail">通勤あり</div>
-        </div>
-        <div class="family-member mama">
-            <div class="avatar">👩</div>
-            <div class="role">おとな②</div>
-            <div class="detail">3台まとめて設定</div>
-        </div>
-        <div class="family-member child">
-            <div class="avatar">👧</div>
-            <div class="detail">通学あり</div>
-            <div class="role">お子さん</div>
-        </div>
-    </div>
-
-    <!-- ===== PART 0: 設定判断フローチャート ===== -->
-    <section class="section" id="flowchart">
-        <span class="section-badge flowchart">PART 0</span>
-        <h2>まず確認 — あなたの家族に合う使い方は？</h2>
-        <p class="lead">Kiniaには2つの使い方があります。家族で使いたい場面に合わせて、共有範囲を選びましょう。</p>
-
-        <div class="flowchart">
-            <!-- Q1 -->
-            <div class="flow-node flow-question">
-                <p>お子さんの「今どこにいるか」を<br>地図で確認したいですか？</p>
-                <div class="sub">例: 塾の帰りが遅いとき、今どのあたりか見たい</div>
-            </div>
-
-            <div class="flow-branches" style="margin-top: 16px;">
-                <div class="flow-branch">
-                    <div class="flow-branch-label no">いいえ・通知だけでいい</div>
-                    <div class="flow-connector"><span class="arrow">▼</span></div>
-                    <div class="flow-result type-a">
-                        <h3>タイプA: 通知エリアだけ</h3>
-                        <p>「学校を出た」「家に着いた」など、登録した場所への出入りを中心に確認する使い方です。</p>
-                        <ul>
-                            <li>詳しい位置の共有を抑える設定</li>
-                            <li>歩数・元気度は共有される</li>
-                            <li>電池残量や更新時刻も確認できる</li>
-                            <li>共有相手ごとの設定と表示を確認する</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="flow-branch">
-                    <div class="flow-branch-label yes">はい・地図で見たい</div>
-                    <div class="flow-connector"><span class="arrow">▼</span></div>
-                    <div class="flow-result type-b">
-                        <h3>タイプB: すべて共有</h3>
-                        <p>家族の現在地を地図上で確認でき、移動履歴も見られる使い方です。</p>
-                        <ul>
-                            <li>地図にマーカーが表示される</li>
-                            <li>移動ルート・軌跡が見られる</li>
-                            <li>登録した場所の出入りも通知で確認</li>
-                            <li>詳しい位置は双方が相手に「すべて共有」を選ぶ</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="hint success">
-            <strong>あとから切り替えられます。</strong>
-            詳しい場所や履歴を互いに確認したい場合は、タイプB（すべて共有）を双方で選びます。到着・出発を中心に知りたい場合は、タイプA（通知エリアのみ）を選べます。<br>
+<!-- 家族構成 -->
+<div class="family-card">
+<div class="family-member papa">
+<div class="avatar">👨</div>
+<div class="role">おとな①</div>
+<div class="detail">通勤あり</div>
+</div>
+<div class="family-member mama">
+<div class="avatar">👩</div>
+<div class="role">おとな②</div>
+<div class="detail">3台まとめて設定</div>
+</div>
+<div class="family-member child">
+<div class="avatar">👧</div>
+<div class="detail">通学あり</div>
+<div class="role">お子さん</div>
+</div>
+</div>
+<!-- ===== PART 0: 設定判断フローチャート ===== -->
+<section class="section" id="flowchart">
+<span class="section-badge flowchart">PART 0</span>
+<h2>まず、共有の範囲を決める</h2>
+<p class="lead">共有の範囲は2つあります。家族で使いたい場面に合わせて選びましょう。あとから本人が変更できます。</p>
+<div class="flowchart">
+<!-- Q1 -->
+<div class="flow-node flow-question">
+<p>家族の「今どこにいるか」を、 地図でもお互いに確認したいですか？</p>
+<div class="sub">例: 塾の帰りが遅いとき、今どのあたりか見たい</div>
+</div>
+<div class="flow-branches" style="margin-top: 16px;">
+<div class="flow-branch">
+<div class="flow-branch-label no">いいえ・通知だけでいい</div>
+<div class="flow-connector"><span class="arrow">▼</span></div>
+<div class="flow-result type-a">
+<h3>タイプA: 通知エリアのみ</h3>
+<p>「学校を出た」「家に着いた」など、登録した場所への出入りを通知で確認する使い方です。</p>
+<ul>
+<li>詳しい位置の共有を抑える設定</li>
+<li>歩数・元気度は、利用する機能に応じて共有される</li>
+<li>電池残量や更新時刻も確認できる</li>
+<li>共有相手ごとの設定と表示を確認する</li>
+</ul>
+</div>
+</div>
+<div class="flow-branch">
+<div class="flow-branch-label yes">はい・地図で見たい</div>
+<div class="flow-connector"><span class="arrow">▼</span></div>
+<div class="flow-result type-b">
+<h3>タイプB: すべて共有</h3>
+<p>家族の現在地を地図でお互いに確認でき、移動履歴も見られる使い方です。</p>
+<ul>
+<li>地図にマーカーが表示される</li>
+<li>移動ルート・軌跡が見られる</li>
+<li>登録した場所の出入りも通知で確認</li>
+<li>詳しい現在地と履歴は、双方が相手に「すべて共有」を選んだときに表示</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="hint success">
+<strong>あとから切り替えられます。</strong>
+            詳しい場所や履歴を互いに確認したい場合は、タイプB（すべて共有）を双方で選びます。到着・出発を中心に知りたい場合は、タイプA（通知エリアのみ）を選べます。<br/>
             共有する相手ごとに設定を確認し、保存後は相手の画面でも意図した表示になっているか確かめてください。 詳しい位置や履歴を互いに見る場合は、双方が相手に「すべて共有」を選び、保存後に相手の画面でも表示を確認してください。
         </div>
-
-        <!-- 比較テーブル -->
-        <h3 style="font-size:1rem; margin: 28px 0 12px;">タイプ比較表</h3><p>設定が保存・反映されている場合の使い方です。相手の画面でも表示を確認してください。<a href="/data-safety.html#current-limits">共有設定の注意点</a>もご覧ください。</p>
-        <table class="compare-table">
-            <tr>
-                <th></th>
-                <th>タイプA<br>通知エリアだけ</th>
-                <th>タイプB<br>すべて共有</th>
-            </tr>
-            <tr>
-                <td>地図上の位置表示</td>
-                <td><span style="font-size:1.3em;">—</span><br><span style="font-size:0.8em;">詳しい位置の共有を抑える設定</span></td>
-                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">取得できた位置と更新時刻</span></td>
-            </tr>
-            <tr>
-                <td>通知エリアの通知</td>
-                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
-                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
-            </tr>
-            <tr>
-                <td>移動履歴・軌跡</td>
-                <td><span style="font-size:1.3em;">—</span><br><span style="font-size:0.8em;">詳しい位置の共有を抑える設定</span></td>
-                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
-            </tr>
-            <tr>
-                <td>歩数・元気度</td>
-                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
-                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">あり</span></td>
-            </tr>
-            <tr>
-                <td>共有範囲</td>
-                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">詳しい位置の共有を抑える</span></td>
-                <td><span style="font-size:1.3em;color:var(--accent);">◯</span><br><span style="font-size:0.8em;">互いに選んだ相手と共有</span></td>
-            </tr>
-            <tr>
-                <td>追加設定</td>
-                <td><span style="font-size:1.3em;color:var(--sage);">◯</span><br><span style="font-size:0.8em;">各端末で設定・表示を確認</span></td>
-                <td><span style="font-size:1.3em;color:var(--accent);">◯</span><br><span style="font-size:0.8em;">各端末で共有レベル変更</span></td>
-            </tr>
-            <tr>
-                <td>使い方</td>
-                <td><span style="font-size:0.85em;">出入りを中心に確認したい家族</span></td>
-                <td><span style="font-size:0.85em;">詳しい位置も互いに確認したい家族</span></td>
-            </tr>
-        </table>
-
-        <div class="nav-buttons">
-            <span></span>
-            <button class="nav-btn next" onclick="goSection('setup-overview')">セットアップに進む →</button>
-        </div>
-    </section>
-
-    <!-- ===== PART 1: セットアップ全体像 ===== -->
-    <section class="section" id="setup-overview">
-        <span class="section-badge">PART 1</span>
-        <h2>セットアップの全体像 <span class="time-badge">約15〜20分</span></h2>
-        <p class="lead">お母さんが3台のスマホを手元に集めて、順番にセットアップしていきます。</p>
-
-        <div class="overview-flow">
-            <div class="overview-step"><span class="num">STEP 1</span>3台に<br>インストール</div>
-            <span class="overview-arrow">↓</span>
-            <div class="overview-step"><span class="num">STEP 2</span>お母さんの<br>端末で設定</div>
-            <span class="overview-arrow">↓</span>
-            <div class="overview-step"><span class="num">STEP 3</span>招待コード<br>を発行</div>
-            <span class="overview-arrow">↓</span>
-            <div class="overview-step"><span class="num">STEP 4</span>お父さん<br>お子さん参加</div>
-            <span class="overview-arrow">↓</span>
-            <div class="overview-step"><span class="num">STEP 5</span>各端末の<br>権限設定</div>
-            <span class="overview-arrow">↓</span>
-            <div class="overview-step"><span class="num">STEP 6</span>通知エリア<br>設定</div>
-            <span class="overview-arrow">↓</span>
-            <div class="overview-step" style="border-color:var(--sage);"><span class="num" style="color:var(--sage);">DONE</span>完了!</div>
-        </div>
-
-        <div class="hint">
-            <strong>用意するもの:</strong><br>
-            ・ 家族3人分のスマホ（Android 8.0以上）<br>
-            ・ 各端末のGoogleアカウント（ふだん使っているものでOK）<br>
+<!-- 比較テーブル -->
+<h3 style="font-size:1rem; margin: 28px 0 12px;">タイプ比較表</h3><p>設定が保存・反映されているときの内容です。どちらかが「通知エリアのみ」を選ぶと、お互いに控えめな側の設定が適用されます。設定後は相手の画面でも表示を確認してください。 <a href="/data-safety.html#current-limits">共有設定の注意点</a> もご覧ください。</p>
+<table class="compare-table">
+<tr>
+<th></th>
+<th>タイプA 通知エリアのみ</th>
+<th>タイプB すべて共有</th>
+</tr>
+<tr>
+<td>地図上の位置表示</td>
+<td><span style="font-size:1.3em;">—</span><br/><span style="font-size:0.8em;">詳しい位置の共有を抑える設定</span></td>
+<td><span style="font-size:1.3em;color:var(--sage);">◯</span><br/><span style="font-size:0.8em;">取得できた位置と更新時刻</span></td>
+</tr>
+<tr>
+<td>通知エリアの通知</td>
+<td><span style="font-size:1.3em;color:var(--sage);">◯</span><br/><span style="font-size:0.8em;">あり</span></td>
+<td><span style="font-size:1.3em;color:var(--sage);">◯</span><br/><span style="font-size:0.8em;">あり</span></td>
+</tr>
+<tr>
+<td>移動履歴・軌跡</td>
+<td><span style="font-size:1.3em;">—</span><br/><span style="font-size:0.8em;">詳しい位置の共有を抑える設定</span></td>
+<td><span style="font-size:1.3em;color:var(--sage);">◯</span><br/><span style="font-size:0.8em;">あり</span></td>
+</tr>
+<tr>
+<td>歩数・元気度</td>
+<td><span style="font-size:1.3em;color:var(--sage);">◯</span><br/><span style="font-size:0.8em;">あり</span></td>
+<td><span style="font-size:1.3em;color:var(--sage);">◯</span><br/><span style="font-size:0.8em;">あり</span></td>
+</tr>
+<tr>
+<td>共有範囲</td>
+<td><span style="font-size:1.3em;color:var(--sage);">◯</span><br/><span style="font-size:0.8em;">詳しい位置の共有を抑える</span></td>
+<td><span style="font-size:1.3em;color:var(--accent);">◯</span><br/><span style="font-size:0.8em;">互いに選んだ相手と共有</span></td>
+</tr>
+<tr>
+<td>追加設定</td>
+<td><span style="font-size:1.3em;color:var(--sage);">◯</span><br/><span style="font-size:0.8em;">各端末で設定・表示を確認</span></td>
+<td><span style="font-size:1.3em;color:var(--accent);">◯</span><br/><span style="font-size:0.8em;">各端末で共有レベル変更</span></td>
+</tr>
+<tr>
+<td>使い方</td>
+<td>出入りの通知を中心に使いたい家族</td>
+<td>詳しい位置もお互いに確認したい家族</td>
+</tr>
+</table>
+<div class="nav-buttons">
+<span></span>
+<button class="nav-btn next" onclick="goSection('setup-overview')">セットアップに進む →</button>
+</div>
+</section>
+<!-- ===== PART 1: セットアップ全体像 ===== -->
+<section class="section" id="setup-overview">
+<span class="section-badge">PART 1</span>
+<h2>設定の流れ <span class="time-badge">約15〜20分</span></h2>
+<p class="lead">この例では、お母さんが3台のスマホを手元にそろえて、順番に設定していきます。</p>
+<div class="overview-flow">
+<div class="overview-step"><span class="num">STEP 1</span>3台に<br/>インストール</div>
+<span class="overview-arrow">↓</span>
+<div class="overview-step"><span class="num">STEP 2</span>お母さんの<br/>端末で設定</div>
+<span class="overview-arrow">↓</span>
+<div class="overview-step"><span class="num">STEP 3</span>招待コード<br/>を発行</div>
+<span class="overview-arrow">↓</span>
+<div class="overview-step"><span class="num">STEP 4</span>お父さん<br/>お子さん参加</div>
+<span class="overview-arrow">↓</span>
+<div class="overview-step"><span class="num">STEP 5</span>各端末の<br/>権限設定</div>
+<span class="overview-arrow">↓</span>
+<div class="overview-step"><span class="num">STEP 6</span>通知エリア<br/>設定</div>
+<span class="overview-arrow">↓</span>
+<div class="overview-step" style="border-color:var(--sage);"><span class="num" style="color:var(--sage);">DONE</span>完了!</div>
+</div>
+<div class="hint">
+<strong>用意するもの:</strong><br/>
+            ・ 家族3人分のスマホ（Android 8.0以上）<br/>
+            ・ 各端末のGoogleアカウント（ふだん使っているものでOK）<br/>
             ・ Wi-Fi環境（アプリのダウンロードに使用）
         </div>
-
-        <div class="nav-buttons">
-            <button class="nav-btn prev" onclick="goSection('flowchart')">← フローチャート</button>
-            <button class="nav-btn next" onclick="goSection('step1')">STEP 1 へ →</button>
-        </div>
-    </section>
-
-    <!-- ===== STEP 1: インストール ===== -->
-    <section class="section" id="step1">
-        <span class="section-badge">STEP 1</span>
-        <h2>3台にKiniaをインストール <span class="time-badge">約3分</span></h2>
-        <p class="lead">まず3台すべてにアプリをインストールします。</p>
-
-        <ol class="steps-list">
-            <li>
-                <strong>Google Play で「Kinia」を検索</strong>
-                <div class="sub">または <a href="https://play.google.com/store/apps/details?id=io.kinia">こちらのリンク</a> から直接アクセス</div>
-            </li>
-            <li><strong>「インストール」をタップ</strong></li>
-            <li><strong>3台すべてで同じ操作を繰り返す</strong></li>
-        </ol>
-
-        <!-- Play Store → ログイン画面のイメージ -->
-        <div class="guide-diagram" aria-label="Googleログインの流れ"><div class="guide-node"><span>1</span><strong>自分のAndroid</strong></div><div class="guide-node"><span>2</span><strong>Googleでログイン</strong></div><div class="guide-node"><span>3</span><strong>家族とつながる準備</strong></div></div>
-
-        <div class="hint">
-            <strong>お子さんのスマホにGoogleアカウントがない場合</strong><br>
-            事前にGoogleアカウントを作成しておいてください。Kiniaのログインに必要です。<br>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="goSection('flowchart')">← フローチャート</button>
+<button class="nav-btn next" onclick="goSection('step1')">STEP 1 へ →</button>
+</div>
+</section>
+<!-- ===== STEP 1: インストール ===== -->
+<section class="section" id="step1">
+<span class="section-badge">STEP 1</span>
+<h2>3台にKINIAをインストール <span class="time-badge">約3分</span></h2>
+<p class="lead">まず3台すべてにアプリをインストールします。</p>
+<ol class="steps-list">
+<li>
+<strong>Google Play で「KINIA」を検索</strong>
+<div class="sub">または <a href="https://play.google.com/store/apps/details?id=io.kinia">こちらのリンク</a> から直接アクセス</div>
+</li>
+<li><strong>「インストール」をタップ</strong></li>
+<li><strong>3台すべてで同じ操作を繰り返す</strong></li>
+</ol>
+<!-- Play Store → ログイン画面のイメージ -->
+<div aria-label="Googleログインの流れ" class="guide-diagram"><div class="guide-node"><span>1</span><strong>自分のAndroid</strong></div><div class="guide-node"><span>2</span><strong>Googleでログイン</strong></div><div class="guide-node"><span>3</span><strong>家族とつながる準備</strong></div></div>
+<div class="hint">
+<strong>お子さんのスマホにGoogleアカウントがない場合</strong><br/>
+            事前にGoogleアカウントを作成しておいてください。KINIAのログインに必要です。<br/>
             現在の対象は13歳以上です。管理対象などアカウントに制限がある場合は、導入前にログインできるか確認してください。
         </div>
-
-        <div class="nav-buttons">
-            <button class="nav-btn prev" onclick="goSection('setup-overview')">← 全体像</button>
-            <button class="nav-btn next" onclick="goSection('step2')">STEP 2 へ →</button>
-        </div>
-    </section>
-
-    <!-- ===== STEP 2: お母さんの端末でグループ作成 ===== -->
-    <section class="section" id="step2">
-        <span class="section-badge">STEP 2</span>
-        <h2>お母さんの端末でグループを作成 <span class="time-badge">約2分</span></h2>
-        <p class="lead">最初の1台目（お母さんのスマホ）でグループを作ります。<br>グループを作った人が自動的に「管理者」になります。</p>
-
-        <div class="device-section mama-section">
-            <h3>👩 お母さんのスマホで操作</h3>
-            <ol class="steps-list">
-                <li>
-                    <strong>Kiniaを起動して「Googleでログイン」</strong>
-                    <div class="sub">お母さんのGoogleアカウントを選択します</div>
-                </li>
-                <li>
-                    <strong>「新規グループを作成する」をタップ</strong>
-                </li>
-                <li>
-                    <strong>グループ名（合言葉）を入力</strong>
-                    <div class="sub">例: 「sakura2026」「family123」など、半角英数で覚えやすい名前を入力します（8文字以上）。<br>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="goSection('setup-overview')">← 全体像</button>
+<button class="nav-btn next" onclick="goSection('step2')">STEP 2 へ →</button>
+</div>
+</section>
+<!-- ===== STEP 2: お母さんの端末でグループ作成 ===== -->
+<section class="section" id="step2">
+<span class="section-badge">STEP 2</span>
+<h2>お母さんの端末でグループを作成 <span class="time-badge">約2分</span></h2>
+<p class="lead">最初の1台目（お母さんのスマホ）でグループを作ります。グループを作った人が自動的に「管理者」になります。</p>
+<div class="device-section mama-section">
+<h3>👩 お母さんのスマホで操作</h3>
+<ol class="steps-list">
+<li>KINIAを起動して「Googleでログイン」 お母さんのGoogleアカウントを選択します</li>
+<li>
+<strong>「新規グループを作成する」をタップ</strong>
+</li>
+<li>
+<strong>グループ名（合言葉）を入力</strong>
+<div class="sub">例: 「sakura2026」「family123」など、半角英数で覚えやすい名前を入力します（8文字以上）。<br/>
                     ※ グループ名は最初の1回だけ使います。毎回入力する必要はありません。</div>
-                </li>
-                <li>
-                    <strong>ニックネームを入力</strong>
-                    <div class="sub">地図上に表示される名前です。例: 「ママ」「お母さん」「名前」など</div>
-                </li>
-                <li>
-                    <strong>「グループを作成して開始」をタップ</strong>
-                </li>
-            </ol>
-
-            <!-- スクリーンショット: ログイン → グループ選択 → グループ作成 -->
-            <div class="screenshot-container">
-                
-                <div class="screenshot-label">
-                    <div class="phone-frame">
-                        <img src="screenshots/mock_02_group_select.png" alt="グループ選択画面" loading="lazy">
-                    </div>
-                    <div class="screenshot-caption">② 「新規グループを作成する」<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
-                </div>
-                
-            </div>
-        </div>
-
-        <div class="hint success">
-            <strong>グループ作成完了!</strong>
-            お母さんが管理者（admin）として登録されました。<br>
+</li>
+<li>
+<strong>ニックネームを入力</strong>
+<div class="sub">地図上に表示される名前です。例: 「ママ」「お母さん」「名前」など</div>
+</li>
+<li>
+<strong>「グループを作成して開始」をタップ</strong>
+</li>
+</ol>
+<!-- スクリーンショット: ログイン → グループ選択 → グループ作成 -->
+<div class="screenshot-container">
+<div class="screenshot-label">
+<div class="phone-frame">
+<img alt="グループ選択画面" loading="lazy" src="screenshots/mock_02_group_select.png"/>
+</div>
+<div class="screenshot-caption">② 「新規グループを作成する」<br/>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
+</div>
+</div>
+</div>
+<div class="hint success">
+<strong>グループ作成完了!</strong>
+            お母さんが管理者（admin）として登録されました。<br/>
             続いて、お父さんとお子さんを招待します。
         </div>
-
-        <div class="nav-buttons">
-            <button class="nav-btn prev" onclick="goSection('step1')">← STEP 1</button>
-            <button class="nav-btn next" onclick="goSection('step3')">STEP 3 へ →</button>
-        </div>
-    </section>
-
-    <!-- ===== STEP 3: 招待コード発行 ===== -->
-    <section class="section" id="step3">
-        <span class="section-badge">STEP 3</span>
-        <h2>招待コードを発行する <span class="time-badge">約1分</span></h2>
-        <p class="lead">引き続きお母さんのスマホで操作します。</p>
-
-        <div class="device-section mama-section">
-            <h3>👩 お母さんのスマホで操作</h3>
-            <ol class="steps-list">
-                <li>
-                    <strong>右上のメニュー（⋮）をタップ</strong>
-                </li>
-                <li>
-                    <strong>「グループ管理」を選択</strong>
-                </li>
-                <li>
-                    <strong>「招待コードを発行」をタップ</strong>
-                    <div class="sub">招待リンク付きのコードが表示されます。「コードをコピー」で共有できます。</div>
-                </li>
-            </ol>
-
-            <!-- スクリーンショット: メニュー → グループ管理 → 招待コード -->
-            <div class="screenshot-container">
-                <div class="screenshot-label">
-                    <div class="phone-frame">
-                        <img src="screenshots/mock_15_menu.png" alt="メニュー展開" loading="lazy">
-                    </div>
-                    <div class="screenshot-caption">① メニューから「グループ管理」<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
-                </div>
-                <div class="screenshot-arrow">→</div>
-                <div class="screenshot-label">
-                    <div class="phone-frame">
-                        <img src="screenshots/mock_04_group_mgmt.png" alt="グループ管理画面" loading="lazy">
-                    </div>
-                    <div class="screenshot-caption">② 「招待コードを発行」をタップ<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
-                </div>
-                <div class="screenshot-arrow">→</div>
-                <div class="screenshot-label">
-                    <div class="phone-frame">
-                        <img src="screenshots/mock_05_invite_code.png" alt="招待コード表示" loading="lazy">
-                    </div>
-                    <div class="screenshot-caption">③ コードが表示される<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="hint">
-            <strong>1つのリンクで2人とも招待できます。</strong><br>
-            お父さんとお子さん、それぞれ別のコードを発行する必要はありません。<br>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="goSection('step1')">← STEP 1</button>
+<button class="nav-btn next" onclick="goSection('step3')">STEP 3 へ →</button>
+</div>
+</section>
+<!-- ===== STEP 3: 招待コード発行 ===== -->
+<section class="section" id="step3">
+<span class="section-badge">STEP 3</span>
+<h2>招待コードを発行する <span class="time-badge">約1分</span></h2>
+<p class="lead">引き続きお母さんのスマホで操作します。</p>
+<div class="device-section mama-section">
+<h3>👩 お母さんのスマホで操作</h3>
+<ol class="steps-list">
+<li>
+<strong>右上のメニュー（⋮）をタップ</strong>
+</li>
+<li>
+<strong>「グループ管理」を選択</strong>
+</li>
+<li>
+<strong>「招待コードを発行」をタップ</strong>
+<div class="sub">招待リンク付きのコードが表示されます。「コードをコピー」で共有できます。</div>
+</li>
+</ol>
+<!-- スクリーンショット: メニュー → グループ管理 → 招待コード -->
+<div class="screenshot-container">
+<div class="screenshot-label">
+<div class="phone-frame">
+<img alt="メニュー展開" loading="lazy" src="screenshots/mock_15_menu.png"/>
+</div>
+<div class="screenshot-caption">① メニューから「グループ管理」<br/>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
+</div>
+<div class="screenshot-arrow">→</div>
+<div class="screenshot-label">
+<div class="phone-frame">
+<img alt="グループ管理画面" loading="lazy" src="screenshots/mock_04_group_mgmt.png"/>
+</div>
+<div class="screenshot-caption">② 「招待コードを発行」をタップ<br/>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
+</div>
+<div class="screenshot-arrow">→</div>
+<div class="screenshot-label">
+<div class="phone-frame">
+<img alt="招待コード表示" loading="lazy" src="screenshots/mock_05_invite_code.png"/>
+</div>
+<div class="screenshot-caption">③ コードが表示される<br/>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
+</div>
+</div>
+</div>
+<div class="hint">
+<strong>1つのリンクで2人とも招待できます。</strong><br/>
+            お父さんとお子さん、それぞれ別のコードを発行する必要はありません。<br/>
             有効期限は72時間です。今すぐ3台を設定するなら十分な時間があります。
         </div>
-
-        <div class="hint warn">
-            <strong>招待リンクの共有方法</strong><br>
-            「コードをコピー」をタップすると、招待リンク（<code>https://kinia.io/invite/xxxxx</code>）をLINEなどで家族に送れます。<br>
-            リンクをタップするだけでKiniaが開き、参加画面が表示されます。<br>
+<div class="hint warn">
+<strong>招待リンクの共有方法</strong><br/>
+            「コードをコピー」をタップすると、招待リンク（<code>https://kinia.io/invite/xxxxx</code>）をLINEなどで家族に送れます。<br/>
+            リンクをタップするだけでKINIAが開き、参加画面が表示されます。<br/>
             手元に3台を集めている場合は、直接操作してもOKです。
         </div>
-
-        <div class="nav-buttons">
-            <button class="nav-btn prev" onclick="goSection('step2')">← STEP 2</button>
-            <button class="nav-btn next" onclick="goSection('step4')">STEP 4 へ →</button>
-        </div>
-    </section>
-
-    <!-- ===== STEP 4: 残り2台で参加 ===== -->
-    <section class="section" id="step4">
-        <span class="section-badge">STEP 4</span>
-        <h2>お父さん・お子さんの端末で参加 <span class="time-badge">約3分</span></h2>
-        <p class="lead">残りの2台で、それぞれグループに参加します。<br>どちらの端末が先でも構いません。</p>
-
-        <div class="device-section papa-section">
-            <h3>👨 お父さんのスマホで操作</h3>
-            <ol class="steps-list">
-                <li>
-                    <strong>Kiniaを起動して「Googleでログイン」</strong>
-                    <div class="sub">お父さんのGoogleアカウントを選択</div>
-                </li>
-                <li>
-                    <strong>ニックネームを入力</strong>
-                    <div class="sub">例: 「パパ」「お父さん」「名前」など</div>
-                </li>
-                <li>
-                    <strong>招待リンクをタップ、または招待コードを入力</strong>
-                    <div class="sub">LINEなどで受け取ったリンクをタップすれば自動でKiniaが開きます</div>
-                </li>
-            </ol>
-        </div>
-
-        <!-- 招待コード参加 → メンバー一覧 -->
-        <div class="screenshot-container">
-            <div class="screenshot-label">
-                <div class="phone-frame">
-                    <img src="screenshots/mock_06_join.png" alt="招待コードで参加" loading="lazy">
-                </div>
-                <div class="screenshot-caption">お父さんの端末での参加画面<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
-            </div>
-            <div class="screenshot-arrow">→</div>
-            <div class="screenshot-label">
-                <div class="phone-frame">
-                    <img src="native-proof/final-member-mixed.png" width="1080" height="2400" alt="架空の家族データを表示したメンバー一覧" loading="lazy">
-                </div>
-                <div class="screenshot-caption">メンバー一覧の画面例。名前・家族データは架空です。</div>
-            </div>
-        </div>
-
-        <div class="device-section child-section" style="margin-top: 16px;">
-            <h3>👧 お子さんのスマホで操作</h3>
-            <ol class="steps-list">
-                <li>
-                    <strong>Kiniaを起動して「Googleでログイン」</strong>
-                    <div class="sub">お子さんのGoogleアカウントを選択</div>
-                </li>
-                <li>
-                    <strong>ニックネームを入力</strong>
-                    <div class="sub">例: お子さんの名前やニックネーム</div>
-                </li>
-                <li>
-                    <strong>同じ招待リンクをタップ、またはコードを入力</strong>
-                </li>
-            </ol>
-        </div>
-
-        <div class="hint success">
-            <strong>3人全員がグループに参加しました!</strong>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="goSection('step2')">← STEP 2</button>
+<button class="nav-btn next" onclick="goSection('step4')">STEP 4 へ →</button>
+</div>
+</section>
+<!-- ===== STEP 4: 残り2台で参加 ===== -->
+<section class="section" id="step4">
+<span class="section-badge">STEP 4</span>
+<h2>お父さん・お子さんの端末で参加 <span class="time-badge">約3分</span></h2>
+<p class="lead">残りの2台で、それぞれグループに参加します。 どちらの端末が先でもかまいません。</p>
+<div class="device-section papa-section">
+<h3>👨 お父さんのスマホで操作</h3>
+<ol class="steps-list">
+<li>KINIAを起動して「Googleでログイン」 お父さんのGoogleアカウントを選択</li>
+<li>
+<strong>ニックネームを入力</strong>
+<div class="sub">例: 「パパ」「お父さん」「名前」など</div>
+</li>
+<li><strong>招待リンクをタップ、または招待コードを入力</strong> LINEなどで受け取ったリンクをタップすれば自動でKINIAが開きます</li>
+</ol>
+</div>
+<!-- 招待コード参加 → メンバー一覧 -->
+<div class="screenshot-container">
+<div class="screenshot-label">
+<div class="phone-frame">
+<img alt="招待コードで参加" loading="lazy" src="screenshots/mock_06_join.png"/>
+</div>
+<div class="screenshot-caption">お父さんの端末での参加画面<br/>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
+</div>
+<div class="screenshot-arrow">→</div>
+<div class="screenshot-label">
+<div class="phone-frame">
+<img alt="架空の家族データを表示したメンバー一覧" height="2400" loading="lazy" src="native-proof/final-member-mixed.png" width="1080"/>
+</div>
+<div class="screenshot-caption">メンバー一覧の画面例。名前・家族データは架空です。</div>
+</div>
+</div>
+<div class="device-section child-section" style="margin-top: 16px;">
+<h3>👧 お子さんのスマホで操作</h3>
+<ol class="steps-list">
+<li>KINIAを起動して「Googleでログイン」 お子さんのGoogleアカウントを選択</li>
+<li>
+<strong>ニックネームを入力</strong>
+<div class="sub">例: お子さんの名前やニックネーム</div>
+</li>
+<li>
+<strong>同じ招待リンクをタップ、またはコードを入力</strong>
+</li>
+</ol>
+</div>
+<div class="hint success">
+<strong>3人全員がグループに参加しました!</strong>
             お母さんのスマホのメンバー一覧に、3人分の名前が表示されているはずです。
         </div>
-
-        <div class="nav-buttons">
-            <button class="nav-btn prev" onclick="goSection('step3')">← STEP 3</button>
-            <button class="nav-btn next" onclick="goSection('step5')">STEP 5 へ →</button>
-        </div>
-    </section>
-
-    <!-- ===== STEP 5: 権限設定 ===== -->
-    <section class="section" id="step5">
-        <span class="section-badge">STEP 5</span>
-        <h2>3台すべてで権限を設定 <span class="time-badge">約5分</span></h2>
-        <p class="lead">
-            Kiniaが正しく動作するために、各端末で権限を許可します。<br>
-            アプリ内のガイドに従って進めるだけでOKです。<strong>3台すべてで同じ操作</strong>を行います。
-        </p>
-
-        <div class="hint warn">
-            <strong>この設定が一番大事です。</strong><br>
-            画面を閉じた後も更新を続けるため、アプリ内の権限案内に沿って設定してください。<br>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="goSection('step3')">← STEP 3</button>
+<button class="nav-btn next" onclick="goSection('step5')">STEP 5 へ →</button>
+</div>
+</section>
+<!-- ===== STEP 5: 権限設定 ===== -->
+<section class="section" id="step5">
+<span class="section-badge">STEP 5</span>
+<h2>3台すべてで権限を設定 <span class="time-badge">約5分</span></h2>
+<p class="lead">位置の共有や通知のために、各端末で権限を許可します。 アプリ内のガイドに沿って進めれば大丈夫です。 <strong>3台すべてで同じ操作</strong> を行います。</p>
+<div class="hint warn">
+<strong>この設定が一番大事です。</strong><br/>
+            画面を閉じた後も更新を続けるため、アプリ内の権限案内に沿って設定してください。<br/>
             OSや端末の省電力設定によって動作が変わります。
         </div>
-
-        <h3 style="font-size: 1rem; margin: 24px 0 12px; color: var(--accent);">3台すべてで設定する権限</h3>
-
-        <table class="compare-table">
-            <tr>
-                <th>権限</th>
-                <th>設定内容</th>
-                <th>設定しないと？</th>
-            </tr>
-            <tr>
-                <td>位置情報</td>
-                <td>「許可」をタップ</td>
-                <td>新しい位置を取得できない</td>
-            </tr>
-            <tr>
-                <td>バックグラウンド<br>位置情報</td>
-                <td>設定画面で<br>「<strong>常に許可</strong>」を選択</td>
-                <td>画面を閉じた後の更新が制限される場合がある</td>
-            </tr>
-            <tr>
-                <td>活動認識</td>
-                <td>「許可」をタップ</td>
-                <td>歩行/車の判別ができない</td>
-            </tr>
-            <tr>
-                <td>通知</td>
-                <td>「許可」をタップ</td>
-                <td>通知エリアの通知が届かない</td>
-            </tr>
-            <tr>
-                <td>省電力の除外</td>
-                <td>「許可」をタップ</td>
-                <td>スリープ中にGPSが止まる場合がある</td>
-            </tr>
-        </table>
-
-        <!-- 権限設定のスクリーンショット -->
-        <h3 style="font-size: 1rem; margin: 24px 0 12px; color: var(--accent);">端末ごとに権限を確認</h3>
-        
-        <div class="hint" style="margin-top: 4px;">
-            <strong>画面はアプリ内のガイドに従うだけ!</strong><br>
-            アプリ内の案内に沿って権限を確認します。端末によって設定画面が異なるため、見つからないときは<a href="/setup.html">はじめかたガイド</a>をご覧ください。
+<h3 style="font-size: 1rem; margin: 24px 0 12px; color: var(--accent);">3台すべてで設定する権限</h3>
+<table class="compare-table">
+<tr>
+<th>権限</th>
+<th>設定内容</th>
+<th>設定しないと？</th>
+</tr>
+<tr>
+<td>位置情報</td>
+<td>「許可」をタップ</td>
+<td>新しい位置を取得できない</td>
+</tr>
+<tr>
+<td>バックグラウンド<br/>位置情報</td>
+<td>設定画面で<br/>「<strong>常に許可</strong>」を選択</td>
+<td>画面を閉じた後の更新が制限される場合がある</td>
+</tr>
+<tr>
+<td>活動認識</td>
+<td>「許可」をタップ</td>
+<td>歩行/車の判別ができない</td>
+</tr>
+<tr>
+<td>通知</td>
+<td>「許可」をタップ</td>
+<td>通知エリアの通知が届かない</td>
+</tr>
+<tr>
+<td>省電力の除外</td>
+<td>「許可」をタップ</td>
+<td>スリープ中にGPSが止まる場合がある</td>
+</tr>
+</table>
+<!-- 権限設定のスクリーンショット -->
+<h3 style="font-size: 1rem; margin: 24px 0 12px; color: var(--accent);">端末ごとに権限を確認</h3>
+<div class="hint" style="margin-top: 4px;">
+<strong>画面はアプリ内のガイドに従うだけ!</strong><br/>
+            アプリ内の案内に沿って権限を確認します。端末によって設定画面が異なるため、見つからないときは<a href="/setup.html">始め方ガイド</a>をご覧ください。
         </div>
-
-        <div class="hint">
-            <strong>「常に許可」って不安...</strong><br>
-            電池の消費量は端末や移動時間、位置更新の設定によって変わります。端末の設定画面で使用状況を確認してください。<br>
-            位置や表示名などは、家族への表示・同期のためサービス側でも扱います。<br>
+<div class="hint">
+<strong>「常に許可」って不安...</strong><br/>
+            電池の消費量は端末や移動時間、位置更新の設定によって変わります。端末の設定画面で使用状況を確認してください。<br/>
+            位置や表示名などは、家族への表示・同期のためサービス側でも扱います。<br/>
             詳しくは <a href="/data-safety.html">データの取り扱い</a> をご覧ください。
         </div>
-
-        <div class="nav-buttons">
-            <button class="nav-btn prev" onclick="goSection('step4')">← STEP 4</button>
-            <button class="nav-btn next" onclick="goSection('step6')">STEP 6 へ →</button>
-        </div>
-    </section>
-
-    <!-- ===== STEP 6: 通知エリア & 共有レベル設定 ===== -->
-    <section class="section" id="step6">
-        <span class="section-badge">STEP 6</span>
-        <h2>通知エリア・共有レベルの設定 <span class="time-badge">約5分</span></h2>
-        <p class="lead">最後のステップです。フローチャートで選んだタイプに合わせて設定しましょう。</p>
-
-        <!-- タブ切替 -->
-        <div class="tab-group">
-            <button class="tab-btn active" onclick="switchTab('typeA', this)">タイプA: 通知エリアだけ</button>
-            <button class="tab-btn" onclick="switchTab('typeB', this)">タイプB: すべて共有</button>
-        </div>
-
-        <!-- タイプA -->
-        <div id="typeA" class="tab-content active">
-
-            <div class="hint success">
-                <strong>共有する相手ごとに設定を確認してください。</strong>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="goSection('step4')">← STEP 4</button>
+<button class="nav-btn next" onclick="goSection('step6')">STEP 6 へ →</button>
+</div>
+</section>
+<!-- ===== STEP 6: 通知エリア & 共有レベル設定 ===== -->
+<section class="section" id="step6">
+<span class="section-badge">STEP 6</span>
+<h2>通知エリアと共有レベルを設定 <span class="time-badge">約5分</span></h2>
+<p class="lead">最後のステップです。フローチャートで選んだタイプに合わせて設定しましょう。</p>
+<!-- タブ切替 -->
+<div class="tab-group">
+<button class="tab-btn active" onclick="switchTab('typeA', this)">タイプA: 通知エリアだけ</button>
+<button class="tab-btn" onclick="switchTab('typeB', this)">タイプB: すべて共有</button>
+</div>
+<!-- タイプA -->
+<div class="tab-content active" id="typeA">
+<div class="hint success">
+<strong>共有する相手ごとに設定を確認してください。</strong>
                 「通知エリアのみ」を選んだあとも、保存結果と相手の画面を確認してから使ってください。設定が反映されない場合の<a href="/data-safety.html#current-limits">共有設定の注意点</a>をご覧ください。
             </div>
-
-            <h3 style="font-size: 1rem; margin: 20px 0 12px; color: var(--accent);">通知エリアの設定（お母さんのスマホで操作）</h3>
-
-            <div class="device-section mama-section">
-                <h3>👩 お母さんのスマホで設定</h3>
-                <p style="color:var(--sub); font-size:0.9rem; margin-bottom:12px;">
+<h3 style="font-size: 1rem; margin: 20px 0 12px; color: var(--accent);">通知エリアの設定（お母さんのスマホで操作）</h3>
+<div class="device-section mama-section">
+<h3>👩 お母さんのスマホで設定</h3>
+<p style="color:var(--sub); font-size:0.9rem; margin-bottom:12px;">
                     通知エリアはグループ全体で共有されるため、1台から設定すれば全員に反映されます。
                 </p>
-                <ol class="steps-list">
-                    <li>
-                        <strong>画面下の「通知エリア」タブをタップ</strong>
-                    </li>
-                    <li>
-                        <strong>地図上で「自宅」の場所をタップ</strong>
-                        <div class="sub">設定パネルが表示されます</div>
-                    </li>
-                    <li>
-                        <strong>エリア名を入力</strong>
-                        <div class="sub">例: 「自宅」「おうち」</div>
-                    </li>
-                    <li>
-                        <strong>半径を調整</strong>
-                        <div class="sub">初期値は200m。住宅街なら150〜200m程度がおすすめです</div>
-                    </li>
-                    <li>
-                        <strong>通知を受け取りたいメンバーを選択</strong>
-                        <div class="sub">通知を受け取りたいメンバーを選び、各端末で実際に通知が届くか確認します</div>
-                    </li>
-                </ol>
-            </div>
-
-            <!-- 通知エリア設定のスクリーンショット -->
-            <div class="screenshot-single" style="margin-top: 20px;">
-                <div class="screenshot-label">
-                    <div class="phone-frame" style="max-width: 240px;">
-                        <img src="screenshots/mock_13_geofence.png" alt="通知エリア設定画面" loading="lazy">
-                    </div>
-                    <div class="screenshot-caption">通知エリア設定画面<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
-                </div>
-            </div>
-
-            <h3 style="font-size: 1rem; margin: 24px 0 12px;">おすすめの通知エリア設定</h3>
-            <div class="settings-grid">
-                <div class="settings-card">
-                    <h4>🏠 自宅</h4>
-                    <p>半径: <span class="value">150〜200m</span></p>
-                    <p>対象: <span class="value">全員</span></p>
-                    <p style="margin-top:4px;">帰宅したら家族に通知</p>
-                </div>
-                <div class="settings-card">
-                    <h4>🏫 学校</h4>
-                    <p>半径: <span class="value">200〜300m</span></p>
-                    <p>対象: <span class="value">お子さん</span></p>
-                    <p style="margin-top:4px;">学校を出たらお母さんに通知</p>
-                </div>
-                <div class="settings-card">
-                    <h4>🏢 職場（任意）</h4>
-                    <p>半径: <span class="value">200m</span></p>
-                    <p>対象: <span class="value">お父さん</span></p>
-                    <p style="margin-top:4px;">退勤したらお母さんに通知</p>
-                </div>
-            </div>
-
-            <div class="hint">
-                <strong>自宅と、学校または塾を1か所から。</strong><br>
-                帰宅と出発を知りたい場所を登録し、到着・出発の通知を選びます。<br>
+<ol class="steps-list">
+<li>
+<strong>画面下の「通知エリア」タブをタップ</strong>
+</li>
+<li>
+<strong>地図上で「自宅」の場所をタップ</strong>
+<div class="sub">設定パネルが表示されます</div>
+</li>
+<li>
+<strong>エリア名を入力</strong>
+<div class="sub">例: 「自宅」「おうち」</div>
+</li>
+<li>
+<strong>半径を調整</strong>
+<div class="sub">初期値は200m。住宅街なら150〜200m程度がおすすめです</div>
+</li>
+<li>
+<strong>通知を受け取りたいメンバーを選択</strong>
+<div class="sub">通知を受け取りたいメンバーを選び、各端末で実際に通知が届くか確認します</div>
+</li>
+</ol>
+</div>
+<!-- 通知エリア設定のスクリーンショット -->
+<div class="screenshot-single" style="margin-top: 20px;">
+<div class="screenshot-label">
+<div class="phone-frame" style="max-width: 240px;">
+<img alt="通知エリア設定画面" loading="lazy" src="screenshots/mock_13_geofence.png"/>
+</div>
+<div class="screenshot-caption">通知エリア設定画面<br/>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
+</div>
+</div>
+<h3 style="font-size: 1rem; margin: 24px 0 12px;">おすすめの通知エリア設定</h3>
+<div class="settings-grid">
+<div class="settings-card">
+<h4>🏠 自宅</h4>
+<p>半径: <span class="value">150〜200m</span></p>
+<p>対象: <span class="value">全員</span></p>
+<p style="margin-top:4px;">帰宅したら家族に通知</p>
+</div>
+<div class="settings-card">
+<h4>🏫 学校</h4>
+<p>半径: <span class="value">200〜300m</span></p>
+<p>対象: <span class="value">お子さん</span></p>
+<p style="margin-top:4px;">学校を出たらお母さんに通知</p>
+</div>
+<div class="settings-card">
+<h4>🏢 職場（任意）</h4>
+<p>半径: <span class="value">200m</span></p>
+<p>対象: <span class="value">お父さん</span></p>
+<p style="margin-top:4px;">退勤したらお母さんに通知</p>
+</div>
+</div>
+<div class="hint">
+<strong>自宅と、学校または塾を1か所から。</strong><br/>
+                帰宅と出発を知りたい場所を登録し、到着・出発の通知を選びます。<br/>
                 通知する日は「毎日・平日・土日」から選べます。通知が多いときは、場所や対象メンバーを見直してください。
             </div>
-
-            <!-- 通知のON/OFF設定について -->
-            <h3 style="font-size: 1rem; margin: 28px 0 12px; color: var(--accent);">通知のON/OFF設定について</h3>
-            <p style="font-size:0.9rem; color:var(--sub); margin-bottom:16px;">
-                通知を受け取りたい端末で、<strong style="color:var(--ink);">通知設定と権限</strong>を確認してください。<br>
+<!-- 通知のON/OFF設定について -->
+<h3 style="font-size: 1rem; margin: 28px 0 12px; color: var(--accent);"><!-- 通知のON/OFF設定について --></h3>
+<p style="font-size:0.9rem; color:var(--sub); margin-bottom:16px;">
+                通知を受け取りたい端末で、<strong style="color:var(--ink);">通知設定と権限</strong>を確認してください。
                 通知の管理は2段階で行えます。
             </p>
-
-            <div class="screenshot-container">
-                <div class="screenshot-label">
-                    <div class="phone-frame">
-                        <img src="native-proof/final-notification-settings.png" width="1080" height="2400" alt="通知と位置取得間隔を設定する画面例" loading="lazy">
-                    </div>
-                    <div class="screenshot-caption">通知設定の画面例。通知の全体設定と位置取得間隔を確認できます。</div>
-                </div>
-                <div class="screenshot-arrow">+</div>
-                <div class="screenshot-label">
-                    <div class="phone-frame">
-                        <img src="screenshots/mock_17_geofence_list.png" alt="エリア個別通知" loading="lazy">
-                    </div>
-                    <div class="screenshot-caption">② エリアごとの個別ON/OFF<br>ベルアイコンで切り替え<br>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
-                </div>
-            </div>
-
-            <table class="compare-table" style="margin-top:16px;">
-                <tr>
-                    <th>設定レベル</th>
-                    <th>場所</th>
-                    <th>確認すること</th>
-                </tr>
-                <tr>
-                    <td>全体</td>
-                    <td>メニュー → 通知設定<br>「エリア通知」スイッチ</td>
-                    <td>通知を受け取りたい端末でONを確認</td>
-                </tr>
-                <tr>
-                    <td>エリア個別</td>
-                    <td>通知エリアタブの一覧<br>各エリアのベルアイコン</td>
-                    <td>対象メンバーとエリアごとのON/OFF</td>
-                </tr>
-            </table>
-
-            <div class="hint">
-                <strong>通知を一時的に止めたいとき</strong><br>
-                「通知設定」の「エリア通知」をOFFにすれば、すべてのエリア通知が一括で止まります。<br>
+<div class="screenshot-container">
+<div class="screenshot-label">
+<div class="phone-frame">
+<img alt="通知と位置取得間隔を設定する画面例" height="2400" loading="lazy" src="native-proof/final-notification-settings.png" width="1080"/>
+</div>
+<div class="screenshot-caption">通知設定の画面例。通知の全体設定と位置取得間隔を確認できます。</div>
+</div>
+<div class="screenshot-arrow">+</div>
+<div class="screenshot-label">
+<div class="phone-frame">
+<img alt="エリア個別通知" loading="lazy" src="screenshots/mock_17_geofence_list.png"/>
+</div>
+<div class="screenshot-caption">② エリアごとの個別ON/OFF<br/>ベルアイコンで切り替え<br/>以前の画面をもとにした操作イメージです。実際の表示はアプリで確認してください。</div>
+</div>
+</div>
+<table class="compare-table" style="margin-top:16px;">
+<tr>
+<th>設定レベル</th>
+<th>場所</th>
+<th>確認すること</th>
+</tr>
+<tr>
+<td>全体</td>
+<td>メニュー → 通知設定<br/>「エリア通知」スイッチ</td>
+<td>通知を受け取りたい端末でONを確認</td>
+</tr>
+<tr>
+<td>エリア個別</td>
+<td>通知エリアタブの一覧<br/>各エリアのベルアイコン</td>
+<td>対象メンバーとエリアごとのON/OFF</td>
+</tr>
+</table>
+<div class="hint">
+<strong>通知を一時的に止めたいとき</strong><br/>
+                「通知設定」の「エリア通知」をOFFにすれば、すべてのエリア通知が一括で止まります。<br/>
                 特定のエリアだけ止めたい場合は、エリア一覧のベルアイコンをタップして個別にOFFにできます。
             </div>
-        </div>
-
-        <!-- タイプB -->
-        <div id="typeB" class="tab-content">
-
-            <div class="hint warn">
-                <strong>各メンバーの端末で共有レベルを変更する必要があります。</strong>
+</div>
+<!-- タイプB -->
+<div class="tab-content" id="typeB">
+<div class="hint warn">
+<strong>各メンバーの端末で共有レベルを変更する必要があります。</strong>
                 詳しい位置や履歴を互いに見る場合は、双方が相手に「すべて共有」を選び、保存後に相手の画面でも表示を確認してください。
             </div>
-
-            <h3 style="font-size: 1rem; margin: 20px 0 12px; color: var(--accent);">共有レベルの変更（3台それぞれで操作）</h3>
-
-            <p style="font-size:0.9rem; color:var(--sub); margin-bottom:16px;">
-                家族それぞれが自分の端末で、相手ごとの共有内容を確認して操作します。
-            </p>
-
-            <div class="device-section mama-section">
-                <h3>👩 お母さんのスマホ</h3>
-                <ol class="steps-list">
-                    <li><strong>右上のメニュー（⋮）→「共有設定」</strong></li>
-                    <li><strong>相手ごとに「すべて共有」を選択して保存</strong></li>
-                </ol>
-            </div>
-
-            <div class="device-section papa-section">
-                <h3>👨 お父さんのスマホ</h3>
-                <ol class="steps-list">
-                    <li><strong>右上のメニュー（⋮）→「共有設定」</strong></li>
-                    <li><strong>相手ごとに「すべて共有」を選択して保存</strong></li>
-                </ol>
-            </div>
-
-            <div class="device-section child-section">
-                <h3>👧 お子さんのスマホ</h3>
-                <ol class="steps-list">
-                    <li><strong>右上のメニュー（⋮）→「共有設定」</strong></li>
-                    <li><strong>相手ごとに「すべて共有」を選択して保存</strong></li>
-                </ol>
-            </div>
-
-            <!-- 共有レベル変更のスクリーンショット -->
-            
-
-            <div class="hint">
-                <strong>共有レベルは各メンバーが自分で変更できます。</strong><br>
-                お子さんが大きくなったら、自分で「通知エリアのみ」に戻すこともできます。<br>
+<h3 style="font-size: 1rem; margin: 20px 0 12px; color: var(--accent);">共有レベルの変更（3台それぞれで操作）</h3>
+<p style="font-size:0.9rem; color:var(--sub); margin-bottom:16px;">共有レベルは、家族それぞれが自分の端末で、相手ごとに選びます。あとから本人が変更できます。</p>
+<div class="device-section mama-section">
+<h3>👩 お母さんのスマホ</h3>
+<ol class="steps-list">
+<li><strong>右上のメニュー（⋮）→「共有設定」</strong></li>
+<li><strong>相手ごとに「すべて共有」を選択して保存</strong></li>
+</ol>
+</div>
+<div class="device-section papa-section">
+<h3>👨 お父さんのスマホ</h3>
+<ol class="steps-list">
+<li><strong>右上のメニュー（⋮）→「共有設定」</strong></li>
+<li><strong>相手ごとに「すべて共有」を選択して保存</strong></li>
+</ol>
+</div>
+<div class="device-section child-section">
+<h3>👧 お子さんのスマホ</h3>
+<ol class="steps-list">
+<li><strong>右上のメニュー（⋮）→「共有設定」</strong></li>
+<li><strong>相手ごとに「すべて共有」を選択して保存</strong></li>
+</ol>
+</div>
+<!-- 共有レベル変更のスクリーンショット -->
+<div class="hint">
+<strong>共有レベルは各メンバーが自分で変更できます。</strong><br/>
+                お子さんが大きくなったら、自分で「通知エリアのみ」に戻すこともできます。<br/>
                 変更後は相手の画面でも表示を確認してください。保存失敗などの注意点は<a href="/data-safety.html#current-limits">共有設定の制約</a>をご覧ください。
             </div>
-
-            <h3 style="font-size: 1rem; margin: 24px 0 12px; color: var(--accent);">通知エリアの設定</h3>
-            <p style="font-size:0.9rem; color:var(--sub); margin-bottom:12px;">
+<h3 style="font-size: 1rem; margin: 24px 0 12px; color: var(--accent);">通知エリアの設定</h3>
+<p style="font-size:0.9rem; color:var(--sub); margin-bottom:12px;">
                 タイプBでも通知エリアは設定できます。設定方法はタイプAと同じです。
             </p>
-            <div class="device-section mama-section">
-                <h3>👩 お母さんのスマホで設定</h3>
-                <ol class="steps-list">
-                    <li><strong>画面下の「通知エリア」タブをタップ</strong></li>
-                    <li><strong>場所をタップ → エリア名・半径を設定</strong></li>
-                    <li><strong>通知対象メンバーを選択</strong></li>
-                </ol>
-            </div>
-
-            <div class="hint">
-                <strong>通知のON/OFF設定について</strong><br>
-                エリア通知のON/OFFは各端末の設定で確認してください。<br>
-                全体のON/OFFはメニュー → 通知設定、<br>
-                エリア個別のON/OFFは通知エリア一覧のベルアイコンから変更できます。<br>
+<div class="device-section mama-section">
+<h3>👩 お母さんのスマホで設定</h3>
+<ol class="steps-list">
+<li><strong>画面下の「通知エリア」タブをタップ</strong></li>
+<li><strong>場所をタップ → エリア名・半径を設定</strong></li>
+<li><strong>通知対象メンバーを選択</strong></li>
+</ol>
+</div>
+<div class="hint">
+<strong><!-- 通知のON/OFF設定について --></strong><br/>
+                エリア通知のON/OFFは各端末の設定で確認してください。<br/>
+                全体のON/OFFはメニュー → 通知設定、<br/>
+                エリア個別のON/OFFは通知エリア一覧のベルアイコンから変更できます。<br/>
                 詳しくはタイプAの「通知のON/OFF設定について」をご覧ください。
             </div>
-        </div>
-
-        <div class="nav-buttons">
-            <button class="nav-btn prev" onclick="goSection('step5')">← STEP 5</button>
-            <button class="nav-btn next" onclick="goSection('complete')">完了! →</button>
-        </div>
-    </section>
-
-    <!-- ===== 完了 ===== -->
-    <section class="section" id="complete">
-        <span class="section-badge" style="background: var(--sage); color: var(--ink);">COMPLETE</span>
-        <h2>セットアップ完了!</h2>
-        <p class="lead">お疲れさまでした。これで3人家族のKiniaセットアップは完了です。</p>
-
-        <!-- 完成後のイメージ -->
-        <div class="screenshot-single" style="margin: 24px 0;">
-            <div class="screenshot-label">
-                <div class="phone-frame" style="max-width: 260px;">
-                    <img src="native-proof/final-current-map-r8.png" width="1080" height="2400" alt="架空の人物と位置を表示した現在地画面" loading="lazy">
-                </div>
-                <div class="screenshot-caption">現在地の画面例。名前と人物の位置は架空です。詳しい位置は双方が相手に「すべて共有」を選び、表示を確認します。</div>
-            </div>
-        </div>
-
-        <h3 style="font-size: 1rem; margin: 24px 0 12px;">セットアップ確認チェックリスト</h3>
-        <ul class="checklist">
-            <li>3台すべてにKiniaがインストールされている</li>
-            <li>3人全員がグループに参加している（メンバー一覧で確認）</li>
-            <li>3台すべてで「バックグラウンド位置情報」が「常に許可」になっている</li>
-            <li>3台すべてで「省電力の除外」が設定されている</li>
-            <li>通知エリア「自宅」が設定されている</li>
-            <li>（タイプBの場合）3台すべてで共有レベルが「すべて共有」になっている</li>
-        </ul>
-
-        <div class="hint success">
-            <strong>位置の反映には少し時間がかかります。</strong>
-            セットアップ直後はまだ位置情報が送信されていない場合があります。<br>
+</div>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="goSection('step5')">← STEP 5</button>
+<button class="nav-btn next" onclick="goSection('complete')">完了! →</button>
+</div>
+</section>
+<!-- ===== 完了 ===== -->
+<section class="section" id="complete">
+<span class="section-badge" style="background: var(--sage); color: var(--ink);">COMPLETE</span>
+<h2>これで設定完了です</h2>
+<p class="lead">お疲れさまでした。3人家族のKINIAの設定はこれで完了です。通知は、通信・権限・端末の設定によって遅れたり届かなかったりすることがあります。まずは自宅の出入りで、通知が届くか家族で確かめてみてください。</p>
+<!-- 完成後のイメージ -->
+<div class="screenshot-single" style="margin: 24px 0;">
+<div class="screenshot-label">
+<div class="phone-frame" style="max-width: 260px;">
+<img alt="架空の人物と位置を表示した現在地画面" height="2400" loading="lazy" src="native-proof/final-current-map-r8.png" width="1080"/>
+</div>
+<div class="screenshot-caption">現在地の画面例。名前と人物の位置は架空です。詳しい位置は双方が相手に「すべて共有」を選び、表示を確認します。</div>
+</div>
+</div>
+<h3 style="font-size: 1rem; margin: 24px 0 12px;">設定の確認チェックリスト</h3>
+<ul class="checklist">
+<li>3台すべてにKINIAがインストールされている</li>
+<li>3人全員がグループに参加している（メンバー一覧で確認）</li>
+<li>3台すべてで「バックグラウンド位置情報」が「常に許可」になっている</li>
+<li>3台すべてで「省電力の除外」が設定されている</li>
+<li>通知エリア「自宅」が設定されている</li>
+<li>（タイプBの場合）3台すべてで共有レベルが「すべて共有」になっている</li>
+</ul>
+<div class="hint success">
+<strong>位置の反映には少し時間がかかります。</strong>
+            セットアップ直後はまだ位置情報が送信されていない場合があります。<br/>
             測位しやすい場所で、各端末の位置情報・通信・権限の設定と更新時刻を確認してください。反映までの時間は端末や通信状態によって変わります。
         </div>
-
-        <h3 style="font-size: 1rem; margin: 28px 0 12px;">よくあるトラブル</h3>
-
-        <div class="device-section" style="border-left-color: var(--accent);">
-            <h3 style="color: var(--accent);">位置が更新されない場合</h3>
-            <ol class="steps-list">
-                <li>
-                    <strong>「バックグラウンド位置情報」が「常に許可」になっているか確認</strong>
-                    <div class="sub">Androidの設定 → アプリ → Kinia → 位置情報 で確認できます</div>
-                </li>
-                <li>
-                    <strong>省電力モードがオンになっていないか確認</strong>
-                    <div class="sub">一部の端末では省電力モードがアプリの動作を制限します</div>
-                </li>
-                <li>
-                    <strong>アプリ内の「更新」ボタンをタップ</strong>
-                    <div class="sub">手動で最新の位置を取得します</div>
-                </li>
-            </ol>
-        </div>
-
-        <div class="device-section" style="border-left-color: var(--accent); margin-top:12px;">
-            <h3 style="color: var(--accent);">通知エリアの通知が届かない場合</h3>
-            <ol class="steps-list">
-                <li>
-                    <strong>「通知」権限が許可されているか確認</strong>
-                    <div class="sub">Android 13以降は通知の許可が別途必要です</div>
-                </li>
-                <li>
-                    <strong>通知エリアの半径が小さすぎないか確認</strong>
-                    <div class="sub">GPSの精度を考慮して、100m以上に設定するのがおすすめです</div>
-                </li>
-            </ol>
-        </div>
-
-        <div style="margin-top: 32px; padding: 24px; background: var(--card); border-radius: 12px; border: 1px solid var(--line); text-align: center;">
-            <p style="margin-bottom: 12px;">さらに詳しい使い方や設定は</p>
-            <a href="/setup.html" class="nav-btn next" style="display: inline-flex; text-decoration: none;">はじめかたガイド（詳細版）を見る</a>
-            <p style="margin-top: 12px;"><a href="/faq.html">よくある質問（FAQ）</a> もあわせてご覧ください。</p>
-        </div>
-
-        <div style="margin-top: 20px; padding: 20px; background: var(--card); border-radius: 12px; border: 1px solid var(--line);">
-            <h3 style="font-size: 1rem; margin-bottom: 8px;">解決しない場合</h3>
-            <p style="color: var(--sub); font-size: 0.9rem;">
-                <a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a> からご連絡ください。<br>
-                端末名・Androidバージョン・Kiniaバージョン・症状の詳細を添えていただくとスムーズです。
-            </p>
-        </div>
-
-        <div class="nav-buttons">
-            <button class="nav-btn prev" onclick="goSection('step6')">← STEP 6</button>
-            <button class="nav-btn next" onclick="window.scrollTo({top:0,behavior:'smooth'})">ページトップへ ↑</button>
-        </div>
-    </section>
-
+<h3 style="font-size: 1rem; margin: 28px 0 12px;">うまくいかないとき</h3>
+<div class="device-section" style="border-left-color: var(--accent);">
+<h3 style="color: var(--accent);">位置が更新されない場合</h3>
+<ol class="steps-list">
+<li>
+<strong>「バックグラウンド位置情報」が「常に許可」になっているか確認</strong>
+<div class="sub">Androidの設定 → アプリ → KINIA → 位置情報 で確認できます</div>
+</li>
+<li>
+<strong>省電力モードがオンになっていないか確認</strong>
+<div class="sub">一部の端末では省電力モードがアプリの動作を制限します</div>
+</li>
+<li>
+<strong>アプリ内の「更新」ボタンをタップ</strong>
+<div class="sub">手動で最新の位置を取得します</div>
+</li>
+</ol>
+</div>
+<div class="device-section" style="border-left-color: var(--accent); margin-top:12px;">
+<h3 style="color: var(--accent);">通知エリアの通知が届かない場合</h3>
+<ol class="steps-list">
+<li>
+<strong>「通知」権限が許可されているか確認</strong>
+<div class="sub">Android 13以降は通知の許可が別途必要です</div>
+</li>
+<li>
+<strong>通知エリアの半径が小さすぎないか確認</strong>
+<div class="sub">GPSの精度を考慮して、100m以上に設定するのがおすすめです</div>
+</li>
+</ol>
+</div>
+<div style="margin-top: 32px; padding: 24px; background: var(--card); border-radius: 12px; border: 1px solid var(--line); text-align: center;">
+<p style="margin-bottom: 12px;">さらに詳しい使い方や設定は</p>
+<a class="nav-btn next" href="/setup.html" style="display: inline-flex; text-decoration: none;">始め方ガイド（詳細版）を見る</a>
+<p style="margin-top: 12px;"><a href="/faq.html">よくある質問（FAQ）</a> もあわせてご覧ください。</p>
+</div>
+<div style="margin-top: 20px; padding: 20px; background: var(--card); border-radius: 12px; border: 1px solid var(--line);">
+<h3 style="font-size: 1rem; margin-bottom: 8px;">解決しない場合</h3>
+<p style="color: var(--sub); font-size: 0.9rem;"><a href="https://forms.gle/qTc8UjzWVMFpx76o8">お問い合わせフォーム</a> からご連絡ください。 端末名・Androidバージョン・KINIAバージョン・症状の詳細を添えていただくとスムーズです。</p>
+</div>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="goSection('step6')">← STEP 6</button>
+<button class="nav-btn next" onclick="window.scrollTo({top:0,behavior:'smooth'})">ページトップへ ↑</button>
+</div>
+</section>
 </main>
-
 <!-- フッター -->
-<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">Kinia（キニア）<small>© 2026 Kinia</small></div><div class="sf-links"><a href="/setup.html">はじめかた</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></footer>
-
+<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">KINIA（キニア）<small>© 2026 KINIA</small></div><div class="sf-links"><a href="/setup.html">始め方</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" rel="noopener noreferrer" target="_blank">お問い合わせフォーム ↗</a></div></div></footer>
 <script>
 const SECTIONS = ['flowchart', 'setup-overview', 'step1', 'step2', 'step3', 'step4', 'step5', 'step6', 'complete'];
 
@@ -1670,6 +1558,5 @@ document.addEventListener('click', function(e) {
     });
 });
 </script>
-
 </body>
 </html>

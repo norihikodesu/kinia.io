@@ -1,27 +1,24 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XCT32M2MZV');</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>データの安全性 — Kinia</title>
-    <meta name="description" content="Kiniaが位置情報やプライバシーをどのように保護しているか。技術的な仕組みと運営方針をわかりやすく説明します。">
-    <link rel="icon" href="/images/app_icon.png" type="image/png">
-    <meta property="og:title" content="データの安全性 — Kinia">
-    <meta property="og:description" content="Kiniaが位置情報やプライバシーをどのように保護しているか。技術的な仕組みと運営方針をわかりやすく説明します。">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kinia.io/data-safety.html">
-    <meta property="og:image" content="https://kinia.io/images/ogp/kinia-daily-r7.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="データの安全性 — Kinia">
-    <meta name="twitter:description" content="Kiniaが位置情報やプライバシーをどのように保護しているか。技術的な仕組みと運営方針をわかりやすく説明します。">
-    <meta name="twitter:image" content="https://kinia.io/images/ogp/kinia-daily-r7.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XCT32M2MZV"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XCT32M2MZV');</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>データの安全性 | KINIA（キニア）家族の位置共有アプリ</title>
+<meta content="KINIA（キニア）で家族に見える情報、サーバーに保存する情報、共有設定の注意点、保存期間とアカウント削除について説明します。" name="description"/>
+<link href="/images/app_icon.png" rel="icon" type="image/png"/>
+<meta content="データの安全性 | KINIA（キニア）家族の位置共有アプリ" property="og:title"/>
+<meta content="KINIA（キニア）で家族に見える情報、サーバーに保存する情報、共有設定の注意点、保存期間とアカウント削除について説明します。" property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://kinia.io/data-safety.html" property="og:url"/>
+<meta content="https://kinia.io/images/ogp/kinia-daily-r7.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="データの安全性 | KINIA（キニア）家族の位置共有アプリ" name="twitter:title"/>
+<meta content="KINIA（キニア）で家族に見える情報、サーバーに保存する情報、共有設定の注意点、保存期間とアカウント削除について説明します。" name="twitter:description"/>
+<meta content="https://kinia.io/images/ogp/kinia-daily-r7.png" name="twitter:image"/>
+<style>
         ruby rt { font-size: 0.55em; }
         :root {
             --bg: #fbf6ef; --bg-alt: #f4e8d8; --card: #ffffff; --ink: #2a2218;
@@ -239,36 +236,32 @@
             .policy-box { padding: 20px 18px; }
         }
     </style>
-    <link rel="canonical" href="https://kinia.io/data-safety.html">
+<link href="https://kinia.io/data-safety.html" rel="canonical"/>
 <style id="r7-readable-type">:root{--sub:#525b6e;--text-sub:#525b6e;--text-dim:#657084;--font-body:"Yu Gothic",Meiryo,system-ui,sans-serif;--font-head:"Yu Gothic",Meiryo,system-ui,sans-serif}body{font-family:"Yu Gothic",Meiryo,system-ui,sans-serif}h1,h2,h3{font-family:inherit;font-weight:700}.body-text,.lead{color:#525b6e}</style>
-<link rel="stylesheet" href="/site-common.css?v=20260926r14">
+<link href="/site-common.css?v=20261004r15" rel="stylesheet"/>
 </head>
 <body class="kinia-page kinia-document">
-
-<script src="/nav.js?v=20260926r12"></script>
-
+<script src="/nav.js?v=20261004r15"></script>
 <main class="content">
-<h1>家族と共有する情報と、<br>データの取り扱い</h1>
-<p class="lead">Kiniaは位置情報を扱うアプリです。家族に見える情報、サービスに保存する情報、設定するときの注意点を説明します。</p>
+<h1>家族に見える情報とデータの取り扱い</h1>
+<p class="lead">KINIAは家族の位置共有アプリです。家族に見える情報、サービスに保存する情報、設定するときの注意点をまとめました。</p>
 <h2>家族に見せる範囲を選ぶ</h2>
-<div class="policy-box"><h3>すべて共有</h3><p>詳しい現在地、移動履歴、活動状態などを家族と共有して使う設定です。互いの詳しい位置を見たい場合は、双方が相手に「すべて共有」を選びます。</p><h3>通知エリアのみ</h3><p>登録した場所の出入りを中心に知らせ、詳しい位置の共有を抑えるための設定です。電池残量や更新時刻、利用する機能に応じた歩数・元気度などは共有されます。</p><p>家族で共有内容を相談し、設定後は相手の画面でも意図した表示になっているか確認してください。時間で自動終了する位置共有機能は現在ありません。</p></div>
-<h2 id="current-limits">共有設定で気をつけてほしいこと</h2>
+<div class="policy-box"><h3>すべて共有</h3><p>詳しい現在地、移動履歴、活動状態などを家族と共有する設定です。互いの詳しい位置を見たい場合は、双方が相手に「すべて共有」を選びます。</p><h3>通知エリアのみ</h3><p>登録した場所の出入りを中心に知らせ、詳しい位置の共有を抑える設定です。この設定でも、電池残量や更新時刻、利用する機能に応じた歩数・元気度などは共有されます。</p><p>共有範囲は相手ごとに選び、あとから本人が変更できます。二人の設定が違うときは、控えめな側が互いに適用される設計です。家族で共有内容を相談し、設定後は相手の画面でも意図した表示になっているか確認してください。時間で自動的に終了する位置共有機能は現在ありません。</p></div>
+<h2 id="current-limits">共有設定で気をつけること</h2>
 <div class="policy-box"><p><strong>設定が保存されていない場合や保存に失敗した場合、選択した共有範囲が相手側に反映されず、意図より詳しい位置が表示される可能性があります。</strong>「通知エリアのみ」を選んだだけで、詳しい位置が必ず非表示になったとは判断しないでください。相手の画面で確認できない場合は、位置共有の利用をいったん止め、<a href="https://forms.gle/qTc8UjzWVMFpx76o8">開発者へお問い合わせください</a>。</p><p>この案内は設定処理で確認された制約についての説明です。実利用者の情報流出を確認したというお知らせではありません。</p></div>
 <h2>サーバーに保存する情報</h2>
 <div class="policy-box"><p>家族への表示や同期のため、位置に関するデータ、利用者ID、表示名、グループ情報などをサーバーで扱います。端末内だけに保存するアプリではありません。</p><p>主要な位置の保存処理では、座標をずらす「難読化」を使用しています。元に戻すための情報もサービス側で扱うため、運営者にも復元できない仕組みとは異なります。</p><p>保存・同期・認証などにはGoogle Firebase、地図表示にはGoogle Mapsを利用します。利用目的と項目は<a href="/privacy.html">プライバシーポリシー</a>をご確認ください。</p></div>
-<h2>認証と家族への参加</h2>
-<div class="policy-box"><p>Android版はGoogleアカウントでログインし、家族グループに参加して使います。通常の参加手順では、既存メンバーが発行した招待リンクや招待コードを使用します。招待コードの有効期間は72時間です。コードは招待したい相手にだけ伝えてください。</p><p>通信・認証・アクセス制御を利用してデータを保護します。Google Playの「データ セーフティ」でも、収集・共有する情報と送信中の暗号化について確認できます。</p></div>
+<h2>ログインと家族グループへの参加</h2>
+<div class="policy-box"><p>Android版はGoogleアカウントでログインし、家族グループに参加して使います。通常の参加手順では、既存メンバーが発行した招待リンクや招待コードを使用します。招待コードの有効期間は72時間です。コードは招待したい相手にだけ伝えてください。</p><p>通信・認証・アクセス制御を利用してデータを保護します。Google Playの「データセーフティ」でも、収集・共有する情報と送信中の暗号化について確認できます。</p></div>
 <h2>保存期間とアカウントの削除</h2>
 <div class="policy-box"><p>位置履歴を含むデータの保存期間や削除の対象は、保存先によって異なります。すべての情報が一律7日で消えるものではありません。</p><p>アプリの「グループ管理」からアカウント削除を開始できます。本人確認後、現在のグループに関連するデータ、認証情報、端末内データを段階的に処理します。通信障害などで保留・再試行となる場合があります。</p><p>アプリにログインできないときや、削除対象・完了状況を確認したいときは、<a href="/delete-account.html">削除手順とお問い合わせ方法</a>をご確認ください。</p></div>
 <h2>外部サービスとGoogle Playの表示</h2>
 <div class="policy-box"><p>家族への情報共有に加え、FirebaseやGoogle Mapsなどの外部サービスを利用するためのデータ処理があります。Google Playのデータセーフティには、位置情報・フィットネス情報が他の企業や組織と共有される可能性を掲載しています。</p><p>このページは第三者によるセキュリティ監査の結果を示すものではありません。個人開発のアプリとして、データの取り扱いと設定上の制約を見直し、案内を更新していきます。</p></div>
-<p>現在の対象は13歳以上です。Android 8.0以上とGoogleアカウントが必要です。</p>
-<p><a href="/setup.html">始め方を見る</a> ／ <a href="/privacy.html">プライバシーポリシー</a> ／ <a href="/">Kiniaの紹介に戻る</a></p>
+<p>利用できるのは13歳以上の方です。Android 8.0以上の端末とGoogleアカウントが必要です。</p>
+<p><a href="/setup.html">始め方を見る</a> ／ <a href="/privacy.html">プライバシーポリシー</a> ／ <a href="/">KINIAの紹介に戻る</a></p>
 <p>最終更新日：2026年9月26日</p>
 </main>
-
-<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">Kinia（キニア）<small>© 2026 Kinia</small></div><div class="sf-links"><a href="/setup.html">はじめかた</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" target="_blank" rel="noopener noreferrer">お問い合わせフォーム ↗</a></div></div></footer>
-
+<footer class="site-footer"><div class="sf-inner"><div class="sf-brand">KINIA（キニア）<small>© 2026 KINIA</small></div><div class="sf-links"><a href="/setup.html">始め方</a><a href="/faq.html">よくある質問</a><a href="/about.html">開発者について</a><a href="/data-safety.html">データの扱い</a><a href="/privacy.html">プライバシーポリシー</a><a href="/delete-account.html">アカウント削除</a><a href="https://forms.gle/qTc8UjzWVMFpx76o8" rel="noopener noreferrer" target="_blank">お問い合わせフォーム ↗</a></div></div></footer>
 <script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target))d.classList.remove('open')})});</script>
 </body>
 </html>
